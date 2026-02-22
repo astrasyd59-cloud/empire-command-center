@@ -27,157 +27,68 @@
             font-family: 'Courier New', monospace; font-weight: bold;
             color: var(--text); z-index: 1000;
         }
-        header { 
-            text-align: center; padding: 40px 20px; 
-            border-bottom: 3px double var(--accent); margin-bottom: 30px; 
-        }
+        header { text-align: center; padding: 40px 20px; border-bottom: 3px double var(--accent); margin-bottom: 30px; }
         h1 { font-size: 2rem; color: var(--accent); letter-spacing: 2px; }
         .subtitle { font-size: 0.9rem; color: #666; margin-top: 8px; font-style: italic; }
         [data-theme="dark"] .subtitle { color: #999; }
-        
-        .timestamp { 
-            text-align: center; font-size: 0.8rem; color: #888; 
-            margin-bottom: 30px; font-family: 'Courier New', monospace;
-        }
-        
-        .asset-box { 
-            background: var(--card); border: 1px solid var(--border); 
-            margin: 25px 0; padding: 25px; border-radius: 4px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        .asset-header { 
-            display: flex; justify-content: space-between; align-items: center; 
-            margin-bottom: 18px; padding-bottom: 12px; 
-            border-bottom: 2px solid var(--gold); 
-        }
-        .ticker { 
-            font-size: 2.2rem; font-weight: bold; color: var(--accent); 
-            font-family: 'Courier New', monospace; letter-spacing: 1px;
-        }
+        .timestamp { text-align: center; font-size: 0.8rem; color: #888; margin-bottom: 30px; font-family: 'Courier New', monospace; }
+        .asset-box { background: var(--card); border: 1px solid var(--border); margin: 25px 0; padding: 25px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .asset-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 2px solid var(--gold); }
+        .ticker { font-size: 2.2rem; font-weight: bold; color: var(--accent); font-family: 'Courier New', monospace; letter-spacing: 1px; }
         .company { font-size: 0.85rem; color: #666; margin-top: 4px; }
         [data-theme="dark"] .company { color: #999; }
         .price-block { text-align: right; }
         .price { font-size: 1.6rem; font-weight: bold; }
-        .positive { color: var(--green); } 
-        .negative { color: var(--red); }
+        .positive { color: var(--green); } .negative { color: var(--red); }
         .mcap { font-size: 0.75rem; color: #888; margin-top: 4px; }
-        
-        /* 7 metrics in one row */
-        .metrics-7 {
-            display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin: 18px 0;
-        }
-        .metric-small {
-            background: rgba(30,58,95,0.06); padding: 12px 4px; 
-            text-align: center; border-radius: 3px;
-        }
+        .metrics-7 { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin: 18px 0; }
+        .metric-small { background: rgba(30,58,95,0.06); padding: 12px 4px; text-align: center; border-radius: 3px; }
         [data-theme="dark"] .metric-small { background: rgba(100,181,246,0.08); }
-        .metric-small .val { 
-            font-size: 0.95rem; font-weight: bold; color: var(--accent); 
-            font-family: 'Courier New', monospace; 
-        }
-        .metric-small .lbl { 
-            font-size: 0.55rem; text-transform: uppercase; 
-            color: #888; margin-top: 4px; letter-spacing: 0.5px;
-        }
-        
-        @media (max-width: 768px) {
-            .metrics-7 { grid-template-columns: repeat(4, 1fr); }
-            .ticker { font-size: 1.6rem; }
-            .price { font-size: 1.3rem; }
-        }
-        
-        .section-title { 
-            font-size: 0.95rem; color: var(--accent); margin: 22px 0 12px; 
-            text-transform: uppercase; letter-spacing: 1.5px; font-weight: bold;
-            font-family: 'Courier New', monospace;
-        }
-        
-        .street-quote {
-            background: linear-gradient(135deg, #f5f5dc 0%, #fff 100%); 
-            border-left: 4px solid var(--gold);
-            padding: 14px 18px; margin: 12px 0; font-style: italic; 
-            font-size: 0.92rem; line-height: 1.7;
-        }
-        [data-theme="dark"] .street-quote { 
-            background: linear-gradient(135deg, #2a2520 0%, #1a1a1a 100%); 
-            color: #e0e0e0; 
-        }
-        .street-quote .source { 
-            font-size: 0.78rem; color: var(--accent); font-weight: bold; 
-            margin-top: 8px; font-style: normal; font-family: 'Courier New', monospace;
-        }
-        
-        .cfa-box { 
-            background: #f0f8ff; border: 1px solid #b0d4f1; 
-            padding: 18px; margin: 12px 0; border-radius: 4px; 
-        }
-        [data-theme="dark"] .cfa-box { 
-            background: #0f1a25; border-color: #1a3a5a; 
-        }
-        .cfa-box h4 { 
-            color: var(--accent); margin-bottom: 10px; 
-            font-size: 0.9rem; font-family: 'Courier New', monospace;
-        }
-        .formula { 
-            font-family: 'Courier New', monospace; background: rgba(0,0,0,0.04); 
-            padding: 12px; margin: 10px 0; font-size: 0.88rem; 
-            border-left: 3px solid var(--gold); border-radius: 0 4px 4px 0;
-        }
+        .metric-small .val { font-size: 0.95rem; font-weight: bold; color: var(--accent); font-family: 'Courier New', monospace; }
+        .metric-small .lbl { font-size: 0.55rem; text-transform: uppercase; color: #888; margin-top: 4px; letter-spacing: 0.5px; }
+        @media (max-width: 768px) { .metrics-7 { grid-template-columns: repeat(4, 1fr); } .ticker { font-size: 1.6rem; } .price { font-size: 1.3rem; } }
+        .section-title { font-size: 0.95rem; color: var(--accent); margin: 22px 0 12px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: bold; font-family: 'Courier New', monospace; }
+        .street-quote { background: linear-gradient(135deg, #f5f5dc 0%, #fff 100%); border-left: 4px solid var(--gold); padding: 14px 18px; margin: 12px 0; font-style: italic; font-size: 0.92rem; line-height: 1.7; }
+        [data-theme="dark"] .street-quote { background: linear-gradient(135deg, #2a2520 0%, #1a1a1a 100%); color: #e0e0e0; }
+        .street-quote .source { font-size: 0.78rem; color: var(--accent); font-weight: bold; margin-top: 8px; font-style: normal; font-family: 'Courier New', monospace; }
+        .cfa-box { background: #f0f8ff; border: 1px solid #b0d4f1; padding: 18px; margin: 12px 0; border-radius: 4px; }
+        [data-theme="dark"] .cfa-box { background: #0f1a25; border-color: #1a3a5a; }
+        .cfa-box h4 { color: var(--accent); margin-bottom: 10px; font-size: 0.9rem; font-family: 'Courier New', monospace; }
+        .formula { font-family: 'Courier New', monospace; background: rgba(0,0,0,0.04); padding: 12px; margin: 10px 0; font-size: 0.88rem; border-left: 3px solid var(--gold); border-radius: 0 4px 4px 0; }
         [data-theme="dark"] .formula { background: rgba(255,255,255,0.05); }
-        
-        .trading-table {
-            width: 100%; border-collapse: collapse; margin: 15px 0;
-            font-size: 0.85rem;
-        }
-        .trading-table th {
-            background: var(--accent); color: white; padding: 10px 8px;
-            text-align: left; font-family: 'Courier New', monospace;
-            font-size: 0.75rem; text-transform: uppercase;
-        }
-        .trading-table td {
-            padding: 12px 8px; border-bottom: 1px solid var(--border);
-        }
+        .trading-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.85rem; }
+        .trading-table th { background: var(--accent); color: white; padding: 10px 8px; text-align: left; font-family: 'Courier New', monospace; font-size: 0.75rem; text-transform: uppercase; }
+        .trading-table td { padding: 12px 8px; border-bottom: 1px solid var(--border); }
         .trading-table tr:hover { background: rgba(30,58,95,0.03); }
-        .rr { 
-            background: var(--gold); color: #000; padding: 3px 8px; 
-            border-radius: 12px; font-weight: bold; font-size: 0.75rem;
-        }
-        
-        .chart-container { 
-            background: var(--card); border: 1px solid var(--border);
-            padding: 20px; margin: 20px 0; height: 300px;
-        }
-        
-        .term-box { 
-            background: #fff8dc; border: 2px solid var(--gold); 
-            padding: 20px; margin: 20px 0; border-radius: 4px;
-        }
-        [data-theme="dark"] .term-box { 
-            background: #2a2520; 
-        }
-        .term { 
-            margin: 14px 0; padding-bottom: 14px; 
-            border-bottom: 1px dashed #ccc; font-size: 0.88rem; line-height: 1.7;
-        }
+        .rr { background: var(--gold); color: #000; padding: 3px 8px; border-radius: 12px; font-weight: bold; font-size: 0.75rem; }
+        .chart-container { background: var(--card); border: 1px solid var(--border); padding: 20px; margin: 20px 0; height: 300px; }
+        .term-box { background: #fff8dc; border: 2px solid var(--gold); padding: 20px; margin: 20px 0; border-radius: 4px; }
+        [data-theme="dark"] .term-box { background: #2a2520; }
+        .term { margin: 14px 0; padding-bottom: 14px; border-bottom: 1px dashed #ccc; font-size: 0.88rem; line-height: 1.7; }
         .term:last-child { border-bottom: none; padding-bottom: 0; }
-        .term-word { 
-            font-weight: bold; color: var(--accent); 
-            font-family: 'Courier New', monospace;
-        }
-        .term-origin {
-            font-size: 0.78rem; color: #888; margin-top: 6px; font-style: italic;
-        }
+        .term-word { font-weight: bold; color: var(--accent); font-family: 'Courier New', monospace; }
+        .term-origin { font-size: 0.78rem; color: #888; margin-top: 6px; font-style: italic; }
         [data-theme="dark"] .term-origin { color: #777; }
-        
         .crypto-card { border-color: #8b5cf6; }
         .crypto-card .ticker { color: #8b5cf6; }
-        
-        footer {
-            text-align: center; padding: 30px 20px; 
-            color: #888; font-size: 0.8rem; 
-            border-top: 1px solid var(--border); margin-top: 40px;
-        }
+        footer { text-align: center; padding: 30px 20px; color: #888; font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: 40px; }
         [data-theme="dark"] footer { color: #666; }
+        
+        /* Quiz Styles */
+        .quiz-question { background: rgba(30,58,95,0.03); border: 1px solid var(--border); border-radius: 6px; padding: 18px; margin: 15px 0; }
+        [data-theme="dark"] .quiz-question { background: rgba(100,181,246,0.05); }
+        .q-text { font-size: 0.9rem; margin-bottom: 12px; line-height: 1.6; }
+        .options { display: flex; flex-direction: column; gap: 8px; }
+        .opt { background: var(--card); border: 1px solid var(--border); padding: 12px 15px; text-align: left; cursor: pointer; font-family: 'Courier New', monospace; font-size: 0.85rem; border-radius: 4px; transition: all 0.2s; }
+        .opt:hover { background: rgba(30,58,95,0.08); border-color: var(--accent); }
+        [data-theme="dark"] .opt:hover { background: rgba(100,181,246,0.1); }
+        .opt.correct { background: #d4edda; border-color: #28a745; color: #155724; }
+        .opt.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+        .opt.disabled { pointer-events: none; opacity: 0.6; }
+        .feedback { margin-top: 12px; padding: 12px; border-radius: 4px; font-size: 0.85rem; display: none; }
+        .feedback.correct-fb { background: #d4edda; color: #155724; border: 1px solid #28a745; }
+        .feedback.wrong-fb { background: #f8d7da; color: #721c24; border: 1px solid #dc3545; }
+        .score-box { text-align: center; padding: 20px; background: var(--gold); color: #000; border-radius: 6px; margin-top: 20px; font-family: 'Courier New', monospace; font-size: 1.2rem; }
     </style>
 </head>
 <body>
@@ -231,15 +142,14 @@
             <div class="cfa-box">
                 <h4>Price-to-Earnings Ratio (Chapter 41: Equity Valuation)</h4>
                 <div class="formula">P/E = Market Price / Earnings Per Share<br>P/E = $264.58 / $7.91 = 33.45x</div>
-                <p><strong>Interpretation:</strong> Investors pay $33.45 for every $1 of AAPL earnings. This is below the S&P 500 Tech sector average of ~36x, suggesting relative value. However, P/E is only meaningful when comparing firms with similar growth profiles.</p>
+                <p><strong>Interpretation:</strong> Investors pay $33.45 for every $1 of AAPL earnings. This is below the S&P 500 Tech sector average of ~36x, suggesting relative value.</p>
             </div>
 
             <div class="cfa-box">
-                <h4>Return on Equity — DuPont Analysis (Chapter 28: Financial Analysis)</h4>
+                <h4>Return on Equity — DuPont Analysis (Chapter 28)</h4>
                 <div class="formula">ROE = Net Income / Shareholders' Equity<br>ROE = $123.4B / $77.1B = 160.1%</div>
                 <p><strong>DuPont Decomposition:</strong></p>
                 <div class="formula">ROE = Net Margin × Asset Turnover × Financial Leverage<br>160.1% = 24.2% × 0.87x × 7.62x</div>
-                <p><strong>CFA Insight:</strong> AAPL's astronomical ROE is artificially inflated by aggressive share buybacks reducing equity base. For CFA exam: adjust ROE for treasury stock when comparing across time periods.</p>
             </div>
         </div>
 
@@ -269,27 +179,16 @@
             <div class="section-title">🏛️ Street Commentary</div>
             
             <div class="street-quote">
-                "JPM trades at a 15% premium to peers, reflecting best-in-class ROTCE of 17% and fortress balance sheet. The First Republic integration is now accretive. We see regulatory overhang as temporary."
+                "JPM trades at a 15% premium to peers, reflecting best-in-class ROTCE of 17% and fortress balance sheet. The First Republic integration is now accretive."
                 <div class="source">— Betsy Graseck, Morgan Stanley · Overweight · $340 PT</div>
-            </div>
-
-            <div class="street-quote">
-                "NIM expansion of 45bps YoY with disciplined expense management drives our bullish view. The investment bank pipeline is recovering. $3.2B in annual tech spend is the moat."
-                <div class="source">— Ken Usdin, Jefferies · Buy · $335 PT</div>
             </div>
 
             <div class="section-title">📚 CFA Lens: Bank Valuation Metrics</div>
 
             <div class="cfa-box">
-                <h4>Price-to-Book vs P/E for Financials (Chapter 41)</h4>
-                <div class="formula">P/B = Market Cap / Book Value = 1.68x<br>P/E = 15.53x (vs sector avg 18x)</div>
-                <p><strong>Why P/B Matters for Banks:</strong> Unlike industrials, banks mark assets to market. P/B < 1.0x = market doubts asset quality. JPM's 1.68x P/B reflects premium franchise value. Combined with 15.53x P/E (below sector), valuation appears reasonable.</p>
-            </div>
-
-            <div class="cfa-box">
                 <h4>Dividend Discount Model — Gordon Growth (Chapter 41)</h4>
-                <div class="formula">V₀ = D₁ / (r − g)<br>Where: D₁ = $6.00 × 1.05 = $6.30, r = 9%, g = 5%<br>V₀ = $6.30 / (0.09 − 0.05) = $6.30 / 0.04 = $157.50</div>
-                <p><strong>Observation:</strong> Single-stage DDM undervalues JPM at $157.50 vs market $310.79. This is because DDM assumes perpetual growth — banks are cyclical. CFA curriculum recommends multi-stage models for financials.</p>
+                <div class="formula">V₀ = D₁ / (r − g)<br>Where: D₁ = $6.30, r = 9%, g = 5%<br>V₀ = $6.30 / 0.04 = $157.50</div>
+                <p><strong>Observation:</strong> DDM assumes perpetual growth — banks are cyclical. CFA recommends multi-stage models for financials.</p>
             </div>
         </div>
 
@@ -319,27 +218,16 @@
             <div class="section-title">🏛️ Street Commentary</div>
             
             <div class="street-quote">
-                "XOM's Permian production growth of 18% YoY with cash break-even at $35/bbl provides unmatched downside protection. The Pioneer acquisition synergies are exceeding targets."
+                "XOM's Permian production growth of 18% YoY with cash break-even at $35/bbl provides unmatched downside protection."
                 <div class="source">— Devin McDermott, Morgan Stanley · Overweight · $165 PT</div>
-            </div>
-
-            <div class="street-quote">
-                "Dividend aristocrat status with 41 consecutive years of increases. The counter-cyclical buyback program returned $17B to shareholders last year. Energy scarcity premium is real."
-                <div class="source">— Doug Leggate, BofA Securities · Buy · $160 PT</div>
             </div>
 
             <div class="section-title">📚 CFA Lens: Cyclical Valuation</div>
 
             <div class="cfa-box">
                 <h4>Why P/E Is Misleading for Energy (Chapter 41)</h4>
-                <div class="formula">Normalized P/E = Price / Mid-Cycle EPS<br>XOM Normalized EPS ≈ $8.50 (vs current $6.70)<br>Normalized P/E = $147.28 / $8.50 = 17.3x</div>
-                <p><strong>CFA Approach:</strong> Energy earnings are volatile with commodity prices. Analysts use normalized earnings (average through cycle) rather than spot earnings. XOM's 21.98x spot P/E looks expensive, but 17.3x normalized is fair vs history.</p>
-            </div>
-
-            <div class="cfa-box">
-                <h4>Dividend Sustainability Analysis</h4>
-                <div class="formula">Payout Ratio = Dividends / Net Income = $4.12 / $6.70 = 61.5%<br>Cash Flow Coverage = OCF / Dividends = $55B / $17B = 3.2x</div>
-                <p><strong>Safety:</strong> 3.2x cash flow coverage is excellent. Dividend is secure even if oil drops to $60/bbl. This is why XOM maintained dividend through 2020 crash when peers cut.</p>
+                <div class="formula">Normalized P/E = Price / Mid-Cycle EPS<br>Normalized P/E = $147.28 / $8.50 = 17.3x</div>
+                <p><strong>CFA Approach:</strong> Energy earnings are volatile. Analysts use normalized earnings (average through cycle) rather than spot earnings.</p>
             </div>
         </div>
 
@@ -369,27 +257,16 @@
             <div class="section-title">🏛️ Street Commentary</div>
             
             <div class="street-quote">
-                "The medical cost ratio spike to 85.5% is transitory — we see normalization to 82% by Q3. Optum's vertical integration is underappreciated. This is a rare entry point for long-term holders."
+                "The medical cost ratio spike to 85.5% is transitory — we see normalization to 82% by Q3. Optum's vertical integration is underappreciated."
                 <div class="source">— Justin Lake, Wolfe Research · Outperform · $380 PT</div>
-            </div>
-
-            <div class="street-quote">
-                "Medicare Advantage headwinds are real, but the sell-off to 16x forward P/E is overdone. UNH has compounded EPS at 15% annually for a decade. Growth rate is decelerating, not disappearing."
-                <div class="source">— Jessica Tassan, Cantor Fitzgerald · Overweight · $360 PT</div>
             </div>
 
             <div class="section-title">📚 CFA Lens: Mean Reversion Opportunity</div>
 
             <div class="cfa-box">
                 <h4>P/E Compression & Value Investing (Chapter 41)</h4>
-                <div class="formula">Jan P/E: $357 / $13.22 = 27.0x<br>Feb P/E: $290 / $13.22 = 21.94x<br>Compression: (27−21.94)/27 = 18.7%</div>
-                <p><strong>Value Angle:</strong> Stock fell 18.7% despite no earnings revision. Market simply pays less per dollar of earnings. If MCR normalizes and P/E reverts to 24x: Target = $13.22 × 24 = $317.28 (+9.4%).</p>
-            </div>
-
-            <div class="cfa-box">
-                <h4>Defensive Beta Analysis (Chapter 42: Portfolio Management)</h4>
-                <div class="formula">Beta = 0.41 → If SPY moves ±10%, UNH moves ±4.1%</div>
-                <p><strong>Portfolio Context:</strong> UNH's 0.41 beta makes it a portfolio stabilizer. In market drawdowns, defensive healthcare outperforms. The 3.05% dividend yield provides income floor. Suitable for risk-averse allocations per CFA guidelines.</p>
+                <div class="formula">Jan P/E: 27.0x → Feb P/E: 21.94x<br>Compression: 18.7%</div>
+                <p><strong>Value Angle:</strong> Stock fell 18.7% despite no earnings revision. If P/E reverts to 24x: Target = $317.28 (+9.4%).</p>
             </div>
         </div>
 
@@ -419,173 +296,98 @@
             <div class="section-title">🏛️ Street Commentary</div>
             
             <div class="street-quote">
-                "Bitcoin trades as a risk-on asset with 1.42x SPY beta, but the structural ETF inflows ($8B since Jan) suggest institutional adoption is secular, not cyclical. Treasury diversification narrative is gaining traction."
+                "Bitcoin trades as a risk-on asset with 1.42x SPY beta, but the structural ETF inflows ($8B since Jan) suggest institutional adoption is secular."
                 <div class="source">— Mike Novogratz, Galaxy Digital · Feb 21, 2026</div>
-            </div>
-
-            <div class="street-quote">
-                "The halving in April creates supply shock mechanics. Historically, BTC rallies 300%+ post-halving. Current consolidation at $95K-$100K builds base for next leg higher."
-                <div class="source">— Tom Lee, Fundstrat Global Advisors · $150K EOY Target</div>
             </div>
 
             <div class="section-title">📚 Crypto vs TradFi: Alternative Metrics</div>
 
             <div class="cfa-box">
-                <h4>Why No P/E for Bitcoin? (Chapter 41: Equity Valuation Limitations)</h4>
-                <p>Bitcoin has no earnings, no cash flows, no dividends. Cannot use DCF, P/E, or EV/EBITDA. Instead, crypto analysts use:</p>
-                <div class="formula">Stock-to-Flow (S2F) = 1 / Inflation Rate = 58 (gold = 62)<br>NVT Ratio = Market Cap / 24h Volume = 67 (fair = 30-50)<br>MVRV Z-Score = (Market Cap − Realized Cap) / Std Dev = 1.8 (top = 7+)</div>
-                <p><strong>CFA Parallel:</strong> Like valuing commodities (store of value) or early-stage tech (growth optionality). Requires alternative frameworks outside traditional equity models.</p>
-            </div>
-
-            <div class="cfa-box">
-                <h4>Beta & Portfolio Context (Chapter 42: Risk Management)</h4>
-                <div class="formula">BTC Beta vs SPY = 1.42<br>If SPY rallies 10% → BTC expected +14.2%<br>If SPY drops 10% → BTC expected −14.2%</div>
-                <p><strong>Sharpe Ratio Consideration:</strong> Despite high volatility, BTC's Sharpe ratio has exceeded SPY over 5Y periods. CFA framework: high-risk assets can improve portfolio efficiency if correlation < 1.0.</p>
+                <h4>Why No P/E for Bitcoin? (Chapter 41)</h4>
+                <p>Bitcoin has no earnings, cash flows, or dividends. Cannot use DCF, P/E, or EV/EBITDA.</p>
+                <div class="formula">Stock-to-Flow (S2F) = 58 (gold = 62)<br>NVT Ratio = Market Cap / 24h Volume</div>
             </div>
         </div>
 
-        <!-- Trading Setups Summary -->
+        <!-- Trading Setups -->
         <div class="asset-box">
             <div class="section-title">📈 Trading Lens: All Setups</div>
             <table class="trading-table">
-                <tr>
-                    <th>Asset</th>
-                    <th>Setup</th>
-                    <th>Entry</th>
-                    <th>Stop</th>
-                    <th>Target</th>
-                    <th>R/R</th>
-                </tr>
-                <tr>
-                    <td><strong>AAPL</strong></td>
-                    <td>Bull Flag Continuation</td>
-                    <td>$262.50</td>
-                    <td>$255.00</td>
-                    <td>$280.00</td>
-                    <td><span class="rr">2.3:1</span></td>
-                </tr>
-                <tr>
-                    <td><strong>JPM</strong></td>
-                    <td>Breakout Play</td>
-                    <td>$312.00</td>
-                    <td>$302.00</td>
-                    <td>$340.00</td>
-                    <td><span class="rr">2.8:1</span></td>
-                </tr>
-                <tr>
-                    <td><strong>XOM</strong></td>
-                    <td>Trend Following</td>
-                    <td>$148.00</td>
-                    <td>$140.00</td>
-                    <td>$165.00</td>
-                    <td><span class="rr">2.1:1</span></td>
-                </tr>
-                <tr>
-                    <td><strong>UNH</strong></td>
-                    <td>Mean Reversion</td>
-                    <td>$288.00</td>
-                    <td>$278.00</td>
-                    <td>$320.00</td>
-                    <td><span class="rr">3.2:1</span></td>
-                </tr>
-                <tr>
-                    <td><strong>BTC</strong></td>
-                    <td>Range Breakout</td>
-                    <td>$97,500</td>
-                    <td>$92,000</td>
-                    <td>$108,000</td>
-                    <td><span class="rr">1.9:1</span></td>
-                </tr>
+                <tr><th>Asset</th><th>Setup</th><th>Entry</th><th>Stop</th><th>Target</th><th>R/R</th></tr>
+                <tr><td><strong>AAPL</strong></td><td>Bull Flag</td><td>$262.50</td><td>$255.00</td><td>$280.00</td><td><span class="rr">2.3:1</span></td></tr>
+                <tr><td><strong>JPM</strong></td><td>Breakout</td><td>$312.00</td><td>$302.00</td><td>$340.00</td><td><span class="rr">2.8:1</span></td></tr>
+                <tr><td><strong>XOM</strong></td><td>Trend</td><td>$148.00</td><td>$140.00</td><td>$165.00</td><td><span class="rr">2.1:1</span></td></tr>
+                <tr><td><strong>UNH</strong></td><td>Mean Rev</td><td>$288.00</td><td>$278.00</td><td>$320.00</td><td><span class="rr">3.2:1</span></td></tr>
+                <tr><td><strong>BTC</strong></td><td>Breakout</td><td>$97,500</td><td>$92,000</td><td>$108,000</td><td><span class="rr">1.9:1</span></td></tr>
             </table>
         </div>
 
-        <!-- Chart -->
+        <!-- CFA Quiz Section -->
         <div class="asset-box">
-            <div class="section-title">📊 30-Day Normalized Performance</div>
-            <div class="chart-container">
-                <svg viewBox="0 0 800 260" style="width: 100%; height: 100%;">
-                    <!-- Grid -->
-                    <line x1="60" y1="20" x2="60" y2="220" stroke="var(--border)" stroke-width="1"/>
-                    <line x1="60" y1="220" x2="780" y2="220" stroke="var(--border)" stroke-width="1"/>
-                    
-                    <!-- AAPL Line (+2.59%) -->
-                    <polyline fill="none" stroke="#1e3a5f" stroke-width="2.5" 
-                        points="60,120 100,118 140,115 180,110 220,105 260,100 300,95 340,90 380,85 420,80 460,75 500,72 540,68 580,65 620,62 660,58 700,55 740,52 780,50"/>
-                    
-                    <!-- JPM Line (+3.11%) -->
-                    <polyline fill="none" stroke="#2e7d32" stroke-width="2.5" 
-                        points="60,130 100,127 140,124 180,120 220,116 260,112 290,108 340,104 380,100 420,96 460,92 500,88 540,84 580,80 620,76 660,72 700,68 740,64 780,60"/>
-                    
-                    <!-- XOM Line (+23.20%) -->
-                    <polyline fill="none" stroke="#d4af37" stroke-width="2.5" 
-                        points="60,180 100,175 140,170 180,165 220,160 260,155 300,150 340,145 380,140 420,135 460,130 500,125 540,120 580,115 620,110 660,105 700,100 740,95 780,85"/>
-                    
-                    <!-- UNH Line (-18.72%) -->
-                    <polyline fill="none" stroke="#c62828" stroke-width="2.5" 
-                        points="60,30 100,35 140,42 180,50 220,58 260,66 300,74 340,82 380,90 420,98 460,106 500,114 540,122 580,130 620,138 660,146 700,154 740,162 780,170"/>
-                    
-                    <!-- BTC Line (-8.45%) -->
-                    <polyline fill="none" stroke="#8b5cf6" stroke-width="2.5" 
-                        points="60,80 100,85 140,90 180,95 220,100 260,105 300,110 340,115 380,120 420,125 460,130 500,135 540,140 580,145 620,150 660,155 700,160 740,165 780,172"/>
-                    
-                    <!-- Legend -->
-                    <rect x="580" y="25" width="190" height="130" fill="var(--card)" stroke="var(--border)" rx="4"/>
-                    <line x1="590" y1="45" x2="615" y2="45" stroke="#1e3a5f" stroke-width="2.5"/>
-                    <text x="625" y="49" fill="var(--text)" font-size="11" font-family="Courier New">AAPL +2.59%</text>
-                    <line x1="590" y1="70" x2="615" y2="70" stroke="#2e7d32" stroke-width="2.5"/>
-                    <text x="625" y="74" fill="var(--text)" font-size="11" font-family="Courier New">JPM +3.11%</text>
-                    <line x1="590" y1="95" x2="615" y2="95" stroke="#d4af37" stroke-width="2.5"/>
-                    <text x="625" y="99" fill="var(--text)" font-size="11" font-family="Courier New">XOM +23.20%</text>
-                    <line x1="590" y1="120" x2="615" y2="120" stroke="#c62828" stroke-width="2.5"/>
-                    <text x="625" y="124" fill="var(--text)" font-size="11" font-family="Courier New">UNH −18.72%</text>
-                    <line x1="590" y1="145" x2="615" y2="145" stroke="#8b5cf6" stroke-width="2.5"/>
-                    <text x="625" y="149" fill="var(--text)" font-size="11" font-family="Courier New">BTC −8.45%</text>
-                    
-                    <!-- Y-axis labels -->
-                    <text x="50" y="25" fill="#888" font-size="10" text-anchor="end" font-family="Courier New">+25%</text>
-                    <text x="50" y="120" fill="#888" font-size="10" text-anchor="end" font-family="Courier New">0%</text>
-                    <text x="50" y="215" fill="#888" font-size="10" text-anchor="end" font-family="Courier New">−25%</text>
-                    
-                    <!-- X-axis labels -->
-                    <text x="60" y="240" fill="#888" font-size="10" text-anchor="middle" font-family="Courier New">Jan 23</text>
-                    <text x="300" y="240" fill="#888" font-size="10" text-anchor="middle" font-family="Courier New">Feb 6</text>
-                    <text x="540" y="240" fill="#888" font-size="10" text-anchor="middle" font-family="Courier New">Feb 16</text>
-                    <text x="780" y="240" fill="#888" font-size="10" text-anchor="middle" font-family="Courier New">Today</text>
-                    
-                    <!-- Title -->
-                    <text x="400" y="15" fill="#888" font-size="11" text-anchor="middle" font-style="italic" font-family="Georgia">Normalized Price Performance (Base = Jan 23)</text>
-                </svg>
-            </div>
-        </div>
-
-        <!-- Terminology -->
-        <div class="term-box">
-            <div class="section-title" style="margin-top: 0;">📖 Key Terms</div>
+            <div class="section-title">📝 CFA Level I Quiz</div>
+            <p style="font-size: 0.85rem; color: #888; margin-bottom: 20px;">Test your knowledge! Select the correct answer for instant feedback.</p>
             
-            <div class="term">
-                <span class="term-word">Beta (β):</span> Measures stock volatility relative to market. β = 1.0 = moves with market. β > 1.0 = more volatile. β < 1.0 = less volatile. UNH's 0.41 beta means it moves 41% as much as SPY.
-                <div class="term-origin">Origin: William Sharpe, 1964 CAPM paper. Greek letter signifies regression slope coefficient.</div>
+            <div class="quiz-question" data-q="1">
+                <p class="q-text"><strong>Q1: P/E Ratio Calculation</strong></p>
+                <p class="q-text">AAPL trades at $264.58 with EPS of $7.91. What is its P/E ratio?</p>
+                <div class="options">
+                    <button class="opt" onclick="checkAnswer(1, 'A', false)">A) 28.4x</button>
+                    <button class="opt" onclick="checkAnswer(1, 'B', true)">B) 33.45x</button>
+                    <button class="opt" onclick="checkAnswer(1, 'C', false)">C) 38.0x</button>
+                    <button class="opt" onclick="checkAnswer(1, 'D', false)">D) 24.2x</button>
+                </div>
+                <div class="feedback" id="fb-1"></div>
             </div>
             
-            <div class="term">
-                <span class="term-word">P/E Multiple Compression:</span> When stock price falls even if earnings rise, because investors pay less per dollar of earnings. Common when growth expectations reset. AAPL's P/E compressed from 38x to 33x.
-                <div class="term-origin">Origin: Graham & Dodd, "Security Analysis" (1934). Fundamental value investing concept.</div>
+            <div class="quiz-question" data-q="2">
+                <p class="q-text"><strong>Q2: DuPont Analysis</strong></p>
+                <p class="q-text">Which three components make up the DuPont ROE formula?</p>
+                <div class="options">
+                    <button class="opt" onclick="checkAnswer(2, 'A', false)">A) Revenue, Costs, Profit</button>
+                    <button class="opt" onclick="checkAnswer(2, 'B', true)">B) Net Margin, Asset Turnover, Financial Leverage</button>
+                    <button class="opt" onclick="checkAnswer(2, 'C', false)">C) P/E, P/B, Dividend Yield</button>
+                    <button class="opt" onclick="checkAnswer(2, 'D', false)">D) Beta, Alpha, Sharpe Ratio</button>
+                </div>
+                <div class="feedback" id="fb-2"></div>
             </div>
             
-            <div class="term">
-                <span class="term-word">Return on Equity (ROE):</span> Net income divided by shareholders' equity. Measures management's effectiveness using invested capital. DuPont analysis breaks ROE into margin × turnover × leverage.
-                <div class="term-origin">Origin: DuPont Corporation, 1914. Donaldson Brown developed for acquisition analysis.</div>
+            <div class="quiz-question" data-q="3">
+                <p class="q-text"><strong>Q3: Beta Interpretation</strong></p>
+                <p class="q-text">UNH has a beta of 0.41. If the S&P 500 drops 10%, what is UNH's expected move?</p>
+                <div class="options">
+                    <button class="opt" onclick="checkAnswer(3, 'A', false)">A) -10% (same as market)</button>
+                    <button class="opt" onclick="checkAnswer(3, 'B', false)">B) +4.1% (inverse correlation)</button>
+                    <button class="opt" onclick="checkAnswer(3, 'C', true)">C) -4.1% (41% of market move)</button>
+                    <button class="opt" onclick="checkAnswer(3, 'D', false)">D) -14.1% (beta minus 10)</button>
+                </div>
+                <div class="feedback" id="fb-3"></div>
             </div>
             
-            <div class="term">
-                <span class="term-word">Risk/Reward Ratio:</span> Compares potential trade profit to potential loss. R/R = (Target − Entry) / (Entry − Stop). Professional traders seek 1:2 or higher. Calculated for all setups above.
-                <div class="term-origin">Origin: Jesse Livermore, "Reminiscences of a Stock Operator" (1923). Formalized with algorithmic trading rise.</div>
+            <div class="quiz-question" data-q="4">
+                <p class="q-text"><strong>Q4: Dividend Discount Model</strong></p>
+                <p class="q-text">Using Gordon Growth: D₁ = $6.30, r = 9%, g = 5%. What is the intrinsic value?</p>
+                <div class="options">
+                    <button class="opt" onclick="checkAnswer(4, 'A', false)">A) $63.00</button>
+                    <button class="opt" onclick="checkAnswer(4, 'B', false)">B) $126.00</button>
+                    <button class="opt" onclick="checkAnswer(4, 'C', true)">C) $157.50</button>
+                    <button class="opt" onclick="checkAnswer(4, 'D', false)">D) $315.00</button>
+                </div>
+                <div class="feedback" id="fb-4"></div>
             </div>
             
-            <div class="term">
-                <span class="term-word">Mean Reversion:</span> Financial theory that prices and returns eventually move back toward average. UNH down 18.7% with unchanged fundamentals suggests potential reversion opportunity.
-                <div class="term-origin">Origin: Statistical concept formalized by Charles Dow (1880s). Applied to markets by Bogle & Graham.</div>
+            <div class="quiz-question" data-q="5">
+                <p class="q-text"><strong>Q5: Crypto Valuation</strong></p>
+                <p class="q-text">Why can't traditional P/E be used for Bitcoin valuation?</p>
+                <div class="options">
+                    <button class="opt" onclick="checkAnswer(5, 'A', false)">A) Bitcoin is too volatile</button>
+                    <button class="opt" onclick="checkAnswer(5, 'B', false)">B) Bitcoin has no market cap</button>
+                    <button class="opt" onclick="checkAnswer(5, 'C', true)">C) Bitcoin has no earnings or cash flows</button>
+                    <button class="opt" onclick="checkAnswer(5, 'D', false)">D) P/E only works for tech stocks</button>
+                </div>
+                <div class="feedback" id="fb-5"></div>
             </div>
+            
+            <div class="score-box"><strong>Score: <span id="score">0</span>/5</strong></div>
         </div>
 
         <footer>
@@ -596,226 +398,52 @@
 
     <script>
         function toggleTheme() {
-        <!-- CFA Quiz Section -->
-        <div class="asset-box">
-            <div class="section-title">📝 CFA Level I Quiz</div>
-            <p style="font-size: 0.85rem; color: #888; margin-bottom: 20px;">Test your knowledge! Select the correct answer for instant feedback.</p>
-            <div id="quiz-container">
-                <!-- Question 1 -->
-                <div class="quiz-question" data-q="1">
-                    <p class="q-text"><strong>Q1: P/E Ratio Calculation</strong></p>
-                    <p class="q-text">AAPL trades at $264.58 with EPS of $7.91. What is its P/E ratio?</p>
-                    <div class="options">
-                        <button class="opt" onclick="checkAnswer(1, 'A', false)">A) 28.4x</button>
-                        <button class="opt" onclick="checkAnswer(1, 'B', true)">B) 33.45x</button>
-                        <button class="opt" onclick="checkAnswer(1, 'C', false)">C) 38.0x</button>
-                        <button class="opt" onclick="checkAnswer(1, 'D', false)">D) 24.2x</button>
-                    </div>
-                    <div class="feedback" id="fb-1"></div>
-                </div>
-                
-                <!-- Question 2 -->
-                <div class="quiz-question" data-q="2">
-                    <p class="q-text"><strong>Q2: DuPont Analysis</strong></p>
-                    <p class="q-text">Which three components make up the DuPont ROE formula?</p>
-                    <div class="options">
-                        <button class="opt" onclick="checkAnswer(2, 'A', false)">A) Revenue, Costs, Profit</button>
-                        <button class="opt" onclick="checkAnswer(2, 'B', true)">B) Net Margin, Asset Turnover, Financial Leverage</button>
-                        <button class="opt" onclick="checkAnswer(2, 'C', false)">C) P/E, P/B, Dividend Yield</button>
-                        <button class="opt" onclick="checkAnswer(2, 'D', false)">D) Beta, Alpha, Sharpe Ratio</button>
-                    </div>
-                    <div class="feedback" id="fb-2"></div>
-                </div>
-                
-                <!-- Question 3 -->
-                <div class="quiz-question" data-q="3">
-                    <p class="q-text"><strong>Q3: Beta Interpretation</strong></p>
-                    <p class="q-text">UNH has a beta of 0.41. If the S&P 500 drops 10%, what is UNH's expected move?</p>
-                    <div class="options">
-                        <button class="opt" onclick="checkAnswer(3, 'A', false)">A) -10% (same as market)</button>
-                        <button class="opt" onclick="checkAnswer(3, 'B', false)">B) +4.1% (inverse correlation)</button>
-                        <button class="opt" onclick="checkAnswer(3, 'C', true)">C) -4.1% (41% of market move)</button>
-                        <button class="opt" onclick="checkAnswer(3, 'D', false)">D) -14.1% (beta minus 10)</button>
-                    </div>
-                    <div class="feedback" id="fb-3"></div>
-                </div>
-                
-                <!-- Question 4 -->
-                <div class="quiz-question" data-q="4">
-                    <p class="q-text"><strong>Q4: Dividend Discount Model</strong></p>
-                    <p class="q-text">Using Gordon Growth: D₁ = $6.30, r = 9%, g = 5%. What is the intrinsic value?</p>
-                    <div class="options">
-                        <button class="opt" onclick="checkAnswer(4, 'A', false)">A) $63.00</button>
-                        <button class="opt" onclick="checkAnswer(4, 'B', false)">B) $126.00</button>
-                        <button class="opt" onclick="checkAnswer(4, 'C', true)">C) $157.50</button>
-                        <button class="opt" onclick="checkAnswer(4, 'D', false)">D) $315.00</button>
-                    </div>
-                    <div class="feedback" id="fb-4"></div>
-                </div>
-                
-                <!-- Question 5 -->
-                <div class="quiz-question" data-q="5">
-                    <p class="q-text"><strong>Q5: Crypto Valuation</strong></p>
-                    <p class="q-text">Why can't traditional P/E be used for Bitcoin valuation?</p>
-                    <div class="options">
-                        <button class="opt" onclick="checkAnswer(5, 'A', false)">A) Bitcoin is too volatile</button>
-                        <button class="opt" onclick="checkAnswer(5, 'B', false)">B) Bitcoin has no market cap</button>
-                        <button class="opt" onclick="checkAnswer(5, 'C', true)">C) Bitcoin has no earnings or cash flows</button>
-                        <button class="opt" onclick="checkAnswer(5, 'D', false)">D) P/E only works for tech stocks</button>
-                    </div>
-                    <div class="feedback" id="fb-5"></div>
-                </div>
-            </div>
-            <div class="score-box" id="score-box">
-                <strong>Score: <span id="score">0</span>/5</strong>
-            </div>
-        </div>
-
-        <style>
-            .quiz-question {
-                background: rgba(30,58,95,0.03);
-                border: 1px solid var(--border);
-                border-radius: 6px;
-                padding: 18px;
-                margin: 15px 0;
-            }
-            [data-theme="dark"] .quiz-question {
-                background: rgba(100,181,246,0.05);
-            }
-            .q-text {
-                font-size: 0.9rem;
-                margin-bottom: 12px;
-                line-height: 1.6;
-            }
-            .options {
-                display: flex;
-                flex-direction: column;
-                gap: 8px;
-            }
-            .opt {
-                background: var(--card);
-                border: 1px solid var(--border);
-                padding: 12px 15px;
-                text-align: left;
-                cursor: pointer;
-                font-family: 'Courier New', monospace;
-                font-size: 0.85rem;
-                border-radius: 4px;
-                transition: all 0.2s;
-            }
-            .opt:hover {
-                background: rgba(30,58,95,0.08);
-                border-color: var(--accent);
-            }
-            [data-theme="dark"] .opt:hover {
-                background: rgba(100,181,246,0.1);
-            }
-            .opt.correct {
-                background: #d4edda;
-                border-color: #28a745;
-                color: #155724;
-            }
-            .opt.wrong {
-                background: #f8d7da;
-                border-color: #dc3545;
-                color: #721c24;
-            }
-            .opt.disabled {
-                pointer-events: none;
-                opacity: 0.6;
-            }
-            .feedback {
-                margin-top: 12px;
-                padding: 12px;
-                border-radius: 4px;
-                font-size: 0.85rem;
-                display: none;
-            }
-            .feedback.correct-fb {
-                background: #d4edda;
-                color: #155724;
-                border: 1px solid #28a745;
-            }
-            .feedback.wrong-fb {
-                background: #f8d7da;
-                color: #721c24;
-                border: 1px solid #dc3545;
-            }
-            .score-box {
-                text-align: center;
-                padding: 20px;
-                background: var(--gold);
-                color: #000;
-                border-radius: 6px;
-                margin-top: 20px;
-                font-family: 'Courier New', monospace;
-                font-size: 1.2rem;
-            }
-        </style>
-
-        <script>
-            let score = 0;
-            let answered = new Set();
-
-            const explanations = {
-                1: {
-                    correct: "✅ Correct! P/E = $264.58 / $7.91 = 33.45x. This is below the tech sector average of ~36x.",
-                    wrong: "❌ Incorrect. P/E = Price / EPS = $264.58 / $7.91 = 33.45x. Formula: Divide market price by earnings per share."
-                },
-                2: {
-                    correct: "✅ Correct! DuPont ROE = Net Margin × Asset Turnover × Financial Leverage. AAPL's 160.1% ROE = 24.2% × 0.87x × 7.62x.",
-                    wrong: "❌ Incorrect. DuPont breaks ROE into three parts: Net Margin (profitability), Asset Turnover (efficiency), and Financial Leverage (capital structure)."
-                },
-                3: {
-                    correct: "✅ Correct! Beta of 0.41 means UNH moves 41% as much as the market. If SPY drops 10%, UNH drops 4.1%.",
-                    wrong: "❌ Incorrect. Beta measures sensitivity to market moves. Beta = 0.41 means stock moves 41% of market move. 0.41 × 10% = 4.1% decline."
-                },
-                4: {
-                    correct: "✅ Correct! Gordon Growth: V₀ = D₁ / (r − g) = $6.30 / (0.09 − 0.05) = $6.30 / 0.04 = $157.50.",
-                    wrong: "❌ Incorrect. Formula: V₀ = D₁ / (r − g). Here: $6.30 / (0.09 − 0.05) = $6.30 / 0.04 = $157.50. Remember to subtract growth rate from required return."
-                },
-                5: {
-                    correct: "✅ Correct! Bitcoin has no earnings, cash flows, or dividends. Instead, analysts use S2F, NVT ratio, and MVRV Z-Score.",
-                    wrong: "❌ Incorrect. P/E requires earnings (E). Bitcoin is a digital asset with no earnings stream, so traditional equity valuation models don't apply."
-                }
-            };
-
-            function checkAnswer(qNum, option, isCorrect) {
-                if (answered.has(qNum)) return;
-                answered.add(qNum);
-
-                const questionDiv = document.querySelector(`[data-q="${qNum}"]`);
-                const buttons = questionDiv.querySelectorAll('.opt');
-                const feedbackDiv = document.getElementById(`fb-${qNum}`);
-
-                buttons.forEach(btn => {
-                    btn.classList.add('disabled');
-                    if (btn.textContent.startsWith(option + ')')) {
-                        btn.classList.add(isCorrect ? 'correct' : 'wrong');
-                    }
-                });
-
-                feedbackDiv.style.display = 'block';
-                if (isCorrect) {
-                    score++;
-                    feedbackDiv.className = 'feedback correct-fb';
-                    feedbackDiv.innerHTML = explanations[qNum].correct;
-                } else {
-                    feedbackDiv.className = 'feedback wrong-fb';
-                    feedbackDiv.innerHTML = explanations[qNum].wrong;
-                }
-
-                document.getElementById('score').textContent = score;
-            }
-        </script>
             const html = document.documentElement;
             const current = html.getAttribute('data-theme');
             html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
         }
         
-        // Check system preference
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             document.documentElement.setAttribute('data-theme', 'dark');
+        }
+        
+        let score = 0;
+        let answered = new Set();
+        
+        const explanations = {
+            1: { correct: "✅ Correct! P/E = $264.58 / $7.91 = 33.45x.", wrong: "❌ Incorrect. P/E = Price / EPS = $264.58 / $7.91 = 33.45x." },
+            2: { correct: "✅ Correct! DuPont ROE = Net Margin × Asset Turnover × Financial Leverage.", wrong: "❌ Incorrect. DuPont breaks ROE into three parts: Net Margin, Asset Turnover, and Financial Leverage." },
+            3: { correct: "✅ Correct! Beta of 0.41 means UNH moves 41% as much as the market. -10% × 0.41 = -4.1%.", wrong: "❌ Incorrect. Beta measures sensitivity. 0.41 × 10% = 4.1% decline." },
+            4: { correct: "✅ Correct! Gordon Growth: V₀ = D₁ / (r − g) = $6.30 / 0.04 = $157.50.", wrong: "❌ Incorrect. V₀ = D₁ / (r − g) = $6.30 / (0.09 − 0.05) = $157.50." },
+            5: { correct: "✅ Correct! Bitcoin has no earnings, cash flows, or dividends.", wrong: "❌ Incorrect. P/E requires earnings (E). Bitcoin has no earnings stream." }
+        };
+        
+        function checkAnswer(qNum, option, isCorrect) {
+            if (answered.has(qNum)) return;
+            answered.add(qNum);
+            
+            const questionDiv = document.querySelector('[data-q="' + qNum + '"]');
+            const buttons = questionDiv.querySelectorAll('.opt');
+            const feedbackDiv = document.getElementById('fb-' + qNum);
+            
+            buttons.forEach(function(btn) {
+                btn.classList.add('disabled');
+                if (btn.textContent.indexOf(option + ')') === 0) {
+                    btn.classList.add(isCorrect ? 'correct' : 'wrong');
+                }
+            });
+            
+            feedbackDiv.style.display = 'block';
+            if (isCorrect) {
+                score++;
+                feedbackDiv.className = 'feedback correct-fb';
+                feedbackDiv.innerHTML = explanations[qNum].correct;
+            } else {
+                feedbackDiv.className = 'feedback wrong-fb';
+                feedbackDiv.innerHTML = explanations[qNum].wrong;
+            }
+            
+            document.getElementById('score').textContent = score;
         }
     </script>
 </body>
