@@ -11,8 +11,8 @@
             --green: #2e7d32; --red: #c62828; --card: #ffffff; --border: #ddd;
         }
         [data-theme="dark"] {
-            --bg: #0a0a0a; --text: #e0e0e0; --accent: #64b5f6; --gold: #d4af37;
-            --card: #1a1a1a; --border: #333;
+            --bg: #121212; --text: #f5f5f5; --accent: #90caf9; --gold: #ffd54f;
+            --card: #1e1e1e; --border: #444;
         }
         body {
             font-family: 'Georgia', 'Times New Roman', serif; 
@@ -30,22 +30,25 @@
         header { text-align: center; padding: 40px 20px; border-bottom: 3px double var(--accent); margin-bottom: 30px; }
         h1 { font-size: 2rem; color: var(--accent); letter-spacing: 2px; }
         .subtitle { font-size: 0.9rem; color: #666; margin-top: 8px; font-style: italic; }
-        [data-theme="dark"] .subtitle { color: #999; }
-        .timestamp { text-align: center; font-size: 0.8rem; color: #888; margin-bottom: 30px; font-family: 'Courier New', monospace; }
+        [data-theme="dark"] .subtitle { color: #b0b0b0; }
+        .timestamp { text-align: center; font-size: 0.8rem; color: #666; margin-bottom: 30px; font-family: 'Courier New', monospace; }
+        [data-theme="dark"] .timestamp { color: #999; }
         .asset-box { background: var(--card); border: 1px solid var(--border); margin: 25px 0; padding: 25px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
         .asset-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 2px solid var(--gold); }
         .ticker { font-size: 2.2rem; font-weight: bold; color: var(--accent); font-family: 'Courier New', monospace; letter-spacing: 1px; }
         .company { font-size: 0.85rem; color: #666; margin-top: 4px; }
-        [data-theme="dark"] .company { color: #999; }
+        [data-theme="dark"] .company { color: #b0b0b0; }
         .price-block { text-align: right; }
         .price { font-size: 1.6rem; font-weight: bold; }
         .positive { color: var(--green); } .negative { color: var(--red); }
         .mcap { font-size: 0.75rem; color: #888; margin-top: 4px; }
+        [data-theme="dark"] .mcap { color: #aaa; }
         .metrics-7 { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin: 18px 0; }
         .metric-small { background: rgba(30,58,95,0.06); padding: 12px 4px; text-align: center; border-radius: 3px; }
         [data-theme="dark"] .metric-small { background: rgba(100,181,246,0.08); }
         .metric-small .val { font-size: 0.95rem; font-weight: bold; color: var(--accent); font-family: 'Courier New', monospace; }
         .metric-small .lbl { font-size: 0.55rem; text-transform: uppercase; color: #888; margin-top: 4px; letter-spacing: 0.5px; }
+        [data-theme="dark"] .metric-small .lbl { color: #aaa; }
         @media (max-width: 768px) { .metrics-7 { grid-template-columns: repeat(4, 1fr); } .ticker { font-size: 1.6rem; } .price { font-size: 1.3rem; } }
         .section-title { font-size: 0.95rem; color: var(--accent); margin: 22px 0 12px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: bold; font-family: 'Courier New', monospace; }
         .street-quote { background: linear-gradient(135deg, #f5f5dc 0%, #fff 100%); border-left: 4px solid var(--gold); padding: 14px 18px; margin: 12px 0; font-style: italic; font-size: 0.92rem; line-height: 1.7; }
@@ -68,11 +71,11 @@
         .term:last-child { border-bottom: none; padding-bottom: 0; }
         .term-word { font-weight: bold; color: var(--accent); font-family: 'Courier New', monospace; }
         .term-origin { font-size: 0.78rem; color: #888; margin-top: 6px; font-style: italic; }
-        [data-theme="dark"] .term-origin { color: #777; }
+        [data-theme="dark"] .term-origin { color: #bbb; }
         .crypto-card { border-color: #8b5cf6; }
         .crypto-card .ticker { color: #8b5cf6; }
         footer { text-align: center; padding: 30px 20px; color: #888; font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: 40px; }
-        [data-theme="dark"] footer { color: #666; }
+        [data-theme="dark"] footer { color: #aaa; }
         
         /* Quiz Styles */
         .quiz-question { background: rgba(30,58,95,0.03); border: 1px solid var(--border); border-radius: 6px; padding: 18px; margin: 15px 0; }
