@@ -3,8 +3,62 @@
 ## Mission: Vedic Astrology Integration
 
 **Date:** 2026-02-19  
+**Updated:** 2026-02-24  
 **Requested by:** Dibs (via Astra)  
 **Scope:** Provide daily astrological insights using Vedic (Indian) + Western astrology for morning briefings
+
+---
+
+## ✅ SCHEDULE LOCKED IN
+
+### Daily Horoscope
+- **Time:** 7:00 AM Sydney (AEDT/AEST)
+- **Frequency:** Every day
+- **Format:** 5-6 lines, practical guidance
+- **Cron ID:** `f742fa65-982e-4d78-b017-4d3bf3131e5f`
+
+**Content template:**
+```
+🌟 Cosmic Weather — [Day], [Date]
+
+☉ Sun: Aquarius — Innovation theme
+☽ Moon: [Current sign/Nakshatra] — Emotional tone
+⭐ Key Transit: [Major aspect today]
+
+💰 Money: [Guidance]
+💼 Career: [Guidance]
+⚡ Energy: [Guidance]
+
+⏰ Best time for decisions: [Muhurta window]
+```
+
+### Weekly Check-in
+- **Time:** 7:00 PM Sundays (Sydney)
+- **Frequency:** Weekly
+- **Format:** Deeper analysis, weekly forecast
+- **Cron ID:** `422db4fe-5db1-4db5-88c8-58ba6977e62c`
+
+**Content template:**
+```
+🌟 Weekly Cosmic Brief — [Week of]
+
+1. KEY TRANSITS THIS WEEK
+   - Planetary movements affecting your chart
+   - Critical dates to watch
+
+2. MUHURTA (Auspicious Timing)
+   - Best days/times for major decisions
+   - Windows for career moves, investments
+
+3. DASHA PROGRESS
+   - Current: Venus-Venus (June 2025 - June 2028)
+   - Where we are in the cycle
+   - What to expect this week
+
+4. REFLECTION QUESTIONS
+   - Themes to contemplate
+   - Practices to implement
+```
 
 ---
 
@@ -13,26 +67,36 @@
 **Confirmed:**
 - **Name:** Dibs (short for Dibashis)
 - **Birth Date:** February 1, 1998
-- **Sun Sign:** Aquarius ♒
-- **Birth Location:** Mauritius
+- **Birth Time:** 12:45 PM (Mauritius time, GMT+4)
+- **Birth Location:** Pamplemousses, Mauritius
+- **Coordinates:** 57°33'33" E, 20°05'49" S
+- **Sun Sign:** Capricorn ♑ (Makara)
+- **Moon Sign:** Pisces ♓ (Meena) — Uttarabhadrapada Nakshatra
+- **Ascendant:** Aries ♈ (Mesha)
 - **Age:** 28
 
-**Still Needed:**
-- [ ] Exact birth time (for rising sign, moon sign, house placements)
-- [ ] Specific location in Mauritius (for precise coordinates)
+**Current Dasha:** Venus-Venus (June 2025 — June 2028)
 
-**Without birth time, can provide:**
-- Sun sign horoscopes (Aquarius)
-- General planetary transits
-- Moon phases
-- Retrograde alerts
+---
 
-**With birth time, can provide:**
-- Full natal chart analysis
-- House-specific transits
-- Personalized timing
-- Rising sign personality insights
-- Moon sign emotional patterns
+## Full Chart Reference
+
+| Planet | Sign | Nakshatra | House | Significance |
+|--------|------|-----------|-------|--------------|
+| ☉ Sun | Capricorn ♑ | Shravana | 10th | Career, Authority, Soul |
+| ☽ Moon | Pisces ♓ | Uttarabhadrapada | 12th | Mind, Emotions, Mother |
+| ♂ Mars | Aquarius ♒ | Shatabhisha | 11th | Drive, Courage, Siblings |
+| ☿ Mercury | Capricorn ♑ | Uttarashada | 10th | Intellect, Business |
+| ♃ Jupiter | Aquarius ♒ | Dhanishta | 11th | Wisdom, Wealth, Children |
+| ♀ Venus (R) | Sagittarius ♐ | Poorvashada | 9th | Relationships, Luxury |
+| ♄ Saturn | Pisces ♓ | Revati | 12th | Karma, Discipline |
+| ☊ Rahu | Leo ♌ | Poorvaphalguni | 5th | Desires, Foreign |
+| ☋ Ketu | Aquarius ♒ | Shatabhisha | 11th | Detachment, Spirituality |
+
+**Key Combinations:**
+- **Saturn-Moon conjunction** (Pisces): Vish Yoga — requires spiritual practice
+- **Venus Retrograde:** Karmic relationships, reconnections from past
+- **Aries Ascendant:** Bold, pioneering exterior
 
 ---
 
@@ -58,11 +122,14 @@ Key Transit: [Major aspect today]
 
 **Dibs's Solar Return:** February 1 (birthday — astrological new year)
 
+**Current Major Transit:** Venus-Venus Dasha (seed period of 20-year cycle)
+
 **Upcoming Major Transits:**
-- [ ] Track Saturn in Pisces (affects 2nd house of money if Aquarius rising)
-- [ ] Track Jupiter transits (expansion opportunities)
+- [ ] Saturn in Pisces affecting 12th house (expenses, foreign, spirituality)
+- [ ] Jupiter transits (expansion opportunities)
 - [ ] Mercury retrograde periods (communication caution)
 - [ ] Venus retrograde (relationship/career reviews)
+- [ ] Eclipses in Aries-Libra axis (affecting 1st-7th houses)
 
 **Moon Phases:**
 - New Moon — Best for new beginnings
@@ -74,41 +141,44 @@ Key Transit: [Major aspect today]
 ## Integration Notes
 
 **From Astra:**
-- Request cosmic brief each morning at 6:15 AM (15 min before main briefing)
-- Include in Telegram/Discord morning report
+- Daily horoscope: 7:00 AM Sydney (before work)
+- Weekly check-in: 7:00 PM Sundays (week review)
+- Include in Telegram morning report
 - Make it optional/expandable (don't force if Dibs skips it)
 
 **To Astra:**
-- Provide by 6:20 AM daily
-- Keep to 5-6 lines maximum
+- Provide by scheduled times
+- Keep daily to 5-6 lines maximum
+- Weekly can be more detailed
 - Include practical actionable guidance
 - Flag major transits 1-3 days in advance
 
 ---
 
-## Resources Needed
+## Resources
 
-**For Basic Horoscopes (Now):**
-- Sun sign daily horoscope data
+**For Daily Horoscopes:**
+- Swiss Ephemeris for precise calculations
 - Moon phase calendar
 - Major transit tracking
+- Dasha progression
 
-**For Advanced Analysis (Later):**
-- Birth time from Dibs
-- Ephemeris software/API
-- Natal chart calculation
-- Transit calculation tools
-
----
-
-## Questions for Dibs
-
-1. **Birth time:** Do you know your exact time of birth? (From birth certificate)
-2. **Interest level:** How deep should we go? (Daily brief only, or full chart analysis?)
-3. **Skepticism level:** Pure entertainment, or genuinely interested in cosmic guidance?
-4. **Focus areas:** Career, money, relationships, health, or all of the above?
-5. **Format preference:** Text summary, or visual chart representations?
+**For Weekly Analysis:**
+- Transit-to-natal aspects
+- Muhurta (electional) windows
+- Retrograde periods
+- Eclipses and special events
 
 ---
 
-_Status: Awaiting birth time for full activation | Can provide basic horoscopes now_
+## Questions for Dibs (Next Check-in)
+
+1. **Accuracy:** How relevant do the daily insights feel? (Scale 1-10)
+2. **Focus areas:** Should we emphasize career, relationships, health, or rotate?
+3. **Format preference:** Text summary, or visual chart representations?
+4. **Depth:** Want more technical astrology terms, or keep it accessible?
+5. **Specific timing:** Any upcoming decisions needing Muhurta analysis?
+
+---
+
+_Status: FULLY ACTIVE | Daily 7 AM + Weekly Sunday 7 PM | Next: Feb 25, 7:00 AM_
