@@ -1,0 +1,286 @@
+{
+  "news": {
+    "ai_news": [
+      {
+        "title": "Lawsuit: ChatGPT told student he was \"meant for greatness\"\u2014then came psychosis",
+        "link": "https://arstechnica.com/tech-policy/2026/02/before-psychosis-chatgpt-told-man-he-was-an-oracle-new-lawsuit-alleges/",
+        "summary": "\"AI Injury Attorneys\" target the chatbot design itself.",
+        "published": "Thu, 19 Feb 2026 22:44:25 +0000",
+        "source": "Ars Technica - All content"
+      },
+      {
+        "title": "NASA chief classifies Starliner flight as \"Type A\" mishap, says agency made mistakes",
+        "link": "https://arstechnica.com/space/2026/02/nasa-chief-classifies-starliner-flight-as-type-a-mishap-says-agency-made-mistakes/",
+        "summary": "\"The most troubling failure revealed by this investigation is not hardware.\"",
+        "published": "Thu, 19 Feb 2026 21:59:10 +0000",
+        "source": "Ars Technica - All content"
+      },
+      {
+        "title": "Rubik\u2019s WOWCube adds complexity, possibility by reinventing the puzzle cube",
+        "link": "https://arstechnica.com/gadgets/2026/02/rubiks-wowcube-adds-complexity-possibility-by-reinventing-the-puzzle-cube/",
+        "summary": "Technology is a double-edged sword in the $399 Rubik's Cube-inspired toy.",
+        "published": "Thu, 19 Feb 2026 21:30:02 +0000",
+        "source": "Ars Technica - All content"
+      },
+      {
+        "title": "Diablo II\u2019s new Warlock is a great excuse to revisit a classic game",
+        "link": "https://arstechnica.com/gaming/2026/02/diablo-iis-new-warlock-is-a-great-excuse-to-revisit-a-classic-game/",
+        "summary": "New skill tree paths offer a fun twist on some generally familiar mechanics.",
+        "published": "Thu, 19 Feb 2026 20:04:09 +0000",
+        "source": "Ars Technica - All content"
+      },
+      {
+        "title": "From chickens to humans, animals think \"bouba\" sounds round",
+        "link": "https://arstechnica.com/science/2026/02/newly-hatched-chickens-form-the-same-sound-association-we-do/",
+        "summary": "There seems to be a deep-seated association between sounds and shapes.",
+        "published": "Thu, 19 Feb 2026 19:38:08 +0000",
+        "source": "Ars Technica - All content"
+      }
+    ],
+    "crypto_trading": [],
+    "australia": [],
+    "international": [
+      {
+        "title": "Watch: The day Andrew Mountbatten-Windsor was arrested",
+        "link": "https://www.bbc.com/news/videos/cvg192yp9geo?at_medium=RSS&at_campaign=rss",
+        "summary": "The former prince spent the day at a police station in Norfolk, before being released under investigation.",
+        "published": "Thu, 19 Feb 2026 22:20:22 GMT",
+        "source": "BBC News"
+      },
+      {
+        "title": "What does Andrew's arrest mean for the Royal Family?",
+        "link": "https://www.bbc.com/news/articles/cm21xjg2npjo?at_medium=RSS&at_campaign=rss",
+        "summary": "Following Andrew's arrest, the King said the authorities have 'our full and wholehearted support and cooperation'.",
+        "published": "Fri, 20 Feb 2026 02:31:03 GMT",
+        "source": "BBC News"
+      },
+      {
+        "title": "Single vaccine could protect against all coughs, colds and flus, researchers say",
+        "link": "https://www.bbc.com/news/articles/cx2g8rz7yedo?at_medium=RSS&at_campaign=rss",
+        "summary": "A Stanford University team have tested their nasal spray vaccine in animals but still need to do human clinical trials.",
+        "published": "Thu, 19 Feb 2026 22:30:35 GMT",
+        "source": "BBC News"
+      },
+      {
+        "title": "Austrian climber found guilty after girlfriend froze to death on mountain",
+        "link": "https://www.bbc.com/news/articles/c0k1xkllknmo?at_medium=RSS&at_campaign=rss",
+        "summary": "The woman died of hypothermia during a climbing trip on the Grossglockner mountain in January 2025.",
+        "published": "Fri, 20 Feb 2026 01:10:28 GMT",
+        "source": "BBC News"
+      },
+      {
+        "title": "Grey's Anatomy star Eric Dane dies at 53 after ALS diagnosis",
+        "link": "https://www.bbc.com/news/articles/c78j01n775ko?at_medium=RSS&at_campaign=rss",
+        "summary": "The actor, who also starred in HBO's Euphoria, battled the most common form of motor neurone disease.",
+        "published": "Fri, 20 Feb 2026 07:19:44 GMT",
+        "source": "BBC News"
+      }
+    ],
+    "ai_latest": [
+      {
+        "source": {
+          "id": "ign",
+          "name": "IGN"
+        },
+        "author": "Michael Cripe",
+        "title": "Highguard Dev Assures Fans a New Patch Is on the Way After Website Troubles Spark Fears of Game Shut Down - IGN",
+        "description": "Wildlight has confirmed a new patch is in the works for Highguard after issues related to its official website sparked fears that a full shutdown was imminent.",
+        "url": "https://www.ign.com/articles/highguard-dev-assures-fans-a-new-patch-is-on-the-way-after-website-troubles-spark-fears-of-game-shut-down",
+        "urlToImage": "https://assets-prd.ignimgs.com/2026/01/26/highguard-blogroll-1769450644999.jpg?width=1280&format=jpg&auto=webp&quality=80",
+        "publishedAt": "2026-02-18T22:47:39Z",
+        "content": "Highguard\r\n developer Wildlight Entertainment has confirmed a new patch is in the works after issues related to its official website sparked fears that a full shutdown was imminent.\r\nThe already trou\u2026 [+2891 chars]"
+      },
+      {
+        "source": {
+          "id": null,
+          "name": "9to5Mac"
+        },
+        "author": "Ryan Christoffel",
+        "title": "Another AirPods Pro 3 model is coming, with one rumored upgrade - 9to5Mac",
+        "description": "AirPods Pro 3 launched just a few months ago, but rumors indicate there\u2019s a second model coming this year with one key upgrade: IR cameras.",
+        "url": "https://9to5mac.com/2026/02/18/another-airpods-pro-3-model-is-coming-with-one-rumored-upgrade/",
+        "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2025/09/iphone-17-event-13.05.12.jpg?resize=1200%2C628&quality=82&strip=all&ssl=1",
+        "publishedAt": "2026-02-18T21:58:00Z",
+        "content": "AirPods Pro 3 launched just a few months ago, but rumors indicate theres a second model coming this year with one key upgrade: IR cameras. Here are the details.\r\nAfter having mixed first impressions \u2026 [+1564 chars]"
+      },
+      {
+        "source": {
+          "id": null,
+          "name": "Nature.com"
+        },
+        "author": null,
+        "title": "Laser writing in glass for dense, fast and efficient archival data storage - Nature",
+        "description": "An optical archival storage technology based on femtosecond laser direct writing in glass addresses the practical demands of archival storage.",
+        "url": "https://www.nature.com/articles/s41586-025-10042-w",
+        "urlToImage": "https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41586-025-10042-w/MediaObjects/41586_2025_10042_Fig1_HTML.png",
+        "publishedAt": "2026-02-18T21:33:45Z",
+        "content": "Key metrics\r\nWe evaluate the Silica storage system against the following metrics:\r\n<ul><li>Voxel quality, Q\u00a0=\u00a0B/nV, is an average (bit per voxel) calculated from the number of user bits, B, stored in\u2026 [+33755 chars]"
+      },
+      {
+        "source": {
+          "id": null,
+          "name": "GamesIndustry.biz"
+        },
+        "author": "Vikki Blake",
+        "title": "Football commentator permits EA to use an AI version of his voice for EA Sports FC - GamesIndustry.biz",
+        "description": "Football (soccer) commentator, Guy Mowbray, has given Electronic Arts permission to \"replicate his voice\" via AI to gen\u2026",
+        "url": "https://www.gamesindustry.biz/football-commentator-permits-ea-to-use-an-ai-version-of-his-voice-for-ea-sports-fc",
+        "urlToImage": "https://assetsio.gnwcdn.com/ss_bcf8cde56e46d969dfaff90c8a9d85a22b6342fc.1920x1080.jpg?width=1200&height=630&fit=crop&enable=upscale&auto=webp",
+        "publishedAt": "2026-02-18T20:57:19Z",
+        "content": "Football (soccer) commentator, Guy Mowbray, has given Electronic Arts permission to \"replicate his voice\" via AI to generate player names.\r\nTalking to the BBC, Mowbray talked about how he records com\u2026 [+1777 chars]"
+      },
+      {
+        "source": {
+          "id": null,
+          "name": "GamesIndustry.biz"
+        },
+        "author": "Vikki Blake",
+        "title": "UK's Advertising Standards Authority bans Call of Duty: Black Ops 7 commercial for \"trivializing sexual violence\" - GamesIndustry.biz",
+        "description": "The UK's Advertising Standards Authority (ASA) has banned a Call of Duty: Black Ops 7 commercial for trivializing sexua\u2026",
+        "url": "https://www.gamesindustry.biz/uks-advertising-standard-authority-bans-call-of-duty-black-ops-7-commercial-for-trivializing-sexual-violence",
+        "urlToImage": "https://assetsio.gnwcdn.com/call-of-duty-black-ops-7-four-people.jpg?width=1200&height=630&fit=crop&enable=upscale&auto=webp",
+        "publishedAt": "2026-02-18T20:27:01Z",
+        "content": "The UK's Advertising Standards Authority (ASA) has banned a Call of Duty: Black Ops 7 commercial for trivializing sexual violence.\r\nThe Video on Demand and YouTube advertisement depicted fake airport\u2026 [+1594 chars]"
+      }
+    ],
+    "crypto_latest": [
+      {
+        "source": {
+          "id": "fortune",
+          "name": "Fortune"
+        },
+        "author": "Eva Roytburg",
+        "title": "Who is OpenClaw creator Peter Steinberger? The millennial developer caught the attention of Sam Altman and Mark Zuckerberg",
+        "description": "Steinberger made $100M off his first company and quit coding. Now he\u2019s back to show the world the \u201cmagic\u201d of agentic AI.",
+        "url": "https://fortune.com/2026/02/19/openclaw-who-is-peter-steinberger-openai-sam-altman-anthropic-moltbook/",
+        "urlToImage": "https://fortune.com/img-assets/wp-content/uploads/2026/02/GettyImages-2261593497-e1771451088962.jpg?resize=1200,600",
+        "publishedAt": "2026-02-19T07:59:00Z",
+        "content": "Peter Steinberger spent 13 years building a company that formatted PDFs. It took him only one hour to build the model that would eventually kill that app.Steinberger, the founder of OpenClaw, the ope\u2026 [+6524 chars]"
+      },
+      {
+        "source": {
+          "id": null,
+          "name": "Emerce.nl"
+        },
+        "author": "Jan Libbenga",
+        "title": "Nederlandse Bitcoin sector vraagt om aanpassing van voorgestelde vermogensaanwasbelasting",
+        "description": "De Verenigde Bitcoinbedrijven Nederland (VBNL) maakt zich ernstige zorgen over de gevolgen van het aangenomen Wetsvoorstel voor de in Nederland woonachtige houders van cryptoactiva en de impact op Nederlandse aanbieders van cryptoactivadiensten. Onder het voo\u2026",
+        "url": "https://www.emerce.nl/nieuws/nederlandse-bitcoin-sector-vraagt-om-aanpassing-voorgestelde-vermogensaanwasbelasting",
+        "urlToImage": "https://www.emerce.nl/content/uploads/2026/02/pexels-karola-g-5980742-scaled.jpg",
+        "publishedAt": "2026-02-19T07:45:06Z",
+        "content": "Nieuws -19 februari 2026 - 08:45De Verenigde Bitcoinbedrijven Nederland (VBNL) maakt zich ernstige zorgen over de gevolgen van het aangenomen Wetsvoorstel voor de in Nederland woonachtige houders van\u2026 [+2429 chars]"
+      },
+      {
+        "source": {
+          "id": null,
+          "name": "The Star Online"
+        },
+        "author": "JUSTIN ZACK",
+        "title": "12 cops held over RM200,000 crypto theft",
+        "description": "PETALING JAYA: Twelve police personnel, four of them from Bukit Aman headquarters, have been arrested for allegedly stealing about RM200,000 in cryptocurrency. Read full story",
+        "url": "https://www.thestar.com.my/news/nation/2026/02/19/12-cops-held-over-rm200000-crypto-theft",
+        "urlToImage": "https://apicms.thestar.com.my/uploads/images/2026/02/19/3776615.jpg",
+        "publishedAt": "2026-02-19T07:28:00Z",
+        "content": "PETALING JAYA: Twelve police personnel, four of them from Bukit Aman headquarters, have been arrested for allegedly stealing about RM200,000 in cryptocurrency.\r\nIt is learnt that the suspects, includ\u2026 [+641 chars]"
+      },
+      {
+        "source": {
+          "id": null,
+          "name": "Itc.ua"
+        },
+        "author": "\u0428\u0430\u0434\u0440\u0456\u043d \u0410\u043d\u0434\u0440\u0456\u0439",
+        "title": "ETHZilla \u0432\u044b\u043f\u0443\u0441\u0442\u0438\u043b\u0430 \u0442\u043e\u043a\u0435\u043d\u044b, \u043a\u043e\u0442\u043e\u0440\u044b\u0435 \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0435\u043d\u044b \u0430\u0432\u0438\u0430\u0446\u0438\u043e\u043d\u043d\u044b\u043c\u0438 \u0434\u0432\u0438\u0433\u0430\u0442\u0435\u043b\u044f\u043c\u0438",
+        "description": "ETHZilla, \u043f\u0443\u0431\u043b\u0438\u0447\u043d\u0430\u044f \u043a\u043e\u043c\u043f\u0430\u043d\u0438\u044f, \u0441\u043f\u0435\u0446\u0438\u0430\u043b\u0438\u0437\u0438\u0440\u0443\u044e\u0449\u0430\u044f\u0441\u044f \u043d\u0430 \u0443\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0438 \u043a\u0430\u0437\u043d\u0430\u0447\u0435\u0439\u0441\u043a\u0438\u043c\u0438 \u0430\u043a\u0442\u0438\u0432\u0430\u043c\u0438 \u0438 \u0442\u043e\u043a\u0435\u043d\u0438\u0437\u0430\u0446\u0438\u0438 \u0440\u0435\u0430\u043b\u044c\u043d\u044b\u0445 \u0430\u043a\u0442\u0438\u0432\u043e\u0432, \u0437\u0430\u043f\u0443\u0441\u0442\u0438\u043b\u0430 Eurus Aero Token I \u2014 \u043f\u0435\u0440\u0432\u044b\u0439 \u0432 \u0441\u0432\u043e\u0435\u043c \u0440\u043e\u0434\u0435 \u0446\u0438\u0444\u0440\u043e\u0432\u043e\u0439 \u0442\u043e\u043a\u0435\u043d, \u043e\u0431\u0435\u0441\u043f\u0435\u0447\u0435\u043d\u043d\u044b\u0439 \u0440\u0435\u0430\u043b\u044c\u043d\u044b\u043c\u0438 \u0430\u0432\u0438\u0430\u0446\u0438\u043e\u043d\u043d\u044b\u043c\u0438 \u0434\u0432\u0438\u0433\u0430\u0442\u0435\u043b\u044f\u043c\u0438 \u043d\u0430 \u043b\u0438\u0437\u0438\u043d\u0433\u0435.",
+        "url": "https://itc.ua/news/ethzilla-vypustyla-tokeny-kotorye-obespecheny-avyatsyonnymy-dvygatelyamy/",
+        "urlToImage": "https://itc.ua/wp-content/uploads/2026/02/Depositphotos_558126558_L.jpg",
+        "publishedAt": "2026-02-19T07:26:22Z",
+        "content": "ETHZilla, , , Eurus Aero Token I , .\r\n Liquidity.io . ETHZilla Aerospace LLC ERC-20 Ethereum Layer 2, . CFM56 $12,2 .\r\n\u00abEurus Aero Token I ETHZilla Aerospace . . . . \u00bb, .\r\n $100, 10 ($1000). ETHZilla\u2026 [+255 chars]"
+      },
+      {
+        "source": {
+          "id": null,
+          "name": "CoinDesk"
+        },
+        "author": "James Van Straten",
+        "title": "Ledn raises $188m with first bitcoin backed bond sale in asset backed market",
+        "description": "Crypto lender packages more than 5,400 bitcoin collateralized loans into first asset backed securities transaction of its kind.",
+        "url": "https://www.coindesk.com/markets/2026/02/19/ledn-raises-usd188m-with-first-bitcoin-backed-bond-sale-in-asset-backed-market",
+        "urlToImage": "https://cdn.sanity.io/images/s3y3vcno/production/ce6e5878a3bba05bcb92f58c5d32dad187180ea3-1920x1080.jpg?auto=format&w=960&h=540&crop=focalpoint&fit=clip&q=75&fm=jpg",
+        "publishedAt": "2026-02-19T07:25:19Z",
+        "content": "Ledn, a crypto lending company, has completed the first asset-backed securities (ABS) deal backed by bitcoin collateral, raising $188 million for crypto credit markets. \r\nAsset-backed securities are \u2026 [+1239 chars]"
+      }
+    ],
+    "trading_latest": [
+      {
+        "source": {
+          "id": "rte",
+          "name": "RTE"
+        },
+        "author": "RT\u00c9 News",
+        "title": "Life term for ex-South Korean leader in insurrection case",
+        "description": "A South Korean court has sentenced former president Yoon Suk Yeol to life in prison after finding him guilty of leading an insurrection when he declared martial law in December 2024.",
+        "url": "https://www.rte.ie/news/asia/2026/0219/1559266-south-korea-yoon/",
+        "urlToImage": "https://www.rte.ie/images/0023eafa-1600.jpg",
+        "publishedAt": "2026-02-19T07:58:21Z",
+        "content": "A South Korean court has sentenced former president Yoon Suk Yeol to life in prison after finding him guilty of leading an insurrection when he declared martial law in December 2024.\r\nThe 65-year-old\u2026 [+3856 chars]"
+      },
+      {
+        "source": {
+          "id": null,
+          "name": "Life.ru"
+        },
+        "author": "\u0410\u043d\u043d\u0430 \u0420\u043e\u0437\u0430\u043d\u043e\u0432\u0430",
+        "title": "\u041a\u0430\u043a \u043e\u0442\u0434\u044b\u0445\u0430\u0435\u043c \u043d\u0430 8 \u041c\u0430\u0440\u0442\u0430 2026 \u0433\u043e\u0434\u0430: \u0441\u043a\u043e\u043b\u044c\u043a\u043e \u0432\u044b\u0445\u043e\u0434\u043d\u044b\u0445, \u043f\u0435\u0440\u0435\u043d\u043e\u0441\u044b \u0438 \u043e\u0444\u0438\u0446\u0438\u0430\u043b\u044c\u043d\u044b\u0435 \u043f\u0440\u0430\u0437\u0434\u043d\u0438\u043a\u0438",
+        "description": "\u0421\u043a\u043e\u043b\u044c\u043a\u043e \u0432\u044b\u0445\u043e\u0434\u043d\u044b\u0445 \u043d\u0430 8 \u041c\u0430\u0440\u0442\u0430 2026 \u0433\u043e\u0434\u0430? \u041a\u0430\u043a\u043e\u0439 \u0434\u0435\u043d\u044c \u043f\u0435\u0440\u0435\u043d\u0435\u0441\u0443\u0442? \u0422\u043e\u0447\u043d\u044b\u0439 \u0433\u0440\u0430\u0444\u0438\u043a \u043f\u0440\u0430\u0437\u0434\u043d\u0438\u043a\u043e\u0432 \u0438 \u0441\u043e\u0432\u0435\u0442\u044b, \u043a\u043e\u0433\u0434\u0430 \u043b\u0443\u0447\u0448\u0435 \u0431\u0440\u0430\u0442\u044c \u043e\u0442\u043f\u0443\u0441\u043a, \u2014 \u0432 \u043c\u0430\u0442\u0435\u0440\u0438\u0430\u043b\u0435 Life.ru.",
+        "url": "https://life.ru/p/1842779",
+        "urlToImage": "https://static.life.ru/ip/unsafe/rs:fit:1200:/q:98/sh:0.5/czM6Ly9saWZlLXN0YXRpYy9wdWJsaWNhdGlvbnMvMjAyNi8yLzE3Lzk1NzExODQ0MTQyMy4zMjQ4LmpwZw==.webp",
+        "publishedAt": "2026-02-19T07:50:43Z",
+        "content": "2026 8 . \u00a9 Nano Banana AI\r\n8 2026 \r\n 2026 . 112 , .\r\n , , . , , .\r\n 8 2026\r\n8 2026 . , 7 , , 8 , , 9 . , , 10 . .\r\n , , 6 , , . , . .\r\n 8 2026\r\n. 8 (), . , 9 , .\r\n 2026. \u00a0\u00a9\u00a0Shutterstock / FOTODOM / N\u2026 [+363 chars]"
+      },
+      {
+        "source": {
+          "id": null,
+          "name": "Android.com.pl"
+        },
+        "author": "Marcin Zi\u00f3\u0142kowski",
+        "title": "Nadchodzi nowa funkcja w Spotify. Fani koncert\u00f3w b\u0119d\u0105 zachwyceni",
+        "description": "Spotify podpisa\u0142o umow\u0119 partnersk\u0105 z platform\u0105 biletow\u0105 SeatGeek, dzi\u0119ki kt\u00f3rej jej subskrybenci b\u0119d\u0105 mogli kupowa\u0107 bilety na koncerty wewn\u0105trz aplikacji. Co ciekawe, w przesz\u0142o\u015bci popularny streaming mia\u0142 ju\u017c na koncie wsp\u00f3\u0142prace z innymi dystrybutorami wej\u015b\u2026",
+        "url": "https://android.com.pl/tech/1019605-spotify-kupno-biletow-w-aplikacji/",
+        "urlToImage": "https://static.android.com.pl/uploads/2026/02/Nowosc-w-Spotify.png",
+        "publishedAt": "2026-02-19T07:50:00Z",
+        "content": "Spotify podpisao umow partnersk z platform biletow SeatGeek, dziki kt\u00f3rej jej subskrybenci bd mogli kupowa bilety na koncerty wewntrz aplikacji. Co ciekawe, w przeszoci popularny streaming mia ju na \u2026 [+2333 chars]"
+      },
+      {
+        "source": {
+          "id": "the-times-of-india",
+          "name": "The Times of India"
+        },
+        "author": "Akash Podishetti",
+        "title": "Mainboard IPO: Omnitech Engineering to launch Rs 583 crore offer next week. Check dates and other details",
+        "description": "Omnitech Engineering, a Gujarat-based precision components maker, has filed its RHP for a Rs 583 crore IPO comprising a Rs 418 crore fresh issue and a Rs 165 crore offer for sale by promoter Udaykumar Arunkumar Parekh. The issue will be offered via the book-b\u2026",
+        "url": "https://economictimes.indiatimes.com/markets/ipos/fpos/mainboard-ipo-omnitech-engineering-to-launch-rs-583-crore-offer-next-week-check-dates-and-other-details/articleshow/128546058.cms",
+        "urlToImage": "https://img.etimg.com/thumb/msid-128546034,width-1200,height-630,imgsize-58932,overlay-etmarkets/articleshow.jpg",
+        "publishedAt": "2026-02-19T07:45:09Z",
+        "content": "(What's moving Sensex and Nifty Track latest market news, stock tips, Budget 2025, Share Market on Budget 2025 and expert advice, on ETMarkets. Also, ETMarkets.com is now on Telegram. For fastest new\u2026 [+330 chars]"
+      },
+      {
+        "source": {
+          "id": "the-times-of-india",
+          "name": "The Times of India"
+        },
+        "author": "ET Online",
+        "title": "'Not sympathy': Rajpal Yadav breaks silence after Tihar jail release, says 'time will bring out the truth'",
+        "description": "Actor Rajpal Yadav has spoken out after his release from Tihar Jail. He expressed gratitude for public support and reflected on his nearly three-decade career. Yadav emphasized the importance of time in revealing truth and suggested prison reforms. He plans t\u2026",
+        "url": "https://economictimes.indiatimes.com/magazines/panache/not-sympathy-rajpal-yadav-breaks-silence-after-tihar-jail-release-says-time-will-bring-out-the-truth/articleshow/128542717.cms",
+        "urlToImage": "https://img.etimg.com/thumb/msid-128546024,width-1200,height-630,imgsize-23682,overlay-etpanache/articleshow.jpg",
+        "publishedAt": "2026-02-19T07:45:04Z",
+        "content": "Investment Ideas\r\nGrow your wealth with stock ideas &amp; sectoral trends.\r\nStock Reports Plus\r\nBuy low &amp; sell high with access to Stock Score, Upside potential &amp; more. \r\nBigBull Portfolio\r\nG\u2026 [+439 chars]"
+      }
+    ]
+  },
+  "market_data": {
+    "crypto_snapshot": [],
+    "timestamp": "2026-02-20T18:59:16.087919"
+  },
+  "timestamp": "2026-02-20T18:59:16.088641"
+}

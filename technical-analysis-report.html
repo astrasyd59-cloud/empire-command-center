@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Analysis Report - February 2026</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #0a0a0f;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 16px;
+            margin-bottom: 40px;
+            border: 1px solid #2a2a40;
+        }
+        h1 { font-size: 2.5rem; margin-bottom: 10px; color: #fff; }
+        .subtitle { color: #888; font-size: 1.1rem; }
+        .report-date { color: #00d4aa; font-weight: 600; margin-top: 15px; }
+        
+        .section {
+            background: #12121a;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border: 1px solid #2a2a40;
+        }
+        .section h2 {
+            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #2a2a40;
+        }
+        
+        .signal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        .signal-card {
+            background: #1a1a2e;
+            border-radius: 12px;
+            padding: 25px;
+            border-left: 4px solid;
+        }
+        .signal-buy { border-color: #00d4aa; }
+        .signal-sell { border-color: #ff4757; }
+        .signal-neutral { border-color: #f0a500; }
+        .signal-mixed { border-color: #3498db; }
+        
+        .ticker-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .ticker-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        .signal-badge {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+        .badge-buy { background: #00d4aa; color: #0a0a0f; }
+        .badge-sell { background: #ff4757; color: #fff; }
+        .badge-neutral { background: #f0a500; color: #0a0a0f; }
+        .badge-mixed { background: #3498db; color: #fff; }
+        
+        .indicators {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .indicator {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #2a2a40;
+        }
+        .indicator:last-child { border-bottom: none; }
+        .indicator-label { color: #888; font-size: 0.9rem; }
+        .indicator-value { font-weight: 600; }
+        .value-buy { color: #00d4aa; }
+        .value-sell { color: #ff4757; }
+        .value-neutral { color: #f0a500; }
+        
+        .analysis-box {
+            background: #1a1a2e;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+        .analysis-box h4 {
+            color: #00d4aa;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        .analysis-box ul {
+            margin-left: 20px;
+            color: #b0b0b0;
+        }
+        .analysis-box li { margin-bottom: 10px; }
+        
+        .levels-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .level-box {
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .support { background: rgba(0, 212, 170, 0.1); border: 1px solid #00d4aa; }
+        .resistance { background: rgba(255, 71, 87, 0.1); border: 1px solid #ff4757; }
+        .level-box h5 { margin-bottom: 10px; font-size: 0.9rem; }
+        .support h5 { color: #00d4aa; }
+        .resistance h5 { color: #ff4757; }
+        .level-price { font-size: 1.5rem; font-weight: 700; color: #fff; }
+        
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .summary-table th,
+        .summary-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #2a2a40;
+        }
+        .summary-table th {
+            color: #888;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+        .summary-table td { color: #fff; }
+        .trend-up { color: #00d4aa; }
+        .trend-down { color: #ff4757; }
+        .trend-neutral { color: #f0a500; }
+        
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            border-top: 1px solid #2a2a40;
+            margin-top: 40px;
+        }
+        .disclaimer {
+            font-size: 0.85rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Technical Analysis Report</h1>
+            <p class="subtitle">Chart Patterns, Indicators & Trading Signals</p>
+            <p class="report-date">Report Date: February 22, 2026 | Data Source: Yahoo Finance, TradingView, Investing.com</p>
+        </header>
+
+        <!-- Executive Summary -->
+        <div class="section">
+            <h2>🎯 Executive Summary</h2>
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Stock</th>
+                        <th>Current Price</th>
+                        <th>RSI (14)</th>
+                        <th>MACD</th>
+                        <th>Signal</th>
+                        <th>Trend</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ACMR</strong></td>
+                        <td>$66.59</td>
+                        <td>50.57 (Neutral)</td>
+                        <td class="trend-up">+0.64 (Buy)</td>
+                        <td><span style="color: #f0a500;">NEUTRAL</span></td>
+                        <td>Consolidation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>7735.T</strong></td>
+                        <td>¥21,980</td>
+                        <td>50.10 (Neutral)</td>
+                        <td class="trend-down">-152.87 (Sell)</td>
+                        <td><span style="color: #f0a500;">NEUTRAL</span></td>
+                        <td>Pullback from highs</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DEME</strong></td>
+                        <td>€196.20</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td><span style="color: #00d4aa;">BUY</span></td>
+                        <td class="trend-up">Breakout</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DOFG</strong></td>
+                        <td>NOK 126.50</td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td><span style="color: #3498db;">MIXED</span></td>
+                        <td>Short-term weakness</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Individual Stock Analysis -->
+        <div class="section">
+            <h2>📈 Individual Technical Analysis</h2>
+            
+            <!-- ACMR -->
+            <div class="signal-card signal-neutral">
+                <div class="ticker-header">
+                    <span class="ticker-name">ACMR — ACM Research</span>
+                    <span class="signal-badge badge-neutral">NEUTRAL</span>
+                </div>
+                <div class="indicators">
+                    <div class="indicator">
+                        <span class="indicator-label">RSI (14)</span>
+                        <span class="indicator-value value-neutral">50.57 — Neutral</span>
+                    </div>
+                    <div class="indicator">
+                        <span class="indicator-label">MACD (12,26)</span>
+                        <span class="indicator-value value-buy">+0.64 — Buy</span>
+                    </div>
+                    <div class="indicator">
+                        <span class="indicator-label">52-Week Range</span>
+                        <span class="indicator-value">Near highs</span>
+                    </div>
+                    <div class="indicator">
+                        <span class="indicator-label">All-Time High</span>
+                        <span class="indicator-value">$70.68 (Feb 11)</span>
+                    </div>
+                </div>                
+                <div class="analysis-box">
+                    <h4>Technical Commentary</h4>
+                    <ul>
+                        <li><strong>RSI at 50.57</strong> indicates neutral momentum — neither overbought nor oversold</li>
+                        <li><strong>MACD positive at +0.64</strong> suggests underlying bullish momentum remains intact</li>
+                        <li><strong>Price action:</strong> Trading near all-time highs ($70.68) after strong earnings beat</li>
+                        <li><strong>Pivot signal:</strong> Some sources show sell signal from December pivot top (-3.33% decline)</li>
+                        <li><strong>Analyst targets:</strong> $43 target (-33% from current) appears stale/conservative</li>
+                    </ul>                
+                </div>
+                
+                <div class="levels-grid">
+                    <div class="level-box support">
+                        <h5>Key Support</h5>
+                        <div class="level-price">$60-63</div>
+                        <p style="font-size: 0.85rem; color: #888; margin-top: 8px;">Previous breakout zone</p>
+                    </div>
+                    <div class="level-box resistance">
+                        <h5>Key Resistance</h5>
+                        <div class="level-price">$70.68</div>
+                        <p style="font-size: 0.85rem; color: #888; margin-top: 8px;">All-time high</p>
+                    </div>
+                </div㸾
+            </div>
+
+            <!-- SCREEN Holdings -->
+            <div class="signal-card signal-neutral" style="margin-top: 25px;">
+                <div class="ticker-header">
+                    <span class="ticker-name">7735.T — SCREEN Holdings</span>
+                    <span class="signal-badge badge-neutral">NEUTRAL</span>
+                </div>
+                <div class="indicators">
+                    <div class="indicator">
+                        <span class="indicator-label">RSI (14)</span>
+                        <span class="indicator-value value-neutral">50.10 — Neutral</span>
+                    </div>
+                    <div class="indicator">
+                        <span class="indicator-label">MACD</span>
+                        <span class="indicator-value value-sell">-152.87 — Bearish</span>
+                    </div>
+                    <div class="indicator">
+                        <span class="indicator-label">3-Year Return</span>
+                        <span class="indicator-value value-buy">+243%</span>
+                    </div>
+                    <div class="indicator">
+                        <span class="indicator-label">YTD 2024</span>
+                        <span class="indicator-value value-buy">+42.8%</span>
+                    </div>
+                </div>                
+                <div class="analysis-box">
+                    <h4>Technical Commentary</h4>
+                    <ul>
+                        <li><strong>RSI neutral at 50.10</strong> — balanced momentum after strong multi-year run</li>
+                        <li><strong>MACD negative</strong> indicates short-term consolidation/pause in uptrend</li>
+                        <li><strong>Long-term trend intact:</strong> 3-year return of 243% shows strong secular uptrend</li>
+                        <li><strong>Recent action:</strong> Pullback from highs with 30-day return of 11.1% and YTD +42.8%</li>
+                        <li><strong>Valuation concern:</strong> Stock has run hard; current pause is healthy consolidation</li>
+                    </ul>                
+                </div>
+                
+                <div class="levels-grid">
+                    <div class="level-box support">
+                        <h5>Key Support</h5>
+                        <div class="level-price">¥18,000-19,000</div>
+                        <p style="font-size: 0.85rem; color: #888; margin-top: 8px;">Previous resistance turned support</p>
+                    </div>
+                    <div class="level-box resistance">
+                        <h5>Key Resistance</h5>
+                        <div class="level-price">¥22,000+</div>
+                        <p style="font-size: 0.85rem; color: #888; margin-top: 8px;">Recent highs</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DEME -->
+            <div class="signal-card signal-buy" style="margin-top: 25px;">
+                <div class="ticker-header">
+                    <span class="ticker-name">DEME — DEME Group NV</span>
+                    <span class="signal-badge badge-buy">BUY</span>
+                </div>
+                <div class="indicators">
+                    <div class="indicator">
+                        <span class="indicator-label">TradingView Rating</span>
+                        <span class="indicator-value value-buy">BUY</span>
+                    </div>
+                    <div class="indicator">
+                        <span class="indicator-label">Trend Structure</span>
+                        <span class="indicator-value value-buy">Breakout</span>
+                    </div>
+                    <div class="indicator">
+                        <span class="indicator-label">Previous Resistance</span>
+                        <span class="indicator-value">€168 (broken)</span>
+                    </div>
+                    <div class="indicator">
+                        <span class="indicator-label">Current Price</span>
+                        <span class="indicator-value value-buy">€196</span>
+                    </div>
+                </div>                
+                <div class="analysis-box">
+                    <h4>Technical Commentary</h4>
+                    <ul>
+                        <li><strong>TradingView rating: BUY</strong> on 1-week and 1-month timeframes</li>
+                        <li><strong>Rectangle breakout:</strong> Stock was trading in €157-168 range — has decisively broken above</li>
+                        <li><strong>Bullish continuation:</strong> Breakout above €168 resistance signals upward momentum</li>
+                        <li><strong>Analyst price targets:</strong> €170-200 range, with stock now at upper end</li>
+                        <li><strong>Momentum:</strong> Strong fundamental performance (77% profit growth) supporting technical breakout</li>
+                    </ul>                
+                </div>
+                
+                <div class="levels-grid">
+                    <div class="level-box support">
+                        <h5>Key Support</h5>
+                        <div class="level-price">€180-185</div>
+                        <p style="font-size: 0.85rem; color: #888; margin-top: 8px;">Breakout retest zone</p>
+                    </div>
+                    <div class="level-box resistance">
+                        <h5>Key Resistance</h5>
+                        <div class="level-price">€200</div>
+                        <p style="font-size: 0.85rem; color: #888; margin-top: 8px;">Psychological + analyst target</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DOFG -->
+            <div class="signal-card signal-mixed" style="margin-top: 25px;">
+                <div class="ticker-header">
+                    <span class="ticker-name">DOFG — DOF Group ASA</span>
+                    <span class="signal-badge badge-mixed">MIXED</span>
+                </div>
+                <div class="indicators">
+                    <div class="indicator">
+                        <span class="indicator-label">TradingView (Daily)</span>
+                        <span class="indicator-value value-sell">SELL</span>
+                    </div>
+                    <div class="indicator">
+                        <span class="indicator-label">TradingView (1M)</span>
+                        <span class="indicator-value value-buy">BUY</span>
+                    </div>
+                    <div class="indicator">
+                        <span class="indicator-label">Investing.com</span>
+                        <span class="indicator-value value-buy">STRONG BUY</span>
+                    </div>
+                    <div class="indicator">
+                        <span class="indicator-label">Beta (5Y)</span>
+                        <span class="indicator-value value-neutral">0.14 (Low vol)</span>
+                    </div>
+                </div>                
+                <div class="analysis-box">
+                    <h4>Technical Commentary</h4>
+                    <ul>
+                        <li><strong>Mixed signals:</strong> Short-term SELL on TradingView vs STRONG BUY on Investing.com</li>
+                        <li><strong>Timeframe matters:</strong> Daily shows weakness but 1-month trend remains bullish</li>
+                        <li><strong>Low volatility:</strong> Beta of 0.14 indicates very stable, non-volatile stock</li>
+                        <li><strong>52-week performance:</strong> +30.42% shows steady uptrend</li>
+                        <li><strong>Analyst consensus:</strong> 5 analysts recommend BUY, 0 SELL, 0 HOLD</li>
+                        <li><strong>Price target:</strong> WalletInvestor sees 143.82 NOK target (+14% upside)</li>
+                    </ul>                
+                </div>
+                
+                <div class="levels-grid">
+                    <div class="level-box support">
+                        <h5>Key Support</h5>
+                        <div class="level-price">NOK 115-120</div>
+                        <p style="font-size: 0.85rem; color: #888; margin-top: 8px;">Recent consolidation zone</p>
+                    </div>
+                    <div class="level-box resistance">
+                        <h5>Key Resistance</h5>
+                        <div class="level-price">NOK 130+</div>
+                        <p style="font-size: 0.85rem; color: #888; margin-top: 8px;">Next breakout level</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trading Strategy -->
+        <div class="section">
+            <h2>🎲 Trading Strategy Recommendations</h2>
+            
+            <div class="analysis-box">
+                <h4>ACMR — Wait for Breakout or Pullback</h4>
+                <p style="color: #b0b0b0; margin-bottom: 15px;">Current setup is neutral with mixed signals. MACD bullish but price consolidating near highs.</p>
+                <ul>
+                    <li><strong>Aggressive entry:</strong> Buy breakout above $70.68 ATH with stop at $64</li>
+                    <li><strong>Conservative entry:</strong> Wait for pullback to $60-63 support zone</li>
+                    <li><strong>Risk:</strong> China exposure could cause sharp reversals — use tight stops</li>
+                </ul>
+            </div>
+            
+            <div class="analysis-box" style="margin-top: 20px;">
+                <h4>7735.T — Accumulate on Weakness</h4>
+                <p style="color: #b0b0b0; margin-bottom: 15px;">Strong long-term trend but short-term MACD suggests caution. Good for dollar-cost averaging.</p>
+                <ul>
+                    <li><strong>Strategy:</strong> Scale in on dips toward ¥19,000-20,000</li>
+                    <li><strong>Stop loss:</strong> Below ¥18,000 (previous resistance)</li>
+                    <li><strong>Time horizon:</strong> Long-term play — don't panic on short-term consolidation</li>
+                </ul>
+            </div>
+            
+            <div class="analysis-box" style="margin-top: 20px;">
+                <h4>DEME — Ride the Breakout</h4>
+                <p style="color: #b0b0b0; margin-bottom: 15px;">Cleanest technical setup with confirmed breakout above €168 resistance.</p>
+                <ul>
+                    <li><strong>Entry:</strong> Current levels or on any dip to €180-185</li>
+                    <li><strong>Target:</strong> €200 psychological resistance</li>
+                    <li><strong>Stop loss:</strong> Below €175 (invalidates breakout)</li>
+                    <li><strong>Catalyst:</strong> Strong earnings momentum should support technical breakout</li>
+                </ul>
+            </div>
+            
+            <div class="analysis-box" style="margin-top: 20px;">
+                <h4>DOFG — Hold/Accumulate</h4>
+                <p style="color: #b0b0b0; margin-bottom: 15px;">Mixed short-term signals but strong fundamental backdrop. Low beta makes it portfolio stabilizer.</p>
+                <ul>
+                    <li><strong>Strategy:</strong> Hold existing positions; add on dips to NOK 115-120</li>
+                    <li><strong>Target:</strong> NOK 140+ over 6-12 months</li>
+                    <li><strong>Stop loss:</strong> Below NOK 110 (major support)</li>
+                    <li><strong>Note:</strong> Low volatility (beta 0.14) means slow, steady moves — patience required</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Risk Summary -->
+        <div class="section">
+            <h2>⚠️ Technical Risk Summary</h2>
+            
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Stock</th>
+                        <th>Primary Risk</th>
+                        <th>Volatility</th>
+                        <th>Key Level to Watch</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ACMR</strong></td>
+                        <td>Double top at ATH if rejected</td>
+                        <td class="trend-up">Medium-High</td>
+                        <td>$70.68 (breakout confirmation)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>7735.T</strong></td>
+                        <td>MACD bearish divergence</td>
+                        <td class="trend-neutral">Medium</td>
+                        <td>¥18,000 (support test)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DEME</strong>>
+                        <td>False breakout, return to range</td>
+                        <td class="trend-neutral">Medium</td>
+                        <td>€175 (breakout invalidation)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DOFG</strong></td>
+                        <td>Short-term trend reversal</td>
+                        <td class="trend-up">Low</td>
+                        <td>NOK 115 (major support)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <footer>
+            <p class="disclaimer">
+                <strong>Disclaimer:</strong> Technical analysis is based on historical price patterns and indicators, not predictive of future results. 
+                This report combines data from Investing.com, TradingView, TipRanks, and other sources. 
+                Always use stop losses and position size according to your risk tolerance. Not investment advice.
+            </p>
+            <p style="margin-top: 20px;">Report generated by Astra Research | February 22, 2026</p>
+        </footer>
+    </div>
+</body>
+</html>

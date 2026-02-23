@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Portfolio Analysis - Export to Excel/Sheets</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 1400px; margin: 0 auto; background: white; padding: 30px; }
+        h1 { color: #1a1a1a; border-bottom: 3px solid #1a1a1a; padding-bottom: 10px; }
+        h2 { color: #333; margin-top: 30px; font-size: 14pt; }
+        .instructions { background: #fff3cd; border: 1px solid #ffc107; padding: 15px; margin: 20px 0; border-radius: 5px; }
+        .instructions h3 { margin-top: 0; color: #856404; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 10pt; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background: #1a1a1a; color: white; font-weight: bold; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        tr:hover { background: #f0f0f0; }
+        .buy { color: #00aa00; font-weight: bold; }
+        .sell { color: #cc0000; font-weight: bold; }
+        .neutral { color: #f0a500; font-weight: bold; }
+        .high { color: #cc0000; }
+        .medium { color: #f0a500; }
+        .low { color: #00aa00; }
+        .highlight { background: #ffffcc; }
+        .section-break { page-break-before: always; margin-top: 50px; }
+        .export-btn { 
+            background: #00aa00; color: white; padding: 12px 24px; border: none; 
+            cursor: pointer; font-size: 12pt; border-radius: 5px; margin: 10px 5px;
+        }
+        .export-btn:hover { background: #008800; }
+        code { background: #f4f4f4; padding: 2px 6px; border-radius: 3px; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 PORTFOLIO ANALYSIS — EXCEL/GOOGLE SHEETS EXPORT</h1>
+        
+        <div class="instructions">
+            <h3>⚡ QUICK EXPORT INSTRUCTIONS</h3>
+            <p><strong>Option 1 (EASIEST):</strong> Copy any table below → Paste directly into Excel or Google Sheets</p>
+            <p><strong>Option 2:</strong> CSV file saved at: <code>workspace/portfolio-analysis-spreadsheet.csv</code></p>
+            <p><strong>Option 3:</strong> Use keyboard shortcut <code>Ctrl+A</code> on any table → Copy → Paste into Sheet</p>
+        </div>
+
+        <h2>📈 MASTER DATA — ALL STOCKS</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Ticker</th>
+                    <th>Company</th>
+                    <th>Price</th>
+                    <th>Signal</th>
+                    <th>Market Cap</th>
+                    <th>Revenue</th>
+                    <th>Growth</th>
+                    <th>RSI</th>
+                    <th>Support</th>
+                    <th>Resistance</th>
+                    <th>Risk</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="highlight">
+                    <td><strong>ACMR</strong></td>
+                    <td>ACM Research</td>
+                    <td>$66.59</td>
+                    <td><span class="neutral">NEUTRAL</span></td>
+                    <td>$4.24B</td>
+                    <td>$782M</td>
+                    <td>+40%</td>
+                    <td>50.57</td>
+                    <td>$60-63</td>
+                    <td>$70.68 ATH</td>
+                    <td><span class="high">HIGH</span></td>
+                </tr>
+                <tr>
+                    <td><strong>7735.T</strong></td>
+                    <td>SCREEN Holdings</td>
+                    <td>¥21,980</td>
+                    <td><span class="neutral">NEUTRAL</span></td>
+                    <td>$9.6B</td>
+                    <td>$4.1B</td>
+                    <td>+24%</td>
+                    <td>50.10</td>
+                    <td>¥18K-19K</td>
+                    <td>¥22K+</td>
+                    <td><span class="medium">MEDIUM</span></td>
+                </tr>
+                <tr class="highlight">
+                    <td><strong>DEME</strong></td>
+                    <td>DEME Group</td>
+                    <td>€196.20</td>
+                    <td><span class="buy">BUY</span></td>
+                    <td>€7.5B</td>
+                    <td>€4.1B</td>
+                    <td>+25%</td>
+                    <td>—</td>
+                    <td>€180-185</td>
+                    <td>€200</td>
+                    <td><span class="medium">MEDIUM</span></td>
+                </tr>
+                <tr>
+                    <td><strong>DOFG</strong></td>
+                    <td>DOF Group</td>
+                    <td>NOK 126.50</td>
+                    <td><span class="neutral">MIXED</span></td>
+                    <td>NOK 13.5B</td>
+                    <td>$1.39B</td>
+                    <td>+23%</td>
+                    <td>—</td>
+                    <td>NOK 115-120</td>
+                    <td>NOK 130+</td>
+                    <td><span class="medium">MEDIUM</span></td>
+                </tr>
+                <tr class="highlight">
+                    <td><strong>HYPE</strong></td>
+                    <td>Hyperliquid</td>
+                    <td>$22.00</td>
+                    <td><span class="buy">ACCUMULATE</span></td>
+                    <td>$7.5B</td>
+                    <td>$550M+</td>
+                    <td>N/A</td>
+                    <td>—</td>
+                    <td>$18-20</td>
+                    <td>$38-59</td>
+                    <td><span class="high">HIGH</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>💰 HYPERLIQUID STAKING TIERS — FEE DISCOUNT CALCULATOR</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tier</th>
+                    <th>HYPE Required</th>
+                    <th>Fee Discount</th>
+                    <th>USD Value (@$22)</th>
+                    <th>Monthly Savings ($500 fees)</th>
+                    <th>Annual ROI</th>
+                    <th>Best For</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="highlight">
+                    <td><strong>Wood</strong></td>
+                    <td>10</td>
+                    <td>5%</td>
+                    <td>$220</td>
+                    <td>$25</td>
+                    <td><span class="buy">136%</span></td>
+                    <td>MOST TRADERS — Optimal risk/reward</td>
+                </tr>
+                <tr>
+                    <td>Bronze</td>
+                    <td>1,000</td>
+                    <td>10%</td>
+                    <td>$22,000</td>
+                    <td>$50</td>
+                    <td>2.7%</td>
+                    <td>High volume ($5M+/mo)</td>
+                </tr>
+                <tr>
+                    <td>Silver</td>
+                    <td>10,000</td>
+                    <td>15%</td>
+                    <td>$220,000</td>
+                    <td>$75</td>
+                    <td>0.41%</td>
+                    <td>Institutional</td>
+                </tr>
+                <tr>
+                    <td>Gold</td>
+                    <td>50,000</td>
+                    <td>25%</td>
+                    <td>$1.1M</td>
+                    <td>$125</td>
+                    <td>0.14%</td>
+                    <td>Whales</td>
+                </tr>
+                <tr>
+                    <td>Platinum</td>
+                    <td>100,000</td>
+                    <td>30%</td>
+                    <td>$2.2M</td>
+                    <td>$150</td>
+                    <td>0.08%</td>
+                    <td>Market makers</td>
+                </tr>
+                <tr>
+                    <td>Diamond</td>
+                    <td>500,000</td>
+                    <td>40%</td>
+                    <td>$11M</td>
+                    <td>$200</td>
+                    <td>0.02%</td>
+                    <td>Exchange-level ops</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>📊 PORTFOLIO ALLOCATION BY RISK PROFILE</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Stock</th>
+                    <th>Conservative (2-3%)</th>
+                    <th>Moderate (5-7%)</th>
+                    <th>Aggressive (10-15%)</th>
+                    <th>Entry Strategy</th>
+                    <th>Stop Loss</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ACMR</td>
+                    <td>2%</td>
+                    <td>5%</td>
+                    <td>10%</td>
+                    <td>Breakout >$70.68 OR pullback <$63</td>
+                    <td>$57</td>
+                </tr>
+                <tr>
+                    <td>7735.T</td>
+                    <td>2%</td>
+                    <td>5%</td>
+                    <td>12%</td>
+                    <td>DCA on dips to ¥19K-20K</td>
+                    <td>¥17K</td>
+                </tr>
+                <tr class="highlight">
+                    <td>DEME</td>
+                    <td>3%</td>
+                    <td>7%</td>
+                    <td>15%</td>
+                    <td>Current OR dip to €180</td>
+                    <td>€175</td>
+                </tr>
+                <tr>
+                    <td>DOFG</td>
+                    <td>2%</td>
+                    <td>5%</td>
+                    <td>10%</td>
+                    <td>Current OR NOK 115-120</td>
+                    <td>NOK 110</td>
+                </tr>
+                <tr class="highlight">
+                    <td>HYPE</td>
+                    <td>2%</td>
+                    <td>5%</td>
+                    <td>15%</td>
+                    <td>DCA at $20-25 OR $18-20 dip</td>
+                    <td>$15</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>⚠️ RISK MATRIX</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Stock</th>
+                    <th>Risk Level</th>
+                    <th>Primary Risk</th>
+                    <th>Secondary Risk</th>
+                    <th>China Exposure</th>
+                    <th>Max Drawdown (Est)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ACMR</td>
+                    <td><span class="high">HIGH</span></td>
+                    <td>China market downturn</td>
+                    <td>BIS Entity List</td>
+                    <td>HIGH</td>
+                    <td>-40%</td>
+                </tr>
+                <tr>
+                    <td>7735.T</td>
+                    <td><span class="medium">MEDIUM</span></td>
+                    <td>Semiconductor capex cycle</td>
+                    <td>Yen weakness</td>
+                    <td>HIGH</td>
+                    <td>-30%</td>
+                </tr>
+                <tr>
+                    <td>DEME</td>
+                    <td><span class="medium">MEDIUM</span></td>
+                    <td>Project execution risk</td>
+                    <td>Weather delays</td>
+                    <td>LOW</td>
+                    <td>-25%</td>
+                </tr>
+                <tr>
+                    <td>DOFG</td>
+                    <td><span class="medium">MEDIUM</span></td>
+                    <td>Oil price sensitivity</td>
+                    <td>Brazil FX/political</td>
+                    <td>MEDIUM</td>
+                    <td>-30%</td>
+                </tr>
+                <tr>
+                    <td>HYPE</td>
+                    <td><span class="high">HIGH</span></td>
+                    <td>Token unlocks ($219M)</td>
+                    <td>Regulatory crackdown</td>
+                    <td>MEDIUM</td>
+                    <td>-50%</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>🎯 TRADING STRATEGY SUMMARY</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Stock</th>
+                    <th>Strategy</th>
+                    <th>Entry</th>
+                    <th>Target</th>
+                    <th>Stop</th>
+                    <th>R:R</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ACMR</td>
+                    <td>Breakout/Pullback</td>
+                    <td>>$70.68 OR <$63</td>
+                    <td>$75</td>
+                    <td>$57</td>
+                    <td>2.5:1</td>
+                </tr>
+                <tr>
+                    <td>7735.T</td>
+                    <td>Accumulate</td>
+                    <td><¥20,000</td>
+                    <td>¥25,000</td>
+                    <td>¥17,000</td>
+                    <td>2:1</td>
+                </tr>
+                <tr class="highlight">
+                    <td>DEME</td>
+                    <td>Buy Breakout</td>
+                    <td>€180-185 dip</td>
+                    <td>€200</td>
+                    <td>€175</td>
+                    <td>3:1</td>
+                </tr>
+                <tr>
+                    <td>DOFG</td>
+                    <td>Hold/Accumulate</td>
+                    <td><NOK 120</td>
+                    <td>NOK 140+</td>
+                    <td>NOK 110</td>
+                    <td>2:1</td>
+                </tr>
+                <tr class="highlight">
+                    <td>HYPE</td>
+                    <td>DCA/Accumulate</td>
+                    <td>$20-25 range</td>
+                    <td>$38-77</td>
+                    <td>$15</td>
+                    <td>3-5:1</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>❓ HYPERLIQUID ACCOUNT LINKING FAQ</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Question</th>
+                    <th>Answer</th>
+                    <th>Important Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="highlight">
+                    <td>Does staking on Account A give discount on Account A?</td>
+                    <td><span class="buy">YES</span></td>
+                    <td>Automatic - discount applies to staked account</td>
+                </tr>
+                <tr class="highlight">
+                    <td>Can I link Account B to get discounts from Account A?</td>
+                    <td><span class="buy">YES</span></td>
+                    <td>Use Account Linking feature (May 2025)</td>
+                </tr>
+                <tr>
+                    <td>Is the link permanent?</td>
+                    <td><span class="high">YES</span></td>
+                    <td>CANNOT BE UNDONE - backup keys first</td>
+                </tr>
+                <tr>
+                    <td>Can I link multiple accounts?</td>
+                    <td>NO</td>
+                    <td>Only ONE trading account per staking account</td>
+                </tr>
+                <tr>
+                    <td>Best practice for traders?</td>
+                    <td>Wood tier optimal</td>
+                    <td>10 HYPE ($220) = 136% ROI for $1M/mo volume</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="margin-top: 40px; padding: 20px; background: #f8f8f8; border-top: 2px solid #1a1a1a;">
+            <p><strong>📁 Files Created:</strong></p>
+            <ul>
+                <li>CSV Export: <code>workspace/portfolio-analysis-spreadsheet.csv</code></li>
+                <li>HTML Report: <code>workspace/hyperliquid-hype-analysis.html</code></li>
+                <li>Stock Research: <code>workspace/stock-research-report.html</code></li>
+                <li>Technical Analysis: <code>workspace/technical-analysis-report.html</code></li>
+            </ul>
+            <p style="font-size: 9pt; color: #666; margin-top: 20px;">Generated by Astra Research | February 22, 2026</p>
+        </div>
+
+    </div>
+</body>
+</html>

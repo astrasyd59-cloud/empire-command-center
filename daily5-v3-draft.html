@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Brief: AAPL + BTC | Feb 23, 2026</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #fafafa; --text: #1a1a1a; --accent: #1e3a5f; --gold: #b8860b;
+            --green: #2e7d32; --red: #c62828; --card: #ffffff;
+        }
+        [data-theme="dark"] {
+            --bg: #1a1a1a; --text: #e0e0e0; --accent: #64b5f6; --card: #2a2a2a;
+        }
+        body {
+            font-family: 'Georgia', serif; background: var(--bg); color: var(--text);
+            line-height: 1.6; padding: 20px;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+        .theme-toggle { position: fixed; top: 15px; right: 15px; background: var(--card); 
+            border: 2px solid var(--accent); padding: 8px 15px; cursor: pointer; 
+            font-family: 'Courier New', monospace; font-weight: bold; }
+        header { text-align: center; padding: 30px 20px; border-bottom: 3px double var(--accent); margin-bottom: 25px; }
+        h1 { font-size: 1.8rem; color: var(--accent); }
+        .date { font-size: 0.9rem; color: #666; margin-top: 8px; }
+        
+        .stock-box { background: var(--card); border: 1px solid #ddd; margin: 20px 0; padding: 25px; }
+        .stock-header { display: flex; justify-content: space-between; align-items: center; 
+            margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid var(--gold); }
+        .ticker { font-size: 2rem; font-weight: bold; color: var(--accent); font-family: 'Courier New', monospace; }
+        .price { font-size: 1.5rem; }
+        .positive { color: var(--green); } .negative { color: var(--red); }
+        
+        /* 7 metrics in one row */
+        .metrics-7 {
+            display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin: 15px 0;
+        }
+        .metric-small {
+            background: rgba(30,58,95,0.05); padding: 10px 5px; text-align: center; border-radius: 3px;
+        }
+        .metric-small .val { font-size: 0.95rem; font-weight: bold; color: var(--accent); font-family: 'Courier New', monospace; }
+        .metric-small .lbl { font-size: 0.6rem; text-transform: uppercase; color: #666; margin-top: 3px; }
+        
+        @media (max-width: 768px) {
+            .metrics-7 { grid-template-columns: repeat(4, 1fr); }
+        }
+        
+        .section-title { font-size: 1rem; color: var(--accent); margin: 20px 0 10px; 
+            text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
+        
+        .street-quote {
+            background: linear-gradient(135deg, #f5f5dc 0%, #fff 100%); border-left: 4px solid var(--gold);
+            padding: 12px 15px; margin: 10px 0; font-style: italic; font-size: 0.95rem;
+        }
+        [data-theme="dark"] .street-quote { background: #3a3520; color: #e0e0e0; }
+        .street-quote .source { font-size: 0.8rem; color: var(--accent); font-weight: bold; margin-top: 5px; }
+        
+        .cfa-box { background: #f0f8ff; border: 1px solid #b0d4f1; padding: 15px; margin: 10px 0; border-radius: 4px; }
+        [data-theme="dark"] .cfa-box { background: #1a2a3a; border-color: #2a4a6a; }
+        .cfa-box .formula { font-family: 'Courier New', monospace; background: rgba(0,0,0,0.05); 
+            padding: 8px; margin: 8px 0; font-size: 0.9rem; }
+        
+        .trading-ideas { background: rgba(46,125,50,0.05); padding: 12px; margin: 10px 0; 
+            border-left: 3px solid var(--green); }
+        .trading-ideas li { margin: 6px 0; font-size: 0.9rem; }
+        
+        .chart-container { height: 250px; margin: 15px 0; }
+        
+        .term-box { background: #fff8dc; border: 2px solid var(--gold); padding: 15px; margin: 15px 0; }
+        [data-theme="dark"] .term-box { background: #3a3520; }
+        .term { margin: 10px 0; padding-bottom: 10px; border-bottom: 1px dashed #ccc; font-size: 0.9rem; }
+        .term:last-child { border-bottom: none; }
+        .term-word { font-weight: bold; color: var(--accent); }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">🌓 Toggle</button>
+
+    <div class="container">
+        <header>
+            <h1>📈 The Daily 5 + 1 Crypto</h1>
+            <p class="date">February 23, 2026 · Delivered 5:55 AM</p>
+        </header>
+
+        <!-- AAPL -->
+        <div class="stock-box">
+            <div class="stock-header">
+                <div>
+                    <div class="ticker">AAPL</div>
+                    <div style="font-size: 0.85rem; color: #666;">Apple Inc.</div>
+                </div>
+                <div style="text-align: right;">
+                    <div class="price">$247.10 <span class="negative">−4.2%</span></div>
+                    <div style="font-size: 0.75rem; color: #666;">$3.72T market cap</div>
+                    <div style="font-size: 0.65rem; color: #999; margin-top: 3px;">As of 4:00 PM ET · Feb 22, 2026</div>
+                </div>
+            </div>
+
+            <!-- 7 metrics in one row -->
+            <div class="metrics-7">
+                <div class="metric-small">
+                    <div class="val">$247.10</div>
+                    <div class="lbl">Price</div>
+                </div>
+                <div class="metric-small">
+                    <div class="val negative">−4.2%</div>
+                    <div class="lbl">YTD</div>
+                </div>
+                <div class="metric-small">
+                    <div class="val">32.4x</div>
+                    <div class="lbl">P/E</div>
+                </div>
+                <div class="metric-small">
+                    <div class="val">0.52%</div>
+                    <div class="lbl">Div Yield</div>
+                </div>
+                <div class="metric-small">
+                    <div class="val">1.20</div>
+                    <div class="lbl">Beta</div>
+                </div>
+                <div class="metric-small">
+                    <div class="val">$7.62</div>
+                    <div class="lbl">EPS</div>
+                </div>
+                <div class="metric-small">
+                    <div class="val">162%</div>
+                    <div class="lbl">ROE</div>
+                </div>
+            </div>
+
+            <div class="section-title">🏛️ Street Commentary</div>
+            
+            <div class="street-quote">
+                "Apple's multiple compressed from 38x to 32x as AI monetization timeline extends. Services growth of 14% YoY supports premium, but hardware headwinds in China remain."
+                <div class="source">— Morgan Stanley, Erik Woodring · Overweight · $285 PT</div>
+            </div>
+
+            <div class="street-quote">
+                "FCF yield at 2.8% with 90% payout ratio via buybacks is capital allocation excellence. The installed base of 2.2B devices is the moat."
+                <div class="source">— JPMorgan, Samik Chatterjee · Overweight · $275 PT</div>
+            </div>
+
+            <div class="section-title">📚 CFA Lens: P/E Compression & Capital Allocation</div>
+
+            <div class="cfa-box">
+                <p><strong>P/E Compression (Chapter 41: Equity Valuation)</strong></p>
+                <div class="formula">P/E = Price / EPS<br>Jan P/E: $270 / $7.10 = 38.0x → Feb P/E: $247 / $7.62 = 32.4x</div>
+                <p>Multiple compressed 14.7% despite earnings growing 7.3%. Stock fell because investors pay less per dollar of earnings when growth expectations reset.</p>
+
+                <p style="margin-top: 12px;"><strong>FCF Yield (Chapter 28: Financial Analysis)</strong></p>
+                <div class="formula">FCF Yield = FCF per Share / Price = $7.15 / $247 = 2.89%</div>
+                <p>Apple generates $100B+ in free cash flow annually. They return 90% to shareholders via buybacks ($95B/year) and dividends. This is why share count dropped 35% since 2015.</p>
+            </div>
+
+            <div class="section-title">📈 Trading Lens: 3 Setups</div>
+
+            <div class="trading-ideas">
+                <ol>
+                    <li><strong>Bull Play:</strong> Buy $245 (200-day MA) → Target $260 → Stop $240 → R/R 1:3</li>
+                    <li><strong>Income Play:</strong> Sell $230 puts (Mar) for $3.50. If assigned, own at $226.50. If not, keep $350/contract.</li>
+                    <li><strong>Bear Play:</strong> Short if $245 breaks → Target $235 → Stop $248 → R/R 1:2.7</li>
+                </ol>
+            </div>
+
+            <div class="section-title">📊 6-Month Chart</div>
+
+            <div class="chart-container">
+                <canvas id="aaplChart"></canvas>
+            </div>
+
+            <div class="term-box">
+                <div class="section-title" style="margin-top: 0;">📖 Key Terms</div>
+                <div class="term">
+                    <span class="term-word">P/E Multiple Compression:</span> When stock price falls even if earnings rise, because investors pay less per dollar of earnings. Common when growth expectations reset. (Graham & Dodd, 1934)
+                </div>
+                <div class="term">
+                    <span class="term-word">Free Cash Flow (FCF):</span> Cash generated minus capital expenditures. Unlike earnings, can't be fudged with accounting. Warren Buffett's preferred metric since 1986.
+                </div>
+                <div class="term">
+                    <span class="term-word">200-Day Moving Average:</span> Average price over 200 trading days. Major trend indicator. Price above = bull market, below = bear market. First used by Dow Jones editors in 1900s.
+                </div>
+            </div>
+        </div>
+
+        <!-- BTC -->
+        <div class="stock-box">
+            <div class="stock-header">
+                <div>
+                    <div class="ticker">BTC</div>
+                    <div style="font-size: 0.85rem; color: #666;">Bitcoin · Digital Asset</div>
+                </div>
+                <div style="text-align: right;">
+                    <div class="price">$91,420 <span class="positive">+12.8%</span></div>
+                    <div style="font-size: 0.75rem; color: #666;">$1.81T market cap</div>
+                    <div style="font-size: 0.65rem; color: #999; margin-top: 3px;">As of 4:00 PM ET · Feb 22, 2026</div>
+                </div>
+            </div>
+
+            <div class="metrics-7">
+                <div class="metric-small">
+                    <div class="val">$91,420</div>
+                    <div class="lbl">Price</div>
+                </div>
+                <div class="metric-small">
+                    <div class="val positive">+12.8%</div>
+                    <div class="lbl">YTD</div>
+                </div>
+                <div class="metric-small">
+                    <div class="val">N/A</div>
+                    <div class="lbl">P/E</div>
+                </div>
+                <div class="metric-small">
+                    <div class="val">0%</div>
+                    <div class="lbl">Div Yield</div>
+                </div>
+                <div class="metric-small">
+                    <div class="val">1.35</div>
+                    <div class="lbl">Beta vs SPY</div>
+                </div>
+                <div class="metric-small">
+                    <div class="val">$42B</div>
+                    <div class="lbl">24h Volume</div>
+                </div>
+                <div class="metric-small">
+                    <div class="val">16.2M</div>
+                    <div class="lbl">BTC Mined</div>
+                </div>
+            </div>
+
+            <div class="section-title">🏛️ Street Commentary</div>
+            
+            <div class="street-quote">
+                "Bitcoin trades as a risk-on asset with 1.35x SPY beta, but the ETF inflows ($8B since Jan) suggest institutional adoption is structural, not cyclical."
+                <div class="source">— Galaxy Digital, Mike Novogratz · Feb 21, 2026</div>
+            </div>
+
+            <div class="section-title">📚 Crypto vs TradFi: How Metrics Differ</div>
+
+            <div class="cfa-box">
+                <p><strong>Why No P/E for Bitcoin?</strong></p>
+                <p>Bitcoin has no earnings, no cash flows, no dividends. It cannot be valued using traditional equity models (DCF, P/E, EV/EBITDA). Instead, crypto uses:</p>
+                <ul style="margin: 10px 0 10px 20px;">
+                    <li><strong>Stock-to-Flow (S2F):</strong> Scarcity model. BTC S2F = 58 (gold = 62). Higher = more scarce.</li>
+                    <li><strong>Network Value to Transactions (NVT):</strong> Like P/E but for networks. BTC NVT = 35 (fairly valued when 30-50).</li>
+                    <li><strong>MVRV Z-Score:</strong> Market cap vs realized cap. Currently 2.1 (historical top = 7+).</li>
+                </ul>
+
+                <p style="margin-top: 12px;"><strong>What IS Similar:</strong></p>
+                <ul style="margin: 10px 0 10px 20px;">
+                    <li><strong>Beta:</strong> BTC has 1.35x beta vs SPY — moves 35% more than stocks on risk-on/risk-off days.</li>
+                    <li><strong>Volume Analysis:</strong> Same as stocks. $42B daily volume = liquidity confirmation.</li>
+                    <li><strong>Support/Resistance:</strong> Technical analysis identical. $90K = psychological support.</li>
+                </ul>
+            </div>
+
+            <div class="section-title">📈 Trading Lens: 3 Setups</div>
+
+            <div class="trading-ideas">
+                <ol>
+                    <li><strong>Breakout Play:</strong> Buy $92K break → Target $100K → Stop $88K → R/R 1:2</li>
+                    <li><strong>Dip Buy:</strong> Add on pullback to $85K (21-day EMA) → Target $95K → Stop $82K</li>
+                    <li><strong>Cash Carry:</strong> Long spot BTC, short CME futures (basis = 8% annualized yield)</li>
+                </ol>
+            </div>
+
+            <div class="section-title">📊 6-Month Chart</div>
+
+            <div class="chart-container">
+                <canvas id="btcChart"></canvas>
+            </div>
+
+            <div class="term-box">
+                <div class="section-title" style="margin-top: 0;">📖 Crypto Terms</div>
+                <div class="term">
+                    <span class="term-word">Stock-to-Flow (S2F):</span> Measures scarcity by comparing existing supply to new production. Created by pseudonymous analyst PlanB in 2019. Bitcoin's S2F doubles every 4 years (halving), theoretically driving price.
+                </div>
+                <div class="term">
+                    <span class="term-word">MVRV Z-Score:</span> (Market Cap − Realized Cap) / Std Dev. Identifies BTC tops (>7) and bottoms (<0). Realized cap = price at which each BTC last moved. Created by Murad Mahmudov & David Puell in 2018.
+                </div>
+            </div>
+        </div>
+
+        <footer style="text-align: center; padding: 20px; color: #666; font-size: 0.8rem; border-top: 1px solid #ddd;">
+            <p>The Daily 5 + 1 Crypto · CFA Level I Exam Prep · Feb 23, 2026</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        }
+
+        // AAPL Chart
+        new Chart(document.getElementById('aaplChart'), {
+            type: 'line',
+            data: {
+                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb'],
+                datasets: [{
+                    label: 'AAPL',
+                    data: [230, 225, 235, 235, 255, 258, 247],
+                    borderColor: '#1e3a5f', fill: false, tension: 0.3
+                }, {
+                    label: 'R1: $250', data: [250, 250, 250, 250, 250, 250, 250],
+                    borderColor: '#c62828', borderDash: [5, 5], pointRadius: 0
+                }, {
+                    label: 'S1: $245', data: [245, 245, 245, 245, 245, 245, 245],
+                    borderColor: '#2e7d32', borderDash: [5, 5], pointRadius: 0
+                }]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                plugins: { legend: { display: true, position: 'bottom' } },
+                scales: { y: { min: 220, max: 270 } }
+            }
+        });
+
+        // BTC Chart
+        new Chart(document.getElementById('btcChart'), {
+            type: 'line',
+            data: {
+                labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb'],
+                datasets: [{
+                    label: 'BTC',
+                    data: [62000, 65000, 72000, 85000, 95000, 102000, 91420],
+                    borderColor: '#f7931a', fill: false, tension: 0.3
+                }, {
+                    label: 'R: $100K', data: [100000, 100000, 100000, 100000, 100000, 100000, 100000],
+                    borderColor: '#c62828', borderDash: [5, 5], pointRadius: 0
+                }, {
+                    label: 'S: $85K', data: [85000, 85000, 85000, 85000, 85000, 85000, 85000],
+                    borderColor: '#2e7d32', borderDash: [5, 5], pointRadius: 0
+                }]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                plugins: { legend: { display: true, position: 'bottom' } },
+                scales: { y: { min: 60000, max: 110000 } }
+            }
+        });
+    </script>
+</body>
+</html>

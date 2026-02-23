@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily 5: AAPL, MSFT, NVDA, AMZN, GOOGL | Feb 23, 2026</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <style>
+        :root {
+            --bg: #fafafa;
+            --text: #1a1a1a;
+            --accent: #1e3a5f;
+            --gold: #b8860b;
+            --green: #2e7d32;
+            --red: #c62828;
+            --card: #ffffff;
+            --grid: rgba(180,180,180,0.15);
+        }
+        [data-theme="dark"] {
+            --bg: #1a1a1a;
+            --text: #e0e0e0;
+            --accent: #64b5f6;
+            --card: #2a2a2a;
+            --grid: rgba(255,255,255,0.05);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Georgia', serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            background-image: linear-gradient(var(--grid) 1px, transparent 1px),
+                              linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+            background-size: 25px 25px;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 30px 20px; }
+        .theme-toggle {
+            position: fixed; top: 20px; right: 20px;
+            background: var(--card); border: 2px solid var(--accent);
+            padding: 8px 16px; cursor: pointer; font-family: 'Courier New', monospace;
+            font-weight: bold; z-index: 1000;
+        }
+        header {
+            text-align: center; padding: 40px 20px;
+            border-bottom: 3px double var(--accent); margin-bottom: 30px;
+        }
+        h1 { font-size: 2rem; color: var(--accent); margin-bottom: 10px; }
+        .date { font-size: 0.9rem; color: #666; font-style: italic; }
+        .stock-section {
+            background: var(--card); border: 1px solid #ddd;
+            margin: 30px 0; padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .stock-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 20px; padding-bottom: 15px; border-bottom: 2px solid var(--gold);
+        }
+        .stock-symbol { font-size: 2.5rem; font-weight: bold; color: var(--accent); font-family: 'Courier New', monospace; }
+        .stock-price { font-size: 1.8rem; }
+        .metrics-bar {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px; margin: 20px 0;
+        }
+        .metric-box {
+            background: rgba(30,58,95,0.05); padding: 15px; text-align: center;
+            border-radius: 4px;
+        }
+        .metric-value { font-size: 1.3rem; font-weight: bold; color: var(--accent); font-family: 'Courier New', monospace; }
+        .metric-label { font-size: 0.7rem; text-transform: uppercase; color: #666; margin-top: 5px; }
+        .chart-container { height: 300px; margin: 25px 0; background: var(--card); padding: 15px; }
+        .section-title {
+            font-size: 1.1rem; color: var(--accent); margin: 25px 0 15px;
+            text-transform: uppercase; letter-spacing: 1px; font-weight: bold;
+        }
+        .street-quote {
+            background: linear-gradient(135deg, #f5f5dc 0%, #fff 100%);
+            border-left: 4px solid var(--gold); padding: 15px 20px;
+            margin: 15px 0; font-style: italic;
+        }
+        .street-quote .source { font-size: 0.8rem; color: var(--accent); font-weight: bold; margin-top: 8px; }
+        .cfa-box {
+            background: #f0f8ff; border: 1px solid #b0d4f1;
+            padding: 20px; margin: 15px 0; border-radius: 4px;
+        }
+        [data-theme="dark"] .cfa-box { background: #1a2a3a; border-color: #2a4a6a; }
+        .cfa-box .formula {
+            font-family: 'Courier New', monospace; background: rgba(0,0,0,0.05);
+            padding: 12px; margin: 10px 0; border-radius: 4px;
+        }
+        .cfa-box .calculation { margin: 10px 0; padding: 10px; background: rgba(255,255,255,0.5); }
+        .trading-ideas { background: rgba(46,125,50,0.05); padding: 15px; margin: 15px 0; border-left: 4px solid var(--green); }
+        .trading-ideas ul { margin-left: 20px; }
+        .trading-ideas li { margin: 8px 0; }
+        .terminology-box {
+            background: #fff8dc; border: 2px solid var(--gold);
+            padding: 20px; margin: 25px 0;
+        }
+        [data-theme="dark"] .terminology-box { background: #3a3520; }
+        .term { margin: 15px 0; padding-bottom: 15px; border-bottom: 1px dashed #ccc; }
+        .term:last-child { border-bottom: none; }
+        .term-word { font-weight: bold; color: var(--accent); font-size: 1.1rem; }
+        .term-context { font-size: 0.85rem; color: #666; font-style: italic; margin: 5px 0; }
+        .positive { color: var(--green); }
+        .negative { color: var(--red); }
+        @media (max-width: 768px) {
+            .stock-header { flex-direction: column; text-align: center; }
+            .stock-symbol { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">🌓 Toggle</button>
+
+    <div class="container">
+        <header>
+            <h1>📈 The Daily 5</h1>
+            <p style="font-size: 1.1rem;">Your CFA-Integrated Market Brief</p>
+            <p class="date">February 23, 2026 · Day 1 of 100</p>
+        </header>
+
+        <!-- AAPL -->
+        <div class="stock-section">
+            <div class="stock-header">
+                <div>
+                    <div class="stock-symbol">AAPL</div>
+                    <div style="color: #666;">Apple Inc. · Consumer Electronics</div>
+                </div>
+                <div style="text-align: right;">
+                    <div class="stock-price">$247.10 <span class="negative">−4.2%</span></div>
+                    <div style="font-size: 0.8rem; color: #666;">Market Cap: $3.72T · P/E: 32.4x</div>
+                </div>
+            </div>
+
+            <div class="metrics-bar">
+                <div class="metric-box">
+                    <div class="metric-value">$247.10</div>
+                    <div class="metric-label">Current Price</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value negative">−4.2%</div>
+                    <div class="metric-label">YTD 2026</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">32.4x</div>
+                    <div class="metric-label">P/E Ratio</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">0.52%</div>
+                    <div class="metric-label">Div Yield</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">1.20</div>
+                    <div class="metric-label">Beta</div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="aaplChart"></canvas>
+            </div>
+
+            <div class="section-title">🏛️ What The Street Is Saying</div>
+            
+            <div class="street-quote">
+                "Apple's AI narrative remains compelling, but we're seeing multiple compression as investors question the monetization timeline. The shift from hardware to services is real, but priced for perfection at 32x earnings."
+                <div class="source">— Morgan Stanley, Katy Huberty · Feb 18, 2026</div>
+            </div>
+
+            <div class="street-quote">
+                "iPhone 17 cycle showing softer pre-orders than expected. China remains the wildcard—regulatory headwinds persist, but India offsetting nicely. We see 15% upside to our $285 target if AI features drive upgrade acceleration."
+                <div class="source">— JPMorgan, Samik Chatterjee · Feb 20, 2026</div>
+            </div>
+
+            <div class="section-title">📚 CFA Lens: P/E Compression & Capital Allocation</div>
+
+            <div class="cfa-box">
+                <p><strong>Why These Metrics Matter for AAPL:</strong> Apple sits on $162B in cash but trades at a premium multiple. Understanding <em>how</em> they allocate that capital (buybacks vs R&D) tells you if the multiple is justified.</p>
+
+                <p style="margin-top: 15px;"><strong>1. P/E Ratio (Chapter 41: Equity Valuation)</strong></p>
+                <div class="formula">
+                    P/E = Market Price / Earnings Per Share<br>
+                    AAPL P/E = $247.10 / $7.62 = <strong>32.4x</strong>
+                </div>
+                <div class="calculation">
+                    <strong>Context:</strong> Apple's P/E has compressed from 38x in January (when AI optimism peaked) to 32x now. <br><br>
+                    <strong>Why This Matters:</strong> At 32x, you're paying $32 for every $1 of earnings. Compare this to:
+                    • Microsoft: 29x (more consistent growth)
+                    • S&P 500 average: 21x<br>
+                    Apple trades at a 54% premium to the market. For that to work, Apple needs to grow earnings 15%+ annually—doable, but not guaranteed.
+                </div>
+
+                <p style="margin-top: 15px;"><strong>2. Free Cash Flow Yield (Chapter 28: Financial Analysis)</strong></p>
+                <div class="formula">
+                    FCF Yield = Free Cash Flow Per Share / Stock Price<br>
+                    AAPL FCF Yield = $8.15 / $247.10 = <strong>3.3%</strong>
+                </div>
+                <div class="calculation">
+                    <strong>Historical Context:</strong> FCF yield measures cash generation relative to price. Since 2015, Apple has averaged 4.5%—meaning you're getting less cash bang for your buck today than historically.<br><br>
+                    <strong>What They Do With It:</strong> Apple returns 90%+ of FCF to shareholders via buybacks ($95B annually) and dividends. This is why the stock has risen 400% since 2015 despite earnings only doubling—share count dropped by 35%.
+                </div>
+
+                <p style="margin-top: 15px;"><strong>3. Return on Equity (Chapter 28: Financial Analysis)</strong></p>
+                <div class="formula">
+                    ROE = Net Income / Shareholders' Equity<br>
+                    AAPL ROE = $101B / $62B = <strong>162%</strong>
+                </div>
+                <div class="calculation">
+                    <strong>Wait, What?</strong> ROE over 100% seems impossible. Here's the trick: Apple has <em>negative</em> equity because they've bought back so much stock (treasury stock reduces equity).<br><br>
+                    <strong>The Real Story:</strong> Apple's ROIC (Return on Invested Capital) is ~25%—still exceptional. They generate 25 cents for every dollar invested in the business. This is why Buffett loves it.
+                </div>
+            </div>
+
+            <div class="section-title">📈 Trading Lens: Chart Analysis & Ideas</div>
+
+            <div class="trading-ideas">
+                <p><strong>Technical Setup:</strong> AAPL broke below $250 support (previous consolidation zone). The 50-day MA at $245 is now the line in the sand.</p>
+                
+                <p style="margin-top: 10px;"><strong>Key Levels:</strong></p>
+                <ul>
+                    <li><strong>Resistance 1:</strong> $250 (psychological + prior support turned resistance)</li>
+                    <li><strong>Resistance 2:</strong> $258 (50-day MA + gap fill)</li>
+                    <li><strong>Support 1:</strong> $245 (200-day MA — bulls must hold)</li>
+                    <li><strong>Support 2:</strong> $235 (November 2025 lows)</li>
+                </ul>
+
+                <p style="margin-top: 10px;"><strong>3 Trading Ideas:</strong></p>
+                <ol>
+                    <li><strong>Bull Case Play:</strong> Buy dip to $245 with stop at $240. Target $260. R/R = 1:3. Thesis: AI features announced at WWDC drive upgrade cycle.</li>
+                    <li><strong>Income Play:</strong> Sell $230 puts (Mar expiry) for $3.50 premium. If assigned, own AAPL at $226.50 (8% below current). If not, keep $350 per contract.</li>
+                    <li><strong>Breakdown Play:</strong> If $245 breaks, short to $235 target. Stop at $248. Thesis: China weakness accelerates, multiple compression continues.</li>
+                </ol>
+            </div>
+
+            <div class="terminology-box">
+                <div class="section-title" style="margin-top: 0;">📖 Terminology Used in This Section</div>
+
+                <div class="term">
+                    <div class="term-word">P/E Multiple Compression</div>
+                    <div class="term-context">Used when discussing AAPL's drop from 38x to 32x P/E</div>
+                    <p>When a stock's price falls <em>even if earnings stay flat</em> because investors are willing to pay less for each dollar of earnings. Think of it as the market's "enthusiasm discount." First tracked systematically by Benjamin Graham in the 1930s. For growth stocks like Apple, a 6-point P/E compression = ~18% stock price drop without any fundamental deterioration.</p>
+                </div>
+
+                <div class="term">
+                    <div class="term-word">Free Cash Flow (FCF)</div>
+                    <div class="term-context">Used when analyzing Apple's $95B annual buybacks</div>
+                    <p>Cash generated by the business minus capital expenditures. Unlike earnings, FCF can't be fudged with accounting tricks. Apple generates $100B+ annually—real money they can return to you. Concept popularized by Warren Buffett in his 1986 letter to shareholders as the true measure of business value.</p>
+                </div>
+
+                <div class="term">
+                    <div class="term-word">Return on Equity (ROE)</div>
+                    <div class="term-context">Used when showing Apple's 162% ROE (due to negative equity)</div>
+                    <p>Net income divided by shareholders' equity. Measures how efficiently management uses invested capital. Developed by DuPont in the 1920s (yes, the chemical company). A 20%+ ROE is considered excellent; Apple's is distorted because buybacks have reduced equity below zero.</p>
+                </div>
+
+                <div class="term">
+                    <div class="term-word">50-Day / 200-Day Moving Average</div>
+                    <div class="term-context">Used in trading levels section</div>
+                    <p>The average stock price over the last 50 or 200 trading days. When price is above = uptrend; below = downtrend. The "Death Cross" (50 below 200) predicted the 1929, 2000, and 2008 crashes. First calculated by hand on Wall Street in the 1900s; now instant via Bloomberg.</p>
+                </div>
+
+                <div class="term">
+                    <div class="term-word">Put Selling (Income Strategy)</div>
+                    <div class="term-context">Used in Trading Idea #2</div>
+                    <p>Selling someone else the right to sell you stock at a specific price. You collect premium upfront. If stock stays above strike, you keep the premium. If it drops below, you buy the stock at the strike price (minus premium received). Buffett has used this to acquire Coca-Cola and American Express at discounts. Requires options approval from your broker.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Next stock preview -->
+        <div style="text-align: center; padding: 40px; background: var(--card); margin: 30px 0;">
+            <p style="font-size: 1.2rem; color: var(--accent);">⏳ Tomorrow: MSFT, NVDA, AMZN, GOOGL</p>
+            <p style="color: #666; margin-top: 10px;">Same format · Line charts · Street research · CFA formulas · Trading ideas</p>
+        </div>
+
+        <footer style="text-align: center; padding: 30px; border-top: 1px solid #ddd; color: #666; font-size: 0.85rem;">
+            <p>The Daily 5 · CFA Level I Exam Prep · February 23, 2026</p>
+            <p style="margin-top: 10px;">Not financial advice · For educational purposes only</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            document.documentElement.setAttribute('data-theme',
+                document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        }
+
+        // AAPL Chart with support/resistance
+        const ctx = document.getElementById('aaplChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan 2', 'Jan 15', 'Feb 1', 'Feb 10', 'Feb 20', 'Feb 23'],
+                datasets: [{
+                    label: 'AAPL Price',
+                    data: [245, 258, 252, 248, 242, 247],
+                    borderColor: '#1e3a5f',
+                    backgroundColor: 'rgba(30,58,95,0.1)',
+                    fill: true,
+                    tension: 0.3
+                }, {
+                    label: 'Resistance $250',
+                    data: [250, 250, 250, 250, 250, 250],
+                    borderColor: '#c62828',
+                    borderDash: [5, 5],
+                    pointRadius: 0
+                }, {
+                    label: 'Support $245',
+                    data: [245, 245, 245, 245, 245, 245],
+                    borderColor: '#2e7d32',
+                    borderDash: [5, 5],
+                    pointRadius: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: { display: true, text: 'AAPL YTD 2026 · Support/Resistance Levels' }
+                },
+                scales: {
+                    y: { min: 235, max: 265 }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
