@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CFA Case Study: AUD/USD Put Options | February 23, 2026</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #fafafa; --text: #1a1a1a; --accent: #1e3a5f; --gold: #b8860b;
+            --green: #2e7d32; --red: #c62828; --card: #ffffff; --border: #ddd;
+        }
+        [data-theme="dark"] {
+            --bg: #121212; --text: #f5f5f5; --accent: #90caf9; --gold: #ffd54f;
+            --card: #1e1e1e; --border: #444;
+        }
+        body { font-family: 'Georgia', 'Times New Roman', serif; background: var(--bg); color: var(--text); line-height: 1.6; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        .theme-toggle { position: fixed; top: 15px; right: 15px; background: var(--card); border: 2px solid var(--accent); padding: 8px 15px; cursor: pointer; font-family: 'Courier New', monospace; font-weight: bold; color: var(--text); z-index: 1000; }
+        header { text-align: center; padding: 40px 20px; border-bottom: 3px double var(--accent); margin-bottom: 30px; }
+        h1 { font-size: 2rem; color: var(--accent); letter-spacing: 2px; }
+        .subtitle { font-size: 0.9rem; color: #666; margin-top: 8px; font-style: italic; }
+        [data-theme="dark"] .subtitle { color: #b0b0b0; }
+        .timestamp { text-align: center; font-size: 0.8rem; color: #666; margin-bottom: 30px; font-family: 'Courier New', monospace; }
+        [data-theme="dark"] .timestamp { color: #999; }
+        .asset-box { background: var(--card); border: 1px solid var(--border); margin: 25px 0; padding: 25px; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        .section-title { font-size: 0.95rem; color: var(--accent); margin: 22px 0 12px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: bold; font-family: 'Courier New', monospace; }
+        .cfa-box { background: #f0f8ff; border: 1px solid #b0d4f1; padding: 18px; margin: 12px 0; border-radius: 4px; }
+        [data-theme="dark"] .cfa-box { background: #0f1a25; border-color: #1a3a5a; }
+        .cfa-box h4 { color: var(--accent); margin-bottom: 10px; font-size: 0.9rem; font-family: 'Courier New', monospace; }
+        .formula { font-family: 'Courier New', monospace; background: rgba(0,0,0,0.04); padding: 12px; margin: 10px 0; font-size: 0.88rem; border-left: 3px solid var(--gold); border-radius: 0 4px 4px 0; }
+        [data-theme="dark"] .formula { background: rgba(255,255,255,0.05); }
+        .metrics-7 { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin: 18px 0; }
+        .metric-small { background: rgba(30,58,95,0.06); padding: 12px 4px; text-align: center; border-radius: 3px; }
+        [data-theme="dark"] .metric-small { background: rgba(100,181,246,0.08); }
+        .metric-small .val { font-size: 0.95rem; font-weight: bold; color: var(--accent); font-family: 'Courier New', monospace; }
+        .metric-small .lbl { font-size: 0.55rem; text-transform: uppercase; color: #888; margin-top: 4px; letter-spacing: 0.5px; }
+        [data-theme="dark"] .metric-small .lbl { color: #aaa; }
+        .chart-container { background: var(--card); border: 1px solid var(--border); padding: 20px; margin: 20px 0; height: 350px; }
+        .trading-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.85rem; }
+        .trading-table th { background: var(--accent); color: white; padding: 10px 8px; text-align: left; font-family: 'Courier New', monospace; font-size: 0.75rem; text-transform: uppercase; }
+        .trading-table td { padding: 12px 8px; border-bottom: 1px solid var(--border); }
+        .rr { background: var(--gold); color: #000; padding: 3px 8px; border-radius: 12px; font-weight: bold; font-size: 0.75rem; }
+        .term-box { background: #fff8dc; border: 2px solid var(--gold); padding: 20px; margin: 20px 0; border-radius: 4px; }
+        [data-theme="dark"] .term-box { background: #2a2520; }
+        .term { margin: 14px 0; padding-bottom: 14px; border-bottom: 1px dashed #ccc; font-size: 0.88rem; line-height: 1.7; }
+        .term:last-child { border-bottom: none; padding-bottom: 0; }
+        .term-word { font-weight: bold; color: var(--accent); font-family: 'Courier New', monospace; }
+        .term-origin { font-size: 0.78rem; color: #888; margin-top: 6px; font-style: italic; }
+        [data-theme="dark"] .term-origin { color: #bbb; }
+        footer { text-align: center; padding: 30px 20px; color: #888; font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: 40px; }
+        [data-theme="dark"] footer { color: #aaa; }
+        @media (max-width: 768px) { .metrics-7 { grid-template-columns: repeat(4, 1fr); } }
+        
+        /* Quiz Styles */
+        .quiz-question { background: rgba(30,58,95,0.03); border: 1px solid var(--border); border-radius: 6px; padding: 18px; margin: 15px 0; }
+        [data-theme="dark"] .quiz-question { background: rgba(100,181,246,0.05); }
+        .q-text { font-size: 0.9rem; margin-bottom: 12px; line-height: 1.6; }
+        .options { display: flex; flex-direction: column; gap: 8px; }
+        .opt { background: var(--card); border: 1px solid var(--border); padding: 12px 15px; text-align: left; cursor: pointer; font-family: 'Courier New', monospace; font-size: 0.85rem; border-radius: 4px; transition: all 0.2s; color: var(--text); }
+        .opt:hover { background: rgba(30,58,95,0.08); border-color: var(--accent); }
+        [data-theme="dark"] .opt:hover { background: rgba(100,181,246,0.1); }
+        [data-theme="dark"] .opt { border-color: #666; }
+        .opt.correct { background: #d4edda; border-color: #28a745; color: #155724; }
+        .opt.wrong { background: #f8d7da; border-color: #dc3545; color: #721c24; }
+        .opt.disabled { pointer-events: none; opacity: 0.6; }
+        .feedback { margin-top: 12px; padding: 12px; border-radius: 4px; font-size: 0.85rem; display: none; }
+        .feedback.correct-fb { background: #d4edda; color: #155724; border: 1px solid #28a745; }
+        .feedback.wrong-fb { background: #f8d7da; color: #721c24; border: 1px solid #dc3545; }
+        .score-box { text-align: center; padding: 20px; background: var(--gold); color: #000; border-radius: 6px; margin-top: 20px; font-family: 'Courier New', monospace; font-size: 1.2rem; }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">🌓 Toggle</button>
+
+    <div class="container">
+        <header>
+            <h1>📊 CFA Case Study: FX Options</h1>
+            <p class="subtitle">Understanding Put Options Through Real Trade Analysis</p>
+        </header>
+        
+        <p class="timestamp">February 23, 2026 · Educational Series · CFA Level I Derivatives</p>
+
+        <!-- Trade Overview -->
+        <div class="asset-box">
+            <div class="section-title">🎯 The Trade: AUD/USD June 0.69 Put</div>
+            
+            <div class="metrics-7">
+                <div class="metric-small"><div class="val">$93</div><div class="lbl">Premium</div></div>
+                <div class="metric-small"><div class="val">0.6900</div><div class="lbl">Strike</div></div>
+                <div class="metric-small"><div class="val">0.7076</div><div class="lbl">Spot</div></div>
+                <div class="metric-small"><div class="val negative">−176p</div><div class="lbl">Distance</div></div>
+                <div class="metric-small"><div class="val">June</div><div class="lbl">Expiry</div></div>
+                <div class="metric-small"><div class="val">~4mo</div><div class="lbl">Time</div></div>
+                <div class="metric-small"><div class="val">OTM</div><div class="lbl">Status</div></div>
+            </div>
+
+            <div class="cfa-box">
+                <h4>The Setup (In Plain English)</h4>
+                <p>Your friend paid <strong>$93</strong> for the <strong>right to sell</strong> AUD/USD at <strong>0.6900</strong> anytime before June expiry. Current price is 0.7076. He needs AUD/USD to fall below 0.6900 to make money.</p>
+                <div class="formula">Break-even = Strike − (Premium / Notional)<br>Break-even = 0.6900 − (0.0093) ≈ 0.6807</div>
+                <p><strong>He needs AUD/USD to drop from 0.7076 to below 0.6807 (3.8% decline) to profit.</strong></p>
+            </div>
+        </div>
+
+        <!-- Chart with Analysis -->
+        <div class="asset-box">
+            <div class="section-title">📈 Technical Analysis: AUD/USD Price Action</div>
+            <div class="chart-container">
+                <svg viewBox="0 0 800 300" style="width: 100%; height: 100%;">
+                    <!-- Grid -->
+                    <line x1="60" y1="20" x2="60" y2="260" stroke="var(--border)" stroke-width="1"/>
+                    <line x1="60" y1="260" x2="780" y2="260" stroke="var(--border)" stroke-width="1"/>
+                    
+                    <!-- Price zones -->
+                    <rect x="60" y="40" width="720" height="40" fill="rgba(46,125,50,0.1)" stroke="none"/>
+                    <rect x="60" y="180" width="720" height="40" fill="rgba(198,40,40,0.1)" stroke="none"/>
+                    
+                    <!-- Current spot line (0.7076) -->
+                    <line x1="60" y1="60" x2="780" y2="60" stroke="#1e3a5f" stroke-width="2" stroke-dasharray="5,5"/>
+                    <text x="70" y="55" fill="var(--text)" font-size="11" font-family="Courier New">Current: 0.7076</text>
+                    
+                    <!-- Strike line (0.6900) -->
+                    <line x1="60" y1="140" x2="780" y2="140" stroke="#d4af37" stroke-width="2" stroke-dasharray="5,5"/>
+                    <text x="70" y="135" fill="var(--text)" font-size="11" font-family="Courier New">Strike: 0.6900 (Breakeven Zone)</text>
+                    
+                    <!-- Break-even line (0.6807) -->
+                    <line x1="60" y1="180" x2="780" y2="180" stroke="#c62828" stroke-width="2"/>
+                    <text x="70" y="175" fill="var(--text)" font-size="11" font-family="Courier New">Breakeven: 0.6807</text>
+                    
+                    <!-- Profit zone label -->
+                    <text x="400" y="200" fill="var(--text)" font-size="12" font-family="Courier New" text-anchor="middle">🟢 PROFIT ZONE (Below 0.6807)</text>
+                    
+                    <!-- Loss zone label -->
+                    <text x="400" y="100" fill="var(--text)" font-size="12" font-family="Courier New" text-anchor="middle">🔴 LOSS ZONE (Above 0.6900)</text>
+                    
+                    <!-- Downward arrow showing needed move -->
+                    <polygon points="400,80 395,70 405,70" fill="#c62828"/>
+                    <line x1="400" y1="80" x2="400" y2="160" stroke="#c62828" stroke-width="3"/>
+                    
+                    <text x="420" y="125" fill="#c62828" font-size="11" font-family="Courier New">Needs −3.8%</text>
+                    
+                    <!-- Y-axis labels -->
+                    <text x="50" y="45" fill="#888" font-size="10" text-anchor="end" font-family="Courier New">0.7200</text>
+                    <text x="50" y="65" fill="#888" font-size="10" text-anchor="end" font-family="Courier New">0.7076</text>
+                    <text x="50" y="145" fill="#888" font-size="10" text-anchor="end" font-family="Courier New">0.6900</text>
+                    <text x="50" y="185" fill="#888" font-size="10" text-anchor="end" font-family="Courier New">0.6807</text>
+                    <text x="50" y="265" fill="#888" font-size="10" text-anchor="end" font-family="Courier New">0.6600</text>
+                    
+                    <!-- Legend -->
+                    <rect x="580" y="210" width="190" height="45" fill="var(--card)" stroke="var(--border)" rx="4"/>
+                    <text x="590" y="230" fill="var(--text)" font-size="10" font-family="Courier New">📘 Buy Put = Bearish Bet</text>
+                    <text x="590" y="245" fill="var(--text)" font-size="10" font-family="Courier New">💰 Profit if FX falls</text>
+                    
+                    <!-- Title -->
+                    <text x="400" y="15" fill="#888" font-size="11" text-anchor="middle" font-style="italic" font-family="Georgia">Put Option Payoff Diagram (Long 0.69 Put)</text>
+                </svg>
+            </div>
+            
+            <div class="cfa-box">
+                <h4>📐 Reading the Chart</h4>
+                <p><strong>Current spot (0.7076):</strong> Where AUD/USD trades today.</p>
+                <p><strong>Strike (0.6900):</strong> The "exercise price" — where your friend can sell AUD/USD if he exercises the option.</p>
+                <p><strong>Breakeven (0.6807):</strong> Where P&L = $0. Below this = profit. Above strike = max loss ($93).</p>
+            </div>
+        </div>
+
+        <!-- CFA Concepts -->
+        <div class="asset-box">
+            <div class="section-title">📚 CFA Lens: Options Fundamentals</div>
+
+            <div class="cfa-box">
+                <h4>1. Put Option Basics (CFA Level I — Derivatives)</h4>
+                <p>A <strong>put option</strong> gives the holder the <strong>right, but not the obligation</strong>, to <strong>sell</strong> the underlying asset at a predetermined price (the strike).</p>
+                
+                <div class="formula">Long Put Payoff at Expiry = max(0, Strike − Spot Price) − Premium<br><br>If Spot > Strike: Option expires worthless (loss = premium paid)<br>If Spot < Strike: Profit = (Strike − Spot) − Premium</div>
+            </div>
+
+            <div class="cfa-box">
+                <h4>2. Moneyness (CFA Level I — Option Markets)</h4>
+                <div class="formula">Moneyness Classification:<br><br>• ITM (In-the-money): Spot < Strike for Puts (would profit if exercised now)<br>• ATM (At-the-money): Spot ≈ Strike<br>• OTM (Out-of-the-money): Spot > Strike for Puts (no intrinsic value)</div>
+                
+                <p><strong>This trade is OTM:</strong> Spot (0.7076) > Strike (0.6900). The entire $93 premium is <strong>time value</strong> — no intrinsic value yet.</p>
+            </div>
+
+            <div class="cfa-box">
+                <h4>3. The Greeks Simplified (CFA Level I — Risk Measures)</h4>
+                <table class="trading-table">
+                    <tr><th>Greek</th><th>Measures</th><th>This Trade</th><th>Risk</th></tr>
+                    <tr><td><strong>Delta</strong></td><td>Price sensitivity</td><td>~−0.35</td><td>For every 1% drop in AUD/USD, put gains ~0.35%</td></tr>
+                    <tr><td><strong>Theta</strong></td><td>Time decay</td><td>~−$0.50/day</td><td>Loses $0.50 daily if nothing happens</td></tr>
+                    <tr><td><strong>Vega</strong></td><td>Volatility sensitivity</td><td>~+0.15</td><td>Gains if AUD/USD volatility spikes</td></tr>
+                </table>
+            </div>
+
+            <div class="cfa-box">
+                <h4>4. Why Trade Options vs Spot? (CFA Level I — Investment Strategies)</h4>
+                <table class="trading-table">
+                    <tr><th></th><th>Long Put Option</th><th>Short Spot AUD/USD</th></tr>
+                    <tr><td><strong>Max Loss</strong></td><td>$93 (limited)</td><td>Unlimited (if AUD/USD rallies)</td></tr>
+                    <tr><td><strong>Max Profit</strong></td><td>~$6,900 (if AUD/USD → 0)</td><td>~$7,076 (if AUD/USD → 0)</td></tr>
+                    <tr><td><strong>Margin</strong></td><td>No margin required</td><td>Margin required (~3-5%)</td></tr>
+                    <tr><td><strong>Time Decay</strong></td><td>Yes (enemy)</td><td>No</td></tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Trading Setup -->
+        <div class="asset-box">
+            <div class="section-title">📈 Trade Setup Analysis</div>
+            
+            <table class="trading-table">
+                <tr><th>Scenario</th><th>AUD/USD Price</th><th>P&L</th><th>Return</th></tr>
+                <tr><td>Current Spot</td><td>0.7076</td><td>−$93</td><td>−100%</td></tr>
+                <tr><td>Strike Hit</td><td>0.6900</td><td>−$93</td><td>−100%</td></tr>
+                <tr><td>Breakeven</td><td>0.6807</td><td>$0</td><td>0%</td></tr>
+                <tr><td>Target 1 (2x)</td><td>0.6620</td><td>+$186</td><td>+100%</td></tr>
+                <tr><td>Target 2 (5x)</td><td>0.6430</td><td>+$465</td><td>+400%</td></tr>
+                <tr><td>Max (AUD→0)</td><td>0.0000</td><td>~$6,900</td><td>+7,300%</td></tr>
+            </table>
+            
+            <div class="cfa-box">
+                <h4>Risk/Reward Assessment</h4>
+                <p><strong>Probability of Profit:</strong> Depends on AUD/USD volatility and trend. Historically, deep OTM puts expire worthless ~60-70% of the time.</p>
+                <p><strong>Risk/Reward Ratio:</strong> 1:74 (risk $93 to potentially make $6,900). <strong>But:</strong> Requires AUD/USD to go to zero — unrealistic. More realistic 3:1 to 5:1 if targeting 0.6400-0.6600.</p>
+            </div>
+        </div>
+
+        <!-- Quiz Section -->
+        <div class="asset-box">
+            <div class="section-title">📝 CFA Level I Quiz: Options</div>
+            <p style="font-size: 0.85rem; color: #888; margin-bottom: 20px;">Test your understanding of this case study!</p>
+            
+            <div class="quiz-question" data-q="1">
+                <p class="q-text"><strong>Q1: Moneyness</strong></p>
+                <p class="q-text">AUD/USD Put with strike 0.6900 and spot 0.7076 is:</p>
+                <div class="options">
+                    <button class="opt" onclick="checkAnswer(1, 'A', false)">A) In-the-money (ITM)</button>
+                    <button class="opt" onclick="checkAnswer(1, 'B', false)">B) At-the-money (ATM)</button>
+                    <button class="opt" onclick="checkAnswer(1, 'C', true)">C) Out-of-the-money (OTM)</button>
+                    <button class="opt" onclick="checkAnswer(1, 'D', false)">D) Can't determine</button>
+                </div>
+                <div class="feedback" id="fb-1"></div>
+            </div>
+            
+            <div class="quiz-question" data-q="2">
+                <p class="q-text"><strong>Q2: Put Payoff</strong></p>
+                <p class="q-text">If AUD/USD falls to 0.6700 at expiry, what is the profit on one 0.69 Put (premium $93)?</p>
+                <div class="options">
+                    <button class="opt" onclick="checkAnswer(2, 'A', false)">A) −$93 (max loss)</button>
+                    <button class="opt" onclick="checkAnswer(2, 'B', false)">B) $0 (breakeven)</button>
+                    <button class="opt" onclick="checkAnswer(2, 'C', true)">C) +$107 profit</button>
+                    <button class="opt" onclick="checkAnswer(2, 'D', false)">D) +$200 profit</button>
+                </div>
+                <div class="feedback" id="fb-2"></div>
+            </div>
+            
+            <div class="quiz-question" data-q="3">
+                <p class="q-text"><strong>Q3: Greeks</strong></p>
+                <p class="q-text">Which Greek measures the daily loss from time decay for an option holder?</p>
+                <div class="options">
+                    <button class="opt" onclick="checkAnswer(3, 'A', false)">A) Delta</button>
+                    <button class="opt" onclick="checkAnswer(3, 'B', true)">B) Theta</button>
+                    <button class="opt" onclick="checkAnswer(3, 'C', false)">C) Vega</button>
+                    <button class="opt" onclick="checkAnswer(3, 'D', false)">D) Gamma</button>
+                </div>
+                <div class="feedback" id="fb-3"></div>
+            </div>
+            
+            <div class="score-box"><strong>Score: <span id="score">0</span>/3</strong></div>
+        </div>
+
+        <!-- Terminology -->
+        <div class="term-box">
+            <div class="section-title" style="margin-top: 0;">📖 Key Terms for CFA Exam</div>
+            
+            <div class="term">
+                <span class="term-word">Put Option:</span> A contract giving the holder the right (not obligation) to sell an asset at a set price (strike) before expiry. Used for bearish bets or hedging long positions.
+                <div class="term-origin">CFA Level I: Derivatives & Risk Management</div>
+            </div>
+            
+            <div class="term">
+                <span class="term-word">Intrinsic Value:</span> For puts: max(0, Strike − Spot). The immediate profit if exercised. OTM options have zero intrinsic value.
+                <div class="term-origin">CFA Level I: Option Valuation</div>
+            </div>
+            
+            <div class="term">
+                <span class="term-word">Time Value (Extrinsic Value):</span> Option premium minus intrinsic value. Reflects probability of becoming ITM before expiry. Decays to zero at expiration.
+                <div class="term-origin">CFA Level I: Option Pricing</div>
+            </div>
+            
+            <div class="term">
+                <span class="term-word">Theta:</span> Rate of time value decay per day. Always negative for long options. "Time is the enemy of the option buyer."
+                <div class="term-origin">CFA Level II: Greeks & Risk Measures</div>
+            </div>
+            
+            <div class="term">
+                <span class="term-word">Leverage in Options:</span> Controlling large notional exposure with small premium. Amplifies both gains and losses. This trade controls $10,000 notional with only $93.
+                <div class="term-origin">CFA Level I: Derivatives Characteristics</div>
+            </div>
+        </div>
+
+        <footer>
+            <p>CFA Educational Series · FX Options Case Study · February 23, 2026</p>
+            <p style="margin-top: 8px; font-size: 0.75rem;">This report is for educational purposes only. Past performance does not guarantee future results.</p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+        }
+        
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+        
+        let score = 0;
+        let answered = new Set();
+        
+        const explanations = {
+            1: { 
+                correct: "✅ Correct! For a put: Spot (0.7076) > Strike (0.6900) = Out-of-the-money. The option has no intrinsic value.", 
+                wrong: "❌ Incorrect. For puts: ITM = Spot < Strike. Here Spot > Strike, so it's OTM." 
+            },
+            2: { 
+                correct: "✅ Correct! Payoff = (0.6900 − 0.6700) × 10,000 − $93 = $200 − $93 = $107 profit.", 
+                wrong: "❌ Incorrect. Payoff = (Strike − Spot) × Notional − Premium = (0.69 − 0.67) × 10,000 − 93 = $107." 
+            },
+            3: { 
+                correct: "✅ Correct! Theta measures time decay. Long options lose value as expiry approaches.", 
+                wrong: "❌ Incorrect. Theta = time decay. Delta = price sensitivity. Vega = volatility sensitivity." 
+            }
+        };
+        
+        function checkAnswer(qNum, option, isCorrect) {
+            if (answered.has(qNum)) return;
+            answered.add(qNum);
+            
+            const questionDiv = document.querySelector('[data-q="' + qNum + '"]');
+            const buttons = questionDiv.querySelectorAll('.opt');
+            const feedbackDiv = document.getElementById('fb-' + qNum);
+            
+            buttons.forEach(function(btn) {
+                btn.classList.add('disabled');
+                if (btn.textContent.indexOf(option + ')') === 0) {
+                    btn.classList.add(isCorrect ? 'correct' : 'wrong');
+                }
+            });
+            
+            feedbackDiv.style.display = 'block';
+            if (isCorrect) {
+                score++;
+                feedbackDiv.className = 'feedback correct-fb';
+                feedbackDiv.innerHTML = explanations[qNum].correct;
+            } else {
+                feedbackDiv.className = 'feedback wrong-fb';
+                feedbackDiv.innerHTML = explanations[qNum].wrong;
+            }
+            
+            document.getElementById('score').textContent = score;
+        }
+    </script>
+</body>
+</html>
