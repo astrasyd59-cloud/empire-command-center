@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Momentum Watchlist Analysis | Feb 24, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f8f6f1; --bg-card: #ffffff; --bg-subtle: #f2efe8; --bg-code: #eeeae0;
+  --text-primary: #1a1714; --text-secondary: #4a4540; --text-muted: #857e75;
+  --border: #ddd9ce; --border-strong: #b8b0a0; --accent: #1a3a5c; --accent-light: #2a5a8c;
+  --gold: #9a7b2a; --gold-light: #c9a84c; --green: #1e5c2e; --green-bg: #e8f5eb;
+  --red: #8c1a1a; --red-bg: #fceaea; --purple: #4a2a7a; --purple-light: #7c5ab8;
+  --teal: #1a5c5a; --shadow-sm: 0 1px 4px rgba(0,0,0,0.06); --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+  --radius: 6px; --radius-lg: 12px;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Source Serif 4', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+}
+[data-theme="dark"] {
+  --bg: #111210; --bg-card: #1c1b18; --bg-subtle: #242320; --bg-code: #2a2926;
+  --text-primary: #f0ede6; --text-secondary: #c8c4ba; --text-muted: #7a7570;
+  --border: #38352e; --border-strong: #4a4740; --accent: #7ab0e0;
+  --gold: #d4a84c; --green: #4caf6a; --green-bg: #0e2416; --red: #e05a5a; --red-bg: #2a0e0e;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--text-primary); line-height: 1.65; font-size: 15px; }
+.container { max-width: 860px; margin: 0 auto; padding: 0 16px; }
+.theme-toggle { position: fixed; top: 12px; right: 12px; background: var(--bg-card); border: 1.5px solid var(--border-strong); color: var(--text-primary); padding: 7px 14px; border-radius: 20px; cursor: pointer; font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600; z-index: 1000; }
+.theme-toggle:hover { background: var(--accent); color: white; }
+header { padding: 48px 0 32px; border-bottom: 3px double var(--border-strong); margin-bottom: 28px; text-align: center; }
+.masthead-label { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; }
+.masthead-title { font-family: var(--font-display); font-size: clamp(1.6rem, 5vw, 2.6rem); font-weight: 900; color: var(--accent); line-height: 1.1; }
+.masthead-sub { font-family: var(--font-body); font-style: italic; font-size: 0.9rem; color: var(--text-muted); margin-top: 6px; }
+.masthead-meta { display: flex; justify-content: center; gap: 20px; margin-top: 16px; flex-wrap: wrap; }
+.meta-pill { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.5px; color: var(--text-secondary); background: var(--bg-subtle); border: 1px solid var(--border); padding: 4px 12px; border-radius: 12px; }
+
+/* Section divider */
+.section-divider { display: flex; align-items: center; gap: 12px; margin: 32px 0 20px; }
+.section-divider-line { flex: 1; height: 1px; background: var(--border); }
+.section-divider-text { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; }
+
+/* Asset card */
+.asset-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-bottom: 28px; box-shadow: var(--shadow-sm); overflow: hidden; }
+.asset-card-header { padding: 20px 24px 16px; border-bottom: 2px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; }
+.ticker-row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.ticker { font-family: var(--font-mono); font-size: clamp(1.4rem, 4vw, 2rem); font-weight: 600; color: var(--accent); letter-spacing: -0.5px; }
+.sector-badge { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 1px; text-transform: uppercase; padding: 3px 10px; border-radius: 10px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text-muted); }
+.company-name { font-family: var(--font-body); font-size: 0.82rem; color: var(--text-muted); margin-top: 3px; }
+.asset-right { text-align: right; }
+.price-main { font-family: var(--font-mono); font-size: clamp(1.2rem, 3.5vw, 1.7rem); font-weight: 600; color: var(--text-primary); }
+.price-change { font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600; margin-top: 2px; }
+.positive { color: var(--green); }
+.negative { color: var(--red); }
+.exchange-label { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted); margin-top: 3px; }
+.asset-body { padding: 20px 24px 24px; }
+
+/* Case boxes */
+.case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+@media (max-width: 600px) { .case-grid { grid-template-columns: 1fr; } }
+.case-box { border-radius: var(--radius); padding: 16px; }
+.case-bull { background: var(--green-bg); border: 1px solid var(--green); }
+.case-bear { background: var(--red-bg); border: 1px solid var(--red); }
+.case-title { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; margin-bottom: 10px; }
+.case-bull .case-title { color: var(--green); }
+.case-bear .case-title { color: var(--red); }
+.case-box ul { font-size: 0.85rem; color: var(--text-secondary); padding-left: 16px; }
+.case-box li { margin-bottom: 6px; }
+
+/* Sydney play box */
+.sydney-box { background: linear-gradient(135deg, var(--bg-subtle), var(--bg-code)); border: 1px solid var(--border); border-left: 3px solid var(--teal); border-radius: 0 var(--radius) var(--radius) 0; padding: 16px 18px; margin: 16px 0; }
+.sydney-title { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; color: var(--teal); font-weight: 600; margin-bottom: 10px; }
+.sydney-box p { font-size: 0.87rem; color: var(--text-secondary); line-height: 1.7; }
+.sydney-box strong { color: var(--text-primary); }
+
+/* Verdict box */
+.verdict-box { background: var(--bg-card); border: 2px solid var(--gold); border-radius: var(--radius); padding: 16px 18px; margin: 16px 0; text-align: center; }
+.verdict-label { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+.verdict-text { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--text-primary); }
+
+/* Card sections */
+.card-section-title { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 600; padding: 14px 0 10px; border-top: 1px solid var(--border); margin-top: 16px; display: flex; align-items: center; gap: 8px; }
+.card-section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+footer { text-align: center; padding: 32px 20px; border-top: 1px solid var(--border); margin-top: 20px; color: var(--text-muted); font-size: 0.78rem; font-family: var(--font-mono); }
+</style>
+</head>
+<body>
+<button class="theme-toggle" onclick="document.documentElement.setAttribute('data-theme', document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')">◐ THEME</button>
+
+<div class="container">
+
+<header>
+  <div class="masthead-label">OpenClaw Empire · ASTRA Intelligence</div>
+  <h1 class="masthead-title">Momentum Watchlist Analysis</h1>
+  <p class="masthead-sub">Four international plays screening on momentum — Case for, Case against, Sydney Execution</p>
+  <div class="masthead-meta">
+    <span class="meta-pill">📅 February 24, 2026</span>
+    <span class="meta-pill">🌏 Sydney Timezone Execution</span>
+    <span class="meta-pill">📊 Source: TradingView Screener</span>
+  </div>
+</header>
+
+<!-- ===== ACMR ===== -->
+<div class="asset-card">
+  <div class="asset-card-header">
+    <div class="asset-left">
+      <div class="ticker-row">
+        <span class="ticker">ACMR</span>
+        <span class="sector-badge">Semiconductor Equipment</span>
+      </div>
+      <div class="company-name">ACM Research, Inc. · Cleaning Equipment for Chip Manufacturing</div>
+    </div>
+    <div class="asset-right">
+      <div class="price-main">$66.59</div>
+      <div class="price-change positive">▲ +1.90% Today</div>
+      <div class="exchange-label">NASDAQ · USD · US Market Hours</div>
+    </div>
+  </div>
+  
+  <div class="asset-body">
+    <div class="card-section-title">⚖️ The Case</div>
+    <div class="case-grid">
+      <div class="case-box case-bull">
+        <div class="case-title">📈 THE BULL CASE</div>
+        <ul>
+          <li><strong>China semiconductor localization:</strong> Beneficiary of Beijing's push for chip self-sufficiency</li>
+          <li><strong>Cleaning equipment niche:</strong> Critical process step where Chinese players gaining share</li>
+          <li><strong>Revenue growth:</strong> ~35% YoY growth as domestic fabs expand</li>
+          <li><strong>Cheap vs peers:</strong> Trades at discount to Applied Materials, Lam Research</li>
+        </ul>
+      </div>
+      <div class="case-box case-bear">
+        <div class="case-title">📉 THE BEAR CASE</div>
+        <ul>
+          <li><strong>US sanctions risk:</strong> Any China chip restriction hits ACMR directly</li>
+          <li><strong>Geopolitical volatility:</strong> Trump tariff threats = earnings uncertainty</li>
+          <li><strong>Customer concentration:</strong> Heavy reliance on SMIC, YMTC</li>
+          <li><strong>Accounting concerns:</strong> Historical short reports on revenue recognition</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="verdict-box">
+      <div class="verdict-label">ASTRA VERDICT</div>
+      <div class="verdict-text">HIGH RISK / HIGH REWARD · Geopolitical Beta Play</div>
+    </div>
+    
+    <div class="sydney-box">
+      <div class="sydney-title">🎯 HOW TO PLAY FROM SYDNEY</div>
+      <p><strong>Access:</strong> IBKR (Interactive Brokers) — ACMR trades on NASDAQ, accessible via standard US equity account.<br><br>
+      <strong>Timing:</strong> US markets open 12:30 AM — 7:00 AM AEDT (next day). You're asleep for most of the action.<br><br>
+      <strong>Sydney Strategy:</strong>
+      <br>→ Set limit orders before bed (11 PM AEDT)
+      <br>→ Use IBKR Mobile alerts for pre-market moves
+      <br>→ Check position at 7 AM — decide to hold or cut
+      <br>→ Avoid day trading — you're fighting time zones
+      <br><br>
+      <strong>Risk Management:</strong> Position size SMALL (max 2% portfolio). This is a binary geopolitical bet.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SCREEN Holdings (7735) ===== -->
+<div class="asset-card">
+  <div class="asset-card-header">
+    <div class="asset-left">
+      <div class="ticker-row">
+        <span class="ticker">7735</span>
+        <span class="sector-badge">Semiconductor Equipment</span>
+      </div>
+      <div class="company-name">SCREEN Holdings Co., Ltd. · Tokyo, Japan</div>
+    </div>
+    <div class="asset-right">
+      <div class="price-main">¥21,980</div>
+      <div class="price-change positive">▲ +1.62% Today</div>
+      <div class="exchange-label">Tokyo Stock Exchange · JPY</div>
+    </div>
+  </div>
+  
+  <div class="asset-body">
+    <div class="card-section-title">⚖️ The Case</div>
+    <div class="case-grid">
+      <div class="case-box case-bull">
+        <div class="case-title">📈 THE BULL CASE</div>
+        <ul>
+          <li><strong>Japan chip renaissance:</strong> TSMC Kumamoto, Rapidus = massive capex</li>
+          <li><strong>Clean track dominance:</strong> #2 globally in wafer cleaning (behind Tokyo Electron)</li>
+          <li><strong>Local supplier advantage:</strong> Japanese fabs prefer Japanese equipment</li>
+          <li><strong>Yen tailwind:</strong> If JPY weakens, exports/earnings boost</li>
+          <li><strong>Margin expansion:</strong> Operating leverage from volume</li>
+        </ul>
+      </div>
+      <div class="case-box case-bear">
+        <div class="case-title">📉 THE BEAR CASE</div>
+        <ul>
+          <li><strong>Valuation stretched:</strong> Trades at premium to historical multiples</li>
+          <li><strong>Competition:</strong> Tokyo Electron, Lam Research are ruthless</li>
+          <li><strong>Capex cyclicality:</strong> Chip cycle downturn = delayed orders</li>
+          <li><strong>Yen risk:</strong> If JPY strengthens, margins compress</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="verdict-box">
+      <div class="verdict-label">ASTRA VERDICT</div>
+      <div class="verdict-text">SOLID GROWTH · Japan Semiconductor Proxy</div>
+    </div>
+    
+    <div class="sydney-box">
+      <div class="sydney-title">🎯 HOW TO PLAY FROM SYDNEY</div>
+      <p><strong>Access:</strong> IBKR Global account — 7735.T trades on Tokyo Stock Exchange. Search "7735" in TSE section.<br><br>
+      <strong>Timing:</strong> Tokyo opens 10:00 AM JST = 12:00 PM AEDT (1 PM during daylight saving). Perfect overlap with Sydney lunch.<br><br>
+      <strong>Sydney Strategy:</strong>
+      <br>→ Trade during Tokyo lunch overlap (12 PM — 2 PM AEDT)
+      <br>→ Monitor Japan semiconductor news (Nikkei Asia) overnight
+      <br>→ Use JPY/AUD as macro overlay — weak yen = buy signal
+      <br>→ Position size: Medium (3-4% portfolio) — less binary than ACMR
+      <br><br>
+      <strong>Key Catalysts:</strong> TSMC Kumamoto ramp, Rapidus progress, JPY moves vs USD</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DEME ===== -->
+<div class="asset-card">
+  <div class="asset-card-header">
+    <div class="asset-left">
+      <div class="ticker-row">
+        <span class="ticker">DEME</span>
+        <span class="sector-badge">Offshore Wind / Marine</span>
+      </div>
+      <div class="company-name">DEME Group NV · Dredging & Offshore Wind Installation</div>
+    </div>
+    <div class="asset-right">
+      <div class="price-main">€196.20</div>
+      <div class="price-change positive">▲ +0.10% Today</div>
+      <div class="exchange-label">Euronext Brussels · EUR</div>
+    </div>
+  </div>
+  
+  <div class="asset-body">
+    <div class="card-section-title">⚖️ The Case</div>
+    <div class="case-grid">
+      <div class="case-box case-bull">
+        <div class="case-title">📈 THE BULL CASE</div>
+        <ul>
+          <li><strong>Offshore wind buildout:</strong> Europe + US East Coast massive pipeline</li>
+          <li><strong>Specialized fleet:</strong> Heavy-lift vessels for turbine installation</li>
+          <li><strong>Order backlog:</strong> Multi-year visibility on contracts</li>
+          <li><strong>Energy transition tailwind:</strong> Governments mandating offshore wind</li>
+          <li><strong>Dredging moat:</strong> Duopoly with Boskalis in European waters</li>
+        </ul>
+      </div>
+      <div class="case-box case-bear">
+        <div class="case-title">📉 THE BEAR CASE</div>
+        <ul>
+          <li><strong>Project delays:</strong> Permitting, supply chain, weather = margin risk</li>
+          <li><strong>Floating wind uncertainty:</strong> Next-gen tech still unproven at scale</li>
+          <li><strong>Rising rates:</strong> Infrastructure projects sensitive to financing costs</li>
+          <li><strong>Cyclical exposure:</strong> Dredging tied to port expansion cycles</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="verdict-box">
+      <div class="verdict-label">ASTRA VERDICT</div>
+      <div class="verdict-text">INFRASTRUCTURE PLAY · 3-5 Year Hold</div>
+    </div>
+    
+    <div class="sydney-box">
+      <div class="sydney-title">🎯 HOW TO PLAY FROM SYDNEY</div>
+      <p><strong>Access:</strong> IBKR — DEME trades on Euronext Brussels. Search "DEME" in EUR section. Some brokers may list as OTC ADR (check liquidity).<br><br>
+      <strong>Timing:</strong> Brussels opens 9:00 AM CET = 7:00 PM AEDT (previous day). You can trade evening session before bed.<br><br>
+      <strong>Sydney Strategy:</strong>
+      <br>→ Trade during Brussels open (7 PM — 9 PM AEDT) 
+      <br>→ This is a SWING trade, not day trade — quarterly earnings matter more than daily moves
+      <br>→ Monitor EU offshore wind policy (REPowerEU plan)
+      <br>→ Watch EUR/AUD — EUR strength helps margin
+      <br>→ Position size: Medium (3-5%) — thematic hold
+      <br><br>
+      <strong>Key Catalysts:</strong> New contract wins, US IRA subsidies, floating wind milestones</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DOF Group ===== -->
+<div class="asset-card">
+  <div class="asset-card-header">
+    <div class="asset-left">
+      <div class="ticker-row">
+        <span class="ticker">DOFG</span>
+        <span class="sector-badge">Offshore Oil Services</span>
+      </div>
+      <div class="company-name">DOF Group ASA · Subsea Vessels & Oil Services</div>
+    </div>
+    <div class="asset-right">
+      <div class="price-main">126.5 NOK</div>
+      <div class="price-change positive">▲ +4.55% Today</div>
+      <div class="exchange-label">Oslo Stock Exchange · NOK</div>
+    </div>
+  </div>
+  
+  <div class="asset-body">
+    <div class="card-section-title">⚖️ The Case</div>
+    <div class="case-grid">
+      <div class="case-box case-bull">
+        <div class="case-title">📈 THE BULL CASE</div>
+        <ul>
+          <li><strong>Offshore oil recovery:</strong> Brent at $75+ = offshore project revival</li>
+          <li><strong>Vessel day rates:</strong> Tight supply = pricing power</li>
+          <li><strong>Subsea cycle:</strong> Brownfield maintenance demand resilient</li>
+          <li><strong>Restructuring complete:</strong> Emerged from bankruptcy stronger balance sheet</li>
+          <li><strong>NOK play:</strong> Weak NOK = earnings tailwind (costs local, revenue USD)</li>
+        </ul>
+      </div>
+      <div class="case-box case-bear">
+        <div class="case-title">📉 THE BEAR CASE</div>
+        <ul>
+          <li><strong>Oil price risk:</strong> If Brent drops to $60, offshore projects pause</li>
+          <li><strong>Energy transition:</strong> Long-term structural decline in offshore oil</li>
+          <li><strong>Fleet age:</strong> Older vessels need maintenance capex</li>
+          <li><strong>Refinancing risk:</strong> Debt-heavy sector sensitive to rates</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="verdict-box">
+      <div class="verdict-label">ASTRA VERDICT</div>
+      <div class="verdict-text">OIL SERVICES CYCLE · Contrarian Play</div>
+    </div>
+    
+    <div class="sydney-box">
+      <div class="sydney-title">🎯 HOW TO PLAY FROM SYDNEY</div>
+      <p><strong>Access:</strong> IBKR — DOF.OL trades on Oslo Børs. Search "DOF" in OSE section. Check liquidity before sizing.<br><br>
+      <strong>Timing:</strong> Oslo opens 9:00 AM CET = 7:00 PM AEDT. Evening session tradeable.<br><br>
+      <strong>Sydney Strategy:</strong>
+      <br>→ Oil services are MACRO plays — watch Brent crude first, stock second
+      <br>→ Set alerts for Brent moves during Asia session (you're awake)
+      <br>→ Oslo trades thin — use limit orders, expect wider spreads
+      <br>→ Position size: SMALL (2-3%) — this is a cyclical commodity play
+      <br>→ Time horizon: 6-12 months (oil cycle trade)
+      <br><br>
+      <strong>Key Catalysts:</strong> Brent price, vessel day rate contracts, NOK/USD moves</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SUMMARY ===== -->
+<div class="section-divider">
+  <div class="section-divider-line"></div>
+  <div class="section-divider-text">Portfolio Construction</div>
+  <div class="section-divider-line"></div>
+</div>
+
+<div class="asset-card">
+  <div class="asset-body">
+    <div class="card-section-title">🗡️ ASTRA's Sydney Execution Framework</div>
+    
+    <div class="sydney-box">
+      <div class="sydney-title">RANKING BY EXECUTION EASE (For Sydney)</div>
+      <p><strong>1. SCREEN (7735) — EASIEST</strong><br>
+      Tokyo hours overlap Sydney lunch. Most liquid. Cleanest story. Size: 4%<br><br>
+      
+      <strong>2. DEME — MODERATE</strong><br>
+      Brussels evening session tradeable. Thematic hold, not day trade. Size: 3%<br><br>
+      
+      <strong>3. DOF — MODERATE/HARD</strong><br>
+      Oslo thin liquidity. Requires Brent macro view. Commodity cycle play. Size: 2%<br><br>
+      
+      <strong>4. ACMR — HARDEST</strong><br>
+      You sleep through US hours. Geopolitical binary risk. Size: 1-2% MAX</p>
+    </div>
+    
+    <div class="sydney-box">
+      <div class="sydney-title">TOTAL POSITION SIZING</div>
+      <p><strong>Combined max exposure: 10-12% of portfolio</strong><br><br>
+      These are <strong>thematic/satellite</strong> positions — not core holdings.<br>
+      Core should still be SPY/QQQ/A200 (broad indices).<br><br>
+      <strong>Time commitment:</strong> 15 mins/day to check positions.<br>
+      <strong>Exit plan:</strong> Set stop-losses at -15%. Take profits at +30%.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div style="color: var(--accent); font-weight: 600; margin-bottom: 6px; letter-spacing: 1px;">ASTRA INTELLIGENCE · MOMENTUM WATCHLIST</div>
+  <p>Generated for Sydney timezone execution · Not financial advice</p>
+  <p style="margin-top: 8px; opacity: 0.5; font-size: 0.65rem">Prices as of Feb 24, 2026 market close</p>
+</footer>
+
+</div>
+</body>
+</html>
