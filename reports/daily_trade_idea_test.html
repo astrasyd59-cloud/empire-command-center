@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Daily Trade Idea | February 24, 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@300;400;500;600&family=Literata:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* [CSS from template - truncated for brevity] */
+        :root {
+            --bg: #f5f4f0; --bg-card: #ffffff; --bg-subtle: #eeece6; --bg-code: #e8e5dc;
+            --text-primary: #141210; --text-body: #3a3530; --text-muted: #7a746a;
+            --border: #d8d4c8; --border-strong:#a8a098; --accent: #1a1a1a;
+            --long: #1a5c2e; --long-bg: #e6f4ea; --long-border: #4caf6a;
+            --short: #8c1a1a; --short-bg: #fceaea; --short-border: #e05a5a;
+            --no-trade: #5a5040; --no-trade-bg: #f0ede4;
+            --gold: #8c6a10; --gold-bg: #fdf5e0; --gold-border: #c9a830;
+            --teal: #1a5c5a; --teal-bg: #e6f4f3;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.09);
+            --radius: 4px; --radius-lg: 10px;
+            --font-display: 'Bebas Neue', 'Impact', sans-serif;
+            --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+            --font-body: 'Literata', Georgia, serif;
+        }
+        [data-theme="dark"] {
+            --bg: #0e0d0b; --bg-card: #181715; --bg-subtle: #222018;
+            --text-primary: #f0ede4; --text-body: #c8c4b8;
+            --long: #4caf6a; --long-bg: #0a2010;
+            --short: #e05a5a; --short-bg: #280a0a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-body); background: var(--bg); color: var(--text-primary); line-height: 1.6; font-size: 14px; }
+        .container { max-width: 840px; margin: 0 auto; padding: 0 14px; }
+        .theme-toggle { position: fixed; top: 12px; right: 12px; background: var(--bg-card); border: 1.5px solid var(--border-strong); padding: 6px 13px; border-radius: 20px; cursor: pointer; font-family: var(--font-mono); font-size: 0.67rem; z-index: 1000; }
+        header { padding: 40px 0 28px; border-bottom: 1px solid var(--border-strong); margin-bottom: 24px; }
+        .header-top { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; }
+        .masthead-eyebrow { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); }
+        .masthead-title { font-family: var(--font-display); font-size: clamp(2.4rem, 7vw, 4rem); color: var(--text-primary); letter-spacing: 1px; line-height: 1; }
+        .masthead-week { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.5px; }
+        .header-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+        .meta-tag { font-family: var(--font-mono); font-size: 0.62rem; padding: 3px 10px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text-muted); border-radius: 10px; }
+        .meta-tag.warn { background: var(--gold-bg); border-color: var(--gold-border); color: var(--gold); }
+        .macro-strip { background: var(--accent); padding: 14px 18px; margin-bottom: 24px; border-radius: var(--radius); overflow-x: auto; }
+        .macro-row { display: flex; gap: 0; min-width: max-content; }
+        .macro-cell { text-align: center; padding: 0 16px; border-right: 1px solid rgba(255,255,255,0.12); }
+        .macro-cell:last-child { border-right: none; }
+        .macro-cell .mc-val { font-family: var(--font-mono); font-size: 0.88rem; font-weight: 500; color: var(--bg); display: block; }
+        .macro-cell .mc-lbl { font-family: var(--font-mono); font-size: 0.54rem; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 2px; display: block; }
+        .mc-up { color: #6ee882; } .mc-dn { color: #ff8a80; }
+        .context-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 16px 18px; margin-bottom: 24px; }
+        .context-label { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+        .context-text { font-size: 0.88rem; color: var(--text-body); line-height: 1.7; }
+        .divider { display: flex; align-items: center; gap: 10px; margin: 28px 0 18px; }
+        .divider-line { flex: 1; height: 1px; background: var(--border); }
+        .divider-text { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; }
+        .inst-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-bottom: 20px; box-shadow: var(--shadow-sm); }
+        .status-bar { height: 4px; width: 100%; }
+        .status-bar.long { background: linear-gradient(90deg, var(--long), var(--long-border)); }
+        .status-bar.short { background: linear-gradient(90deg, var(--short), var(--short-border)); }
+        .status-bar.no-trade { background: var(--border); }
+        .inst-header { padding: 16px 20px 12px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px; }
+        .inst-ticker { font-family: var(--font-display); font-size: clamp(1.6rem, 5vw, 2.4rem); color: var(--text-primary); letter-spacing: 0.5px; }
+        .direction-badge { font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600; letter-spacing: 1px; padding: 4px 12px; border-radius: var(--radius); text-transform: uppercase; }
+        .direction-badge.long { background: var(--long-bg); color: var(--long); border: 1.5px solid var(--long-border); }
+        .direction-badge.short { background: var(--short-bg); color: var(--short); border: 1.5px solid var(--short-border); }
+        .direction-badge.none { background: var(--no-trade-bg); color: var(--no-trade); border: 1.5px solid var(--border); }
+        .inst-price { font-family: var(--font-mono); font-size: clamp(1.1rem, 3vw, 1.5rem); font-weight: 500; }
+        .positive { color: var(--long); } .negative { color: var(--short); }
+        .inst-body { padding: 0 20px 20px; }
+        .metrics-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 14px 0; }
+        .metric-tile { background: var(--bg-subtle); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 6px; text-align: center; }
+        .metric-tile .mt-val { font-family: var(--font-mono); font-size: 0.82rem; font-weight: 500; }
+        .metric-tile .mt-lbl { font-family: var(--font-mono); font-size: 0.52rem; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text-muted); }
+        .levels-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 10px 0; }
+        .level-block { background: var(--bg-subtle); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px; }
+        .level-block.entry-block { border-color: var(--gold-border); background: var(--gold-bg); }
+        .level-block.stop-block { border-color: var(--short-border); background: var(--short-bg); }
+        .level-block.t1-block { border-color: var(--long-border); background: var(--long-bg); }
+        .level-block.t2-block { border-color: var(--teal); background: var(--teal-bg); }
+        .level-label { font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); }
+        .level-value { font-family: var(--font-mono); font-size: 0.95rem; font-weight: 600; }
+        .level-sub { font-family: var(--font-mono); font-size: 0.58rem; color: var(--text-muted); }
+        .stop-logic { background: var(--bg-code); border: 1px solid var(--border); border-left: 3px solid var(--short-border); padding: 10px 14px; margin: 10px 0; font-family: var(--font-mono); font-size: 0.76rem; }
+        .invalidation-box { background: var(--short-bg); border: 1px solid var(--short-border); border-radius: var(--radius); padding: 10px 14px; margin: 10px 0; }
+        .gate-pills { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+        .gate-pill { font-family: var(--font-mono); font-size: 0.58rem; padding: 3px 8px; border-radius: 6px; }
+        .gate-pass { background: var(--long-bg); color: var(--long); border: 1px solid var(--long-border); }
+        .gate-fail { background: var(--short-bg); color: var(--short); border: 1px solid var(--short-border); }
+        footer { text-align: center; padding: 28px 16px; border-top: 1px solid var(--border); margin-top: 16px; color: var(--text-muted); font-size: 0.7rem; font-family: var(--font-mono); }
+        .disclaimer { margin-top: 10px; padding: 10px 16px; background: var(--bg-subtle); border-radius: var(--radius); border: 1px solid var(--border); font-size: 0.62rem; text-align: left; }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">◐ THEME</button>
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <div>
+                    <div class="masthead-eyebrow">OpenClaw Empire · ASTRA</div>
+                    <h1 class="masthead-title">THE DAILY<br>TRADE IDEA</h1>
+                </div>
+                <div class="masthead-week">
+                    Week of February 24, 2026<br>
+                    <span style="font-size:0.62rem;color:var(--text-muted)">4H Swing · CMC Markets · City Index</span>
+                </div>
+            </div>
+            <div class="header-meta">
+                <span class="meta-tag">📊 4H Timeframe</span>
+                <span class="meta-tag">Gold · Silver · ES · NQ · AUDUSD · GBPUSD</span>
+                <span class="meta-tag">Generated February 24, 2026 at 18:38 UTC</span>
+                <span class="meta-tag warn">⚠️ Verify economic calendar independently before trading</span>
+            </div>
+        </header>
+
+        <div class="macro-strip">
+            <div class="macro-row">
+                <div class="macro-cell">
+                    <span class="mc-val">6,838</span>
+                    <span class="mc-lbl">S&P 500</span>
+                    <span class="mc-chg negative">▼ 1.04%</span>
+                </div>
+                <div class="macro-cell">
+                    <span class="mc-val">21.0</span>
+                    <span class="mc-lbl">VIX</span>
+                    <span class="mc-chg positive">▲ 10.06%</span>
+                </div>
+                <div class="macro-cell">
+                    <span class="mc-val">97.91</span>
+                    <span class="mc-lbl">DXY</span>
+                    <span class="mc-chg positive">▲ 0.22%</span>
+                </div>
+                <div class="macro-cell">
+                    <span class="mc-val">4.03%</span>
+                    <span class="mc-lbl">10Y Yield</span>
+                    <span class="mc-chg negative">▼ 1.40%</span>
+                </div>
+                <div class="macro-cell">
+                    <span class="mc-val">0.441</span>
+                    <span class="mc-lbl">2s10s Spread</span>
+                    <span class="mc-chg">INVERTED</span>
+                </div>
+                <div class="macro-cell">
+                    <span class="mc-val">5,193.10</span>
+                    <span class="mc-lbl">Gold/oz</span>
+                    <span class="mc-chg negative">▼ 0.22%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="context-box">
+            <div class="context-label">▸ Market Context — Week of February 24, 2026</div>
+            <p class="context-text">Markets are mixed this week with S&P 500 at 6,838 (-1.04%). 
+VIX at 21.0 suggests elevated volatility. 
+DXY at 97.91 (+0.22%) indicates USD strength. 
+Yield curve spread is 0.441bp — inverted.</p>
+        </div>
+
+        <!-- ── INSTRUMENTS ── -->
+        <div class="divider">
+            <div class="divider-line"></div>
+            <div class="divider-text">Trade Ideas — 6 valid · 0 no trade</div>
+            <div class="divider-line"></div>
+        </div>
+
+        <!-- ══════════════════════════════════════════════════════
+        INSTRUMENT CARDS GO HERE
+        ══════════════════════════════════════════════════════ -->
+
+        <!-- ── FOOTER ── -->
+        <footer>
+            <strong>THE DAILY TRADE IDEA · OPENCLAW EMPIRE · ASTRA</strong><br>
+            Week of February 24, 2026 · 4H Swing Trade · CMC Markets · City Index
+            <div class="disclaimer">
+                ⚠️ DISCLAIMER: This report is generated by ASTRA, an AI system. All prices are fetched from public data sources (yfinance/Yahoo Finance) and may be delayed. This is NOT financial advice. CFD trading involves significant risk of loss. Trade responsibly.
+            </div>
+        </footer>
+    </div>
+    <script>
+        function toggleTheme() {
+            const h = document.documentElement;
+            h.setAttribute('data-theme', h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+</body>
+</html>
