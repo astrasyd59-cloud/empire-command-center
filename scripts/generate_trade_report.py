@@ -270,48 +270,9 @@ def fetch_macro():
     return out
 
 def fetch_cot():
-    print(" [COT] Fetching from CFTC...")
-    result = {k: {"net": None, "bias": "unknown"} for k in INSTRUMENTS}
-    try:
-        r = requests.get("https://www.cftc.gov/dea/newcot/deahistfo_disaggregated.txt", timeout=25)
-        if r.status_code != 200:
-            print(f"  COT HTTP {r.status_code}")
-            return result
-        lines = r.text.split("\n")
-        hdrs = [x.strip().upper() for x in lines[0].split(",")]
-        ni = hdrs.index("MARKET_AND_EXCHANGE_NAMES")
-        li = hdrs.index("NONCOMM_POSITIONS_LONG_ALL")
-        si = hdrs.index("NONCOMM_POSITIONS_SHORT_ALL")
-
-        targets = {
-            "GOLD": "GOLD - COMMODITY EXCHANGE INC.",
-            "SILVER": "SILVER - COMMODITY EXCHANGE INC.",
-            "ES": "E-MINI S&P 500 - CHICAGO MERCANTILE EXCHANGE",
-            "NQ": "E-MINI NASDAQ-100 - CHICAGO MERCANTILE EXCHANGE",
-            "AUDUSD": "AUSTRALIAN DOLLAR - CHICAGO MERCANTILE EXCHANGE",
-            "GBPUSD": "BRITISH POUND STERLING - CHICAGO MERCANTILE EXCHANGE",
-        }
-        seen = set()
-        for line in lines[1:]:
-            cols = line.split(",")
-            if len(cols) <= max(ni, li, si):
-                continue
-            mkt = cols[ni].strip().upper().replace('"','')
-            for k, nm in targets.items():
-                if nm in mkt and k not in seen:
-                    try:
-                        lng = int(cols[li].replace('"','').strip())
-                        sht = int(cols[si].replace('"','').strip())
-                        net = lng - sht
-                        result[k] = {"net": net, "longs": lng, "shorts": sht,
-                                     "bias": "long" if net > 0 else "short"}
-                        seen.add(k)
-                        print(f"  {k}: net {net:+,} ({result[k]['bias']})")
-                    except:
-                        pass
-    except Exception as e:
-        print(f"  COT error: {e}")
-    return result
+    """COT data fetch - disabled due to CFTC API changes. Re-enable when alternative source found."""
+    print(" [COT] Skipped (CFTC API unavailable - manual check recommended)")
+    return {k: {"net": None, "bias": "manual_check"} for k in INSTRUMENTS}
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # STEP 2 — ANALYSIS (direct fallback, no Kimi needed for test)
