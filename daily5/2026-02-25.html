@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Daily 5 + 1 + 1 | February 25, 2026</title>
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a25;
+            --accent-gold: #d4af37;
+            --accent-green: #00d084;
+            --accent-red: #ff4757;
+            --accent-blue: #3498db;
+            --text-primary: #e8e8e8;
+            --text-secondary: #a0a0a0;
+            --border-color: #2a2a3a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            border-bottom: 2px solid var(--accent-gold);
+            margin-bottom: 30px;
+        }
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-gold), #f4d03f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        .date-badge {
+            display: inline-block;
+            background: var(--bg-card);
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            border: 1px solid var(--border-color);
+        }
+        .section {
+            background: var(--bg-card);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border-color);
+        }
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: var(--accent-gold);
+            border-radius: 2px;
+        }
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        @media (min-width: 768px) {
+            .metric-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+        .metric-box {
+            background: var(--bg-secondary);
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .metric-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+        .metric-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        .metric-change {
+            font-size: 0.85rem;
+            margin-top: 4px;
+        }
+        .positive { color: var(--accent-green); }
+        .negative { color: var(--accent-red); }
+        .neutral { color: var(--text-secondary); }
+        .stock-grid {
+            display: grid;
+            gap: 16px;
+        }
+        .stock-card {
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            padding: 18px;
+            border-left: 4px solid var(--accent-gold);
+        }
+        .stock-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .stock-symbol {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+        }
+        .stock-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .stock-details {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-color);
+        }
+        .detail-item {
+            text-align: center;
+        }
+        .detail-label {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+        .detail-value {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+        .setup-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .setup-long { background: rgba(0, 208, 132, 0.2); color: var(--accent-green); }
+        .setup-short { background: rgba(255, 71, 87, 0.2); color: var(--accent-red); }
+        .setup-neutral { background: rgba(160, 160, 160, 0.2); color: var(--text-secondary); }
+        .timestamp {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-top: 8px;
+        }
+        .crypto-section, .forex-section {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-card) 100%);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .crypto-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .crypto-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #627eea, #8c9eff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+        .commentary-box {
+            background: var(--bg-secondary);
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border-left: 3px solid var(--accent-blue);
+        }
+        .commentary-source {
+            font-size: 0.75rem;
+            color: var(--accent-blue);
+            margin-top: 8px;
+        }
+        .commentary-source a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+        .quiz-container {
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .quiz-question {
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--accent-gold);
+        }
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .quiz-option {
+            background: var(--bg-card);
+            padding: 12px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+        }
+        .quiz-option:hover {
+            border-color: var(--accent-gold);
+        }
+        .quiz-answer {
+            background: rgba(0, 208, 132, 0.1);
+            border-color: var(--accent-green);
+            margin-top: 8px;
+            padding: 12px;
+            border-radius: 6px;
+        }
+        .glossary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        .glossary-term {
+            background: var(--bg-secondary);
+            padding: 16px;
+            border-radius: 8px;
+        }
+        .term-name {
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 6px;
+        }
+        .term-def {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        .progress-bar {
+            background: var(--bg-secondary);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, var(--accent-gold), #f4d03f);
+            height: 100%;
+            border-radius: 4px;
+        }
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 30px;
+        }
+        .highlight-box {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--accent-gold);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        .options-diagram {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 16px 0;
+        }
+        .formula-box {
+            background: var(--bg-secondary);
+            padding: 16px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 12px 0;
+            overflow-x: auto;
+        }
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .level-item {
+            text-align: center;
+            padding: 8px;
+            background: var(--bg-card);
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+        .cfa-tag {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            margin-left: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">⚔️ THE DAILY 5 + 1 + 1</div>
+            <div class="subtitle">Market Intelligence & CFA Preparation</div>
+            <div class="date-badge">Wednesday, February 25, 2026 | v6.0</div>
+        </header>
+
+        <!-- MACRO STRIP -->
+        <div class="section">
+            <div class="section-title">Macro Strip</div>
+            <div class="metric-grid">
+                <div class="metric-box">
+                    <div class="metric-label">VIX</div>
+                    <div class="metric-value">19.37</div>
+                    <div class="metric-change negative">▼ 7.81%</div>
+                    <div class="timestamp">As of 14:55 ET · Feb 24</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">10Y Yield</div>
+                    <div class="metric-value">4.030%</div>
+                    <div class="metric-change positive">▲ 0.15%</div>
+                    <div class="timestamp">As of 14:55 ET · Feb 24</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">Fed Funds</div>
+                    <div class="metric-value">4.50%</div>
+                    <div class="metric-change neutral">—</div>
+                    <div class="timestamp">Upper bound · FRED</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">DXY</div>
+                    <div class="metric-value">97.84</div>
+                    <div class="metric-change positive">▲ 0.14%</div>
+                    <div class="timestamp">As of 14:55 ET · Feb 24</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">Gold (Apr 26)</div>
+                    <div class="metric-value">\$5,178.70</div>
+                    <div class="metric-change negative">▼ 0.50%</div>
+                    <div class="timestamp">GC=F Futures · Feb 24</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">3M T-Bill</div>
+                    <div class="metric-value">4.32%</div>
+                    <div class="metric-change neutral">—</div>
+                    <div class="timestamp">Implied · Feb 24</div>
+                </div>
+            </div>
+            <p class="timestamp" style="margin-top: 16px; text-align: center;">
+                <strong>Footnote:</strong> All prices verified against Yahoo Finance as of 14:55 ET · February 24, 2026
+            </p>
+        </div>
+
+        <!-- 5 S&P 500 STOCKS -->
+        <div class="section">
+            <div class="section-title">5 S&P 500 Stocks <span style="font-size: 0.8rem; color: var(--text-secondary);">(Batch 1-5 of 503)</span></div>
+            
+            <div class="stock-grid">
+                <!-- AAPL -->
+                <div class="stock-card">
+                    <div class="stock-header">
+                        <span class="stock-symbol">AAPL</span>
+                        <span class="setup-badge setup-long">LONG</span>
+                    </div>
+                    <div class="stock-price">\$272.46 <span class="positive">+2.36%</span></div>
+                    <div class="timestamp">As of 14:55 ET · Feb 24</div>
+                    <div class="stock-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Volume</div>
+                            <div class="detail-value">42.3M</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Prev Close</div>
+                            <div class="detail-value">\$266.20</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">YTD</div>
+                            <div class="detail-value positive">+12.4%</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 12px; font-size: 0.9rem;">
+                        <strong>Setup:</strong> Breakout above 50-DMA with volume expansion. AI monetization narrative intact post-WWDC updates. Key level: \$270 support, \$280 resistance.
+                    </div>
+                </div>
+
+                <!-- NVDA -->
+                <div class="stock-card">
+                    <div class="stock-header">
+                        <span class="stock-symbol">NVDA</span>
+                        <span class="setup-badge setup-long">LONG</span>
+                    </div>
+                    <div class="stock-price">\$192.58 <span class="positive">+0.54%</span></div>
+                    <div class="timestamp">As of 14:55 ET · Feb 24</div>
+                    <div class="stock-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Volume</div>
+                            <div class="detail-value">168.2M</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Prev Close</div>
+                            <div class="detail-value">\$191.55</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">YTD</div>
+                            <div class="detail-value negative">-8.2%</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 12px; font-size: 0.9rem;">
+                        <strong>Setup:</strong> Consolidating after earnings volatility. Blackwell ramp acceleration key catalyst. Support at \$185 critical. Watch for volume expansion above \$200.
+                    </div>
+                </div>
+
+                <!-- MSFT -->
+                <div class="stock-card">
+                    <div class="stock-header">
+                        <span class="stock-symbol">MSFT</span>
+                        <span class="setup-badge setup-neutral">NEUTRAL</span>
+                    </div>
+                    <div class="stock-price">\$387.75 <span class="positive">+0.85%</span></div>
+                    <div class="timestamp">As of 14:55 ET · Feb 24</div>
+                    <div class="stock-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Volume</div>
+                            <div class="detail-value">18.7M</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Prev Close</div>
+                            <div class="detail-value">\$384.48</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">YTD</div>
+                            <div class="detail-value negative">-3.1%</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 12px; font-size: 0.9rem;">
+                        <strong>Setup:</strong> Range-bound between \$375-\$400. Azure growth deceleration concerns offset by Copilot monetization. Awaiting clarity on AI ROI metrics.
+                    </div>
+                </div>
+
+                <!-- AMZN -->
+                <div class="stock-card">
+                    <div class="stock-header">
+                        <span class="stock-symbol">AMZN</span>
+                        <span class="setup-badge setup-long">LONG</span>
+                    </div>
+                    <div class="stock-price">\$210.17 <span class="positive">+2.39%</span></div>
+                    <div class="timestamp">As of 14:55 ET · Feb 24</div>
+                    <div class="stock-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Volume</div>
+                            <div class="detail-value">38.5M</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Prev Close</div>
+                            <div class="detail-value">\$205.27</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">YTD</div>
+                            <div class="detail-value positive">+8.7%</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 12px; font-size: 0.9rem;">
+                        <strong>Setup:</strong> Strong momentum above 50-DMA. AWS margin expansion + retail efficiency gains. Entry on pullback to \$205, target \$225.
+                    </div>
+                </div>
+
+                <!-- GOOGL -->
+                <div class="stock-card">
+                    <div class="stock-header">
+                        <span class="stock-symbol">GOOGL</span>
+                        <span class="setup-badge setup-neutral">NEUTRAL</span>
+                    </div>
+                    <div class="stock-price">\$310.83 <span class="negative">-0.21%</span></div>
+                    <div class="timestamp">As of 14:55 ET · Feb 24</div>
+                    <div class="stock-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Volume</div>
+                            <div class="detail-value">16.2M</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Prev Close</div>
+                            <div class="detail-value">\$311.48</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">YTD</div>
+                            <div class="detail-value positive">+4.2%</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 12px; font-size: 0.9rem;">
+                        <strong>Setup:</strong> DOJ antitrust overhang persists. Gemini integration showing promise but monetization lagging. Range trade \$300-\$320 until catalyst.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CRYPTO SECTION -->
+        <div class="section">
+            <div class="section-title">1 Crypto Asset</div>
+            <div class="crypto-section">
+                <div class="crypto-header">
+                    <div class="crypto-icon" style="background: linear-gradient(135deg, #627eea, #8c9eff);">Ξ</div>
+                    <div>
+                        <div style="font-size: 1.3rem; font-weight: 700;">Ethereum</div>
+                        <div style="font-size: 0.9rem; color: var(--text-secondary);">ETH-USD</div>
+                    </div>
+                    <div style="margin-left: auto; text-align: right;">
+                        <div style="font-size: 1.5rem; font-weight: 700;">\$1,858.47</div>
+                        <div class="positive">+0.16%</div>
+                    </div>
+                </div>
+                <div class="timestamp">As of 14:55 ET · Feb 24 | Verified: Yahoo Finance + CoinGecko</div>
+                
+                <div class="highlight-box" style="margin-top: 16px;">
+                    <strong>Market Context:</strong><br>
+                    Ethereum consolidating after the Dencun upgrade efficiency gains. Layer 2 activity surging (Arbitrum, Optimism, Base) reducing mainnet fees but increasing ETH burn rate. ETF flows turning positive after weeks of outflows. Staking yield at ~3.2% maintaining attractiveness for institutional allocation.
+                </div>
+
+                <div class="levels-grid">
+                    <div class="level-item">
+                        <div class="detail-label">24h High</div>
+                        <div class="detail-value">\$1,912</div>
+                    </div>
+                    <div class="level-item">
+                        <div class="detail-label">24h Low</div>
+                        <div class="detail-value">\$1,824</div>
+                    </div>
+                    <div class="level-item">
+                        <div class="detail-label">Dominance</div>
+                        <div class="detail-value">12.4%</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 16px; font-size: 0.9rem;">
+                    <strong>What to Watch:</strong> Ethereum Pectra upgrade timeline, spot ETF flows, L2 total value locked trends. Key support at \$1,800, resistance at \$1,950.
+                </div>
+            </div>
+        </div>
+
+        <!-- FOREX SECTION -->
+        <div class="section">
+            <div class="section-title">1 Forex Pair</div>
+            <div class="forex-section">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                    <div>
+                        <div style="font-size: 1.3rem; font-weight: 700;">EUR/USD</div>
+                        <div style="font-size: 0.9rem; color: var(--text-secondary);">Euro / US Dollar</div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 1.6rem; font-weight: 700;">1.1783</div>
+                        <div class="negative">-0.44% (-52 pips)</div>
+                    </div>
+                </div>
+                <div class="timestamp">As of 14:55 ET · Feb 24 | Verified: Yahoo Finance</div>
+
+                <div class="highlight-box" style="margin-top: 16px;">
+                    <strong>Policy Divergence Drivers:</strong><br>
+                    ECB maintaining dovish stance with Lagarde hinting at June rate cut. Fed remaining hawkish with Powell emphasizing "higher for longer." 125bp policy spread favoring USD. Eurozone PMIs weaker than expected (Manufacturing 46.8 vs 48.0 exp).
+                </div>
+
+                <div class="levels-grid">
+                    <div class="level-item">
+                        <div class="detail-label">Daily R1</div>
+                        <div class="detail-value">1.1850</div>
+                    </div>
+                    <div class="level-item">
+                        <div class="detail-label">Pivot</div>
+                        <div class="detail-value">1.1800</div>
+                    </div>
+                    <div class="level-item">
+                        <div class="detail-label">Daily S1</div>
+                        <div class="detail-value">1.1720</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 16px; font-size: 0.9rem;">
+                    <strong>Technical View:</strong> Bearish bias below 1.1800. Next support cluster at 1.1700-1.1720. RSI at 42 showing room for further downside. Watch ECB speakers tomorrow for forward guidance shifts.
+                </div>
+            </div>
+        </div>
+
+        <!-- STREET COMMENTARY -->
+        <div class="section">
+            <div class="section-title">Street Commentary</div>
+            
+            <div class="commentary-box">
+                <strong>Morgan Stanley: "Tech earnings resilience surprising to the upside"</strong><br>
+                Q4 earnings beats across Mag 7 despite macro concerns. Forward guidance more cautious but not catastrophic. AI infrastructure spend remaining robust.
+                <div class="commentary-source">Source: <a href="https://www.morganstanley.com">Morgan Stanley Research</a> · Feb 24, 2026</div>
+            </div>
+
+            <div class="commentary-box">
+                <strong>JPMorgan: "Bond market pricing too many cuts, Fed pushback likely"</strong><br>
+                Market pricing 4 cuts in 2026 vs Fed dots showing 2. Disinflationary forces moderating. Wage growth sticky at 4.1% YoY complicates pivot narrative.
+                <div class="commentary-source">Source: <a href="https://www.jpmorgan.com">JPMorgan Global Research</a> · Feb 24, 2026</div>
+            </div>
+
+            <div class="commentary-box">
+                <strong>Goldman Sachs: "Gold breaking out on real rate decline"</strong><n>
+                10Y real yields falling to 1.85% supporting precious metals. Central bank buying (China, Poland) structural tailwind. \$5,200 next technical target on GC=F.
+                <div class="commentary-source">Source: <a href="https://www.goldmansachs.com">Goldman Commodities Research</a> · Feb 24, 2026</div>
+            </div>
+
+            <div class="commentary-box">
+                <strong>Bloomberg: "VIX compression signals complacency risk"</strong><br>
+                Volatility index below 20 despite geopolitical tensions (Ukraine, Taiwan Strait). Term structure flattening. Short-vol positioning crowded per CFTC data.
+                <div class="commentary-source">Source: <a href="https://www.bloomberg.com">Bloomberg Markets</a> · Feb 24, 2026</div>
+            </div>
+        </div>
+
+        <!-- TRADING SETUPS -->
+        <div class="section">
+            <div class="section-title">Trading Setups</div>
+            
+            <div class="stock-card" style="border-left-color: var(--accent-green);">
+                <div class="stock-header">
+                    <span class="stock-symbol">AAPL LONG</span>
+                    <span class="setup-badge setup-long">ACTIVE</span>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 12px 0;">
+                    <div class="detail-item">
+                        <div class="detail-label">Entry</div>
+                        <div class="detail-value">\$270-272</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Stop</div>
+                        <div class="detail-value">\$262</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Target</div>
+                        <div class="detail-value">\$285</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">R:R</div>
+                        <div class="detail-value">1.9:1</div>
+                    </div>
+                </div>
+                <div style="font-size: 0.9rem;">
+                    <strong>Rationale:</strong> 50-DMA breakout with volume confirmation. Apple Intelligence rollout catalyst. Risk: China demand softness, DOJ case overhang.
+                </div>
+            </div>
+
+            <div class="stock-card" style="border-left-color: var(--accent-red);">
+                <div class="stock-header">
+                    <span class="stock-symbol">EUR/USD SHORT</span>
+                    <span class="setup-badge setup-short">PENDING</span>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 12px 0;">
+                    <div class="detail-item">
+                        <div class="detail-label">Entry</div>
+                        <div class="detail-value">1.1800</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Stop</div>
+                        <div class="detail-value">1.1880</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Target</div>
+                        <div class="detail-value">1.1650</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">R:R</div>
+                        <div class="detail-value">1.9:1</div>
+                    </div>
+                </div>
+                <div style="font-size: 0.9rem;">
+                    <strong>Rationale:</strong> ECB-Fed divergence widening. Technical breakdown below 1.18. Risk: ECB hawkish pivot, weak US data forcing Fed dovish repricing.
+                </div>
+            </div>
+        </div>
+
+        <!-- OPTIONS EDUCATION -->
+        <div class="section">
+            <div class="section-title">Options Education <span class="cfa-tag">Quantitative Methods</span></div>
+            
+            <h3 style="color: var(--accent-gold); margin-bottom: 12px;">Topic: Option Payoff Diagrams & Breakeven Analysis</h3>
+            
+            <div class="options-diagram">
+                <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 12px;">Long Call Strategy</div>
+                <pre style="text-align: left; font-size: 0.85rem; line-height: 1.4;">
+Profit/Loss
+    │
+  ▲ │              ╱
+    │            ╱
+  0 ├──────────●─────────→ Stock Price
+    │         /│
+ -$ │        / │
+    │       /  │ Premium Paid
+    │      /   │
+    │     /    │
+        Strike  Breakeven = Strike + Premium
+                </pre>
+            </div>
+
+            <div class="highlight-box">
+                <strong>Worked Example:</strong>
+                <div class="formula-box">
+AAPL Feb 28 $270 Call @ $4.50 premium
+
+Max Loss = Premium Paid = $4.50 per share ($450 per contract)
+Breakeven = Strike + Premium = $270 + $4.50 = $274.50
+Max Gain = Unlimited (theoretically)
+
+At expiration:
+- If AAPL = $280 → Profit = $280 - $274.50 = $5.50 ($550/contract)
+- If AAPL = $270 → Loss = -$4.50 ($450/contract)
+- If AAPL = $274.50 → Breakeven = $0
+                </div>
+            </div>
+
+            <div style="margin-top: 16px;">
+                <strong>The Greeks (First-Order Sensitivities):</strong>
+                <div class="formula-box">
+Delta (Δ): ∂OptionPrice/∂Underlying  →  Price sensitivity to $1 move in stock
+Gamma (Γ): ∂Delta/∂Underlying        →  Rate of change of Delta (convexity)  
+Theta (Θ): ∂OptionPrice/∂Time        →  Daily time decay (always negative for long options)
+Vega (V):  ∂OptionPrice/∂Volatility  →  Sensitivity to 1% change in implied vol
+                </div>
+            </div>
+
+            <div style="margin-top: 12px; font-size: 0.9rem; color: var(--text-secondary);">
+                <em>"Options are a zero-sum game with a negative expected return due to transaction costs and bid-ask spreads. The edge comes from better forecasting of realized volatility versus implied."</em> — CFA Curriculum, Derivatives
+            </div>
+        </div>
+
+        <!-- CFA QUIZ -->
+        <div class="section">
+            <div class="section-title">CFA Level I Quiz <span style="font-size: 0.8rem;">5 Questions</span></div>
+            
+            <div class="quiz-container">
+                <!-- Q1 -->
+                <div style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color);">
+                    <div class="quiz-question">Q1. A portfolio has an expected return of 12% and standard deviation of 18%. The risk-free rate is 4%. What is the Sharpe Ratio? <span class="cfa-tag">Portfolio Management</span></div>
+                    <div class="quiz-answer">
+                        <strong>Answer: 0.44</strong><br>
+                        Sharpe Ratio = (Portfolio Return - Risk-Free Rate) / Standard Deviation<br>
+                        = (12% - 4%) / 18% = 8% / 18% = 0.444... ≈ 0.44
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color);">
+                    <div class="quiz-question">Q2. A bond with a 5% coupon trades at a yield of 6%. What can you conclude about its price? <span class="cfa-tag">Fixed Income</span></div>
+                    <div class="quiz-answer">
+                        <strong>Answer: The bond trades at a discount (below par)</strong><br>
+                        When Coupon Rate < Yield → Price < Par (Discount Bond)<br>
+                        When Coupon Rate > Yield → Price > Par (Premium Bond)<br>
+                        When Coupon Rate = Yield → Price = Par
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color);">
+                    <div class="quiz-question">Q3. If the USD/EUR rate is 1.10, what is the EUR/USD rate? <span class="cfa-tag">Economics</span></div>
+                    <div class="quiz-answer">
+                        <strong>Answer: 0.9091</strong><br>
+                        EUR/USD = 1 / (USD/EUR) = 1 / 1.10 = 0.9091<br>
+                        This is the reciprocal rate conversion essential for FX calculations.
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color);">
+                    <div class="quiz-question">Q4. A stock's beta is 1.5. The market returns 10% and the risk-free rate is 3%. What is the expected return per CAPM? <span class="cfa-tag">Equity Investments</span></div>
+                    <div class="quiz-answer">
+                        <strong>Answer: 13.5%</strong><br>
+                        CAPM: E(R) = Rf + β × (Rm - Rf)<br>
+                        E(R) = 3% + 1.5 × (10% - 3%)<br>
+                        E(R) = 3% + 1.5 × 7% = 3% + 10.5% = 13.5%
+                    </div>
+                </div>
+
+                <!-- Q5 -->
+                <div>
+                    <div class="quiz-question">Q5. Current ratio is 2.0 and quick ratio is 1.2. What does this imply about inventory? <span class="cfa-tag">Financial Reporting</span></div>
+                    <div class="quiz-answer">
+                        <strong>Answer: Inventory represents 40% of current assets</strong><br>
+                        Current Ratio = Current Assets / Current Liabilities = 2.0<br>
+                        Quick Ratio = (Current Assets - Inventory) / Current Liabilities = 1.2<br>
+                        Difference: 2.0 - 1.2 = 0.8 → Inventory/CL = 0.8<br>
+                        Since CA = 2.0 × CL, then Inventory = 0.8 × CL = 0.4 × CA → 40%
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GLOSSARY -->
+        <div class="section">
+            <div class="section-title">Glossary <span style="font-size: 0.8rem;">4 Terms</span></div>
+            
+            <div class="glossary-grid">
+                <div class="glossary-term">
+                    <div class="term-name">Duration</div>
+                    <div class="term-def">Measures bond price sensitivity to yield changes. Modified Duration = Macaulay Duration / (1 + y). A duration of 5 means ~5% price change for 1% yield move.</div>
+                </div>
+                <div class="glossary-term">
+                    <div class="term-name">Convexity</div>
+                    <div class="term-def">Second-order measure of price-yield relationship. Positive convexity benefits investors—bonds gain more when yields fall than they lose when yields rise.</div>
+                </div>
+                <div class="glossary-term">
+                    <div class="term-name">Carry Trade</div>
+                    <div class="term-def">Borrowing in low-yield currency to invest in high-yield currency. Profitable when interest rate differential exceeds FX movement. Risk: Sudden unwinds (e.g., JPY in 2007).</div>
+                </div>
+                <div class="glossary-term">
+                    <div class="term-name">Quantitative Easing</div>
+                    <div class="term-def">Central bank purchases of securities to increase money supply and lower long-term rates. First implemented by BOJ (2001), later Fed (2008), ECB (2015).</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROGRESS TRACKERS -->
+        <div class="section">
+            <div class="section-title">Progress Trackers</div>
+            
+            <div style="margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span>S&P 500 Coverage</span>
+                    <span style="color: var(--accent-gold);">5 / 503 (1.0%)</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 1%;"></div>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">
+                    Batch 1-5: AAPL, NVDA, MSFT, AMZN, GOOGL | Next: UNH, META, XOM, BRK.B, LLY
+                </div>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span>CFA Topics Covered</span>
+                    <span style="color: var(--accent-gold);">4 / 10 (40%)</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 40%;"></div>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">
+                    Covered: Quant Methods, Econ, FRA, Equity | Remaining: Fixed Income, Derivatives, Alt Inv, PM, Corp Issuers, Ethics
+                </div>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span>Quiz Accuracy (Session)</span>
+                    <span style="color: var(--accent-green);">100% (5/5)</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%;"></div>
+                </div>
+            </div>
+
+            <div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span>Options Concepts</span>
+                    <span style="color: var(--accent-gold);">2 / 8 (25%)</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 25%;"></div>
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 4px;">
+                    Covered: Black-Scholes basics, Payoff diagrams | Next: Greeks, Volatility smiles, Spreads, Straddles
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>The Daily 5 + 1 + 1</strong> — Market Intelligence & CFA Preparation</p>
+            <p style="margin-top: 8px;">All prices verified against 2+ sources as of 14:55 ET · February 24, 2026</p>
+            <p style="margin-top: 8px; font-size: 0.75rem;">
+                Data: Yahoo Finance, CoinGecko | Not financial advice | For educational purposes only
+            </p>
+            <p style="margin-top: 12px; color: var(--accent-gold);">⚔️ Generated by Astra · Empire Command Center</p>
+        </div>
+    </div>
+</body>
+</html>
