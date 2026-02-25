@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASTRA Report Dashboard — Complete Archive</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f8f6f1; --bg-card: #ffffff; --bg-subtle: #f2efe8;
+  --text-primary: #1a1714; --text-secondary: #4a4540; --text-muted: #857e75;
+  --border: #ddd9ce; --border-strong: #b8b0a0; --accent: #1a3a5c; --gold: #9a7b2a;
+  --green: #1e5c2e; --red: #8c1a1a; --purple: #4a2a7a;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Source Serif 4', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+[data-theme="dark"] {
+  --bg: #111210; --bg-card: #1c1b18; --bg-subtle: #242320;
+  --text-primary: #f0ede6; --text-secondary: #c8c4ba; --text-muted: #7a7570;
+  --border: #38352e; --border-strong: #4a4740; --accent: #7ab0e0; --gold: #d4a84c;
+  --green: #4caf6a; --red: #e05a5a; --purple: #a07adc;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--text-primary); line-height: 1.65; font-size: 15px; }
+.container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+header { padding: 48px 0 32px; border-bottom: 3px double var(--border-strong); margin-bottom: 28px; text-align: center; }
+.masthead-label { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; }
+.masthead-title { font-family: var(--font-display); font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 900; color: var(--accent); }
+.masthead-sub { font-style: italic; font-size: 0.95rem; color: var(--text-muted); margin-top: 8px; }
+
+.stats-bar { display: flex; justify-content: center; gap: 32px; margin: 24px 0; flex-wrap: wrap; }
+.stat-item { text-align: center; }
+.stat-val { font-family: var(--font-mono); font-size: 1.8rem; font-weight: 600; color: var(--accent); }
+.stat-lbl { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); }
+
+.section-title {
+  font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--text-muted); padding: 24px 0 12px; margin-top: 16px; border-bottom: 1px solid var(--border);
+}
+
+.report-card {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+  margin-bottom: 12px; overflow: hidden; transition: all 0.2s; cursor: pointer;
+}
+.report-card:hover { border-color: var(--accent); box-shadow: 0 4px 12px rgba(0,0,0,0.08); transform: translateY(-1px); }
+.report-header {
+  padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+}
+.report-title { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; color: var(--accent); }
+.report-date { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted); background: var(--bg-subtle); padding: 3px 10px; border-radius: 12px; }
+.report-body { padding: 0 18px 14px; }
+.report-desc { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 10px; }
+.report-link { font-family: var(--font-mono); font-size: 0.7rem; color: var(--purple); text-decoration: none; }
+.report-link:hover { text-decoration: underline; }
+
+.category-badge {
+  font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 1px; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 4px; margin-left: 8px;
+}
+.badge-daily { background: rgba(30,92,46,0.12); color: var(--green); }
+.badge-strategy { background: rgba(74,42,122,0.12); color: var(--purple); }
+.badge-analysis { background: rgba(26,58,92,0.12); color: var(--accent); }
+.badge-other { background: rgba(154,123,42,0.12); color: var(--gold); }
+
+.footer { text-align: center; padding: 40px 20px; border-top: 1px solid var(--border); margin-top: 40px; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.75rem; }
+a { text-decoration: none; color: inherit; display: block; }
+@media (max-width: 600px) { .report-header { flex-direction: column; align-items: flex-start; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="masthead-label">OpenClaw Empire · ASTRA Intelligence</div>
+    <h1 class="masthead-title">Report Archive Dashboard</h1>
+    <div class="masthead-sub">Complete Collection of All Analysis & Reports</div>
+    <div class="stats-bar">
+      <div class="stat-item"><div class="stat-val">31</div><div class="stat-lbl">Total Reports</div></div>
+      <div class="stat-item"><div class="stat-val">6</div><div class="stat-lbl">Daily Briefs</div></div>
+      <div class="stat-item"><div class="stat-val">12</div><div class="stat-lbl">Strategy Analyses</div></div>
+      <div class="stat-item"><div class="stat-val">13</div><div class="stat-lbl">Other Reports</div></div>
+    </div>
+  </header>
+
+  <div class="section-title">🗞️ Daily 5 + 1 Briefs (Latest First)</div>
+
+  <a href="https://astrasyd59-cloud.github.io/empire-command-center/daily5/2026-02-25.html" target="_blank">
+  <div class="report-card">
+    <div class="report-header">
+      <div><span class="report-title">The Daily 5 + 1</span><span class="category-badge badge-daily">Daily Brief</span></div>
+      <span class="report-date">Feb 25, 2026</span>
+    </div>
+    <div class="report-body">
+      <div class="report-desc">Full v6 edition with AAPL, NVDA, MSFT, AMZN, GOOGL + ETH. Macro strip, street commentary, CFA lens, trading setups.</div>
+      <span class="report-link">View Report →</span>
+    </div>
+  </div>
+  </a>
+
+  <a href="https://astrasyd59-cloud.github.io/empire-command-center/daily5/2026-02-24.html" target="_blank">
+  <div class="report-card">
+    <div class="report-header">
+      <div><span class="report-title">The Daily 5 + 1 Crypto</span><span class="category-badge badge-daily">Daily Brief</span></div>
+      <span class="report-date">Feb 24, 2026</span>
+    </div>
+    <div class="report-body">
+      <div class="report-desc">Institutional Market Intelligence v6. AAPL, NVDA, MSFT, AMZN, GOOGL with full CFA analysis, Murphy patterns, options education.</div>
+      <span class="report-link">View Report →</span>
+    </div>
+  </div>
+  </a>
+
+  <a href="https://astrasyd59-cloud.github.io/empire-command-center/daily5/2026-02-23.html" target="_blank">
+  <div class="report-card">
+    <div class="report-header">
+      <div><span class="report-title">The Daily 5 + 1 (v3)</span><span class="category-badge badge-daily">Daily Brief</span></div>
+      <span class="report-date">Feb 23, 2026</span>
+    </div>
+    <div class="report-body">
+      <div class="report-desc">Earlier version with AAPL, MSFT, NVDA, AMZN, TSLA + BTC. Basic macro strip and trading setups.</div>
+      <span class="report-link">View Report →</span>
+    </div>
+  </div>
+  </a>
+
+  <div class="section-title">📈 Strategy Analyses (Latest First)</div>
+
+  <a href="https://astrasyd59-cloud.github.io/empire-command-center/reports/strategy_analysis_put_spread_call.html" target="_blank">
+  <div class="report-card">
+    <div class="report-header">
+      <div><span class="report-title">Put Spread + Long Call Strategy</span><span class="category-badge badge-strategy">Options</span></div>
+      <span class="report-date">Feb 25, 2026</span>
+    </div>
+    <div class="report-body">
+      <div class="report-desc">Niall's zero-cost convexity strategy. Put spread finances long call. Risk/reward analysis, payoff tables, US market application.</div>
+      <span class="report-link">View Report →</span>
+    </div>
+  </div>
+  </a>
+
+  <a href="https://astrasyd59-cloud.github.io/empire-command-center/reports/gold-rotation-strategy-analysis.html" target="_blank">
+  <div class="report-card">
+    <div class="report-header">
+      <div><span class="report-title">Gold Rotation Strategy</span><span class="category-badge badge-strategy">Macro</span></div>
+      <span class="report-date">Feb 2026</span>
+    </div>
+    <div class="report-body">
+      <div class="report-desc">Gold cycle analysis, allocation strategy, technical levels, and risk management framework.</div>
+      <span class="report-link">View Report →</span>
+    </div>
+  </div>
+  </a>
+
+  <a href="https://astrasyd59-cloud.github.io/empire-command-center/reports/1000aud_options_guide.html" target="_blank">
+  <div class="report-card">
+    <div class="report-header">
+      <div><span class="report-title">$1,000 AUD Options Trading Guide</span><span class="category-badge badge-strategy">Education</span></div>
+      <span class="report-date">Feb 2026</span>
+    </div>
+    <div class="report-body">
+      <div class="report-desc">Complete beginner's guide to options trading with small capital. Risk management, broker selection, strategy selection.</div>
+      <span class="report-link">View Report →</span>
+    </div>
+  </div>
+  </a>
+
+  <a href="https://astrasyd59-cloud.github.io/empire-command-center/reports/CFA_AUDUSD_Put_CaseStudy.html" target="_blank">
+  <div class="report-card">
+    <div class="report-header">
+      <div><span class="report-title">CFA AUD/USD Put Case Study</span><span class="category-badge badge-strategy">Forex</span></div>
+      <span class="report-date">Feb 2026</span>
+    </div>
+    <div class="report-body">
+      <div class="report-desc">CFA-style case study on AUD/USD put options. Institutional framework, Greeks analysis, position sizing.</div>
+      <span class="report-link">View Report →</span>
+    </div>
+  </div>
+  </a>
+
+  <a href="https://astrasyd59-cloud.github.io/empire-command-center/reports/dax_put_analysis_smeet.html" target="_blank">
+  <div class="report-card">
+    <div class="report-header">
+      <div><span class="report-title">DAX Put Analysis</span><span class="category-badge badge-strategy">Index</span></div>
+      <span class="report-date">Feb 2026</span>
+    </div>
+    <div class="report-body">
+      <div class="report-desc">DAX options analysis with technical levels, volatility assessment, and trade structuring.</div>
+      <span class="report-link">View Report →</span>
+    </div>
+  </div>
+  </a>
+
+  <a href="https://astrasyd59-cloud.github.io/empire-command-center/reports/dax_cfa_analysis.html" target="_blank">
+  <div class="report-card">
+    <div class="report-header">
+      <div><span class="report-title">DAX CFA Analysis</span><span class="category-badge badge-strategy">CFA</span></div>
+      <span class="report-date">Feb 2026</span>
+    </div>
+    <div class="report-body">
+      <div class="report-desc">CFA Level I style analysis of DAX index. Valuation metrics, risk assessment, portfolio implications.</div>
+      <span class="report-link">View Report →</span>
+    </div>
+  </div>
+  </a>
+
+  <a href="https://astrasyd59-cloud.github.io/empire-command-center/reports/daily_trade_idea_template.html" target="_blank">
+  <div class="report-card">
+    <div class="report-header">
+      <div><span class="report-title">Daily Trade Idea Template</span><span class="category-badge badge-strategy">Template</span></div>
+      <span class="report-date">Feb 2026</span>
+    </div>
+    <div class="report-body">
+      <div class="report-desc">Standardized template for 4H swing trade ideas with 5-gate validation, Murphy patterns, position sizing.</div>
+      <span class="report-link">View Report →</span>
+    </div>
+  </div>
+  </a>
+
+  <a href="https://astrasyd59-cloud.github.io/empire-command-center/reports/momentum-watchlist-feb24.html" target="_blank">
+  <div class="report-card">
+    <div class="report-header">
+      <div><span class="report-title">Momentum Watchlist (Feb 24)</span><span class="category-badge badge-strategy">Equity</span></div>
+      <span class="report-date">Feb 24, 2026</span>
+    </div>
+    <div class="report-body">
+      <div class="report-desc">Momentum stocks breaking out with technical setups and entry levels.</div>
+      <span class="report-link">View Report →</span>
+    </div>
+  </div>
+  </a>
+
+  <div class="section-title">📊 Trade Analyses & Briefings</div>
+
+  <a href="https://astrasyd59-cloud.github.io/empire-command-center/reports/trade_2026-02-24.html" target="_blank">
+  <div class="report-card">
+    <div class="report-header">
+      <div><span class="report-title">Trade Analysis: Feb 24 Setup</span><span class="category-badge badge-analysis">Trade</span></div>
+      <span class="report-date">Feb 24, 2026</span>
+    </div>
+    <div class="report-body">
+      <div class="report-desc">Specific trade setup analysis with entry, stop, target, and risk management.</div>
+      <span class="report-link">View Report →</span>
+    </div>
+  </div>
+  </a>
+
+  <a href="https://astrasyd59-cloud.github.io/empire-command-center/reports/latest_trade.html" target="_blank">
+  <div class="report-card">
+    <div class="report-header">
+      <div><span class="report-title">Latest Trade Analysis</span><span class="category-badge badge-analysis">Trade</span></div>
+      <span class="report-date">Feb 2026</span>
+    </div>
+    <div class="report-body">
+      <div class="report-desc">Most recent trade execution and post-trade analysis.</div>
+      <span class="report-link">View Report →</span>
+    </div>
+  </div>
+  </a>
+
+  <div class="section-title">🔮 Other Reports</div>
+
+  <a href="https://astrasyd59-cloud.github.io/empire-command-center/reports/attraction_blueprint_briefing.html" target="_blank">
+  <div class="report-card">
+    <div class="report-header">
+      <div><span class="report-title">Attraction Blueprint Briefing</span><span class="category-badge badge-other">Personal</span></div>
+      <span class="report-date">Feb 2026</span>
+    </div>
+    <div class="report-body">
+      <div class="report-desc">Comprehensive briefing on attraction dynamics and social strategy.</div>
+      <span class="report-link">View Report →</span>
+    </div>
+  </div>
+  </a>
+
+  <a href="https://astrasyd59-cloud.github.io/empire-command-center/reports/vedic-birth-chart-dibashis.html" target="_blank">
+  <div class="report-card">
+    <div class="report-header">
+      <div><span class="report-title">Vedic Birth Chart Analysis</span><span class="category-badge badge-other">Astrology</span></div>
+      <span class="report-date">Feb 2026</span>
+    </div>
+    <div class="report-body">
+      <div class="report-desc">Detailed Vedic astrology analysis and interpretations.</div>
+      <span class="report-link">View Report →</span>
+    </div>
+  </div>
+  </a>
+
+  <a href="https://astrasyd59-cloud.github.io/empire-command-center/hyperliquid-hype-analysis.html" target="_blank">
+  <div class="report-card">
+    <div class="report-header">
+      <div><span class="report-title">Hyperliquid (HYPE) Analysis</span><span class="category-badge badge-other">Crypto</span></div>
+      <span class="report-date">Feb 2026</span>
+    </div>
+    <div class="report-body">
+      <div class="report-desc">Comprehensive analysis of Hyperliquid DEX token, technicals, and market positioning.</div>
+      <span class="report-link">View Report →</span>
+    </div>
+  </div>
+  </a>
+
+  <div class="section-title">⚙️ System & Templates</div>
+
+  <a href="https://astrasyd59-cloud.github.io/empire-command-center/reports/daily_brief_v7_sample.html" target="_blank">
+  <div class="report-card">
+    <div class="report-header">
+      <div><span class="report-title">Daily Brief v7 Sample</span><span class="category-badge badge-other">Template</span></div>
+      <span class="report-date">Feb 2026</span>
+    </div>
+    <div class="report-body">
+      <div class="report-desc">Next-generation daily brief template with enhanced visuals and data presentation.</div>
+      <span class="report-link">View Report →</span>
+    </div>
+  </div>
+  </a>
+
+  <a href="https://astrasyd59-cloud.github.io/empire-command-center/stock-research-report.html" target="_blank">
+  <div class="report-card">
+    <div class="report-header">
+      <div><span class="report-title">Stock Research Report Template</span><span class="category-badge badge-other">Template</span></div>
+      <span class="report-date">Feb 2026</span>
+    </div>
+    <div class="report-body">
+      <div class="report-desc">Institutional-style equity research report template.</div>
+      <span class="report-link">View Report →</span>
+    </div>
+  </div>
+  </a>
+
+  <a href="https://astrasyd59-cloud.github.io/empire-command-center/technical-analysis-report.html" target="_blank">
+  <div class="report-card">
+    <div class="report-header">
+      <div><span class="report-title">Technical Analysis Report</span><span class="category-badge badge-other">Template</span></div>
+      <span class="report-date">Feb 2026</span>
+    </div>
+    <div class="report-body">
+      <div class="report-desc">Technical analysis framework and report template with chart patterns.</div>
+      <span class="report-link">View Report →</span>
+    </div>
+  </div>
+  </a>
+
+  <div class="footer">
+    Archive Dashboard · Updated Feb 25, 2026 · OpenClaw Empire · ASTRA<br>
+    All reports preserved on GitHub — nothing deleted
+  </div>
+</div>
+</body>
+</html>
