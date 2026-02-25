@@ -1,0 +1,681 @@
+{
+  "generated_at": "2026-02-24T10:27:44.157811Z",
+  "report_date": "2026-02-24",
+  "week_of": "February 24, 2026",
+  "timeframe": "4H (swing trade)",
+  "instruments": {
+    "GOLD": {
+      "key": "GOLD",
+      "name": "Gold Futures",
+      "category": "commodity",
+      "ticker": "GC=F",
+      "current_price": 5192.2002,
+      "prev_close": 5204.7002,
+      "price_change": -12.5,
+      "price_change_pct": -0.24,
+      "trend": "bullish",
+      "indicators": {
+        "ema20_4h": 5139.0551,
+        "ema50_4h": 5077.8233,
+        "ema200_4h": 4907.0148,
+        "rsi_4h": 67.7,
+        "atr_4h": 51.3142,
+        "high_20bars": 5269.3999,
+        "low_20bars": 4982.0
+      },
+      "setup": {
+        "direction": "long",
+        "entry_zone_low": 5192.2002,
+        "entry_zone_high": 5207.5945,
+        "stop_level": 5115.2288,
+        "target_1": 5361.5372,
+        "target_2": 5476.9942,
+        "rr_ratio": 2.0,
+        "atr_used": 51.3142,
+        "stop_distance": 76.9714,
+        "invalidation": "4H close below 5115.23"
+      },
+      "pattern": {
+        "name": "Double Bottom",
+        "murphy_chapter": "Chapter 5 \u2014 Major Reversal Patterns",
+        "bias": "bullish",
+        "description": "Two nearly equal lows forming a W-shape. Classic bullish reversal. Confirmed on break above the neckline (the high between the two lows)."
+      },
+      "cot_bias": "unknown",
+      "weekly_context": {
+        "week_high": 5269.3999,
+        "week_low": 4869.5,
+        "month_high": 5586.2002,
+        "month_low": 4400.0,
+        "ema50_daily": 4743.1427,
+        "ema200_daily": 4091.0817,
+        "rsi_daily": 62.9
+      },
+      "cot_detail": {
+        "net_speculator": null,
+        "bias": "unknown",
+        "trend": "unknown"
+      },
+      "gates": {
+        "gate1_macro": {
+          "pass": true,
+          "label": "Macro Events Clear",
+          "reason": "No high-impact events \u2014 clean trading week"
+        },
+        "gate2_trend": {
+          "pass": true,
+          "label": "Trend Clear",
+          "reason": "Trend: bullish"
+        },
+        "gate3_pattern": {
+          "pass": true,
+          "label": "Pattern Identified",
+          "reason": "Double Bottom"
+        },
+        "gate4_cot": {
+          "pass": true,
+          "label": "COT Confirmation",
+          "reason": "COT: unknown \u2014 confirms price direction"
+        },
+        "gate5_rr": {
+          "pass": "True",
+          "label": "R:R \u2265 2:1",
+          "reason": "R:R = 2.0:1"
+        },
+        "overall": {
+          "trade_valid": true,
+          "gates_passed": 5
+        }
+      },
+      "trade_valid": true,
+      "gates_passed": 5
+    },
+    "SILVER": {
+      "key": "SILVER",
+      "name": "Silver Futures",
+      "category": "commodity",
+      "ticker": "SI=F",
+      "current_price": 88.235,
+      "prev_close": 86.523,
+      "price_change": 1.712,
+      "price_change_pct": 1.98,
+      "trend": "bullish",
+      "indicators": {
+        "ema20_4h": 84.428,
+        "ema50_4h": 82.2859,
+        "ema200_4h": 83.3926,
+        "rsi_4h": 78.3,
+        "atr_4h": 1.98,
+        "high_20bars": 88.86,
+        "low_20bars": 76.895
+      },
+      "setup": {
+        "direction": "long",
+        "entry_zone_low": 88.235,
+        "entry_zone_high": 88.829,
+        "stop_level": 85.265,
+        "target_1": 94.769,
+        "target_2": 99.224,
+        "rr_ratio": 2.0,
+        "atr_used": 1.98,
+        "stop_distance": 2.97,
+        "invalidation": "4H close below 85.27"
+      },
+      "pattern": {
+        "name": "Bull Flag",
+        "murphy_chapter": "Chapter 6 \u2014 Continuation Patterns",
+        "bias": "bullish",
+        "description": "Strong impulse rally followed by tight, low-volume consolidation. Breakout above flag high targets the flagpole length projected upward."
+      },
+      "cot_bias": "unknown",
+      "weekly_context": {
+        "week_high": 88.75,
+        "week_low": 75.7,
+        "month_high": 121.3,
+        "month_low": 68.71,
+        "ema50_daily": 78.8131,
+        "ema200_daily": 58.269,
+        "rsi_daily": 55.3
+      },
+      "cot_detail": {
+        "net_speculator": null,
+        "bias": "unknown",
+        "trend": "unknown"
+      },
+      "gates": {
+        "gate1_macro": {
+          "pass": true,
+          "label": "Macro Events Clear",
+          "reason": "No high-impact events \u2014 clean trading week"
+        },
+        "gate2_trend": {
+          "pass": true,
+          "label": "Trend Clear",
+          "reason": "Trend: bullish"
+        },
+        "gate3_pattern": {
+          "pass": true,
+          "label": "Pattern Identified",
+          "reason": "Bull Flag"
+        },
+        "gate4_cot": {
+          "pass": true,
+          "label": "COT Confirmation",
+          "reason": "COT: unknown \u2014 confirms price direction"
+        },
+        "gate5_rr": {
+          "pass": "True",
+          "label": "R:R \u2265 2:1",
+          "reason": "R:R = 2.0:1"
+        },
+        "overall": {
+          "trade_valid": true,
+          "gates_passed": 5
+        }
+      },
+      "trade_valid": true,
+      "gates_passed": 5
+    },
+    "ES": {
+      "key": "ES",
+      "name": "S&P 500 E-mini",
+      "category": "index",
+      "ticker": "ES=F",
+      "current_price": 6865.5,
+      "prev_close": 6851.5,
+      "price_change": 14.0,
+      "price_change_pct": 0.2,
+      "trend": "bearish",
+      "indicators": {
+        "ema20_4h": 6876.5494,
+        "ema50_4h": 6889.4757,
+        "ema200_4h": 6920.2365,
+        "rsi_4h": 43.9,
+        "atr_4h": 36.0536,
+        "high_20bars": 6931.5,
+        "low_20bars": 6832.75
+      },
+      "setup": {
+        "direction": "short",
+        "entry_zone_low": 6854.6839,
+        "entry_zone_high": 6865.5,
+        "stop_level": 6919.5804,
+        "target_1": 6746.5232,
+        "target_2": 6665.4027,
+        "rr_ratio": 2.0,
+        "atr_used": 36.0536,
+        "stop_distance": 54.0804,
+        "invalidation": "4H close above 6919.58"
+      },
+      "pattern": {
+        "name": "Downtrend \u2014 No Pattern",
+        "murphy_chapter": "Chapter 4",
+        "bias": "bearish",
+        "description": "Price in downtrend but no actionable pattern identified. Wait for a cleaner setup."
+      },
+      "cot_bias": "unknown",
+      "weekly_context": {
+        "week_high": 6931.5,
+        "week_low": 6832.75,
+        "month_high": 7043.0,
+        "month_low": 6751.5,
+        "ema50_daily": 6899.551,
+        "ema200_daily": 6683.6768,
+        "rsi_daily": 43.7
+      },
+      "cot_detail": {
+        "net_speculator": null,
+        "bias": "unknown",
+        "trend": "unknown"
+      },
+      "gates": {
+        "gate1_macro": {
+          "pass": true,
+          "label": "Macro Events Clear",
+          "reason": "No high-impact events \u2014 clean trading week"
+        },
+        "gate2_trend": {
+          "pass": true,
+          "label": "Trend Clear",
+          "reason": "Trend: bearish"
+        },
+        "gate3_pattern": {
+          "pass": true,
+          "label": "Pattern Identified",
+          "reason": "Downtrend \u2014 No Pattern"
+        },
+        "gate4_cot": {
+          "pass": true,
+          "label": "COT Confirmation",
+          "reason": "COT: unknown \u2014 confirms price direction"
+        },
+        "gate5_rr": {
+          "pass": "True",
+          "label": "R:R \u2265 2:1",
+          "reason": "R:R = 2.0:1"
+        },
+        "overall": {
+          "trade_valid": true,
+          "gates_passed": 5
+        }
+      },
+      "trade_valid": true,
+      "gates_passed": 5
+    },
+    "NQ": {
+      "key": "NQ",
+      "name": "Nasdaq 100 E-mini",
+      "category": "index",
+      "ticker": "NQ=F",
+      "current_price": 24837.25,
+      "prev_close": 24762.75,
+      "price_change": 74.5,
+      "price_change_pct": 0.3,
+      "trend": "bearish",
+      "indicators": {
+        "ema20_4h": 24870.6341,
+        "ema50_4h": 24943.6705,
+        "ema200_4h": 25292.1528,
+        "rsi_4h": 45.9,
+        "atr_4h": 167.0179,
+        "high_20bars": 25139.5,
+        "low_20bars": 24668.0
+      },
+      "setup": {
+        "direction": "short",
+        "entry_zone_low": 24787.1446,
+        "entry_zone_high": 24837.25,
+        "stop_level": 25087.7768,
+        "target_1": 24286.0911,
+        "target_2": 23910.3009,
+        "rr_ratio": 2.0,
+        "atr_used": 167.0179,
+        "stop_distance": 250.5268,
+        "invalidation": "4H close above 25087.78"
+      },
+      "pattern": {
+        "name": "Downtrend \u2014 No Pattern",
+        "murphy_chapter": "Chapter 4",
+        "bias": "bearish",
+        "description": "Price in downtrend but no actionable pattern identified. Wait for a cleaner setup."
+      },
+      "cot_bias": "unknown",
+      "weekly_context": {
+        "week_high": 25139.5,
+        "week_low": 24668.0,
+        "month_high": 26349.0,
+        "month_low": 24239.75,
+        "ema50_daily": 25297.4439,
+        "ema200_daily": 24609.6048,
+        "rsi_daily": 40.3
+      },
+      "cot_detail": {
+        "net_speculator": null,
+        "bias": "unknown",
+        "trend": "unknown"
+      },
+      "gates": {
+        "gate1_macro": {
+          "pass": true,
+          "label": "Macro Events Clear",
+          "reason": "No high-impact events \u2014 clean trading week"
+        },
+        "gate2_trend": {
+          "pass": true,
+          "label": "Trend Clear",
+          "reason": "Trend: bearish"
+        },
+        "gate3_pattern": {
+          "pass": true,
+          "label": "Pattern Identified",
+          "reason": "Downtrend \u2014 No Pattern"
+        },
+        "gate4_cot": {
+          "pass": true,
+          "label": "COT Confirmation",
+          "reason": "COT: unknown \u2014 confirms price direction"
+        },
+        "gate5_rr": {
+          "pass": "True",
+          "label": "R:R \u2265 2:1",
+          "reason": "R:R = 2.0:1"
+        },
+        "overall": {
+          "trade_valid": true,
+          "gates_passed": 5
+        }
+      },
+      "trade_valid": true,
+      "gates_passed": 5
+    },
+    "AUDUSD": {
+      "key": "AUDUSD",
+      "name": "Australian Dollar/USD",
+      "category": "forex",
+      "ticker": "AUDUSD=X",
+      "current_price": 0.7065,
+      "prev_close": 0.7111,
+      "price_change": -0.0046,
+      "price_change_pct": -0.65,
+      "trend": "ranging",
+      "indicators": {
+        "ema20_4h": 0.7067,
+        "ema50_4h": 0.7064,
+        "ema200_4h": 0.6948,
+        "rsi_4h": 62.3,
+        "atr_4h": 0.0022,
+        "high_20bars": 0.7111,
+        "low_20bars": 0.7019
+      },
+      "setup": {
+        "direction": "none",
+        "entry_zone_low": 0.7061,
+        "entry_zone_high": 0.707,
+        "stop_level": null,
+        "target_1": null,
+        "target_2": null,
+        "rr_ratio": 0,
+        "atr_used": 0.0022,
+        "stop_distance": 0.0033,
+        "invalidation": "N/A"
+      },
+      "pattern": {
+        "name": "Ranging \u2014 No Setup",
+        "murphy_chapter": "N/A",
+        "bias": "neutral",
+        "description": "Price ranging between support and resistance. No directional bias. Stand aside."
+      },
+      "cot_bias": "unknown",
+      "weekly_context": {
+        "week_high": 0.7108,
+        "week_low": 0.7017,
+        "month_high": 0.7147,
+        "month_low": 0.6898,
+        "ema50_daily": 0.688,
+        "ema200_daily": 0.6652,
+        "rsi_daily": 53.8
+      },
+      "cot_detail": {
+        "net_speculator": null,
+        "bias": "unknown",
+        "trend": "unknown"
+      },
+      "gates": {
+        "gate1_macro": {
+          "pass": true,
+          "label": "Macro Events Clear",
+          "reason": "No high-impact events \u2014 clean trading week"
+        },
+        "gate2_trend": {
+          "pass": false,
+          "label": "Trend Clear",
+          "reason": "Ranging/choppy \u2014 no directional bias"
+        },
+        "gate3_pattern": {
+          "pass": false,
+          "label": "Pattern Identified",
+          "reason": "Ranging \u2014 No Setup"
+        },
+        "gate4_cot": {
+          "pass": true,
+          "label": "COT Confirmation",
+          "reason": "COT: unknown \u2014 confirms price direction"
+        },
+        "gate5_rr": {
+          "pass": false,
+          "label": "R:R \u2265 2:1",
+          "reason": "R:R not calculable \u2014 no setup"
+        },
+        "overall": {
+          "trade_valid": false,
+          "gates_passed": 2
+        }
+      },
+      "trade_valid": false,
+      "gates_passed": 2
+    },
+    "GBPUSD": {
+      "key": "GBPUSD",
+      "name": "British Pound/USD",
+      "category": "forex",
+      "ticker": "GBPUSD=X",
+      "current_price": 1.35,
+      "prev_close": 1.3533,
+      "price_change": -0.0033,
+      "price_change_pct": -0.24,
+      "trend": "ranging",
+      "indicators": {
+        "ema20_4h": 1.3499,
+        "ema50_4h": 1.3537,
+        "ema200_4h": 1.355,
+        "rsi_4h": 63.1,
+        "atr_4h": 0.0033,
+        "high_20bars": 1.3535,
+        "low_20bars": 1.3435
+      },
+      "setup": {
+        "direction": "none",
+        "entry_zone_low": 1.3494,
+        "entry_zone_high": 1.3507,
+        "stop_level": null,
+        "target_1": null,
+        "target_2": null,
+        "rr_ratio": 0,
+        "atr_used": 0.0033,
+        "stop_distance": 0.0049,
+        "invalidation": "N/A"
+      },
+      "pattern": {
+        "name": "Ranging \u2014 No Setup",
+        "murphy_chapter": "N/A",
+        "bias": "neutral",
+        "description": "Price ranging between support and resistance. No directional bias. Stand aside."
+      },
+      "cot_bias": "unknown",
+      "weekly_context": {
+        "week_high": 1.3582,
+        "week_low": 1.3435,
+        "month_high": 1.3847,
+        "month_low": 1.3435,
+        "ema50_daily": 1.3523,
+        "ema200_daily": 1.3441,
+        "rsi_daily": 36.3
+      },
+      "cot_detail": {
+        "net_speculator": null,
+        "bias": "unknown",
+        "trend": "unknown"
+      },
+      "gates": {
+        "gate1_macro": {
+          "pass": true,
+          "label": "Macro Events Clear",
+          "reason": "No high-impact events \u2014 clean trading week"
+        },
+        "gate2_trend": {
+          "pass": false,
+          "label": "Trend Clear",
+          "reason": "Ranging/choppy \u2014 no directional bias"
+        },
+        "gate3_pattern": {
+          "pass": false,
+          "label": "Pattern Identified",
+          "reason": "Ranging \u2014 No Setup"
+        },
+        "gate4_cot": {
+          "pass": true,
+          "label": "COT Confirmation",
+          "reason": "COT: unknown \u2014 confirms price direction"
+        },
+        "gate5_rr": {
+          "pass": false,
+          "label": "R:R \u2265 2:1",
+          "reason": "R:R not calculable \u2014 no setup"
+        },
+        "overall": {
+          "trade_valid": false,
+          "gates_passed": 2
+        }
+      },
+      "trade_valid": false,
+      "gates_passed": 2
+    }
+  },
+  "macro": {
+    "VIX": {
+      "value": 20.92,
+      "prev": 21.01,
+      "change_pct": -0.43
+    },
+    "DXY": {
+      "value": 97.837,
+      "prev": 97.7,
+      "change_pct": 0.14
+    },
+    "YIELD_10Y": {
+      "value": 4.029,
+      "prev": 4.086,
+      "change_pct": -1.4
+    },
+    "YIELD_2Y": {
+      "value": 3.588,
+      "prev": 3.595,
+      "change_pct": -0.19
+    },
+    "SP500": {
+      "value": 6837.75,
+      "prev": 6909.5098,
+      "change_pct": -1.04
+    },
+    "YIELD_CURVE_SPREAD": 0.441,
+    "YIELD_CURVE_INVERTED": "False"
+  },
+  "cot": {
+    "GOLD": {
+      "net_speculator": null,
+      "bias": "unknown",
+      "trend": "unknown"
+    },
+    "SILVER": {
+      "net_speculator": null,
+      "bias": "unknown",
+      "trend": "unknown"
+    },
+    "ES": {
+      "net_speculator": null,
+      "bias": "unknown",
+      "trend": "unknown"
+    },
+    "NQ": {
+      "net_speculator": null,
+      "bias": "unknown",
+      "trend": "unknown"
+    },
+    "AUDUSD": {
+      "net_speculator": null,
+      "bias": "unknown",
+      "trend": "unknown"
+    },
+    "GBPUSD": {
+      "net_speculator": null,
+      "bias": "unknown",
+      "trend": "unknown"
+    }
+  },
+  "econ_calendar": {
+    "week_of": "February 24, 2026",
+    "week_dates": [
+      "2026-02-24",
+      "2026-02-25",
+      "2026-02-26",
+      "2026-02-27",
+      "2026-02-28",
+      "2026-03-01",
+      "2026-03-02"
+    ],
+    "events": [],
+    "always_watch": [
+      {
+        "event": "FOMC Meeting / Fed Statement",
+        "impact": "HIGH",
+        "affects": [
+          "GOLD",
+          "SILVER",
+          "ES",
+          "NQ",
+          "AUDUSD",
+          "GBPUSD"
+        ]
+      },
+      {
+        "event": "US Non-Farm Payrolls (NFP)",
+        "impact": "HIGH",
+        "affects": [
+          "GOLD",
+          "AUDUSD",
+          "GBPUSD",
+          "ES",
+          "NQ"
+        ]
+      },
+      {
+        "event": "US CPI Inflation",
+        "impact": "HIGH",
+        "affects": [
+          "GOLD",
+          "SILVER",
+          "ES",
+          "NQ",
+          "AUDUSD",
+          "GBPUSD"
+        ]
+      },
+      {
+        "event": "RBA Rate Decision",
+        "impact": "HIGH",
+        "affects": [
+          "AUDUSD"
+        ]
+      },
+      {
+        "event": "BOE Rate Decision",
+        "impact": "HIGH",
+        "affects": [
+          "GBPUSD"
+        ]
+      },
+      {
+        "event": "US GDP (Preliminary/Revised)",
+        "impact": "HIGH",
+        "affects": [
+          "ES",
+          "NQ",
+          "AUDUSD",
+          "GBPUSD"
+        ]
+      },
+      {
+        "event": "PCE Price Index",
+        "impact": "HIGH",
+        "affects": [
+          "GOLD",
+          "ES",
+          "NQ"
+        ]
+      }
+    ],
+    "note": "ASTRA: This calendar requires a live scrape each Sunday.",
+    "has_high_impact_event": false
+  },
+  "valid_setups": [
+    "GOLD",
+    "SILVER",
+    "ES",
+    "NQ"
+  ],
+  "no_trade": [
+    "AUDUSD",
+    "GBPUSD"
+  ],
+  "astra_notes": "All prices fetched live. COT from CFTC. Patterns detected algorithmically."
+}

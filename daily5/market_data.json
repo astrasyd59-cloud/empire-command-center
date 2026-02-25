@@ -1,0 +1,65 @@
+{
+  "AAPL": {
+    "price": 272.22,
+    "change_pct": 2.27,
+    "volume": 25945873,
+    "prev_close": 266.18,
+    "timestamp": "2026-02-25 05:57:16"
+  },
+  "NVDA": {
+    "price": 192.68,
+    "change_pct": 0.59,
+    "volume": 110441133,
+    "prev_close": 191.55,
+    "timestamp": "2026-02-25 05:57:18"
+  },
+  "MSFT": {
+    "price": 387.72,
+    "change_pct": 0.85,
+    "volume": 19936265,
+    "prev_close": 384.47,
+    "timestamp": "2026-02-25 05:57:20"
+  },
+  "AMZN": {
+    "price": 210.04,
+    "change_pct": 2.32,
+    "volume": 23977714,
+    "prev_close": 205.27,
+    "timestamp": "2026-02-25 05:57:22"
+  },
+  "GOOGL": {
+    "price": 310.81,
+    "change_pct": -0.22,
+    "volume": 13857290,
+    "prev_close": 311.49,
+    "timestamp": "2026-02-25 05:57:23"
+  },
+  "ETH": {
+    "price": 1858.47,
+    "change_pct": 0.16,
+    "prev_close": 1855.5,
+    "timestamp": "2026-02-25 05:57:24"
+  },
+  "EURUSD": {
+    "price": 1.17813,
+    "change_pct": -0.451,
+    "prev_close": 1.18347,
+    "timestamp": "2026-02-25 05:57:25"
+  },
+  "VIX": {
+    "price": 19.38
+  },
+  "TNX": {
+    "price": 4.03
+  },
+  "DXY": {
+    "price": 97.84
+  },
+  "GOLD": {
+    "price": 5175.1
+  },
+  "FEDFUNDS": {
+    "price": 5.25,
+    "note": "Target Rate"
+  }
+}

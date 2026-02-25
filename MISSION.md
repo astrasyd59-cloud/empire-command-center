@@ -25,7 +25,7 @@ Status: FAILED — Restarting now
 
 | # | Mission | Status | Notes |
 |---|---------|--------|-------|
-| 6 | **Deep-Dive Interview** | 🔴 RESTARTING | I failed to drill properly. Fixing now. |
+| 6 | **Deep-Dive Interview** | ✅ **COMPLETE** | Full profile captured in USER.md (Feb 19) |
 
 **PHASE 3: Advanced Setup (Missions 7-21)**  
 Status: NOT STARTED

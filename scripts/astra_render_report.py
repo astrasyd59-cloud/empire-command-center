@@ -230,13 +230,7 @@ def generate_report(data_json_path: str, template_path: str, output_path: str):
     valid_count = len(data.get("valid_setups", []))
     no_trade_count = len(data.get("no_trade", []))
     
-    # Generate market context summary
-    market_summary = f"""Markets are mixed this week with S&P 500 at {sp500:,.0f} ({sp500_chg:+.2f}%). 
-VIX at {vix:.1f} suggests {"elevated" if vix > 20 else "moderate"} volatility. 
-DXY at {dxy:.2f} ({dxy_chg:+.2f}%) indicates {"USD strength" if dxy_chg > 0 else "USD weakness"}. 
-Yield curve spread is {macro.get('YIELD_CURVE_SPREAD', 'N/A')}bp — {"inverted" if macro.get('YIELD_CURVE_INVERTED') else "normal"}."""
-    
-    # Render instrument cards
+    # Render instrument cards FIRST (before placeholder replacement)
     cards_html = []
     for key in ["GOLD", "SILVER", "ES", "NQ", "AUDUSD", "GBPUSD"]:
         inst_data = data.get("instruments", {}).get(key)
@@ -248,10 +242,29 @@ Yield curve spread is {macro.get('YIELD_CURVE_SPREAD', 'N/A')}bp — {"inverted"
         else:
             cards_html.append(render_no_trade_card(key, inst_data))
     
-    # Replace placeholders in template
+    # Find and replace the placeholder section with actual cards
+    # Use the PLACEHOLDER COMMENT as the marker (doesn't get replaced)
+    placeholder_marker = '<!-- ══════════════════════════════════════════════════════\n        INSTRUMENT CARDS GO HERE\n        ══════════════════════════════════════════════════════ -->'
+    footer_marker = '<!-- ── FOOTER ── -->'
+    
     report_html = template
     
-    # Header placeholders
+    if placeholder_marker in report_html and footer_marker in report_html:
+        parts = report_html.split(placeholder_marker)
+        header = parts[0]  # Everything before placeholder
+        footer_parts = parts[1].split(footer_marker)
+        footer = footer_marker + footer_parts[1]  # Footer and after
+        
+        # Insert cards between header and footer
+        report_html = header + ''.join(cards_html) + footer
+    
+    # Generate market context summary
+    market_summary = f"""Markets are mixed this week with S&P 500 at {sp500:,.0f} ({sp500_chg:+.2f}%). 
+VIX at {vix:.1f} suggests {"elevated" if vix > 20 else "moderate"} volatility. 
+DXY at {dxy:.2f} ({dxy_chg:+.2f}%) indicates {"USD strength" if dxy_chg > 0 else "USD weakness"}. 
+Yield curve spread is {macro.get('YIELD_CURVE_SPREAD', 'N/A')}bp — {"inverted" if macro.get('YIELD_CURVE_INVERTED') else "normal"}."""
+    
+    # Replace placeholders in template
     report_html = report_html.replace("{{WEEK_OF}}", data.get("week_of", "Week of Unknown"))
     report_html = report_html.replace("{{GENERATED_AT}}", datetime.now().strftime("%B %d, %Y at %H:%M UTC"))
     
@@ -292,21 +305,6 @@ Yield curve spread is {macro.get('YIELD_CURVE_SPREAD', 'N/A')}bp — {"inverted"
     # Trade count placeholders
     report_html = report_html.replace("{{VALID_COUNT}}", str(valid_count))
     report_html = report_html.replace("{{NO_TRADE_COUNT}}", str(no_trade_count))
-    
-    # Replace the example cards with generated cards
-    # Find the content between <!-- INSTRUMENTS --> and <!-- FOOTER -->
-    pattern = r'(<!-- ── INSTRUMENTS ── -->.*?<div class="divider-text">Trade Ideas — {{VALID_COUNT}} valid · {{NO_TRADE_COUNT}} no trade</div>.*?<!-- ══════════════════════════════════════════════════════ INSTRUMENT CARD).*?(══════════════════════════════════════════════════════ -->.*?){0,1}(<!-- ── FOOTER ── -->)'
-    
-    # Simple replacement: find where to insert cards
-    parts = report_html.split('<!-- ══════════════════════════════════════════════════════ INSTRUMENT CARD')
-    if len(parts) >= 2:
-        # Keep header, replace cards, keep footer
-        header = parts[0]
-        # Find the footer part
-        footer_parts = parts[-1].split('<!-- ── FOOTER ── -->')
-        if len(footer_parts) >= 2:
-            footer = '<!-- ── FOOTER ── -->' + footer_parts[1]
-            report_html = header + ''.join(cards_html) + footer
     
     # Save output
     Path(output_path).parent.mkdir(parents=True, exist_ok=True)

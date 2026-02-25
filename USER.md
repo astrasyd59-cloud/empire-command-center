@@ -181,4 +181,25 @@
 
 ---
 
+---
+
+## Measurements
+
+### Suit Measurements (as of Feb 23, 2026)
+
+| Measurement | Value |
+|-------------|-------|
+| Neck | ~38 cm |
+| Shoulder to Shoulder | ~45 cm |
+| Chest | ~101.5 cm |
+| Sleeve (Shoulder to Hand) | ~66 cm |
+| Jacket Length | ~67 cm |
+| Waist | ~89.5 cm |
+| Inseam | ~77 cm |
+
+*Saved for future reference when shopping or tailoring*
+
+---
+
 *First interview: 2026-02-19*
+*Measurements added: 2026-02-23*
