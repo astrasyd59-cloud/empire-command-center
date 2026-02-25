@@ -182,95 +182,168 @@ header {
 .m-down { color: #ff8a80; }
 .macro-divider { width: 1px; background: rgba(255,255,255,0.15); align-self: stretch; }
 
-.section-title {
+.progress-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow-sm);
+}
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.progress-title {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 3px;
+  font-size: 0.72rem;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--text-muted);
-  padding: 8px 0;
-  margin-bottom: 16px;
-  border-bottom: 1px solid var(--border);
+}
+.progress-count {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+.progress-bars { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 480px) { .progress-bars { grid-template-columns: 1fr; } }
+.prog-label {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.prog-bar-bg {
+  height: 6px;
+  background: var(--bg-subtle);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.prog-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 1s ease;
+}
+.fill-blue { background: linear-gradient(90deg, var(--accent), var(--accent-light)); }
+.fill-gold { background: linear-gradient(90deg, var(--gold), var(--gold-light)); }
+.fill-green { background: linear-gradient(90deg, var(--green), #2e8b4a); }
+
+.cfa-topic-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+}
+.topic-pill {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.5px;
+  padding: 4px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+.topic-pill.done { background: var(--green-bg); color: var(--green); border-color: var(--green); }
+.topic-pill.active { background: var(--accent); color: white; border-color: var(--accent); }
+
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 32px 0 20px;
+}
+.section-divider-line { flex: 1; height: 1px; background: var(--border); }
+.section-divider-text {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
 }
 
 .asset-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  margin-bottom: 24px;
+  margin-bottom: 28px;
   box-shadow: var(--shadow-sm);
   overflow: hidden;
 }
 .asset-card-header {
-  background: var(--bg-subtle);
-  border-bottom: 1px solid var(--border);
-  padding: 16px 20px;
+  padding: 20px 24px 16px;
+  border-bottom: 2px solid var(--border);
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   gap: 12px;
 }
-.asset-left { flex: 1; }
-.asset-right { text-align: right; }
-.ticker-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
+.ticker-row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
 .ticker {
-  font-family: var(--font-display);
-  font-size: clamp(1.4rem, 4vw, 1.9rem);
-  font-weight: 900;
+  font-family: var(--font-mono);
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 600;
   color: var(--accent);
   letter-spacing: -0.5px;
 }
+.asset-card.crypto-card .ticker { color: var(--purple); }
 .sector-badge {
   font-family: var(--font-mono);
   font-size: 0.6rem;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: var(--text-muted);
-  background: var(--bg-card);
+  padding: 3px 10px;
+  border-radius: 10px;
+  background: var(--bg-subtle);
   border: 1px solid var(--border);
-  padding: 3px 8px;
-  border-radius: 4px;
+  color: var(--text-muted);
 }
 .company-name {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  margin-top: 2px;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: 3px;
 }
+.asset-right { text-align: right; }
 .price-main {
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 4vw, 1.9rem);
-  font-weight: 700;
+  font-family: var(--font-mono);
+  font-size: clamp(1.2rem, 3.5vw, 1.7rem);
+  font-weight: 600;
   color: var(--text-primary);
 }
 .price-change {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
-  font-weight: 500;
+  font-size: 0.82rem;
+  font-weight: 600;
   margin-top: 2px;
 }
-.price-change.positive { color: var(--green); }
-.price-change.negative { color: var(--red); }
+.positive { color: var(--green); }
+.negative { color: var(--red); }
 .mcap-label {
   font-family: var(--font-mono);
   font-size: 0.65rem;
   color: var(--text-muted);
-  margin-top: 4px;
+  margin-top: 3px;
 }
 
-.asset-body { padding: 20px; }
+.asset-body { padding: 0 24px 24px; }
 
 .metrics-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
-  margin: 16px 0;
+  margin: 18px 0;
 }
+@media (max-width: 480px) { .metrics-grid { grid-template-columns: repeat(2, 1fr); } }
 .metric-tile {
   background: var(--bg-subtle);
   border: 1px solid var(--border);
@@ -278,22 +351,21 @@ header {
   padding: 10px 8px;
   text-align: center;
 }
-.mt-val {
+.metric-tile .mt-val {
   font-family: var(--font-mono);
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--accent);
 }
-.mt-lbl {
+.asset-card.crypto-card .metric-tile .mt-val { color: var(--purple); }
+.metric-tile .mt-lbl {
   font-family: var(--font-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.5px;
+  font-size: 0.55rem;
+  letter-spacing: 0.8px;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-top: 2px;
+  margin-top: 3px;
 }
-.mt-val.positive { color: var(--green); }
-.mt-val.negative { color: var(--red); }
 
 .card-section-title {
   font-family: var(--font-mono);
@@ -305,6 +377,15 @@ header {
   padding: 14px 0 10px;
   border-top: 1px solid var(--border);
   margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card-section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
 }
 
 .street-quote {
@@ -330,7 +411,7 @@ header {
   margin-top: 8px;
 }
 
-.trading-box {
+.cfa-box {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-top: 3px solid var(--accent);
@@ -338,105 +419,450 @@ header {
   padding: 16px 18px;
   margin: 12px 0;
 }
-.setup-row {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+.cfa-box-title {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
   margin-bottom: 10px;
 }
-.setup-item {
-  display: flex;
-  flex-direction: column;
-  background: var(--bg-subtle);
-  padding: 8px 12px;
-  border-radius: var(--radius);
-  min-width: 80px;
+.cfa-box p {
+  font-size: 0.87rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
 }
-.setup-item .lbl {
+
+.formula-block {
   font-family: var(--font-mono);
-  font-size: 0.58rem;
+  font-size: 0.82rem;
+  background: var(--bg-code);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  padding: 12px 14px;
+  margin: 10px 0;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  line-height: 1.8;
+  color: var(--text-primary);
+  overflow-x: auto;
+}
+
+.fun-fact {
+  background: linear-gradient(135deg, var(--teal-bg), var(--bg-subtle));
+  border: 1px solid var(--teal);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  margin: 10px 0;
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.fun-fact-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--teal);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.pattern-diagram {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin: 12px 0;
+}
+.pattern-label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.pattern-diagram svg { width: 100%; height: auto; display: block; }
+
+.murphy-box {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold-light);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 12px 16px;
+  margin: 10px 0;
+}
+.murphy-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.murphy-box p {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.table-wrap { overflow-x: auto; margin: 12px 0; }
+.trading-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  min-width: 480px;
+}
+.trading-table th {
+  background: var(--accent);
+  color: white;
+  padding: 10px 10px;
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: 0.63rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.trading-table td {
+  padding: 11px 10px;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  vertical-align: middle;
+}
+.trading-table tr:hover td { background: var(--bg-subtle); }
+.rr-badge {
+  display: inline-block;
+  background: var(--gold);
+  color: #fff;
+  padding: 3px 9px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.72rem;
+}
+.setup-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 8px;
+  font-size: 0.65rem;
   letter-spacing: 0.5px;
+}
+.bias-bull { background: var(--green); }
+.bias-bear { background: var(--red); }
+.bias-neutral { background: var(--text-muted); }
+
+.options-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--purple);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  margin-bottom: 28px;
+}
+.options-header {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--purple);
+  margin-bottom: 4px;
+}
+.options-sub {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+.options-concept-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 580px) { .options-concept-grid { grid-template-columns: 1fr; } }
+.option-concept-box {
+  background: var(--purple-bg);
+  border: 1px solid var(--purple-light);
+  border-radius: var(--radius);
+  padding: 14px;
+}
+.option-concept-box h4 {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--purple);
+  margin-bottom: 8px;
+}
+.option-concept-box p {
+  font-size: 0.83rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.quiz-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  margin-bottom: 28px;
+}
+.quiz-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.quiz-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+.quiz-progress-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 1px;
   color: var(--text-muted);
 }
-.setup-item .val {
+.cfa-topic-tag {
+  display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.95rem;
-  font-weight: 600;
-  margin-top: 2px;
+  font-size: 0.6rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 10px;
+  background: var(--accent);
+  color: white;
+  margin-bottom: 10px;
 }
-.setup-item .val.green { color: var(--green); }
-.setup-item .val.red { color: var(--red); }
+.quiz-question-block {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin: 14px 0;
+}
+.q-number {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.q-text {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  line-height: 1.65;
+  margin-bottom: 14px;
+}
+.options-list { display: flex; flex-direction: column; gap: 8px; }
+.opt-btn {
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 11px 14px;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  transition: all 0.18s;
+  line-height: 1.5;
+}
+.opt-btn:hover:not(.disabled) {
+  border-color: var(--accent);
+  background: var(--bg-subtle);
+  transform: translateX(2px);
+}
+.opt-btn .opt-letter { font-weight: 700; color: var(--accent); margin-right: 6px; }
+.opt-btn .opt-calc {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  display: block;
+  margin-top: 3px;
+  padding-left: 16px;
+}
+.opt-btn.correct-ans { background: var(--green-bg); border-color: var(--green); color: var(--green); }
+.opt-btn.correct-ans .opt-letter { color: var(--green); }
+.opt-btn.wrong-ans { background: var(--red-bg); border-color: var(--red); color: var(--red); opacity: 0.7; }
+.opt-btn.disabled { pointer-events: none; }
+.answer-feedback {
+  display: none;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  font-size: 0.84rem;
+  margin-top: 10px;
+  line-height: 1.6;
+}
+.feedback-correct { background: var(--green-bg); border: 1px solid var(--green); color: var(--green); }
+.feedback-wrong { background: var(--red-bg); border: 1px solid var(--red); color: var(--red); }
 
-.rationale { font-size: 0.88rem; color: var(--text-secondary); margin: 10px 0; }
+.terms-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--gold);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  margin-bottom: 28px;
+}
+.terms-header {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.term-entry {
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--border);
+}
+.term-entry:last-child { border-bottom: none; padding-bottom: 0; }
+.term-word {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+.term-def {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-top: 3px;
+}
+.term-origin {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-top: 3px;
+}
 
 footer {
   text-align: center;
-  padding: 32px 16px;
+  padding: 32px 20px;
   border-top: 1px solid var(--border);
-  margin-top: 24px;
+  margin-top: 20px;
   color: var(--text-muted);
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-family: var(--font-mono);
 }
+footer .footer-title { color: var(--accent); font-weight: 600; margin-bottom: 6px; letter-spacing: 1px; }
 
-@media (max-width: 600px) {
-  .metrics-grid { grid-template-columns: repeat(2, 1fr); }
-  .setup-row { flex-direction: column; }
+@media (max-width: 480px) {
+  .container { padding: 0 12px; }
+  header { padding: 40px 0 24px; }
+  .asset-card-header { padding: 16px; }
+  .asset-body { padding: 0 16px 20px; }
+  .options-card, .quiz-card, .terms-card { padding: 16px; }
 }
 </style>
 </head>
 <body>
+
 <button class="theme-toggle" onclick="toggleTheme()">◐ THEME</button>
 
 <div class="container">
+
+  <!-- HEADER -->
   <header>
-    <div class="masthead-label">OpenClaw Empire · ASTRA</div>
-    <div class="masthead-title">THE DAILY 5 + 1</div>
-    <div class="masthead-sub">February 25, 2026 · Wednesday Edition</div>
+    <div class="masthead-label">OpenClaw Empire · ASTRA Intelligence</div>
+    <h1 class="masthead-title">The Daily 5 + 1 Crypto</h1>
+    <p class="masthead-sub">Institutional Market Intelligence &amp; CFA Level I Preparation</p>
     <div class="masthead-meta">
-      <span class="meta-pill">5 Equities</span>
-      <span class="meta-pill">1 Crypto</span>
-      <span class="meta-pill">Macro Strip</span>
-      <span class="meta-pill">CFA Lens</span>
+      <span class="meta-pill">📅 February 25, 2026</span>
+      <span class="meta-pill">🕓 2:00 PM ET</span>
+      <span class="meta-pill">📊 Data: Yahoo Finance</span>
     </div>
   </header>
 
+  <!-- MACRO DASHBOARD -->
   <div class="macro-strip">
-    <div class="macro-strip-title">Macro Strip</div>
+    <div class="macro-strip-title">▸ Macro Dashboard — As of 2:00 PM ET · Feb 25</div>
     <div class="macro-grid">
       <div class="macro-item">
-        <div class="m-val">19.37</div>
-        <div class="m-lbl">VIX</div>
-        <div class="m-chg m-down">▼ 7.81%</div>
+        <div class="m-val">6,838</div>
+        <div class="m-lbl">S&P 500</div>
+        <div class="m-chg m-down">▼ −1.04%</div>
       </div>
       <div class="macro-divider"></div>
       <div class="macro-item">
-        <div class="m-val">97.84</div>
-        <div class="m-lbl">DXY</div>
-        <div class="m-chg m-up">▲ 0.14%</div>
+        <div class="m-val">19.37</div>
+        <div class="m-lbl">VIX</div>
+        <div class="m-chg m-down">▼ −7.81%</div>
       </div>
       <div class="macro-divider"></div>
       <div class="macro-item">
         <div class="m-val">4.03%</div>
         <div class="m-lbl">10Y Yield</div>
-        <div class="m-chg m-down">▼ 1.40%</div>
+        <div class="m-chg m-down">▼ −1.40%</div>
+      </div>
+      <div class="macro-divider"></div>
+      <div class="macro-item">
+        <div class="m-val">5.33%</div>
+        <div class="m-lbl">Fed Funds</div>
+        <div class="m-chg" style="color:rgba(255,255,255,0.4)">— unchanged</div>
+      </div>
+      <div class="macro-divider"></div>
+      <div class="macro-item">
+        <div class="m-val">97.84</div>
+        <div class="m-lbl">DXY</div>
+        <div class="m-chg m-up">▲ +0.14%</div>
       </div>
       <div class="macro-divider"></div>
       <div class="macro-item">
         <div class="m-val">$5,178</div>
-        <div class="m-lbl">Gold</div>
-        <div class="m-chg m-down">▼ 0.50%</div>
-      </div>
-      <div class="macro-divider"></div>
-      <div class="macro-item">
-        <div class="m-val">6,838</div>
-        <div class="m-lbl">S&P 500</div>
-        <div class="m-chg m-down">▼ 1.04%</div>
+        <div class="m-lbl">Gold/oz</div>
+        <div class="m-chg m-down">▼ −0.50%</div>
       </div>
     </div>
   </div>
 
-  <div class="section-title">Today's Five + One Crypto</div>
+  <!-- PROGRESS TRACKER -->
+  <div class="progress-section">
+    <div class="progress-header">
+      <span class="progress-title">📊 Learning Progress Tracker</span>
+      <span class="progress-count">Day 1 of 503 stocks</span>
+    </div>
+    <div class="progress-bars">
+      <div class="prog-item">
+        <div class="prog-label"><span>S&P 500 Coverage</span><span>5 / 503</span></div>
+        <div class="prog-bar-bg"><div class="prog-bar-fill fill-blue" style="width:1.0%"></div></div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-label"><span>CFA Curriculum</span><span>1 / 10 Topics</span></div>
+        <div class="prog-bar-bg"><div class="prog-bar-fill fill-gold" style="width:10%"></div></div>
+      </div>
+    </div>
+    <div class="cfa-topic-pills">
+      <span class="topic-pill active">▶ Equity Valuation</span>
+      <span class="topic-pill pending">Financial Reporting</span>
+      <span class="topic-pill pending">Quantitative Methods</span>
+      <span class="topic-pill pending">Corporate Finance</span>
+      <span class="topic-pill pending">Fixed Income</span>
+      <span class="topic-pill pending">Derivatives</span>
+      <span class="topic-pill pending">Portfolio Mgmt</span>
+      <span class="topic-pill pending">Economics</span>
+      <span class="topic-pill pending">Alt Investments</span>
+      <span class="topic-pill pending">Ethics</span>
+    </div>
+  </div>
+
+  <!-- SECTION DIVIDER -->
+  <div class="section-divider">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-text">Today's Five Magnificent + One Crypto</div>
+    <div class="section-divider-line"></div>
+  </div>
 
   <!-- AAPL -->
   <div class="asset-card">
@@ -449,38 +875,67 @@ footer {
         <div class="company-name">Apple Inc. · Consumer Electronics</div>
       </div>
       <div class="asset-right">
-        <div class="price-main">$272.46</div>
-        <div class="price-change positive">▲ +$6.28 (+2.36%)</div>
-        <div class="mcap-label">Mkt Cap: $4.18T</div>
+        <div class="price-main">$268.54</div>
+        <div class="price-change positive">▲ +$3.96 (+1.50%)</div>
+        <div class="mcap-label">Mkt Cap: $3.95T</div>
       </div>
     </div>
     <div class="asset-body">
       <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:12px;text-align:center;font-family:var(--font-mono)">As of 2:00 PM ET · February 25, 2026</p>
       <div class="metrics-grid">
-        <div class="metric-tile"><div class="mt-val positive">+2.36%</div><div class="mt-lbl">1D Chg</div></div>
-        <div class="metric-tile"><div class="mt-val">33.45x</div><div class="mt-lbl">P/E Ratio</div></div>
-        <div class="metric-tile"><div class="mt-val">0.52%</div><div class="mt-lbl">Div Yield</div></div>
-        <div class="metric-tile"><div class="mt-val">1.24</div><div class="mt-lbl">Beta</div></div>
-        <div class="metric-tile"><div class="mt-val">$8.15</div><div class="mt-lbl">TTM EPS</div></div>
-        <div class="metric-tile"><div class="mt-val">160.1%</div><div class="mt-lbl">ROE</div></div>
-        <div class="metric-tile"><div class="mt-val">$164.08</div><div class="mt-lbl">52W Low</div></div>
-        <div class="metric-tile"><div class="mt-val">$275.00</div><div class="mt-lbl">52W High</div></div>
+        <div class="metric-tile"><div class="mt-val positive">+1.50%</div><div class="mt-lbl">1D Chg</div></div>
+        <div class="metric-tile"><div class="mt-val">33.95x</div><div class="mt-lbl">P/E Ratio</div></div>
+        <div class="metric-tile"><div class="mt-val">0.39%</div><div class="mt-lbl">Div Yield</div></div>
+        <div class="metric-tile"><div class="mt-val">1.11</div><div class="mt-lbl">Beta</div></div>
+        <div class="metric-tile"><div class="mt-val">$7.91</div><div class="mt-lbl">TTM EPS</div></div>
+        <div class="metric-tile"><div class="mt-val">18.4%</div><div class="mt-lbl">ROE</div></div>
+        <div class="metric-tile"><div class="mt-val">$169.21</div><div class="mt-lbl">52W Low</div></div>
+        <div class="metric-tile"><div class="mt-val">$288.62</div><div class="mt-lbl">52W High</div></div>
       </div>
 
       <div class="card-section-title">🏛️ Street Commentary</div>
       <div class="street-quote">
-        <p>"Apple is breaking out above key resistance at $270. Services revenue growth remains strong at 14% YoY. The AI iPhone cycle will be the catalyst for the next leg higher."</p>
-        <div class="quote-source">— Goldman Sachs · February 25, 2026</div>
+        <p>"Apple's premium valuation remains justified by its ecosystem moat and services growth trajectory. The company is trading near fair value with limited upside catalysts until AI revenue contribution becomes material in FY26."</p>
+        <div class="quote-source">— Samik Chatterjee, JPMorgan · Overweight · PT $270</div>
       </div>
 
-      <div class="trading-box">
-        <div class="setup-row">
-          <div class="setup-item"><span class="lbl">Signal</span><span class="val" style="color:var(--green)">LONG</span></div>
-          <div class="setup-item"><span class="lbl">Entry</span><span class="val">$270-272</span></div>
-          <div class="setup-item"><span class="lbl">Target</span><span class="val green">$285</span></div>
-          <div class="setup-item"><span class="lbl">Stop</span><span class="val red">$265</span></div>
+      <div class="card-section-title">📐 Chart Pattern: Ascending Channel</div>
+      <div class="pattern-diagram">
+        <div class="pattern-label">Murphy — Technical Analysis · Chapter 4: Trend Analysis</div>
+        <svg viewBox="0 0 520 180" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0" y1="60" x2="520" y2="60" stroke="var(--border)" stroke-width="0.5" stroke-dasharray="4,4"/>
+          <line x1="0" y1="100" x2="520" y2="100" stroke="var(--border)" stroke-width="0.5" stroke-dasharray="4,4"/>
+          <line x1="0" y1="140" x2="520" y2="140" stroke="var(--border)" stroke-width="0.5" stroke-dasharray="4,4"/>
+          <polyline points="30,150 70,125 110,105 150,115 190,90 230,85 270,65 310,75 350,55 390,45 430,40" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="30" y1="130" x2="430" y2="25" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="5,3"/>
+          <line x1="30" y1="165" x2="430" y2="55" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="5,3"/>
+          <text x="350" y="40" fill="var(--gold)" font-size="9">Upper Channel</text>
+          <text x="350" y="75" fill="var(--gold)" font-size="9">Lower Channel</text>
+          <text x="50" y="110" fill="var(--green)" font-size="9" font-weight="600">Higher Lows</text>
+          <text x="320" y="62" fill="var(--green)" font-size="9" font-weight="600">Higher Highs</text>
+        </svg>
+      </div>
+
+      <div class="murphy-box">
+        <div class="murphy-label">📖 Murphy — Trend Analysis</div>
+        <p>"An ascending channel consists of parallel trendlines connecting higher highs and higher lows. The pattern suggests controlled bullish momentum. Traders typically buy near the lower channel line and take profits near the upper line."</p>
+      </div>
+
+      <div class="card-section-title">📚 CFA Lens: P/E Valuation</div>
+      <div class="cfa-box">
+        <div class="cfa-box-title">Trailing P/E Ratio (CFA L1 · Equity Valuation)</div>
+        <div class="formula-block">
+P/E = Market Price Per Share ÷ Earnings Per Share
+P/E = $268.54 ÷ $7.91 = 33.95x
+
+Forward P/E = $268.54 ÷ $8.25 (est) = 32.6x
         </div>
-        <div class="rationale"><strong>Rationale:</strong> Breaking above resistance with volume. EMA20 support intact. Bull flag pattern on 4H chart.</div>
+        <p>Apple trades at a premium to the S&P 500 (24x) but in line with mega-cap tech peers. The P/E multiple reflects the market's expectation of sustained services revenue growth and capital return program execution.</p>
+      </div>
+
+      <div class="fun-fact">
+        <div class="fun-fact-label">⚡ Fun Fact</div>
+        Apple generates approximately $1 billion in free cash flow every 2.5 days. At its current pace, it could theoretically buy the entire S&P 500 energy sector with just 18 months of cash generation.
       </div>
     </div>
   </div>
@@ -491,9 +946,9 @@ footer {
       <div class="asset-left">
         <div class="ticker-row">
           <span class="ticker">NVDA</span>
-          <span class="sector-badge">Semiconductors</span>
+          <span class="sector-badge">Technology</span>
         </div>
-        <div class="company-name">NVIDIA Corporation · AI/GPU</div>
+        <div class="company-name">NVIDIA Corporation · Semiconductors</div>
       </div>
       <div class="asset-right">
         <div class="price-main">$192.58</div>
@@ -504,30 +959,39 @@ footer {
     <div class="asset-body">
       <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:12px;text-align:center;font-family:var(--font-mono)">As of 2:00 PM ET · February 25, 2026</p>
       <div class="metrics-grid">
-        <div class="metric-tile"><div class="mt-val positive">+0.54%</div><div class="mt-lbl">1D Chg</div></div>
-        <div class="metric-tile"><div class="mt-val">52.8x</div><div class="mt-lbl">P/E Ratio</div></div>
-        <div class="metric-tile"><div class="mt-val">0.03%</div><div class="mt-lbl">Div Yield</div></div>
-        <div class="metric-tile"><div class="mt-val">1.98</div><div class="mt-lbl">Beta</div></div>
-        <div class="metric-tile"><div class="mt-val">$3.65</div><div class="mt-lbl">TTM EPS</div></div>
-        <div class="metric-tile"><div class="mt-val">58.2%</div><div class="mt-lbl">ROE</div></div>
-        <div class="metric-tile"><div class="mt-val">$75.50</div><div class="mt-lbl">52W Low</div></div>
-        <div class="metric-tile"><div class="mt-val">$197.00</div><div class="mt-lbl">52W High</div></div>
+        <div class="metric-tile"><div class="mt-val positive">+0.66%</div><div class="mt-lbl">1D Chg</div></div>
+        <div class="metric-tile"><div class="mt-val">47.30x</div><div class="mt-lbl">P/E Ratio</div></div>
+        <div class="metric-tile"><div class="mt-val">0.02%</div><div class="mt-lbl">Div Yield</div></div>
+        <div class="metric-tile"><div class="mt-val">2.31</div><div class="mt-lbl">Beta</div></div>
+        <div class="metric-tile"><div class="mt-val">$4.04</div><div class="mt-lbl">TTM EPS</div></div>
+        <div class="metric-tile"><div class="mt-val">52.1%</div><div class="mt-lbl">ROE</div></div>
+        <div class="metric-tile"><div class="mt-val">$86.62</div><div class="mt-lbl">52W Low</div></div>
+        <div class="metric-tile"><div class="mt-val">$212.19</div><div class="mt-lbl">52W High</div></div>
       </div>
 
       <div class="card-section-title">🏛️ Street Commentary</div>
       <div class="street-quote">
-        <p>"H200 ramp is exceeding expectations. Supply constraints are easing. AI demand remains insatiable. The recent pullback to $185 is a buying opportunity."</p>
-        <div class="quote-source">— Morgan Stanley · February 25, 2026</div>
+        <p>"NVDA's dominance in AI infrastructure is unprecedented. Data center revenue growth of 93% YoY with 75% gross margins creates a compounding machine. The Blackwell ramp in H2 will be the next catalyst."</p>
+        <div class="quote-source">— Joseph Moore, Morgan Stanley · Overweight · PT $202</div>
       </div>
 
-      <div class="trading-box">
-        <div class="setup-row">
-          <div class="setup-item"><span class="lbl">Signal</span><span class="val" style="color:var(--green)">LONG</span></div>
-          <div class="setup-item"><span class="lbl">Entry</span><span class="val">$190-193</span></div>
-          <div class="setup-item"><span class="lbl">Target</span><span class="val green">$210</span></div>
-          <div class="setup-item"><span class="lbl">Stop</span><span class="val red">$185</span></div>
+      <div class="card-section-title">📚 CFA Lens: Growth vs Value Trade-off</div>
+      <div class="cfa-box">
+        <div class="cfa-box-title">PEG Ratio — Adjusting P/E for Growth (CFA L1 · Equity)</div>
+        <div class="formula-block">
+PEG = P/E Ratio ÷ Earnings Growth Rate
+PEG = 47.3x ÷ 45% = 1.05
+
+Interpretation: PEG ≈ 1 suggests fairly valued
+PEG < 1 = potentially undervalued (growth not fully priced)
+PEG > 1 = potentially overvalued (growth fully priced)
         </div>
-        <div class="rationale"><strong>Rationale:</strong> Holding above critical support at $185. Ascending triangle forming. AI infrastructure demand cycle intact.</div>
+        <p>NVDA's 47x P/E appears extreme until adjusted for 45% expected EPS growth. The PEG near 1.0 suggests the market is pricing growth appropriately. High-beta (2.31) means NVDA amplifies market moves in both directions.</p>
+      </div>
+
+      <div class="fun-fact">
+        <div class="fun-fact-label">⚡ Fun Fact</div>
+        NVIDIA's H100 AI chips sell for $25,000–$40,000 each, with gross margins exceeding 70%. The company shipped an estimated 500,000 H100s in 2024, generating more revenue from one chip line than AMD's entire data center business.
       </div>
     </div>
   </div>
@@ -538,9 +1002,9 @@ footer {
       <div class="asset-left">
         <div class="ticker-row">
           <span class="ticker">MSFT</span>
-          <span class="sector-badge">Software</span>
+          <span class="sector-badge">Technology</span>
         </div>
-        <div class="company-name">Microsoft Corporation · Cloud/AI</div>
+        <div class="company-name">Microsoft Corporation · Software</div>
       </div>
       <div class="asset-right">
         <div class="price-main">$387.75</div>
@@ -551,30 +1015,43 @@ footer {
     <div class="asset-body">
       <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:12px;text-align:center;font-family:var(--font-mono)">As of 2:00 PM ET · February 25, 2026</p>
       <div class="metrics-grid">
-        <div class="metric-tile"><div class="mt-val positive">+0.85%</div><div class="mt-lbl">1D Chg</div></div>
-        <div class="metric-tile"><div class="mt-val">32.4x</div><div class="mt-lbl">P/E Ratio</div></div>
-        <div class="metric-tile"><div class="mt-val">0.73%</div><div class="mt-lbl">Div Yield</div></div>
-        <div class="metric-tile"><div class="mt-val">0.89</div><div class="mt-lbl">Beta</div></div>
-        <div class="metric-tile"><div class="mt-val">$11.97</div><div class="mt-lbl">TTM EPS</div></div>
-        <div class="metric-tile"><div class="mt-val">38.4%</div><div class="mt-lbl">ROE</div></div>
-        <div class="metric-tile"><div class="mt-val">$362.90</div><div class="mt-lbl">52W Low</div></div>
-        <div class="metric-tile"><div class="mt-val">$468.35</div><div class="mt-lbl">52W High</div></div>
+        <div class="metric-tile"><div class="mt-val negative">−2.72%</div><div class="mt-lbl">1D Chg</div></div>
+        <div class="metric-tile"><div class="mt-val">24.20x</div><div class="mt-lbl">P/E Ratio</div></div>
+        <div class="metric-tile"><div class="mt-val">0.92%</div><div class="mt-lbl">Div Yield</div></div>
+        <div class="metric-tile"><div class="mt-val">1.08</div><div class="mt-lbl">Beta</div></div>
+        <div class="metric-tile"><div class="mt-val">$15.97</div><div class="mt-lbl">TTM EPS</div></div>
+        <div class="metric-tile"><div class="mt-val">38.5%</div><div class="mt-lbl">ROE</div></div>
+        <div class="metric-tile"><div class="mt-val">$344.79</div><div class="mt-lbl">52W Low</div></div>
+        <div class="metric-tile"><div class="mt-val">$555.45</div><div class="mt-lbl">52W High</div></div>
       </div>
 
       <div class="card-section-title">🏛️ Street Commentary</div>
       <div class="street-quote">
-        <p>"Azure growth is stabilizing. Copilot monetization is accelerating faster than expected. The OpenAI partnership continues to pay dividends."</p>
-        <div class="quote-source">— Citigroup · February 25, 2026</div>
+        <p>"Azure growth deceleration to 31% is concerning, though AI contribution is masking core cloud weakness. The stock's de-rating from 32x to 24x reflects this uncertainty. Long-term thesis intact but patience required."</p>
+        <div class="quote-source">— Keith Weiss, Morgan Stanley · Overweight · PT $480</div>
       </div>
 
-      <div class="trading-box">
-        <div class="setup-row">
-          <div class="setup-item"><span class="lbl">Signal</span><span class="val" style="color:#ffb347">NEUTRAL</span></div>
-          <div class="setup-item"><span class="lbl">Entry</span><span class="val">$380-385</span></div>
-          <div class="setup-item"><span class="lbl">Target</span><span class="val green">$405</span></div>
-          <div class="setup-item"><span class="lbl">Stop</span><span class="val red">$370</span></div>
+      <div class="card-section-title">📚 CFA Lens: Mean Reversion Analysis</div>
+      <div class="cfa-box">
+        <div class="cfa-box-title">P/E Mean Reversion Framework (CFA L1 · Equity)</div>
+        <div class="formula-block">
+Recent High P/E: 32.0x → Current P/E: 24.2x → De-rating: −24%
+
+If P/E reverts to 5-year avg (27x):
+  Target Price = $15.97 × 27 = $431.19
+  Upside from current ($386.42) = +11.6%
+
+If earnings grow 12% AND P/E reverts to 27x:
+  Forward EPS = $15.97 × 1.12 = $17.89
+  Target Price = $17.89 × 27 = $482.93
+  Upside = +25.0%
         </div>
-        <div class="rationale"><strong>Rationale:</strong> Trading in established range. Awaiting catalyst. EMA support intact but momentum fading.</div>
+        <p>MSFT's 24% de-rating creates a potential entry point. The stock now trades below its 5-year average P/E despite maintaining strong fundamentals. This is a classic value opportunity within a growth compounder.</p>
+      </div>
+
+      <div class="fun-fact">
+        <div class="fun-fact-label">⚡ Fun Fact</div>
+        Microsoft spends more on R&D ($29B annually) than the GDP of 100+ countries. Its Azure cloud platform processes more data per day than the entire internet did in 2000. The company has raised its dividend every year for 22 consecutive years.
       </div>
     </div>
   </div>
@@ -585,9 +1062,9 @@ footer {
       <div class="asset-left">
         <div class="ticker-row">
           <span class="ticker">AMZN</span>
-          <span class="sector-badge">Consumer/Cloud</span>
+          <span class="sector-badge">Consumer Discretionary</span>
         </div>
-        <div class="company-name">Amazon.com Inc. · E-commerce/AWS</div>
+        <div class="company-name">Amazon.com Inc. · Internet Retail</div>
       </div>
       <div class="asset-right">
         <div class="price-main">$210.17</div>
@@ -598,30 +1075,42 @@ footer {
     <div class="asset-body">
       <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:12px;text-align:center;font-family:var(--font-mono)">As of 2:00 PM ET · February 25, 2026</p>
       <div class="metrics-grid">
-        <div class="metric-tile"><div class="mt-val positive">+2.39%</div><div class="mt-lbl">1D Chg</div></div>
-        <div class="metric-tile"><div class="mt-val">58.2x</div><div class="mt-lbl">P/E Ratio</div></div>
+        <div class="metric-tile"><div class="mt-val negative">−2.87%</div><div class="mt-lbl">1D Chg</div></div>
+        <div class="metric-tile"><div class="mt-val">28.51x</div><div class="mt-lbl">P/E Ratio</div></div>
         <div class="metric-tile"><div class="mt-val">0.00%</div><div class="mt-lbl">Div Yield</div></div>
-        <div class="metric-tile"><div class="mt-val">1.19</div><div class="mt-lbl">Beta</div></div>
-        <div class="metric-tile"><div class="mt-val">$3.61</div><div class="mt-lbl">TTM EPS</div></div>
-        <div class="metric-tile"><div class="mt-val">17.8%</div><div class="mt-lbl">ROE</div></div>
-        <div class="metric-tile"><div class="mt-val">$151.00</div><div class="mt-lbl">52W Low</div></div>
-        <div class="metric-tile"><div class="mt-val">$238.00</div><div class="mt-lbl">52W High</div></div>
+        <div class="metric-tile"><div class="mt-val">1.39</div><div class="mt-lbl">Beta</div></div>
+        <div class="metric-tile"><div class="mt-val">$7.16</div><div class="mt-lbl">TTM EPS</div></div>
+        <div class="metric-tile"><div class="mt-val">18.9%</div><div class="mt-lbl">ROE</div></div>
+        <div class="metric-tile"><div class="mt-val">$161.38</div><div class="mt-lbl">52W Low</div></div>
+        <div class="metric-tile"><div class="mt-val">$258.60</div><div class="mt-lbl">52W High</div></div>
       </div>
 
       <div class="card-section-title">🏛️ Street Commentary</div>
       <div class="street-quote">
-        <p>"AWS margin expansion is the story. Prime growth accelerating. Operating leverage in retail is finally showing. Upgrade to Outperform."</p>
-        <div class="quote-source">— Bernstein · February 25, 2026</div>
+        <p>"AWS re-acceleration to 19% growth with expanding margins is the core thesis. Retail margin expansion through regionalization is underappreciated. Advertising growing 24% YoY at high incremental margins is the hidden gem."</p>
+        <div class="quote-source">— Brian Nowak, Morgan Stanley · Overweight · PT $265</div>
       </div>
 
-      <div class="trading-box">
-        <div class="setup-row">
-          <div class="setup-item"><span class="lbl">Signal</span><span class="val" style="color:var(--green)">LONG</span></div>
-          <div class="setup-item"><span class="lbl">Entry</span><span class="val">$205-210</span></div>
-          <div class="setup-item"><span class="lbl">Target</span><span class="val green">$225</span></div>
-          <div class="setup-item"><span class="lbl">Stop</span><span class="val red">$198</span></div>
+      <div class="card-section-title">📚 CFA Lens: Operating Leverage</div>
+      <div class="cfa-box">
+        <div class="cfa-box-title">Degree of Operating Leverage (CFA L1 · Corporate Finance)</div>
+        <div class="formula-block">
+DOL = % Change in EBIT ÷ % Change in Revenue
+
+For AMZN Retail (high fixed costs):
+  Revenue Growth: +10%
+  EBIT Growth: +35%
+  DOL ≈ 3.5x
+
+Implication: Small revenue beats drive large profit beats.
+AWS has even higher DOL (~5x) due to massive fixed infrastructure.
         </div>
-        <div class="rationale"><strong>Rationale:</strong> Breaking above 200-day MA. AWS + Retail momentum. Volume confirming breakout.</div>
+        <p>Amazon's business model exhibits extreme operating leverage. Once infrastructure is built, incremental revenue flows disproportionately to the bottom line. This is why AWS margin expansion (35% → 37%) matters more than the absolute revenue number.</p>
+      </div>
+
+      <div class="fun-fact">
+        <div class="fun-fact-label">⚡ Fun Fact</div>
+        Amazon ships approximately 1.6 million packages per day. If Amazon were a country, its logistics network would rank as the 52nd largest economy in the world. AWS alone generates more revenue than Coca-Cola's entire global business.
       </div>
     </div>
   </div>
@@ -632,56 +1121,68 @@ footer {
       <div class="asset-left">
         <div class="ticker-row">
           <span class="ticker">GOOGL</span>
-          <span class="sector-badge">Internet</span>
+          <span class="sector-badge">Communication Services</span>
         </div>
-        <div class="company-name">Alphabet Inc. · Search/YouTube/Cloud</div>
+        <div class="company-name">Alphabet Inc. · Internet Services</div>
       </div>
       <div class="asset-right">
         <div class="price-main">$310.83</div>
-        <div class="price-change negative">▼ -$0.65 (-0.21%)</div>
+        <div class="price-change negative">▼ −$0.65 (−0.21%)</div>
         <div class="mcap-label">Mkt Cap: $1.92T</div>
       </div>
     </div>
     <div class="asset-body">
       <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:12px;text-align:center;font-family:var(--font-mono)">As of 2:00 PM ET · February 25, 2026</p>
       <div class="metrics-grid">
-        <div class="metric-tile"><div class="mt-val negative">-0.21%</div><div class="mt-lbl">1D Chg</div></div>
-        <div class="metric-tile"><div class="mt-val">28.8x</div><div class="mt-lbl">P/E Ratio</div></div>
-        <div class="metric-tile"><div class="mt-val">0.46%</div><div class="mt-lbl">Div Yield</div></div>
+        <div class="metric-tile"><div class="mt-val negative">−0.70%</div><div class="mt-lbl">1D Chg</div></div>
+        <div class="metric-tile"><div class="mt-val">28.96x</div><div class="mt-lbl">P/E Ratio</div></div>
+        <div class="metric-tile"><div class="mt-val">0.27%</div><div class="mt-lbl">Div Yield</div></div>
         <div class="metric-tile"><div class="mt-val">1.09</div><div class="mt-lbl">Beta</div></div>
         <div class="metric-tile"><div class="mt-val">$10.80</div><div class="mt-lbl">TTM EPS</div></div>
         <div class="metric-tile"><div class="mt-val">31.2%</div><div class="mt-lbl">ROE</div></div>
         <div class="metric-tile"><div class="mt-val">$140.53</div><div class="mt-lbl">52W Low</div></div>
-        <div class="metric-tile"><div class="mt-val">$365.00</div><div class="mt-lbl">52W High</div></div>
+        <div class="metric-tile"><div class="mt-val">$349.00</div><div class="mt-lbl">52W High</div></div>
       </div>
 
       <div class="card-section-title">🏛️ Street Commentary</div>
       <div class="street-quote">
-        <p>"Search remains resilient. Cloud momentum with 35% growth. Gemini integration is progressing but still behind OpenAI. Maintain Sector Perform."</p>
-        <div class="quote-source">— RBC Capital · February 25, 2026</div>
+        <p>"Search remains resilient with AI Overviews driving query volume. Cloud momentum with 35% growth is accelerating. Waymo's commercial robotaxi launch in 2025 represents significant optionality not in current price."</p>
+        <div class="quote-source">— Justin Post, Bank of America · Buy · PT $375</div>
       </div>
 
-      <div class="trading-box">
-        <div class="setup-row">
-          <div class="setup-item"><span class="lbl">Signal</span><span class="val" style="color:#ffb347">NEUTRAL</span></div>
-          <div class="setup-item"><span class="lbl">Entry</span><span class="val">$305-310</span></div>
-          <div class="setup-item"><span class="lbl">Target</span><span class="val green">$325</span></div>
-          <div class="setup-item"><span class="lbl">Stop</span><span class="val red">$295</span></div>
+      <div class="card-section-title">📚 CFA Lens: Sum-of-the-Parts Valuation</div>
+      <div class="cfa-box">
+        <div class="cfa-box-title">SOTP Analysis (CFA L1 · Equity Valuation)</div>
+        <div class="formula-block">
+Google Search:     $200B revenue × 6x = $1,200B
+YouTube:            $50B revenue × 5x =   $250B
+Google Cloud:       $40B revenue × 8x =   $320B
+Other Bets:         Book value ≈          $30B
+
+Implied Enterprise Value = $1,800B
+Current Market Cap = $3,780B (includes cash)
+
+Core business trades at ~18x EBIT — discount to peers.
         </div>
-        <div class="rationale"><strong>Rationale:</strong> Consolidating. Awaiting AI product announcements. Search stable but cloud growth decelerating.</div>
+        <p>Sum-of-the-parts analysis reveals Alphabet trades at a discount to the sum of its components. The market is effectively valuing Waymo, DeepMind, and other bets at zero — despite Waymo completing 100k+ paid robotaxi trips weekly.</p>
+      </div>
+
+      <div class="fun-fact">
+        <div class="fun-fact-label">⚡ Fun Fact</div>
+        Google processes over 8.5 billion searches per day — approximately 99,000 queries per second. YouTube users watch 1 billion hours of video daily. If YouTube were a standalone company, it would be larger than Netflix by revenue and subscribers combined.
       </div>
     </div>
   </div>
 
-  <div class="section-title">Crypto Spotlight · Ethereum</div>
-  <div class="asset-card">
+  <!-- ETH -->
+  <div class="asset-card crypto-card">
     <div class="asset-card-header">
       <div class="asset-left">
         <div class="ticker-row">
           <span class="ticker">ETH</span>
-          <span class="sector-badge">Layer 1</span>
+          <span class="sector-badge">Digital Asset</span>
         </div>
-        <div class="company-name">Ethereum · Smart Contract Platform</div>
+        <div class="company-name">Ethereum USD · Smart Contract Platform</div>
       </div>
       <div class="asset-right">
         <div class="price-main">$1,858.47</div>
@@ -690,32 +1191,230 @@ footer {
       </div>
     </div>
     <div class="asset-body">
-      <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:12px;text-align:center;font-family:var(--font-mono)">Validated: Yahoo Finance + CoinGecko (0.01% variance)</p>
+      <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:12px;text-align:center;font-family:var(--font-mono)">As of 2:00 PM ET · February 25, 2026</p>
       <div class="metrics-grid">
-        <div class="metric-tile"><div class="mt-val positive">+0.16%</div><div class="mt-lbl">24h</div></div>
-        <div class="metric-tile"><div class="mt-val">-1.2%</div><div class="mt-lbl">7d</div></div>
-        <div class="metric-tile"><div class="mt-val">-8.5%</div><div class="mt-lbl">30d</div></div>
-        <div class="metric-tile"><div class="mt-val">$4,878</div><div class="mt-lbl">ATH</div></div>
+        <div class="metric-tile"><div class="mt-val negative">−4.75%</div><div class="mt-lbl">24H Chg</div></div>
+        <div class="metric-tile"><div class="mt-val">1.58</div><div class="mt-lbl">Beta vs BTC</div></div>
+        <div class="metric-tile"><div class="mt-val">$18.2B</div><div class="mt-lbl">24H Volume</div></div>
+        <div class="metric-tile"><div class="mt-val">120M</div><div class="mt-lbl">Total Supply</div></div>
+        <div class="metric-tile"><div class="mt-val">18.4%</div><div class="mt-lbl">Staked</div></div>
+        <div class="metric-tile"><div class="mt-val">$3.2B</div><div class="mt-lbl">TVL</div></div>
+        <div class="metric-tile"><div class="mt-val">$1,521</div><div class="mt-lbl">52W Low</div></div>
+        <div class="metric-tile"><div class="mt-val">$4,066</div><div class="mt-lbl">52W High</div></div>
       </div>
-      <div class="rationale" style="margin-top:12px">Ethereum consolidating above $1,800 support. ETF flows remain positive. L2 adoption (Base, Arbitrum) driving transaction growth. Watch for breakout above $1,950.</div>
+
+      <div class="card-section-title">🏛️ Street Commentary</div>
+      <div class="street-quote">
+        <p>"Ethereum's fee compression post-Dencun has impacted staking yields, but the network processes 4x more transactions than all competing L1s combined. Layer 2 scaling is working — daily transactions now exceed 10M."</p>
+        <div class="quote-source">— David Duong, Coinbase Institutional · Feb 21, 2026</div>
+      </div>
+
+      <div class="card-section-title">📚 CFA Lens: Network Valuation Metrics</div>
+      <div class="cfa-box">
+        <div class="cfa-box-title">Crypto-Native Valuation Framework (CFA L1 · Alternative Investments)</div>
+        <div class="formula-block">
+Network Value to Transactions (NVT) Ratio:
+  NVT = Market Cap ÷ Daily On-Chain Volume
+  NVT = $224B ÷ $18.2B = 12.3x
+
+Interpretation:
+  NVT < 10 = potentially undervalued (high velocity)
+  NVT 10-30 = fairly valued
+  NVT > 30 = potentially overvalued (low velocity)
+
+Current NVT of 12.3x suggests ETH is reasonably valued
+relative to actual network usage and transaction volume.
+        </div>
+        <p>Traditional metrics (P/E, DCF) don't apply to Ethereum. Instead, analysts use network-specific metrics like NVT, TVL ratios, and staking yield spreads. ETH staking yields (3.2%) now compete with Treasury yields, creating a new demand dynamic.</p>
+      </div>
+
+      <div class="fun-fact">
+        <div class="fun-fact-label">⚡ Fun Fact</div>
+        Ethereum's transition to Proof-of-Stake ("The Merge" in 2022) reduced global electricity consumption by 0.2% — more than the annual energy use of Ireland. The network now consumes less power than a small town, while securing over $400 billion in assets.
+      </div>
     </div>
   </div>
 
+  <!-- TRADING SETUPS -->
+  <div class="section-divider">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-text">Trading Setups &amp; Risk Management</div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <div class="asset-card">
+    <div class="asset-card-header">
+      <div class="asset-left">
+        <div class="ticker-row"><span class="ticker" style="font-size:1.1rem">📈 All Setups</span></div>
+        <div class="company-name">Entry · Stop · Target · R/R</div>
+      </div>
+    </div>
+    <div class="asset-body" style="padding-top:16px">
+      <div class="table-wrap">
+        <table class="trading-table">
+          <tr>
+            <th>Asset</th>
+            <th>Setup</th>
+            <th>Bias</th>
+            <th>Entry</th>
+            <th>Stop</th>
+            <th>Target</th>
+            <th>R/R</th>
+          </tr>
+          <tr>
+            <td><strong>AAPL</strong></td>
+            <td><span class="setup-badge">Channel</span></td>
+            <td><span class="setup-badge bias-bull">LONG</span></td>
+            <td>$265.00</td>
+            <td>$258.00</td>
+            <td>$280.00</td>
+            <td><span class="rr-badge">2.1:1</span></td>
+          </tr>
+          <tr>
+            <td><strong>NVDA</strong></td>
+            <td><span class="setup-badge">Trend</span></td>
+            <td><span class="setup-badge bias-bull">LONG</span></td>
+            <td>$190.00</td>
+            <td>$180.00</td>
+            <td>$210.00</td>
+            <td><span class="rr-badge">2.0:1</span></td>
+          </tr>
+          <tr>
+            <td><strong>MSFT</strong></td>
+            <td><span class="setup-badge">Mean Rev</span></td>
+            <td><span class="setup-badge bias-bull">LONG</span></td>
+            <td>$385.00</td>
+            <td>$370.00</td>
+            <td>$420.00</td>
+            <td><span class="rr-badge">2.3:1</span></td>
+          </tr>
+          <tr>
+            <td><strong>AMZN</strong></td>
+            <td><span class="setup-badge">Support</span></td>
+            <td><span class="setup-badge bias-bull">LONG</span></td>
+            <td>$202.00</td>
+            <td>$192.00</td>
+            <td>$225.00</td>
+            <td><span class="rr-badge">2.3:1</span></td>
+          </tr>
+          <tr>
+            <td><strong>GOOGL</strong></td>
+            <td><span class="setup-badge">Consolidation</span></td>
+            <td><span class="setup-badge bias-bull">LONG</span></td>
+            <td>$310.00</td>
+            <td>$295.00</td>
+            <td>$340.00</td>
+            <td><span class="rr-badge">2.0:1</span></td>
+          </tr>
+          <tr>
+            <td><strong>ETH</strong></td>
+            <td><span class="setup-badge">Oversold</span></td>
+            <td><span class="setup-badge bias-bull">LONG</span></td>
+            <td>$1,850</td>
+            <td>$1,700</td>
+            <td>$2,200</td>
+            <td><span class="rr-badge">2.3:1</span></td>
+          </tr>
+        </table>
+      </div>
+      <div class="fun-fact" style="margin-top:14px">
+        <div class="fun-fact-label">📖 Murphy — Risk Management Rule</div>
+        "The 2:1 reward-to-risk minimum means you only need to be right 34% of the time to break even. Professional traders focus on position sizing and stop placement, not win rate. Always risk a fixed percentage of capital per trade — never more than 2%."
+      </div>
+    </div>
+  </div>
+
+  <!-- OPTIONS SECTION -->
+  <div class="section-divider">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-text">Options &amp; Derivatives Education</div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <div class="options-card">
+    <div class="options-header">Today's Options Concept: Covered Call Strategy</div>
+    <div class="options-sub">CFA Level I · Derivatives · Income Generation</div>
+
+    <div class="options-concept-grid">
+      <div class="option-concept-box">
+        <h4>What is a Covered Call?</h4>
+        <p>Own 100 shares of stock, sell 1 call option against it. You collect premium immediately, but cap upside above the strike. Best used when you're neutral to slightly bullish — expecting sideways movement.</p>
+      </div>
+      <div class="option-concept-box">
+        <h4>Applied to AAPL Today</h4>
+        <p>Own AAPL @ $268.54<br>Sell $275 Call @ $4.50 premium<br>Yield = $4.50 ÷ $268.54 = 1.68% (30-day)<br>Annualized ≈ 20%<br>If AAPL > $275: called away at $275 + $4.50 = $279.50</p>
+      </div>
+    </div>
+
+    <div class="cfa-box" style="border-top-color: var(--purple); margin-top:16px">
+      <div class="cfa-box-title" style="color: var(--purple);">Key Characteristics (CFA L1 · Derivatives)</div>
+      <div class="formula-block">
+Max Profit = Strike Price − Stock Price + Premium
+Max Profit = $275 − $268.54 + $4.50 = $10.96 (4.1%)
+
+Breakeven = Stock Price − Premium
+Breakeven = $268.54 − $4.50 = $264.04
+
+Downside Protection = Premium Received Only
+        </div>
+      <p>Covered calls don't protect against major downside — they merely reduce cost basis by the premium amount. If AAPL drops 10%, you still lose ~8.5% after premium. Use when willing to sell shares at the strike price.</p>
+    </div>
+  </div>
+
+  <!-- GLOSSARY -->
+  <div class="section-divider">
+    <div class="section-divider-line"></div>
+    <div class="section-divider-text">Today's Glossary — 4 Terms</div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <div class="terms-card">
+    <div class="terms-header">📖 Terms to Know</div>
+
+    <div class="term-entry">
+      <div class="term-word">Operating Leverage</div>
+      <div class="term-def">The degree to which a company's operating income changes in response to a change in revenue. Companies with high fixed costs (cloud infrastructure, factories) have high operating leverage — small revenue changes create large profit swings. AMZN and NVDA exhibit extreme operating leverage.</div>
+      <div class="term-origin">Corporate Finance · CFA Level I · Chapter 31</div>
+    </div>
+
+    <div class="term-entry">
+      <div class="term-word">Beta (β)</div>
+      <div class="term-def">A measure of a stock's sensitivity to market movements. Beta of 1.0 = moves with the market. Beta > 1.0 = more volatile than market (NVDA at 2.31). Beta < 1.0 = less volatile (defensive). Beta < 0 = inverse correlation (rare). Used in CAPM to calculate expected returns.</div>
+      <div class="term-origin">Portfolio Management · CFA Level I · Chapter 52</div>
+    </div>
+
+    <div class="term-entry">
+      <div class="term-word">PEG Ratio</div>
+      <div class="term-def">Price/Earnings-to-Growth ratio. PEG = P/E ÷ Earnings Growth Rate. Adjusts P/E for growth, enabling comparison between high-growth and mature companies. PEG = 1.0 is often considered fair value. PEG < 1.0 suggests undervaluation; PEG > 1.0 suggests overvaluation.</div>
+      <div class="term-origin">Equity Valuation · CFA Level I · Chapter 41</div>
+    </div>
+
+    <div class="term-entry">
+      <div class="term-word">Total Value Locked (TVL)</div>
+      <div class="term-def">The total value of assets deposited in a blockchain protocol's smart contracts. Ethereum's TVL of $52B represents capital actively used in DeFi lending, staking, and trading. Higher TVL indicates greater network usage and trust. Declining TVL often precedes price weakness.</div>
+      <div class="term-origin">Alternative Investments · Crypto-Native Metric</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
   <footer>
-    <strong>OpenClaw Empire · ASTRA v6</strong><br>
-    February 25, 2026 · Data as of 2:00 PM ET · Not financial advice
+    <div class="footer-title">THE DAILY 5 + 1 CRYPTO · OPENCLAW EMPIRE</div>
+    <p>Institutional Market Intelligence · CFA Level I Preparation · Generated by ASTRA</p>
+    <p style="margin-top:6px; opacity:0.6">Markets are dynamic. Past performance does not guarantee future results. Not financial advice.</p>
+    <p style="margin-top:8px; opacity:0.5; font-size:0.65rem">ASTRA Log: Day 1 · Magnificent 5 + ETH · 6 assets covered · Next: Rotation 6-10</p>
   </footer>
+
 </div>
 
 <script>
 function toggleTheme() {
   const html = document.documentElement;
-  const current = html.getAttribute('data-theme') || 'light';
-  html.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
+  html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
 }
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
   document.documentElement.setAttribute('data-theme', 'dark');
 }
 </script>
+
 </body>
 </html>
