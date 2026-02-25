@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategy Analysis: Put Spread + Long Call (Zero-Cost Convexity)</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f8f6f1; --bg-card: #ffffff; --bg-subtle: #f2efe8; --bg-code: #eeeae0;
+  --text-primary: #1a1714; --text-secondary: #4a4540; --text-muted: #857e75;
+  --border: #ddd9ce; --border-strong: #b8b0a0; --accent: #1a3a5c; --accent-light: #2a5a8c;
+  --gold: #9a7b2a; --gold-light: #c9a84c; --green: #1e5c2e; --green-bg: #e8f5eb;
+  --red: #8c1a1a; --red-bg: #fceaea; --purple: #4a2a7a; --purple-bg: #f0eaf8;
+  --font-display: 'Playfair Display', Georgia, serif; --font-body: 'Source Serif 4', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+[data-theme="dark"] {
+  --bg: #111210; --bg-card: #1c1b18; --bg-subtle: #242320; --bg-code: #2a2926;
+  --text-primary: #f0ede6; --text-secondary: #c8c4ba; --text-muted: #7a7570;
+  --border: #38352e; --border-strong: #4a4740; --accent: #7ab0e0; --gold: #d4a84c;
+  --green: #4caf6a; --green-bg: #0e2416; --red: #e05a5a; --red-bg: #2a0e0e;
+  --purple: #a07adc; --purple-bg: #1a1028;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--text-primary); line-height: 1.65; font-size: 15px; }
+.container { max-width: 860px; margin: 0 auto; padding: 20px; }
+header { padding: 40px 0 30px; border-bottom: 3px double var(--border-strong); margin-bottom: 28px; text-align: center; }
+.masthead-label { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; }
+.masthead-title { font-family: var(--font-display); font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 900; color: var(--accent); }
+.masthead-sub { font-style: italic; font-size: 0.9rem; color: var(--text-muted); margin-top: 8px; }
+
+.section-title {
+  font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--text-muted); padding: 8px 0; margin: 28px 0 16px; border-bottom: 1px solid var(--border);
+}
+
+.card {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+  margin-bottom: 24px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.card-header {
+  background: var(--bg-subtle); border-bottom: 1px solid var(--border); padding: 16px 20px;
+  font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--accent);
+}
+.card-body { padding: 20px; }
+
+.highlight-box {
+  background: linear-gradient(135deg, var(--purple-bg), var(--bg-subtle));
+  border-left: 4px solid var(--purple); padding: 16px 20px; margin: 16px 0; border-radius: 0 8px 8px 0;
+}
+.highlight-box h4 { font-family: var(--font-display); color: var(--purple); margin-bottom: 8px; }
+
+.formula-block {
+  background: var(--bg-code); border: 1px solid var(--border); border-radius: 6px;
+  padding: 16px; font-family: var(--font-mono); font-size: 0.85rem; line-height: 1.8;
+  margin: 12px 0; overflow-x: auto;
+}
+
+.metrics-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin: 16px 0;
+}
+.metric-tile {
+  background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 8px;
+  padding: 12px; text-align: center;
+}
+.metric-tile .val { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 600; color: var(--text-primary); }
+.metric-tile .lbl { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.5px; color: var(--text-muted); margin-top: 4px; }
+.metric-tile.green .val { color: var(--green); }
+.metric-tile.red .val { color: var(--red); }
+
+.table-wrap { overflow-x: auto; margin: 16px 0; }
+table {
+  width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.8rem;
+}
+th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: var(--bg-subtle); font-weight: 600; text-transform: uppercase; font-size: 0.65rem; letter-spacing: 0.5px; }
+tr:hover { background: var(--bg-subtle); }
+.positive { color: var(--green); }
+.negative { color: var(--red); }
+
+.murphy-box {
+  background: rgba(212,175,55,0.08); border-left: 3px solid var(--gold);
+  padding: 14px 16px; margin: 16px 0; border-radius: 0 8px 8px 0;
+}
+.murphy-box p { font-style: italic; color: var(--text-secondary); }
+
+.strategy-flow {
+  display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 20px 0;
+}
+.flow-box {
+  background: var(--bg-subtle); border: 1px solid var(--border); border-radius: 8px;
+  padding: 16px 20px; text-align: center; min-width: 120px;
+}
+.flow-box .amt { font-family: var(--font-mono); font-size: 1.2rem; font-weight: 700; color: var(--accent); }
+.flow-box .desc { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
+.flow-arrow { font-size: 1.5rem; color: var(--gold); }
+
+.footer {
+  text-align: center; padding: 32px; border-top: 1px solid var(--border); margin-top: 32px;
+  color: var(--text-muted); font-family: var(--font-mono); font-size: 0.75rem;
+}
+
+@media (max-width: 600px) {
+  .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+  .strategy-flow { flex-direction: column; }
+  .flow-arrow { transform: rotate(90deg); }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="masthead-label">Strategy Analysis Report</div>
+    <h1 class="masthead-title">Put Spread + Long Call</h1>
+    <div class="masthead-sub">Zero-Cost Convexity Strategy · Niall's Play</div>
+  </header>
+
+  <div class="section-title">The Strategy Breakdown</div>
+  
+  <div class="card">
+    <div class="card-header">What Niall Is Proposing</div>
+    <div class="card-body">
+      <p>This is a <strong>"Risk Reversal"</strong> or <strong>"Zero-Cost Collar"</strong> variant that uses a put spread instead of a single short put. The genius: you collect premium from the put spread, use it to buy a call, and end up with <strong>near-zero net cost and zero net theta</strong>.</p>
+      
+      <div class="highlight-box">
+        <h4>The Setup (Using Niall's Example)</h4>
+        <p>Stock trading at <strong>22,000</strong>:</p>
+      </div>
+
+      <div class="strategy-flow">
+        <div class="flow-box">
+          <div class="amt">Sell 21,000 Put</div>
+          <div class="desc">Collect Premium</div>
+        </div>
+        <div class="flow-arrow">+</div>
+        <div class="flow-box">
+          <div class="amt">Buy 20,000 Put</div>
+          <div class="desc">Limit Downside</div>
+        </div>
+        <div class="flow-arrow">=</div>
+        <div class="flow-box">
+          <div class="amt">Net Credit</div>
+          <div class="desc">Buy 22k/23k Call</div>
+        </div>
+      </div>
+
+      <div class="formula-block">
+<strong>Leg 1 (Put Spread - Bullish/Bearish):</strong>
+• Sell 21,000 Put @ +¥500 (collect premium)
+• Buy 20,000 Put @ -¥200 (pay premium)
+• Net Credit: +¥300
+
+<strong>Leg 2 (Long Call - Bullish):</strong>
+• Buy 22,000 Call @ -¥280 (or 23,000 @ -¥300)
+• Net Cost: ~¥0 (put spread credit pays for call)
+
+<strong>Result:</strong>
+• Max Risk: 1,000 points (21k to 20k strike width)
+• Max Reward: Unlimited above 22,000
+• Breakeven: ~22,000 + call premium paid
+• Theta: Near zero (short theta from puts ≈ long theta from call)
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">Risk / Reward Profile</div>
+
+  <div class="card">
+    <div class="card-header">Payoff Analysis at Expiry</div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>Stock Price</th><th>Put Spread P/L</th><th>Long Call P/L</th><th>Net P/L</th></tr>
+          <tr><td>19,000</td><td class="negative">-1,000</td><td>0</td><td class="negative">-1,000 (max loss)</td></tr>
+          <tr><td>20,000</td><td class="negative">-1,000</td><td>0</td><td class="negative">-1,000 (max loss)</td></tr>
+          <tr><td>21,000</td><td>0</td><td>0</td><td>0 (breakeven zone)</td></tr>
+          <tr><td>22,000</td><td class="positive">+1,000</td><td>0</td><td class="positive">+1,000</td></tr>
+          <tr><td>23,000</td><td class="positive">+1,000</td><td class="positive">+1,000</td><td class="positive">+2,000</td></tr>
+          <tr><td>25,000</td><td class="positive">+1,000</td><td class="positive">+3,000</td><td class="positive">+4,000 (uncapped)</td></tr>
+        </table>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-tile red">
+          <div class="val">-1,000 pts</div>
+          <div class="lbl">Maximum Loss</div>
+        </div>
+        <div class="metric-tile">
+          <div class="val">~0 pts</div>
+          <div class="lbl">Net Cost</div>
+        </div>
+        <div class="metric-tile green">
+          <div class="val">Unlimited</div>
+          <div class="lbl">Maximum Gain</div>
+        </div>
+        <div class="metric-tile">
+          <div class="val">~Zero</div>
+          <div class="lbl">Daily Theta</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">Key Insights</div>
+
+  <div class="card">
+    <div class="card-header">Why This Strategy Works</div>
+    <div class="card-body">
+      <ol style="padding-left: 20px; line-height: 2;">
+        <li><strong>Convexity for Free:</strong> You get optionality (asymmetric upside) without paying time decay. The put spread theta roughly cancels the long call theta.</li>
+        <li><strong>Defined Risk:</strong> Unlike naked puts or synthetic longs, your max loss is capped at the width of the put spread (1,000 points).</li>
+        <li><strong>No Time Pressure:</strong> Niall's right — use long-dated expiries. Without theta drag, you can hold through volatility and wait for your catalyst.</li>
+        <li><strong>Leverage Without Margin:</strong> You're controlling upside exposure with minimal capital outlay. The "cost" is the risk between 20k-21k.</li>
+        <li><strong>Better Than Stock:</strong> For a "punt" on a big move, this beats buying shares. Same upside exposure, limited downside, no capital tie-up.</li>
+      </ol>
+
+      <div class="murphy-box">
+        <p>"The best trades are ones where you're paid to take risk, not pay to take risk. This structure flips the script — you're essentially renting convexity for free by accepting defined downside risk."</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">When to Use vs When to Avoid</div>
+
+  <div class="card">
+    <div class="card-body">
+      <div class="table-wrap">
+        <table>
+          <tr><th>✅ Use When</th><th>❌ Avoid When</th></tr>
+          <tr><td>You expect a large directional move (either way works with adjustments)</td><td>You expect the stock to grind sideways (opportunity cost)</td></tr>
+          <tr><td>Implied vol is elevated (richer put premiums to sell)</td><td>Implied vol is crushed (won't collect enough on the spread)</td></tr>
+          <tr><td>You have a catalyst timeline (earnings, FDA, product launch)</td><td>No clear catalyst in sight (time works against you eventually)</td></tr>
+          <tr><td>You're willing to own the stock at the lower strike (20k)</td><td>You absolutely cannot handle assignment at 21k</td></tr>
+          <tr><td>Long-dated options available (6+ months)</td><td>Only short-dated options available (time decay accelerates)</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">US Market Application</div>
+
+  <div class="card">
+    <div class="card-header">Adapting for Your Situation (No Japan Access)</div>
+    <div class="card-body">
+      <p>Since you don't have Japan options access, run this on US equities. Same principles apply:</p>
+
+      <div class="formula-block"
+>
+<strong>Example: NVDA @ $192 (current price)</strong>
+
+Put Spread:
+• Sell $180 Put (30 DTE) @ +$3.50
+• Buy $170 Put (30 DTE) @ -$1.20
+• Net Credit: +$2.30
+
+Long Call:
+• Buy $195 Call (60 DTE) @ -$2.40
+• Net Cost: -$0.10 (essentially zero)
+
+<strong>Position:</strong>
+• Max Risk: $10 per share ($180 - $170)
+• Max Reward: Unlimited above $195
+• Breakeven: ~$195.10
+• Capital Required: ~$1,000 margin for spread
+      </div>
+
+      <div class="highlight-box">
+        <h4>Best US Candidates for This Strategy</h4>
+        <p><strong>High-beta tech names</strong> with earnings catalysts: NVDA, TSLA, PLTR, COIN. Look for:</p>
+        <ul style="margin-top: 8px; padding-left: 20px;">
+          <li>IV rank > 50 (rich options)</li>
+          <li>Clear technical levels (support/resistance)</li>
+          <li>Earnings or event within 30-60 days</li>
+          <li>Liquid options (tight bid-ask spreads)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-title">Bottom Line</div>
+
+  <div class="card">
+    <div class="card-body">
+      <p><strong>Niall's strategy is legit.</strong> It's a sophisticated way to get long exposure with defined risk and zero time decay cost. The trade-off: you cap your downside protection (only protected below 20k) and you miss the 20k-22k range (small gains vs stock).</p>
+
+      <div class="metrics-grid" style="margin-top: 20px;">
+        <div class="metric-tile">
+          <div class="val">Zero Cost</div>
+          <div class="lbl">Put spread pays for call</div>
+        </div>
+        <div class="metric-tile">
+          <div class="val">Defined Risk</div>
+          <div class="lbl">Max loss = spread width</div>
+        </div>
+        <div class="metric-tile">
+          <div class="val">No Theta</div>
+          <div class="lbl">Time decay neutral</div>
+        </div>
+        <div class="metric-tile">
+          <div class="val">Convexity</div>
+          <div class="lbl">Free upside optionality</div>
+        </div>
+      </div>
+
+      <p style="margin-top: 20px; text-align: center; font-style: italic; color: var(--text-muted);">"This has unlocked something in me" — You got it right. This is how pros structure asymmetric bets.</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    Strategy Analysis · February 25, 2026 · OpenClaw Empire · ASTRA
+  </div>
+</div>
+</body>
+</html>
