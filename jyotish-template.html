@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Jyotish | Dibashis</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0c0f;
+  --bg2: #111418;
+  --bg3: #181d23;
+  --border: rgba(255,255,255,0.08);
+  --border-strong: rgba(255,255,255,0.15);
+  --text: #e8e6e0;
+  --text-muted: rgba(232,230,224,0.45);
+  --text-dim: rgba(232,230,224,0.65);
+  --gold: #c9a84c;
+  --gold-dim: rgba(201,168,76,0.2);
+  --purple: #a78bfa;
+  --purple-dim: rgba(167,139,250,0.15);
+  --orange: #f59e42;
+  --red: #e05555;
+  --green: #4caf82;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-body: 'Source Serif 4', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+.container { max-width: 880px; margin: 0 auto; padding: 24px 16px 48px; }
+
+/* Header */
+header { text-align: center; padding: 32px 0 28px; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+.om-symbol { font-size: 2.5rem; margin-bottom: 8px; }
+.masthead-label { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+.masthead-title { font-family: var(--font-serif); font-size: clamp(1.6rem, 5vw, 2.4rem); font-weight: 900; line-height: 1.15; color: var(--text); margin-bottom: 6px; }
+.masthead-sub { font-size: 0.8rem; color: var(--text-dim); font-style: italic; margin-bottom: 12px; }
+.birth-details { font-family: var(--font-mono); font-size: 0.58rem; color: var(--text-muted); letter-spacing: 0.06em; }
+
+/* Date Pill */
+.date-pill { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-dim); padding: 8px 16px; background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; margin: 0 auto 24px; }
+
+/* Section */
+.section { background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+.section-header { display: flex; align-items: center; gap: 10px; padding: 14px 18px; border-bottom: 1px solid var(--border); background: var(--bg3); }
+.section-icon { font-size: 1.1rem; }
+.section-title { font-family: var(--font-serif); font-size: 1.05rem; font-weight: 700; color: var(--text); }
+.section-body { padding: 18px; }
+
+/* Planet Cards */
+.planet-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+@media (max-width: 600px) { .planet-grid { grid-template-columns: 1fr; } }
+.planet-card { background: var(--bg3); border: 1px solid var(--border); border-left: 3px solid var(--purple); border-radius: 0 4px 4px 0; padding: 14px 16px; }
+.planet-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.planet-name { font-family: var(--font-serif); font-size: 1rem; font-weight: 700; color: var(--text); }
+.planet-sign { font-family: var(--font-mono); font-size: 0.6rem; color: var(--purple); text-transform: uppercase; letter-spacing: 0.08em; }
+.planet-position { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); }
+.planet-context { font-size: 0.78rem; color: var(--text-muted); margin-top: 8px; font-style: italic; }
+
+/* Moon Phase */
+.moon-card { background: var(--bg3); border: 1px solid var(--border); border-top: 3px solid var(--orange); border-radius: 4px; padding: 16px; text-align: center; }
+.moon-phase-icon { font-size: 2rem; margin-bottom: 8px; }
+.moon-phase-name { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 700; color: var(--orange); margin-bottom: 4px; }
+.moon-illumination { font-family: var(--font-mono); font-size: 0.65rem; color: var(--text-muted); }
+.moon-guidance { font-size: 0.82rem; color: var(--text-dim); margin-top: 12px; line-height: 1.6; }
+
+/* Transit */
+.transit-item { display: flex; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+.transit-item:last-child { border-bottom: none; }
+.transit-icon { font-size: 1.3rem; flex-shrink: 0; }
+.transit-content { flex: 1; }
+.transit-title { font-family: var(--font-serif); font-size: 0.95rem; font-weight: 700; color: var(--gold); margin-bottom: 4px; }
+.transit-desc { font-size: 0.82rem; color: var(--text-dim); line-height: 1.6; }
+.transit-impact { font-family: var(--font-mono); font-size: 0.58rem; color: var(--text-muted); margin-top: 6px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* Muhurta */
+.muhurta-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+@media (max-width: 500px) { .muhurta-grid { grid-template-columns: 1fr; } }
+.muhurta-card { padding: 12px 14px; border-radius: 4px; border: 1px solid var(--border); }
+.muhurta-card.good { background: var(--green-dim); border-color: var(--green); }
+.muhurta-card.caution { background: var(--gold-dim); border-color: var(--gold); }
+.muhurta-card.avoid { background: var(--red-dim); border-color: var(--red); }
+.muhurta-label { font-family: var(--font-mono); font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+.muhurta-card.good .muhurta-label { color: var(--green); }
+.muhurta-card.caution .muhurta-label { color: var(--gold); }
+.muhurta-card.avoid .muhurta-label { color: var(--red); }
+.muhurta-time { font-family: var(--font-mono); font-size: 0.85rem; font-weight: 600; color: var(--text); }
+.muhurta-use { font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; }
+
+/* Guidance */
+.guidance-list { list-style: none; }
+.guidance-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.guidance-item:last-child { border-bottom: none; }
+.guidance-time { font-family: var(--font-mono); font-size: 0.58rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em; flex-shrink: 0; width: 70px; }
+.guidance-text { font-size: 0.85rem; color: var(--text-dim); line-height: 1.6; }
+
+/* Lucky Numbers */
+.lucky-grid { display: flex; gap: 16px; flex-wrap: wrap; }
+.lucky-item { text-align: center; padding: 12px 20px; background: var(--bg3); border: 1px solid var(--border); border-radius: 4px; }
+.lucky-value { font-family: var(--font-mono); font-size: 1.3rem; font-weight: 600; color: var(--purple); }
+.lucky-label { font-family: var(--font-mono); font-size: 0.55rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+
+/* Mantra */
+.mantra-box { background: var(--purple-dim); border: 1px solid rgba(167,139,250,0.25); border-radius: 4px; padding: 16px; text-align: center; }
+.mantra-label { font-family: var(--font-mono); font-size: 0.55rem; color: var(--purple); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 8px; }
+.mantra-text { font-family: var(--font-serif); font-size: 1.1rem; color: var(--text); letter-spacing: 0.04em; }
+.mantra-meaning { font-size: 0.75rem; color: var(--text-muted); margin-top: 8px; font-style: italic; }
+
+footer { text-align: center; padding: 24px 0 12px; border-top: 1px solid var(--border); margin-top: 10px; }
+.footer-text { font-family: var(--font-mono); font-size: 0.58rem; color: var(--text-muted); letter-spacing: 0.1em; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+<div class="om-symbol">🕉️</div>
+<div class="masthead-label">Daily Vedic Astrology</div>
+<h1 class="masthead-title">Jyotish Reading</h1>
+<p class="masthead-sub">For Dibashis Chuturdharee</p>
+<div class="birth-details">Born: February 1, 1998 at 12:45 PM · Port Louis, Mauritius · Sun in Aquarius</div>
+</header>
+
+<div style="text-align: center;">
+<span class="date-pill">📅 February 28, 2026 · Saturday · Phalguna Krishna Paksha</span>
+</div>
+
+<!-- PLANETARY POSITIONS -->
+<div class="section">
+<div class="section-header">
+<span class="section-icon">🪐</span>
+<span class="section-title">Planetary Positions</span>
+</div>
+<div class="section-body">
+<div class="planet-grid">
+<div class="planet-card">
+<div class="planet-header">
+<span class="planet-name">☉ Sun</span>
+<span class="planet-sign">Pisces 9°</span>
+</div>
+<div class="planet-position">2nd House of Wealth</div>
+<div class="planet-context">Intuition guides financial decisions. Trust gut feelings about money.</div>
+</div>
+<div class="planet-card">
+<div class="planet-header">
+<span class="planet-name">☽ Moon</span>
+<span class="planet-sign">Aquarius 24°</span>
+</div>
+<div class="planet-position">1st House · Waning Crescent</div>
+<div class="planet-context">Your day. Emotions align with identity. Trust eccentric ideas.</div>
+</div>
+<div class="planet-card">
+<div class="planet-header">
+<span class="planet-name">☊ Rahu</span>
+<span class="planet-sign">Aquarius 18°</span>
+</div>
+<div class="planet-position">Conjunct Moon</div>
+<div class="planet-context">Amplified intuition. Future-focused. Verify "brilliant" insights before acting.</div>
+</div>
+<div class="planet-card">
+<div class="planet-header">
+<span class="planet-name">♄ Saturn</span>
+<span class="planet-sign">Pisces 12°</span>
+</div>
+<div class="planet-position">2nd House</div>
+<div class="planet-context">Discipline in resources. Patience compounds. Avoid impulsive trades.</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- MOON PHASE -->
+<div class="section">
+<div class="section-header">
+<span class="section-icon">🌙</span>
+<span class="section-title">Moon Phase</span>
+</div>
+<div class="section-body">
+<div class="moon-card">
+<div class="moon-phase-icon">🌘</div>
+<div class="moon-phase-name">Waning Crescent</div>
+<div class="moon-illumination">6% Illuminated · Amavasya (New Moon) approaching Mar 1</div>
+<div class="moon-guidance">The darkest part of the lunar cycle. Energy is low but clarity is high if you listen. This is a time for release, review, and preparation. Let go of what didn't serve you this cycle before Sunday's New Moon.</div>
+</div>
+</div>
+</div>
+
+<!-- KEY TRANSITS -->
+<div class="section">
+<div class="section-header">
+<span class="section-icon">⚡</span>
+<span class="section-title">Key Transits</span>
+</div>
+<div class="section-body">
+<div class="transit-item">
+<span class="transit-icon">🌑</span>
+<div class="transit-content">
+<div class="transit-title">Rahu Conjunct Moon in Aquarius</div>
+<div class="transit-desc">Rahu amplifies everything it touches. Conjunct your natal Sun sign, this transit stirs obsession with the future, technology, or breaking norms. Illusions feel real today.</div>
+<div class="transit-impact">⚠️ Verify before acting on "brilliant" insights</div>
+</div>
+</div>
+<div class="transit-item">
+<span class="transit-icon">⚔️</span>
+<div class="transit-content">
+<div class="transit-title">Saturn in Pisces Square Mars in Cancer</div>
+<div class="transit-desc">Discipline vs. emotion. Your 2nd house (resources) is under pressure from 5th house (risk/speculation). Not a day for FOMO trades or impulsive financial moves.</div>
+<div class="transit-impact">🛡️ Patience compounds. Impulse depletes.</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- MUHURTA -->
+<div class="section">
+<div class="section-header">
+<span class="section-icon">⏰</span>
+<span class="section-title">Auspicious Timing (Muhurta)</span>
+</div>
+<div class="section-body">
+<div class="muhurta-grid">
+<div class="muhurta-card good">
+<div class="muhurta-label">🟢 Abhijit Muhurta</div>
+<div class="muhurta-time">12:15 PM — 12:59 PM</div>
+<div class="muhurta-use">Victory window. Best for important decisions, starting tasks, signing documents.</div>
+</div>
+<div class="muhurta-card good">
+<div class="muhurta-label">🟡 Amrit Kaal</div>
+<div class="muhurta-time">6:42 AM — 8:18 AM</div>
+<div class="muhurta-use">Spiritual practice, planning, health routines.</div>
+</div>
+<div class="muhurta-card avoid">
+<div class="muhurta-label">🔴 Rahu Kaal</div>
+<div class="muhurta-time">11:12 AM — 12:36 PM</div>
+<div class="muhurta-use">Avoid new beginnings, major purchases, confrontations.</div>
+</div>
+<div class="muhurta-card caution">
+<div class="muhurta-label">⚠️ Gulika Kaal</div>
+<div class="muhurta-time">8:06 AM — 9:30 AM</div>
+<div class="muhurta-use">Don't start ventures during this window.</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- PRACTICAL GUIDANCE -->
+<div class="section">
+<div class="section-header">
+<span class="section-icon">📋</span>
+<span class="section-title">Practical Guidance</span>
+</div>
+<div class="section-body">
+<ul class="guidance-list">
+<li class="guidance-item">
+<span class="guidance-time">Morning</span>
+<span class="guidance-text">Pre-9:30 AM: Meditation or light movement. Gulika Kaal clouds judgment.</span>
+</li>
+<li class="guidance-item">
+<span class="guidance-time">Midday</span>
+<span class="guidance-text"><strong>12:15-12:59 PM:</strong> Abhijit window — execute that trade you've analyzed, send the important email, make the call. This is your power hour.</span>
+</li>
+<li class="guidance-item">
+<span class="guidance-time">Afternoon</span>
+<span class="guidance-text">Rahu-Moon conjunction peaks. Your mind races. Write ideas down. Don't act on them yet.</span>
+</li>
+<li class="guidance-item">
+<span class="guidance-time">Evening</span>
+<span class="guidance-text">Dark Moon approaching. Review, release, rest. Journal what didn't serve you this lunar cycle. Let it go before Sunday's New Moon.</span>
+</li>
+<li class="guidance-item">
+<span class="guidance-time">Trading</span>
+<span class="guidance-text">With Saturn squaring Mars, discipline beats conviction. If the setup isn't A+, walk away. Preservation > profit today.</span>
+</li>
+<li class="guidance-item">
+<span class="guidance-time">Social</span>
+<span class="guidance-text">Aquarius energy makes you magnetic to unconventional people. One conversation tonight could shift your trajectory. Listen more than you speak.</span>
+</li>
+</ul>
+</div>
+</div>
+
+<!-- LUCKY NUMBERS -->
+<div class="section">
+<div class="section-header">
+<span class="section-icon">🍀</span>
+<span class="section-title">Today's Favorable</span>
+</div>
+<div class="section-body">
+<div class="lucky-grid">
+<div class="lucky-item">
+<div class="lucky-value">West</div>
+<div class="lucky-label">Direction</div>
+</div>
+<div class="lucky-item">
+<div class="lucky-value">8</div>
+<div class="lucky-label">Number</div>
+</div>
+<div class="lucky-item">
+<div class="lucky-value">Deep Blue</div>
+<div class="lucky-label">Color</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- MANTRA -->
+<div class="section">
+<div class="section-header">
+<span class="section-icon">🙏</span>
+<span class="section-title">Mantra for the Day</span>
+</div>
+<div class="section-body">
+<div class="mantra-box">
+<div class="mantra-label">Saturn Pacification · For Steadiness Under Pressure</div>
+<div class="mantra-text">Om Sham Shanicharaya Namah</div>
+<div class="mantra-meaning">"Salutations to Lord Saturn, the slow-moving one who teaches patience and discipline"</div>
+</div>
+</div>
+</div>
+
+<footer>
+<div class="footer-text">Jai Shri Ram · Generated by ASTRA Intelligence</div>
+</footer>
+
+</div>
+</body>
+</html>
