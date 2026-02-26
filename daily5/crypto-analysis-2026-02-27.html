@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wall Street Dial | Crypto Portfolio Analysis | February 27, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0c0f;--bg2:#111418;--bg3:#181d23;--border:rgba(255,255,255,0.08);--border-strong:rgba(255,255,255,0.15);--text:#e8e6e0;--text-muted:rgba(232,230,224,0.45);--text-dim:rgba(232,230,224,0.65);--gold:#c9a84c;--gold-dim:rgba(201,168,76,0.2);--green:#4caf82;--green-dim:rgba(76,175,130,0.15);--red:#e05555;--red-dim:rgba(224,85,85,0.15);--blue:#5b9cf6;--blue-dim:rgba(91,156,246,0.15);--purple:#a78bfa;--purple-dim:rgba(167,139,250,0.15);--orange:#f59e42;--orange-dim:rgba(245,158,66,0.15);--teal:#2dd4bf;--teal-dim:rgba(45,212,191,0.15);--cyan:#22d3ee;--cyan-dim:rgba(34,211,238,0.15);--font-serif:'Playfair Display',Georgia,serif;--font-body:'Source Serif 4',Georgia,serif;--font-mono:'IBM Plex Mono',monospace}
+[data-theme="light"]{--bg:#f5f2eb;--bg2:#ede9df;--bg3:#e4dfd3;--border:rgba(0,0,0,0.09);--border-strong:rgba(0,0,0,0.18);--text:#1a1814;--text-muted:rgba(26,24,20,0.45);--text-dim:rgba(26,24,20,0.65);--gold:#8a6b1a;--gold-dim:rgba(138,107,26,0.12);--green:#1c7a4f;--green-dim:rgba(28,122,79,0.1);--red:#b02020;--red-dim:rgba(176,32,32,0.1);--blue:#2563c9;--blue-dim:rgba(37,99,201,0.1);--purple:#6d28d9;--purple-dim:rgba(109,40,217,0.1);--cyan:#0891b2;--cyan-dim:rgba(8,145,178,0.1);--teal:#0d7a6e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.65;-webkit-font-smoothing:antialiased}
+.theme-toggle{position:fixed;top:14px;right:14px;z-index:999;background:var(--bg3);border:1px solid var(--border-strong);color:var(--text-dim);font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.08em;padding:6px 10px;cursor:pointer;border-radius:3px;transition:all 0.2s}
+.theme-toggle:hover{color:var(--gold);border-color:var(--gold)}
+.container{max-width:960px;margin:0 auto;padding:20px 16px 48px}
+header{text-align:center;padding:36px 0 28px;border-bottom:1px solid var(--border);margin-bottom:24px}
+.masthead-label{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.masthead-title{font-family:var(--font-serif);font-size:clamp(1.8rem,5vw,2.6rem);font-weight:900;line-height:1.15;color:var(--text);margin-bottom:8px}
+.masthead-sub{font-size:0.85rem;color:var(--text-dim);font-style:italic;margin-bottom:16px}
+.masthead-meta{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.meta-pill{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.05em;padding:4px 10px;background:var(--bg3);border:1px solid var(--border);border-radius:2px;color:var(--text-dim)}
+.investment-banner{background:linear-gradient(135deg,var(--purple-dim),var(--blue-dim));border:1px solid var(--purple);border-radius:2px;padding:20px;margin-bottom:24px;text-align:center}
+.investment-amount{font-family:var(--font-mono);font-size:2.2rem;font-weight:600;color:var(--purple);margin-bottom:4px}
+.investment-label{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px}
+.investment-scenario{font-size:0.9rem;color:var(--text-dim);line-height:1.6}
+.section-divider{display:flex;align-items:center;gap:14px;margin:32px 0 20px}
+.section-divider-line{flex:1;height:1px;background:var(--border)}
+.section-divider-text{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);white-space:nowrap}
+.asset-card{background:var(--bg2);border:1px solid var(--border);margin-bottom:20px;border-radius:2px;overflow:hidden}
+.crypto-card{border-top:2px solid var(--purple)}
+.asset-card-header{display:flex;justify-content:space-between;align-items:flex-start;padding:16px 18px 14px;border-bottom:1px solid var(--border);gap:12px;flex-wrap:wrap}
+.asset-left{flex:1;min-width:0}
+.ticker-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.ticker{font-family:var(--font-mono);font-size:1.35rem;font-weight:600;color:var(--text);letter-spacing:-0.02em}
+.crypto-badge{font-family:var(--font-mono);font-size:0.58rem;padding:3px 8px;background:var(--purple-dim);border:1px solid var(--purple);color:var(--purple);border-radius:2px;letter-spacing:0.06em;white-space:nowrap}
+.mcap-badge{font-family:var(--font-mono);font-size:0.55rem;padding:3px 8px;background:var(--bg3);border:1px solid var(--border);color:var(--text-dim);border-radius:2px;letter-spacing:0.06em}
+.crypto-name{font-size:0.8rem;color:var(--text-dim);font-style:italic}
+.asset-right{text-align:right;flex-shrink:0}
+.price-main{font-family:var(--font-mono);font-size:1.45rem;font-weight:600;color:var(--text);line-height:1}
+.price-change{font-family:var(--font-mono);font-size:0.75rem;margin-top:3px}
+.price-change.positive{color:var(--green)}
+.price-change.negative{color:var(--red)}
+.volume-label{font-family:var(--font-mono);font-size:0.6rem;color:var(--text-muted);margin-top:4px}
+.asset-body{padding:18px}
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:18px}
+@media(max-width:480px){.metrics-grid{grid-template-columns:repeat(2,1fr)}}
+.metric-tile{background:var(--bg3);border:1px solid var(--border);padding:8px 10px;text-align:center;border-radius:2px}
+.mt-val{font-family:var(--font-mono);font-size:0.85rem;font-weight:600;color:var(--text);line-height:1.2}
+.mt-val.positive{color:var(--green)}
+.mt-val.negative{color:var(--red)}
+.mt-val.purple{color:var(--purple)}
+.mt-val.blue{color:var(--blue)}
+.mt-lbl{font-family:var(--font-mono);font-size:0.55rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-top:3px}
+.card-section-title{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);margin:18px 0 10px;border-bottom:1px solid var(--border);padding-bottom:6px}
+.technical-box{background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--blue);padding:12px 14px;border-radius:0 2px 2px 0;margin-bottom:12px}
+.technical-label{font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;color:var(--blue);text-transform:uppercase;margin-bottom:7px}
+.levels-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.level-col{background:var(--bg2);border:1px solid var(--border);padding:10px;border-radius:2px}
+.level-col h5{font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px}
+.level-col.support h5{color:var(--green)}
+.level-col.resistance h5{color:var(--red)}
+.level-item{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:0.7rem;padding:4px 0;border-bottom:1px dashed var(--border)}
+.level-item:last-child{border-bottom:none}
+.fundamental-box{background:var(--bg3);border:1px solid var(--border);border-top:2px solid var(--gold);padding:14px;margin-bottom:12px;border-radius:0 0 2px 2px}
+.fundamental-title{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.1em;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+.fundamental-box p{font-size:0.82rem;color:var(--text-dim);line-height:1.7;margin-bottom:10px}
+.catalyst-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.catalyst-tag{font-family:var(--font-mono);font-size:0.55rem;padding:3px 8px;background:var(--gold-dim);border:1px solid var(--gold);color:var(--gold);border-radius:2px;letter-spacing:0.04em}
+.risk-box{background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--red);padding:12px 14px;border-radius:0 2px 2px 0;margin-bottom:12px}
+.risk-label{font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;color:var(--red);text-transform:uppercase;margin-bottom:7px}
+.risk-box p{font-size:0.82rem;color:var(--text-dim);line-height:1.7}
+.risk-score{display:flex;align-items:center;gap:8px;margin-top:10px}
+.risk-bar{flex:1;height:6px;background:var(--bg);border-radius:3px;overflow:hidden}
+.risk-fill{height:100%;border-radius:3px}
+.risk-low{background:var(--green);width:25%}
+.risk-med{background:var(--orange);width:50%}
+.risk-high{background:var(--red);width:75%}
+.risk-extreme{background:#ff3333;width:95%}
+.risk-text{font-family:var(--font-mono);font-size:0.55rem;color:var(--text-muted)}
+.portfolio-card{background:var(--bg2);border:1px solid var(--border);border-top:2px solid var(--cyan);padding:20px;margin-bottom:20px;border-radius:2px}
+.portfolio-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+.portfolio-title{font-family:var(--font-serif);font-size:1.15rem;font-weight:700;color:var(--text)}
+.portfolio-sub{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;color:var(--cyan);text-transform:uppercase}
+.allocation-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+@media(max-width:600px){.allocation-grid{grid-template-columns:repeat(2,1fr)}}
+.alloc-item{background:var(--bg3);border:1px solid var(--border);padding:12px;text-align:center;border-radius:2px}
+.alloc-symbol{font-family:var(--font-mono);font-size:0.9rem;font-weight:600;color:var(--purple);margin-bottom:4px}
+.alloc-percent{font-family:var(--font-mono);font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:2px}
+.alloc-amount{font-family:var(--font-mono);font-size:0.7rem;color:var(--text-muted)}
+.port-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;background:var(--bg3);padding:12px;border-radius:2px}
+.port-stat{text-align:center}
+.port-stat-val{font-family:var(--font-mono);font-size:0.9rem;font-weight:600;color:var(--text)}
+.port-stat-val.positive{color:var(--green)}
+.port-stat-val.negative{color:var(--red)}
+.port-stat-lbl{font-family:var(--font-mono);font-size:0.55rem;color:var(--text-muted);text-transform:uppercase;margin-top:2px}
+.correlation-card{background:var(--bg2);border:1px solid var(--border);border-top:2px solid var(--orange);padding:20px;margin-bottom:20px;border-radius:2px}
+.correlation-title{font-family:var(--font-serif);font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:4px}
+.correlation-sub{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;color:var(--orange);text-transform:uppercase;margin-bottom:16px}
+.corr-table{width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:0.72rem}
+.corr-table th{background:var(--bg3);padding:10px;border:1px solid var(--border);text-align:center;font-size:0.6rem;letter-spacing:0.1em;color:var(--text-muted);font-weight:500}
+.corr-table td{padding:10px;border:1px solid var(--border);text-align:center;color:var(--text-dim)}
+.corr-table td:first-child{font-weight:600;color:var(--text)}
+.corr-high{background:var(--red-dim);color:var(--red)}
+.corr-med{background:var(--orange-dim);color:var(--orange)}
+.corr-low{background:var(--green-dim);color:var(--green)}
+.recommendation-card{background:linear-gradient(135deg,var(--green-dim),var(--bg2));border:1px solid var(--green);border-top:3px solid var(--green);padding:24px;margin-bottom:20px;border-radius:2px}
+.rec-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.rec-icon{font-size:1.5rem}
+.rec-title{font-family:var(--font-serif);font-size:1.3rem;font-weight:700;color:var(--text);margin:0}
+.rec-subtitle{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;color:var(--green);text-transform:uppercase;margin-bottom:16px}
+.rec-allocation{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px}
+@media(max-width:480px){.rec-allocation{grid-template-columns:1fr}}
+.rec-item{background:var(--bg);border:1px solid var(--border-strong);padding:14px;border-radius:2px}
+.rec-symbol{font-family:var(--font-mono);font-size:1rem;font-weight:600;color:var(--text);margin-bottom:4px}
+.rec-details{display:flex;justify-content:space-between;align-items:center}
+.rec-pct{font-family:var(--font-mono);font-size:1.4rem;font-weight:600;color:var(--green)}
+.rec-amt{font-family:var(--font-mono);font-size:0.8rem;color:var(--text-muted)}
+.rec-rationale{font-size:0.85rem;color:var(--text-dim);line-height:1.7;border-top:1px solid var(--border);padding-top:14px}
+footer{text-align:center;padding:28px 0 12px;border-top:1px solid var(--border);margin-top:10px}
+.footer-title{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+footer p{font-size:0.75rem;color:var(--text-muted);line-height:1.7}
+.disclaimer{background:var(--bg3);border:1px solid var(--border);padding:14px;margin-top:20px;border-radius:2px;font-size:0.75rem;color:var(--text-muted);line-height:1.6;font-style:italic}
+</style>
+</head>
+<body>
+<button class="theme-toggle" onclick="document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'light':'dark'">◐ THEME</button>
+<div class="container">
+<header>
+<div class="masthead-label">OpenClaw Empire · ASTRA Intelligence</div>
+<h1 class="masthead-title">Wall Street Dial</h1>
+<p class="masthead-sub">Crypto Asset Allocation Analysis · Institutional Grade Intelligence</p>
+<div class="masthead-meta">
+<span class="meta-pill">📅 February 27, 2026</span>
+<span class="meta-pill">🕓 09:51 AM ET</span>
+<span class="meta-pill">📊 Data: CoinGecko</span>
+<span class="meta-pill">💰 Portfolio: $2,000</span>
+</div>
+</header>
+
+<div class="investment-banner">
+<div class="investment-amount">$2,000.00</div>
+<div class="investment-label">Investment Scenario</div>
+<div class="investment-scenario">Four-asset crypto portfolio allocation across XRP, ETH, HYPE, and AST.<br>Analysis includes risk metrics, correlation matrix, and optimized allocation strategies.</div>
+</div>
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Asset Analysis · Current Market Data</div><div class="section-divider-line"></div></div>
+
+<div class="asset-card crypto-card">
+<div class="asset-card-header">
+<div class="asset-left">
+<div class="ticker-row">
+<span class="ticker">XRP</span>
+<span class="crypto-badge">CRYPTO</span>
+<span class="mcap-badge">$135.00B MCAP</span>
+</div>
+<div class="crypto-name">XRP</div>
+</div>
+<div class="asset-right">
+<div class="price-main">$2.3500</div>
+<div class="price-change negative">-1.85% (24h)</div>
+<div class="volume-label">Vol: $2.80B</div>
+</div>
+</div>
+<div class="asset-body">
+<div class="metrics-grid">
+<div class="metric-tile"><div class="mt-val">$2.3500</div><div class="mt-lbl">Price</div></div>
+<div class="metric-tile"><div class="mt-val negative">-1.85%</div><div class="mt-lbl">24h Change</div></div>
+<div class="metric-tile"><div class="mt-val positive">+8.42%</div><div class="mt-lbl">7d Change</div></div>
+<div class="metric-tile"><div class="mt-val purple">25.4%</div><div class="mt-lbl">7d Volatility</div></div>
+<div class="metric-tile"><div class="mt-val blue">0.15</div><div class="mt-lbl">Sharpe Ratio</div></div>
+<div class="metric-tile"><div class="mt-val">19.7%</div><div class="mt-lbl">Max Drawdown</div></div>
+<div class="metric-tile"><div class="mt-val">$135.00B</div><div class="mt-lbl">Market Cap</div></div>
+<div class="metric-tile"><div class="mt-val">-38.8%</div><div class="mt-lbl">From ATH</div></div>
+</div>
+
+<div class="card-section-title">📈 Technical Analysis · Support/Resistance</div>
+<div class="technical-box">
+<div class="technical-label">Key Price Levels</div>
+<div class="levels-grid">
+<div class="level-col support">
+<h5>▲ Support Levels</h5>
+<div class="level-item"><span>S1</span><span>$2.1620</span></div>
+<div class="level-item"><span>S2</span><span>$1.9975</span></div>
+<div class="level-item"><span>S3</span><span>$1.8000</span></div>
+</div>
+<div class="level-col resistance">
+<h5>▼ Resistance Levels</h5>
+<div class="level-item"><span>R1</span><span>$2.5380</span></div>
+<div class="level-item"><span>R2</span><span>$2.7025</span></div>
+<div class="level-item"><span>R3</span><span>$3.2000</span></div>
+</div>
+</div>
+</div>
+
+<div class="card-section-title">💡 Fundamental Thesis</div>
+<div class="fundamental-box">
+<div class="fundamental-title">Bull Case</div>
+<p>Ripple's legal clarity post-SEC settlement enables institutional adoption. ODL (On-Demand Liquidity) corridors expanding in APAC and LATAM. Potential for spot XRP ETF approval in 2025.</p>
+<div class="catalyst-list">
+<span class="catalyst-tag">ETF approval potential</span><span class="catalyst-tag">Bank partnerships</span><span class="catalyst-tag">RLUSD stablecoin growth</span>
+</div>
+</div>
+
+<div class="card-section-title">⚠️ Risk Factors</div>
+<div class="risk-box">
+<div class="risk-label">Key Risks</div>
+<p>Centralization concerns around Ripple Labs' large token holdings. Competition from CBDCs and stablecoins in cross-border payments.</p>
+<div class="risk-score">
+<div class="risk-bar"><div class="risk-fill risk-low"></div></div>
+<span class="risk-text">VOLATILITY: LOW (25.4%)</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="asset-card crypto-card">
+<div class="asset-card-header">
+<div class="asset-left">
+<div class="ticker-row">
+<span class="ticker">ETH</span>
+<span class="crypto-badge">CRYPTO</span>
+<span class="mcap-badge">$306.00B MCAP</span>
+</div>
+<div class="crypto-name">Ethereum</div>
+</div>
+<div class="asset-right">
+<div class="price-main">$2550.0000</div>
+<div class="price-change negative">-2.15% (24h)</div>
+<div class="volume-label">Vol: $12.50B</div>
+</div>
+</div>
+<div class="asset-body">
+<div class="metrics-grid">
+<div class="metric-tile"><div class="mt-val">$2550.0000</div><div class="mt-lbl">Price</div></div>
+<div class="metric-tile"><div class="mt-val negative">-2.15%</div><div class="mt-lbl">24h Change</div></div>
+<div class="metric-tile"><div class="mt-val negative">-5.80%</div><div class="mt-lbl">7d Change</div></div>
+<div class="metric-tile"><div class="mt-val purple">14.0%</div><div class="mt-lbl">7d Volatility</div></div>
+<div class="metric-tile"><div class="mt-val blue">1.32</div><div class="mt-lbl">Sharpe Ratio</div></div>
+<div class="metric-tile"><div class="mt-val">9.7%</div><div class="mt-lbl">Max Drawdown</div></div>
+<div class="metric-tile"><div class="mt-val">$306.00B</div><div class="mt-lbl">Market Cap</div></div>
+<div class="metric-tile"><div class="mt-val">-47.7%</div><div class="mt-lbl">From ATH</div></div>
+</div>
+
+<div class="card-section-title">📈 Technical Analysis · Support/Resistance</div>
+<div class="technical-box">
+<div class="technical-label">Key Price Levels</div>
+<div class="levels-grid">
+<div class="level-col support">
+<h5>▲ Support Levels</h5>
+<div class="level-item"><span>S1</span><span>$2295.0000</span></div>
+<div class="level-item"><span>S2</span><span>$2091.0000</span></div>
+<div class="level-item"><span>S3</span><span>$1900.0000</span></div>
+</div>
+<div class="level-col resistance">
+<h5>▼ Resistance Levels</h5>
+<div class="level-item"><span>R1</span><span>$2805.0000</span></div>
+<div class="level-item"><span>R2</span><span>$3060.0000</span></div>
+<div class="level-item"><span>R3</span><span>$3500.0000</span></div>
+</div>
+</div>
+</div>
+
+<div class="card-section-title">💡 Fundamental Thesis</div>
+<div class="fundamental-box">
+<div class="fundamental-title">Bull Case</div>
+<p>Ethereum remains the dominant smart contract platform with the largest developer ecosystem. Staking yields provide sustainable returns. Layer 2 scaling (Arbitrum, Optimism, Base) dramatically reduces fees.</p>
+<div class="catalyst-list">
+<span class="catalyst-tag">L2 adoption</span><span class="catalyst-tag">Institutional staking</span><span class="catalyst-tag">RWA tokenization</span>
+</div>
+</div>
+
+<div class="card-section-title">⚠️ Risk Factors</div>
+<div class="risk-box">
+<div class="risk-label">Key Risks</div>
+<p>Competition from Solana and other high-throughput chains. Regulatory uncertainty around ETH classification. High gas fees during congestion.</p>
+<div class="risk-score">
+<div class="risk-bar"><div class="risk-fill risk-low"></div></div>
+<span class="risk-text">VOLATILITY: LOW (14.0%)</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="asset-card crypto-card">
+<div class="asset-card-header">
+<div class="asset-left">
+<div class="ticker-row">
+<span class="ticker">HYPE</span>
+<span class="crypto-badge">CRYPTO</span>
+<span class="mcap-badge">$4.95B MCAP</span>
+</div>
+<div class="crypto-name">Hyperliquid</div>
+</div>
+<div class="asset-right">
+<div class="price-main">$14.8500</div>
+<div class="price-change positive">+3.42% (24h)</div>
+<div class="volume-label">Vol: $185.00M</div>
+</div>
+</div>
+<div class="asset-body">
+<div class="metrics-grid">
+<div class="metric-tile"><div class="mt-val">$14.8500</div><div class="mt-lbl">Price</div></div>
+<div class="metric-tile"><div class="mt-val positive">+3.42%</div><div class="mt-lbl">24h Change</div></div>
+<div class="metric-tile"><div class="mt-val negative">-12.30%</div><div class="mt-lbl">7d Change</div></div>
+<div class="metric-tile"><div class="mt-val purple">28.6%</div><div class="mt-lbl">7d Volatility</div></div>
+<div class="metric-tile"><div class="mt-val blue">-0.69</div><div class="mt-lbl">Sharpe Ratio</div></div>
+<div class="metric-tile"><div class="mt-val">45.2%</div><div class="mt-lbl">Max Drawdown</div></div>
+<div class="metric-tile"><div class="mt-val">$4.95B</div><div class="mt-lbl">Market Cap</div></div>
+<div class="metric-tile"><div class="mt-val">-47.9%</div><div class="mt-lbl">From ATH</div></div>
+</div>
+
+<div class="card-section-title">📈 Technical Analysis · Support/Resistance</div>
+<div class="technical-box">
+<div class="technical-label">Key Price Levels</div>
+<div class="levels-grid">
+<div class="level-col support">
+<h5>▲ Support Levels</h5>
+<div class="level-item"><span>S1</span><span>$13.0680</span></div>
+<div class="level-item"><span>S2</span><span>$11.1375</span></div>
+<div class="level-item"><span>S3</span><span>$9.0000</span></div>
+</div>
+<div class="level-col resistance">
+<h5>▼ Resistance Levels</h5>
+<div class="level-item"><span>R1</span><span>$17.0775</span></div>
+<div class="level-item"><span>R2</span><span>$19.3050</span></div>
+<div class="level-item"><span>R3</span><span>$28.0000</span></div>
+</div>
+</div>
+</div>
+
+<div class="card-section-title">💡 Fundamental Thesis</div>
+<div class="fundamental-box">
+<div class="fundamental-title">Bull Case</div>
+<p>Hyperliquid is gaining traction as a high-performance perp DEX with sub-second finality. Token burns create deflationary pressure. Growing TVL and trading volume.</p>
+<div class="catalyst-list">
+<span class="catalyst-tag">Perp DEX market share growth</span><span class="catalyst-tag">Token burns</span><span class="catalyst-tag">New chain integrations</span>
+</div>
+</div>
+
+<div class="card-section-title">⚠️ Risk Factors</div>
+<div class="risk-box">
+<div class="risk-label">Key Risks</div>
+<p>Relatively new protocol with unaudited smart contracts. Competition from established perp DEXs (dYdX, GMX). High token unlock schedule.</p>
+<div class="risk-score">
+<div class="risk-bar"><div class="risk-fill risk-low"></div></div>
+<span class="risk-text">VOLATILITY: LOW (28.6%)</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="asset-card crypto-card">
+<div class="asset-card-header">
+<div class="asset-left">
+<div class="ticker-row">
+<span class="ticker">AST</span>
+<span class="crypto-badge">CRYPTO</span>
+<span class="mcap-badge">$85.00M MCAP</span>
+</div>
+<div class="crypto-name">Aster</div>
+</div>
+<div class="asset-right">
+<div class="price-main">$0.0520</div>
+<div class="price-change positive">+8.75% (24h)</div>
+<div class="volume-label">Vol: $4.20M</div>
+</div>
+</div>
+<div class="asset-body">
+<div class="metrics-grid">
+<div class="metric-tile"><div class="mt-val">$0.0520</div><div class="mt-lbl">Price</div></div>
+<div class="metric-tile"><div class="mt-val positive">+8.75%</div><div class="mt-lbl">24h Change</div></div>
+<div class="metric-tile"><div class="mt-val positive">+25.40%</div><div class="mt-lbl">7d Change</div></div>
+<div class="metric-tile"><div class="mt-val purple">44.5%</div><div class="mt-lbl">7d Volatility</div></div>
+<div class="metric-tile"><div class="mt-val blue">-0.24</div><div class="mt-lbl">Sharpe Ratio</div></div>
+<div class="metric-tile"><div class="mt-val">55.2%</div><div class="mt-lbl">Max Drawdown</div></div>
+<div class="metric-tile"><div class="mt-val">$85.00M</div><div class="mt-lbl">Market Cap</div></div>
+<div class="metric-tile"><div class="mt-val">-64.1%</div><div class="mt-lbl">From ATH</div></div>
+</div>
+
+<div class="card-section-title">📈 Technical Analysis · Support/Resistance</div>
+<div class="technical-box">
+<div class="technical-label">Key Price Levels</div>
+<div class="levels-grid">
+<div class="level-col support">
+<h5>▲ Support Levels</h5>
+<div class="level-item"><span>S1</span><span>$0.0442</span></div>
+<div class="level-item"><span>S2</span><span>$0.0364</span></div>
+<div class="level-item"><span>S3</span><span>$0.0320</span></div>
+</div>
+<div class="level-col resistance">
+<h5>▼ Resistance Levels</h5>
+<div class="level-item"><span>R1</span><span>$0.0624</span></div>
+<div class="level-item"><span>R2</span><span>$0.0754</span></div>
+<div class="level-item"><span>R3</span><span>$0.1200</span></div>
+</div>
+</div>
+</div>
+
+<div class="card-section-title">💡 Fundamental Thesis</div>
+<div class="fundamental-box">
+<div class="fundamental-title">Bull Case</div>
+<p>Aster is a micro-cap with high growth potential in the L2/Rollup infrastructure space. Early partnerships with major DeFi protocols. Low fully-diluted valuation relative to peers.</p>
+<div class="catalyst-list">
+<span class="catalyst-tag">Protocol adoption</span><span class="catalyst-tag">Exchange listings</span><span class="catalyst-tag">Staking rewards</span>
+</div>
+</div>
+
+<div class="card-section-title">⚠️ Risk Factors</div>
+<div class="risk-box">
+<div class="risk-label">Key Risks</div>
+<p>Extremely high volatility and liquidity risk. Unproven revenue model. Team concentration and vesting unlock risks.</p>
+<div class="risk-score">
+<div class="risk-bar"><div class="risk-fill risk-low"></div></div>
+<span class="risk-text">VOLATILITY: LOW (44.5%)</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Correlation Matrix · 30-Day Returns</div><div class="section-divider-line"></div></div>
+
+<div class="correlation-card">
+<div class="correlation-title">Cross-Asset Correlations</div>
+<div class="correlation-sub">Higher values indicate assets move together</div>
+<table class="corr-table">
+<tr><th>Asset</th><th>XRP</th><th>ETH</th><th>HYPE</th><th>AST</th></tr>
+<tr><td>XRP</td><td class="corr-high">1.00</td><td class="corr-low">-0.03</td><td class="corr-low">0.03</td><td class="corr-low">0.00</td></tr><tr><td>ETH</td><td class="corr-low">-0.03</td><td class="corr-high">1.00</td><td class="corr-low">0.10</td><td class="corr-low">-0.03</td></tr><tr><td>HYPE</td><td class="corr-low">0.03</td><td class="corr-low">0.10</td><td class="corr-high">1.00</td><td class="corr-low">0.02</td></tr><tr><td>AST</td><td class="corr-low">0.00</td><td class="corr-low">-0.03</td><td class="corr-low">0.02</td><td class="corr-high">1.00</td></tr></table>
+<p style="font-size:0.75rem;color:var(--text-muted);margin-top:12px;font-style:italic">
+Note: Correlations calculated from 30-day daily returns. Lower correlations provide better diversification benefits.
+</p>
+</div>
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Portfolio Allocation Scenarios</div><div class="section-divider-line"></div></div>
+
+<div class="portfolio-card">
+<div class="portfolio-header">
+<span class="portfolio-title">Equal Weight</span>
+<span class="portfolio-sub">Allocation Strategy</span>
+</div>
+<div class="allocation-grid">
+
+<div class="alloc-item">
+<div class="alloc-symbol">XRP</div>
+<div class="alloc-percent">25.0%</div>
+<div class="alloc-amount">$500.00</div>
+</div>
+
+<div class="alloc-item">
+<div class="alloc-symbol">ETH</div>
+<div class="alloc-percent">25.0%</div>
+<div class="alloc-amount">$500.00</div>
+</div>
+
+<div class="alloc-item">
+<div class="alloc-symbol">HYPE</div>
+<div class="alloc-percent">25.0%</div>
+<div class="alloc-amount">$500.00</div>
+</div>
+
+<div class="alloc-item">
+<div class="alloc-symbol">AST</div>
+<div class="alloc-percent">25.0%</div>
+<div class="alloc-amount">$500.00</div>
+</div>
+
+</div>
+<div class="port-stats">
+<div class="port-stat">
+<div class="port-stat-val positive">+2.04%</div>
+<div class="port-stat-lbl">Est. Daily Return</div>
+</div>
+<div class="port-stat">
+<div class="port-stat-val">15.1%</div>
+<div class="port-stat-lbl">Portfolio Vol</div>
+</div>
+<div class="port-stat">
+<div class="port-stat-val">$2000.00</div>
+<div class="port-stat-lbl">Total Allocated</div>
+</div>
+</div>
+</div>
+
+<div class="portfolio-card">
+<div class="portfolio-header">
+<span class="portfolio-title">Risk-Weighted</span>
+<span class="portfolio-sub">Allocation Strategy</span>
+</div>
+<div class="allocation-grid">
+
+<div class="alloc-item">
+<div class="alloc-symbol">XRP</div>
+<div class="alloc-percent">23.4%</div>
+<div class="alloc-amount">$468.79</div>
+</div>
+
+<div class="alloc-item">
+<div class="alloc-symbol">ETH</div>
+<div class="alloc-percent">42.4%</div>
+<div class="alloc-amount">$847.61</div>
+</div>
+
+<div class="alloc-item">
+<div class="alloc-symbol">HYPE</div>
+<div class="alloc-percent">20.8%</div>
+<div class="alloc-amount">$416.03</div>
+</div>
+
+<div class="alloc-item">
+<div class="alloc-symbol">AST</div>
+<div class="alloc-percent">13.4%</div>
+<div class="alloc-amount">$267.57</div>
+</div>
+
+</div>
+<div class="port-stats">
+<div class="port-stat">
+<div class="port-stat-val positive">+0.54%</div>
+<div class="port-stat-lbl">Est. Daily Return</div>
+</div>
+<div class="port-stat">
+<div class="port-stat-val">11.9%</div>
+<div class="port-stat-lbl">Portfolio Vol</div>
+</div>
+<div class="port-stat">
+<div class="port-stat-val">$2000.00</div>
+<div class="port-stat-lbl">Total Allocated</div>
+</div>
+</div>
+</div>
+
+<div class="portfolio-card">
+<div class="portfolio-header">
+<span class="portfolio-title">Sharpe-Optimized</span>
+<span class="portfolio-sub">Allocation Strategy</span>
+</div>
+<div class="allocation-grid">
+
+<div class="alloc-item">
+<div class="alloc-symbol">XRP</div>
+<div class="alloc-percent">9.1%</div>
+<div class="alloc-amount">$181.64</div>
+</div>
+
+<div class="alloc-item">
+<div class="alloc-symbol">ETH</div>
+<div class="alloc-percent">78.9%</div>
+<div class="alloc-amount">$1578.56</div>
+</div>
+
+<div class="alloc-item">
+<div class="alloc-symbol">HYPE</div>
+<div class="alloc-percent">6.0%</div>
+<div class="alloc-amount">$119.90</div>
+</div>
+
+<div class="alloc-item">
+<div class="alloc-symbol">AST</div>
+<div class="alloc-percent">6.0%</div>
+<div class="alloc-amount">$119.90</div>
+</div>
+
+</div>
+<div class="port-stats">
+<div class="port-stat">
+<div class="port-stat-val negative">-1.14%</div>
+<div class="port-stat-lbl">Est. Daily Return</div>
+</div>
+<div class="port-stat">
+<div class="port-stat-val">11.8%</div>
+<div class="port-stat-lbl">Portfolio Vol</div>
+</div>
+<div class="port-stat">
+<div class="port-stat-val">$2000.00</div>
+<div class="port-stat-lbl">Total Allocated</div>
+</div>
+</div>
+</div>
+
+<div class="portfolio-card">
+<div class="portfolio-header">
+<span class="portfolio-title">Conservative</span>
+<span class="portfolio-sub">Allocation Strategy</span>
+</div>
+<div class="allocation-grid">
+
+<div class="alloc-item">
+<div class="alloc-symbol">XRP</div>
+<div class="alloc-percent">30.0%</div>
+<div class="alloc-amount">$600.00</div>
+</div>
+
+<div class="alloc-item">
+<div class="alloc-symbol">ETH</div>
+<div class="alloc-percent">40.0%</div>
+<div class="alloc-amount">$800.00</div>
+</div>
+
+<div class="alloc-item">
+<div class="alloc-symbol">HYPE</div>
+<div class="alloc-percent">20.0%</div>
+<div class="alloc-amount">$400.00</div>
+</div>
+
+<div class="alloc-item">
+<div class="alloc-symbol">AST</div>
+<div class="alloc-percent">10.0%</div>
+<div class="alloc-amount">$200.00</div>
+</div>
+
+</div>
+<div class="port-stats">
+<div class="port-stat">
+<div class="port-stat-val positive">+0.14%</div>
+<div class="port-stat-lbl">Est. Daily Return</div>
+</div>
+<div class="port-stat">
+<div class="port-stat-val">11.9%</div>
+<div class="port-stat-lbl">Portfolio Vol</div>
+</div>
+<div class="port-stat">
+<div class="port-stat-val">$2000.00</div>
+<div class="port-stat-lbl">Total Allocated</div>
+</div>
+</div>
+</div>
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Final Recommendation</div><div class="section-divider-line"></div></div>
+
+<div class="recommendation-card">
+<div class="rec-header">
+<span class="rec-icon">🎯</span>
+<h2 class="rec-title">Recommended Allocation</h2>
+</div>
+<div class="rec-subtitle">Conservative Risk Profile · $2,000 Investment</div>
+<div class="rec-allocation">
+
+<div class="rec-item">
+<div class="rec-symbol">XRP</div>
+<div class="rec-details">
+<span class="rec-pct">30%</span>
+<span class="rec-amt">$600.00</span>
+</div>
+</div>
+
+<div class="rec-item">
+<div class="rec-symbol">ETH</div>
+<div class="rec-details">
+<span class="rec-pct">40%</span>
+<span class="rec-amt">$800.00</span>
+</div>
+</div>
+
+<div class="rec-item">
+<div class="rec-symbol">HYPE</div>
+<div class="rec-details">
+<span class="rec-pct">20%</span>
+<span class="rec-amt">$400.00</span>
+</div>
+</div>
+
+<div class="rec-item">
+<div class="rec-symbol">AST</div>
+<div class="rec-details">
+<span class="rec-pct">10%</span>
+<span class="rec-amt">$200.00</span>
+</div>
+</div>
+
+</div>
+<div class="rec-rationale">
+<strong>Rationale:</strong> This allocation prioritizes capital preservation while maintaining upside exposure. ETH (40%) provides a foundation of stability as the leading smart contract platform with established institutional adoption. XRP (30%) offers regulatory clarity and real-world payment utility. HYPE (20%) provides exposure to the growing perp DEX sector with deflationary tokenomics. AST (10%) is a measured micro-cap allocation for asymmetric upside potential. This portfolio balances diversification with prudent position sizing, limiting speculative exposure to 30% while maintaining 70% in established protocols.
+</div>
+</div>
+
+<div class="disclaimer">
+<strong>Disclaimer:</strong> This analysis is for educational and informational purposes only. It does not constitute investment advice, an offer to sell, or a solicitation of an offer to buy any cryptocurrency or financial instrument. Cryptocurrency investments carry substantial risk of loss, including possible loss of principal. Past performance does not guarantee future results. Always conduct your own research and consult with a qualified financial advisor before making investment decisions. Market data sourced from CoinGecko and is delayed.
+</div>
+
+<footer>
+<div class="footer-title">Wall Street Dial · Crypto Intelligence</div>
+<p>Generated by ASTRA Intelligence · OpenClaw Empire<br>
+Data: CoinGecko API · Report Date: February 27, 2026</p>
+</footer>
+
+</div>
+</body>
+</html>
