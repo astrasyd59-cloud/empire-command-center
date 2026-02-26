@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Hunt Dashboard | Dibs</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0c0f;
+  --bg2: #111418;
+  --bg3: #181d23;
+  --border: rgba(255,255,255,0.08);
+  --border-strong: rgba(255,255,255,0.15);
+  --text: #e8e6e0;
+  --text-muted: rgba(232,230,224,0.45);
+  --text-dim: rgba(232,230,224,0.65);
+  --gold: #c9a84c;
+  --gold-dim: rgba(201,168,76,0.2);
+  --green: #4caf82;
+  --green-dim: rgba(76,175,130,0.15);
+  --red: #e05555;
+  --red-dim: rgba(224,85,85,0.15);
+  --blue: #5b9cf6;
+  --blue-dim: rgba(91,156,246,0.15);
+  --purple: #a78bfa;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-body: 'Source Serif 4', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+.container { max-width: 900px; margin: 0 auto; padding: 24px 16px 48px; }
+header { text-align: center; padding: 32px 0 28px; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+.masthead-label { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.masthead-title { font-family: var(--font-serif); font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 900; line-height: 1.15; color: var(--text); margin-bottom: 8px; }
+.masthead-sub { font-size: 0.85rem; color: var(--text-dim); font-style: italic; margin-bottom: 16px; }
+.last-updated { font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-muted); }
+
+.section { background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+.section-header { display: flex; align-items: center; gap: 10px; padding: 14px 18px; border-bottom: 1px solid var(--border); background: var(--bg3); }
+.section-icon { font-size: 1.2rem; }
+.section-title { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 700; color: var(--text); }
+.section-body { padding: 18px; }
+
+.job-card { background: var(--bg3); border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 0 4px 4px 0; padding: 14px 16px; margin-bottom: 12px; }
+.job-card:last-child { margin-bottom: 0; }
+.job-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.job-company { font-family: var(--font-serif); font-size: 1.05rem; font-weight: 700; color: var(--gold); }
+.job-role { font-size: 0.9rem; color: var(--text-dim); }
+.job-meta { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 10px; }
+.job-meta-item { font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+.job-meta-item span { color: var(--text-dim); font-size: 0.7rem; display: block; margin-top: 2px; }
+.job-status { font-family: var(--font-mono); font-size: 0.58rem; padding: 4px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.08em; }
+.status-applied { background: var(--green-dim); border: 1px solid var(--green); color: var(--green); }
+.status-pending { background: var(--gold-dim); border: 1px solid var(--gold); color: var(--gold); }
+.status-rejected { background: var(--red-dim); border: 1px solid var(--red); color: var(--red); }
+
+.pending-list { list-style: none; }
+.pending-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.pending-item:last-child { border-bottom: none; }
+.pending-bullet { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+.pending-text { font-size: 0.85rem; color: var(--text-dim); }
+
+.metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+@media (max-width: 600px) { .metrics-grid { grid-template-columns: repeat(2, 1fr); } }
+.metric-card { background: var(--bg2); border: 1px solid var(--border); padding: 16px; text-align: center; border-radius: 4px; }
+.metric-value { font-family: var(--font-mono); font-size: 1.8rem; font-weight: 600; color: var(--gold); }
+.metric-label { font-family: var(--font-mono); font-size: 0.58rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
+
+.action-list { list-style: none; }
+.action-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.action-item:last-child { border-bottom: none; }
+.action-checkbox { width: 18px; height: 18px; border: 1px solid var(--border-strong); border-radius: 3px; margin-top: 2px; flex-shrink: 0; }
+.action-text { font-size: 0.88rem; color: var(--text-dim); }
+.action-text strong { color: var(--text); }
+.action-date { font-family: var(--font-mono); font-size: 0.6rem; color: var(--gold); margin-left: auto; flex-shrink: 0; }
+
+.link-button { display: inline-block; font-family: var(--font-mono); font-size: 0.6rem; color: var(--blue); text-decoration: none; padding: 6px 12px; border: 1px solid var(--blue); border-radius: 2px; margin-top: 10px; transition: all 0.2s; }
+.link-button:hover { background: var(--blue-dim); }
+
+.empty-state { text-align: center; padding: 24px; color: var(--text-muted); font-style: italic; font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+<div class="masthead-label">🗡️ OpenClaw Empire</div>
+<h1 class="masthead-title">Job Hunt Dashboard</h1>
+<p class="masthead-sub">Operations Manager · Crypto · Trading</p>
+<div class="last-updated">Last Updated: February 27, 2026 · 7:50 AM AEDT</div>
+</header>
+
+<!-- METRICS -->
+<div class="metrics-grid">
+<div class="metric-card">
+<div class="metric-value">1</div>
+<div class="metric-label">Applied</div>
+</div>
+<div class="metric-card">
+<div class="metric-value">0</div>
+<div class="metric-label">Responses</div>
+</div>
+<div class="metric-card">
+<div class="metric-value">0</div>
+<div class="metric-label">Interviews</div>
+</div>
+<div class="metric-card">
+<div class="metric-value">0</div>
+<div class="metric-label">Offers</div>
+</div>
+</div>
+
+<!-- ACTIVE APPLICATIONS -->
+<div class="section">
+<div class="section-header">
+<span class="section-icon">✅</span>
+<span class="section-title">Active Applications</span>
+</div>
+<div class="section-body">
+
+<div class="job-card">
+<div class="job-header">
+<div>
+<div class="job-company">Trading 212</div>
+<div class="job-role">Operations Manager (Crypto)</div>
+</div>
+<span class="job-status status-applied">Applied</span>
+</div>
+<div class="job-meta">
+<div class="job-meta-item">Platform<span>AshbyHQ / LinkedIn</span></div>
+<div class="job-meta-item">Applied<span>Feb 27, 2026</span></div>
+<div class="job-meta-item">Follow-Up<span>Mar 3, 2026</span></div>
+</div>
+<a href="https://jobs.ashbyhq.com/trading212/09d9de9e-4fe2-463d-84b4-c74fe9aab5d5" class="link-button" target="_blank">View Job Posting ↗</a>
+</div>
+
+</div>
+</div>
+
+<!-- PENDING -->
+<div class="section">
+<div class="section-header">
+<span class="section-icon">⏳</span>
+<span class="section-title">Pending (Need Details)</span>
+</div>
+<div class="section-body">
+<ul class="pending-list">
+<li class="pending-item">
+<span class="pending-bullet"></span>
+<span class="pending-text">Operations Manager — Crypto Trading Firm (Seek #90364610)</span>
+</li>
+<li class="pending-item">
+<span class="pending-bullet"></span>
+<span class="pending-text">Role #90413303 (applied ~Feb 24)</span>
+</li>
+<li class="pending-item">
+<span class="pending-bullet"></span>
+<span class="pending-text">Role #90436888 (applied ~Feb 24)</span>
+</li>
+</ul>
+<div style="margin-top: 12px; font-size: 0.75rem; color: var(--text-muted); font-style: italic;">
+Reply with company names/roles to add to dashboard.
+</div>
+</div>
+</div>
+
+<!-- RECRUITER -->
+<div class="section">
+<div class="section-header">
+<span class="section-icon">👤</span>
+<span class="section-title">Recruiter Pipeline</span>
+</div>
+<div class="section-body">
+<div class="job-card" style="border-left-color: var(--gold);">
+<div class="job-header">
+<div>
+<div class="job-company" style="color: var(--text);">Chole</div>
+<div class="job-role">Recruiter</div>
+</div>
+<span class="job-status status-pending">CV Requested</span>
+</div>
+<div class="job-meta">
+<div class="job-meta-item">Last Contact<span>Feb 20, 2026</span></div>
+<div class="job-meta-item">Next Action<span>Send updated CV ASAP</span></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- NEXT ACTIONS -->
+<div class="section">
+<div class="section-header">
+<span class="section-icon">🎯</span>
+<span class="section-title">Next Actions</span>
+</div>
+<div class="section-body">
+<ul class="action-list">
+<li class="action-item">
+<div class="action-checkbox"></div>
+<div class="action-text"><strong>Trading 212:</strong> Check email for response</div>
+<span class="action-date">Mar 3</span>
+</li>
+<li class="action-item">
+<div class="action-checkbox"></div>
+<div class="action-text"><strong>Recruiter Chole:</strong> Send updated CV</div>
+<span class="action-date">ASAP</span>
+</li>
+<li class="action-item">
+<div class="action-checkbox"></div>
+<div class="action-text"><strong>Seek Roles:</strong> Confirm application status</div>
+<span class="action-date">—</span>
+</li>
+<li class="action-item">
+<div class="action-checkbox"></div>
+<div class="action-text"><strong>Apply to 2 more roles</strong></div>
+<span class="action-date">Mar 1</span>
+</li>
+</ul>
+</div>
+</div>
+
+</div>
+</body>
+</html>
