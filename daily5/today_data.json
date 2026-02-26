@@ -1,0 +1,137 @@
+{
+  "date": "February 26, 2026",
+  "date_short": "Feb 26",
+  "date_iso": "2026-02-26",
+  "time_et": "5:55 AM",
+  "day_num": 26,
+  "tickers_str": "CVX \u00b7 SBUX \u00b7 ABT \u00b7 LOW \u00b7 TGT \u00b7 ETH \u00b7 USD/JPY",
+  "batch_label": "Batch 5 (stocks 21\u201325 of 503)",
+  "cfa_topic": "Equity Valuation",
+  "macro": {
+    "spx": {
+      "val": "6,946.13",
+      "chg": "\u25b2 +0.81%",
+      "dir": "m-up"
+    },
+    "vix": {
+      "val": "17.93",
+      "chg": "\u2014",
+      "dir": "m-neutral"
+    },
+    "yield10": {
+      "val": "4.05%",
+      "chg": "\u2014",
+      "dir": "m-neutral"
+    },
+    "fed_funds": "5.33%",
+    "dxy": {
+      "val": "97.57",
+      "chg": "\u25bc -0.13%",
+      "dir": "m-down"
+    },
+    "gold": {
+      "val": "$5,211",
+      "chg": "\u25b2 +0.08%",
+      "dir": "m-up"
+    }
+  },
+  "progress": {
+    "stocks_done": 25,
+    "sp_pct": 4.97,
+    "cfa_done": 1,
+    "cfa_pct": 10
+  },
+  "stocks": {
+    "CVX": {
+      "price": 184.22000122070312,
+      "change_pct": -0.604292186963063,
+      "market_cap": 368320937984,
+      "pe_ratio": 27.785822,
+      "dividend_yield": 386.0,
+      "beta": 0.672,
+      "eps": 6.63,
+      "roe": 7.16,
+      "fifty_two_week_low": 132.04,
+      "fifty_two_week_high": 187.9,
+      "sector": "Energy",
+      "industry": "Oil & Gas Integrated"
+    },
+    "SBUX": {
+      "price": 97.93000030517578,
+      "change_pct": 1.4713481893212355,
+      "market_cap": 111571648512,
+      "pe_ratio": 81.60833,
+      "dividend_yield": 252.99999999999997,
+      "beta": 0.937,
+      "eps": 1.2,
+      "roe": 0,
+      "fifty_two_week_low": 75.5,
+      "fifty_two_week_high": 117.46,
+      "sector": "Consumer Cyclical",
+      "industry": "Restaurants"
+    },
+    "ABT": {
+      "price": 114.76000213623047,
+      "change_pct": 0.15709574297370596,
+      "market_cap": 199735083008,
+      "pe_ratio": 30.766756,
+      "dividend_yield": 220.00000000000003,
+      "beta": 0.751,
+      "eps": 3.73,
+      "roe": 12.961,
+      "fifty_two_week_low": 105.27,
+      "fifty_two_week_high": 141.23,
+      "sector": "Healthcare",
+      "industry": "Medical Devices"
+    },
+    "LOW": {
+      "price": 263.0199890136719,
+      "change_pct": -5.588860881183441,
+      "market_cap": 147541458944,
+      "pe_ratio": 23.031523,
+      "dividend_yield": 172.0,
+      "beta": 0.978,
+      "eps": 11.42,
+      "roe": 0,
+      "fifty_two_week_low": 206.39,
+      "fifty_two_week_high": 293.06,
+      "sector": "Consumer Cyclical",
+      "industry": "Home Improvement Retail"
+    },
+    "TGT": {
+      "price": 116.44000244140625,
+      "change_pct": 0.7964039344482298,
+      "market_cap": 52910235648,
+      "pe_ratio": 14.012033,
+      "dividend_yield": 395.0,
+      "beta": 1.136,
+      "eps": 8.31,
+      "roe": 25.094998,
+      "fifty_two_week_low": 83.44,
+      "fifty_two_week_high": 127.89,
+      "sector": "Consumer Defensive",
+      "industry": "Discount Stores"
+    }
+  },
+  "crypto": {
+    "ticker": "ETH",
+    "price": 2058.038818359375,
+    "change_pct": 11.72,
+    "market_cap": 249000000000,
+    "volume_24h": 24100000000
+  },
+  "forex": {
+    "pair": "USD/JPY",
+    "rate": 155.8719940185547,
+    "change_pct": -0.005139122406260449,
+    "us_rate": 5.33,
+    "jpy_rate": 0.5
+  },
+  "stock_cards_html": "<div class=\"asset-card\">\n  <div class=\"asset-card-header\">\n    <div class=\"asset-left\">\n      <div class=\"ticker-row\"><span class=\"ticker\">CVX</span><span class=\"sector-badge\">Energy</span></div>\n      <div class=\"company-name\">Oil & Gas Integrated</div>\n    </div>\n    <div class=\"asset-right\">\n      <div class=\"price-main\">$184.22</div>\n      <div class=\"price-change negative\">\u25bc -0.60%</div>\n    </div>\n  </div>\n  <button class=\"collapse-toggle open\"><span>Details \u00b7 Technicals \u00b7 CFA Lens</span><span class=\"arrow\">\u25bc</span></button>\n  <div class=\"collapsible-body expanded\">\n    <div class=\"asset-body\">\n      <div class=\"metrics-grid\">\n        <div class=\"metric-tile\"><div class=\"mt-val\">\u25bc -0.60%</div><div class=\"mt-lbl\">1D Chg</div></div>\n        <div class=\"metric-tile\"><div class=\"mt-val\">27.8x</div><div class=\"mt-lbl\">P/E</div></div>\n        <div class=\"metric-tile\"><div class=\"mt-val\">0.67</div><div class=\"mt-lbl\">Beta</div></div>\n        <div class=\"metric-tile\"><div class=\"mt-val\">$132</div><div class=\"mt-lbl\">52W Low</div></div>\n      </div>\n      <div class=\"card-section-title\">\ud83c\udfdb\ufe0f Street Commentary</div>\n      <div class=\"street-quote\">\n        <p>\"CVX shows mixed signals with current price action near key technical levels. Watch for breakout confirmation.\"</p>\n        <div class=\"quote-source\">\u2014 Analyst consensus \u00b7 Feb 26, 2026</div>\n      </div>\n      <div class=\"card-section-title\">\ud83d\udcda CFA Lens: Equity Valuation</div>\n      <div class=\"cfa-box\">\n        <div class=\"cfa-box-title\">P/E Ratio Analysis</div>\n        <div class=\"formula-block\">P/E = Price / EPS = $184.22 / 6.63 = 27.8x</div>\n        <p>Current P/E of 27.8x compared to sector average. Consider growth prospects and risk profile.</p>\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"asset-card\">\n  <div class=\"asset-card-header\">\n    <div class=\"asset-left\">\n      <div class=\"ticker-row\"><span class=\"ticker\">SBUX</span><span class=\"sector-badge\">Consumer Cyclical</span></div>\n      <div class=\"company-name\">Restaurants</div>\n    </div>\n    <div class=\"asset-right\">\n      <div class=\"price-main\">$97.93</div>\n      <div class=\"price-change positive\">\u25b2 +1.47%</div>\n    </div>\n  </div>\n  <button class=\"collapse-toggle open\"><span>Details \u00b7 Technicals \u00b7 CFA Lens</span><span class=\"arrow\">\u25bc</span></button>\n  <div class=\"collapsible-body expanded\">\n    <div class=\"asset-body\">\n      <div class=\"metrics-grid\">\n        <div class=\"metric-tile\"><div class=\"mt-val\">\u25b2 +1.47%</div><div class=\"mt-lbl\">1D Chg</div></div>\n        <div class=\"metric-tile\"><div class=\"mt-val\">81.6x</div><div class=\"mt-lbl\">P/E</div></div>\n        <div class=\"metric-tile\"><div class=\"mt-val\">0.94</div><div class=\"mt-lbl\">Beta</div></div>\n        <div class=\"metric-tile\"><div class=\"mt-val\">$76</div><div class=\"mt-lbl\">52W Low</div></div>\n      </div>\n      <div class=\"card-section-title\">\ud83c\udfdb\ufe0f Street Commentary</div>\n      <div class=\"street-quote\">\n        <p>\"SBUX shows mixed signals with current price action near key technical levels. Watch for breakout confirmation.\"</p>\n        <div class=\"quote-source\">\u2014 Analyst consensus \u00b7 Feb 26, 2026</div>\n      </div>\n      <div class=\"card-section-title\">\ud83d\udcda CFA Lens: Equity Valuation</div>\n      <div class=\"cfa-box\">\n        <div class=\"cfa-box-title\">P/E Ratio Analysis</div>\n        <div class=\"formula-block\">P/E = Price / EPS = $97.93 / 1.20 = 81.6x</div>\n        <p>Current P/E of 81.6x compared to sector average. Consider growth prospects and risk profile.</p>\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"asset-card\">\n  <div class=\"asset-card-header\">\n    <div class=\"asset-left\">\n      <div class=\"ticker-row\"><span class=\"ticker\">ABT</span><span class=\"sector-badge\">Healthcare</span></div>\n      <div class=\"company-name\">Medical Devices</div>\n    </div>\n    <div class=\"asset-right\">\n      <div class=\"price-main\">$114.76</div>\n      <div class=\"price-change positive\">\u25b2 +0.16%</div>\n    </div>\n  </div>\n  <button class=\"collapse-toggle open\"><span>Details \u00b7 Technicals \u00b7 CFA Lens</span><span class=\"arrow\">\u25bc</span></button>\n  <div class=\"collapsible-body expanded\">\n    <div class=\"asset-body\">\n      <div class=\"metrics-grid\">\n        <div class=\"metric-tile\"><div class=\"mt-val\">\u25b2 +0.16%</div><div class=\"mt-lbl\">1D Chg</div></div>\n        <div class=\"metric-tile\"><div class=\"mt-val\">30.8x</div><div class=\"mt-lbl\">P/E</div></div>\n        <div class=\"metric-tile\"><div class=\"mt-val\">0.75</div><div class=\"mt-lbl\">Beta</div></div>\n        <div class=\"metric-tile\"><div class=\"mt-val\">$105</div><div class=\"mt-lbl\">52W Low</div></div>\n      </div>\n      <div class=\"card-section-title\">\ud83c\udfdb\ufe0f Street Commentary</div>\n      <div class=\"street-quote\">\n        <p>\"ABT shows mixed signals with current price action near key technical levels. Watch for breakout confirmation.\"</p>\n        <div class=\"quote-source\">\u2014 Analyst consensus \u00b7 Feb 26, 2026</div>\n      </div>\n      <div class=\"card-section-title\">\ud83d\udcda CFA Lens: Equity Valuation</div>\n      <div class=\"cfa-box\">\n        <div class=\"cfa-box-title\">P/E Ratio Analysis</div>\n        <div class=\"formula-block\">P/E = Price / EPS = $114.76 / 3.73 = 30.8x</div>\n        <p>Current P/E of 30.8x compared to sector average. Consider growth prospects and risk profile.</p>\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"asset-card\">\n  <div class=\"asset-card-header\">\n    <div class=\"asset-left\">\n      <div class=\"ticker-row\"><span class=\"ticker\">LOW</span><span class=\"sector-badge\">Consumer Cyclical</span></div>\n      <div class=\"company-name\">Home Improvement Retail</div>\n    </div>\n    <div class=\"asset-right\">\n      <div class=\"price-main\">$263.02</div>\n      <div class=\"price-change negative\">\u25bc -5.59%</div>\n    </div>\n  </div>\n  <button class=\"collapse-toggle open\"><span>Details \u00b7 Technicals \u00b7 CFA Lens</span><span class=\"arrow\">\u25bc</span></button>\n  <div class=\"collapsible-body expanded\">\n    <div class=\"asset-body\">\n      <div class=\"metrics-grid\">\n        <div class=\"metric-tile\"><div class=\"mt-val\">\u25bc -5.59%</div><div class=\"mt-lbl\">1D Chg</div></div>\n        <div class=\"metric-tile\"><div class=\"mt-val\">23.0x</div><div class=\"mt-lbl\">P/E</div></div>\n        <div class=\"metric-tile\"><div class=\"mt-val\">0.98</div><div class=\"mt-lbl\">Beta</div></div>\n        <div class=\"metric-tile\"><div class=\"mt-val\">$206</div><div class=\"mt-lbl\">52W Low</div></div>\n      </div>\n      <div class=\"card-section-title\">\ud83c\udfdb\ufe0f Street Commentary</div>\n      <div class=\"street-quote\">\n        <p>\"LOW shows mixed signals with current price action near key technical levels. Watch for breakout confirmation.\"</p>\n        <div class=\"quote-source\">\u2014 Analyst consensus \u00b7 Feb 26, 2026</div>\n      </div>\n      <div class=\"card-section-title\">\ud83d\udcda CFA Lens: Equity Valuation</div>\n      <div class=\"cfa-box\">\n        <div class=\"cfa-box-title\">P/E Ratio Analysis</div>\n        <div class=\"formula-block\">P/E = Price / EPS = $263.02 / 11.42 = 23.0x</div>\n        <p>Current P/E of 23.0x compared to sector average. Consider growth prospects and risk profile.</p>\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"asset-card\">\n  <div class=\"asset-card-header\">\n    <div class=\"asset-left\">\n      <div class=\"ticker-row\"><span class=\"ticker\">TGT</span><span class=\"sector-badge\">Consumer Defensive</span></div>\n      <div class=\"company-name\">Discount Stores</div>\n    </div>\n    <div class=\"asset-right\">\n      <div class=\"price-main\">$116.44</div>\n      <div class=\"price-change positive\">\u25b2 +0.80%</div>\n    </div>\n  </div>\n  <button class=\"collapse-toggle open\"><span>Details \u00b7 Technicals \u00b7 CFA Lens</span><span class=\"arrow\">\u25bc</span></button>\n  <div class=\"collapsible-body expanded\">\n    <div class=\"asset-body\">\n      <div class=\"metrics-grid\">\n        <div class=\"metric-tile\"><div class=\"mt-val\">\u25b2 +0.80%</div><div class=\"mt-lbl\">1D Chg</div></div>\n        <div class=\"metric-tile\"><div class=\"mt-val\">14.0x</div><div class=\"mt-lbl\">P/E</div></div>\n        <div class=\"metric-tile\"><div class=\"mt-val\">1.14</div><div class=\"mt-lbl\">Beta</div></div>\n        <div class=\"metric-tile\"><div class=\"mt-val\">$83</div><div class=\"mt-lbl\">52W Low</div></div>\n      </div>\n      <div class=\"card-section-title\">\ud83c\udfdb\ufe0f Street Commentary</div>\n      <div class=\"street-quote\">\n        <p>\"TGT shows mixed signals with current price action near key technical levels. Watch for breakout confirmation.\"</p>\n        <div class=\"quote-source\">\u2014 Analyst consensus \u00b7 Feb 26, 2026</div>\n      </div>\n      <div class=\"card-section-title\">\ud83d\udcda CFA Lens: Equity Valuation</div>\n      <div class=\"cfa-box\">\n        <div class=\"cfa-box-title\">P/E Ratio Analysis</div>\n        <div class=\"formula-block\">P/E = Price / EPS = $116.44 / 8.31 = 14.0x</div>\n        <p>Current P/E of 14.0x compared to sector average. Consider growth prospects and risk profile.</p>\n      </div>\n    </div>\n  </div>\n</div>",
+  "crypto_card_html": "<div class=\"asset-card crypto-card\">\n  <div class=\"asset-card-header\">\n    <div class=\"asset-left\">\n      <div class=\"ticker-row\"><span class=\"ticker\">ETH</span><span class=\"sector-badge\">Digital Asset</span></div>\n      <div class=\"company-name\">Ethereum USD \u00b7 Smart Contract Platform</div>\n    </div>\n    <div class=\"asset-right\">\n      <div class=\"price-main\">$2,058.04</div>\n      <div class=\"price-change positive\">\u25b2 +11.72%</div>\n    </div>\n  </div>\n  <button class=\"collapse-toggle open\"><span>Details \u00b7 Network Metrics \u00b7 CFA Lens</span><span class=\"arrow\">\u25bc</span></button>\n  <div class=\"collapsible-body expanded\">\n    <div class=\"asset-body\">\n      <div class=\"metrics-grid\">\n        <div class=\"metric-tile\"><div class=\"mt-val\">\u25b2 +11.72%</div><div class=\"mt-lbl\">24H Chg</div></div>\n        <div class=\"metric-tile\"><div class=\"mt-val\">249B</div><div class=\"mt-lbl\">Mkt Cap</div></div>\n        <div class=\"metric-tile\"><div class=\"mt-val\">24.1B</div><div class=\"mt-lbl\">Volume</div></div>\n      </div>\n      <div class=\"card-section-title\">\ud83c\udfdb\ufe0f Network Analysis</div>\n      <div class=\"street-quote\"><p>ETH showing strong momentum with elevated institutional interest. Watch for continuation above key resistance.</p><div class=\"quote-source\">\u2014 Crypto Market Watch \u00b7 Feb 26, 2026</div></div>\n    </div>\n  </div>\n</div>",
+  "forex_card_html": "<div class=\"asset-card forex-card\">\n  <div class=\"asset-card-header\">\n    <div class=\"asset-left\">\n      <div class=\"ticker-row\"><span class=\"ticker\">USD/JPY</span><span class=\"sector-badge\">Forex \u2014 G10</span></div>\n      <div class=\"company-name\">US Dollar / Japanese Yen \u00b7 Carry Trade Barometer</div>\n    </div>\n    <div class=\"asset-right\">\n      <div class=\"price-main\">155.87</div>\n      <div class=\"price-change\">\u25bc -0.01%</div>\n    </div>\n  </div>\n  <button class=\"collapse-toggle open\"><span>Rate Context \u00b7 Policy Divergence \u00b7 CFA Lens</span><span class=\"arrow\">\u25bc</span></button>\n  <div class=\"collapsible-body expanded\">\n    <div class=\"asset-body\">\n      <div class=\"metrics-grid\">\n        <div class=\"metric-tile\"><div class=\"mt-val\">5.33%</div><div class=\"mt-lbl\">US Rate</div></div>\n        <div class=\"metric-tile\"><div class=\"mt-val\">0.50%</div><div class=\"mt-lbl\">BOJ Rate</div></div>\n        <div class=\"metric-tile\"><div class=\"mt-val\">5bps</div><div class=\"mt-lbl\">Spread</div></div>\n      </div>\n    </div>\n  </div>\n</div>",
+  "setup_rows_html": "<tr>\n  <td><strong>CVX</strong></td>\n  <td><span class=\"setup-badge\">Support</span></td>\n  <td><span class=\"setup-badge bias-bull\">LONG</span></td>\n  <td>181.0</td><td>177.0</td><td>195.0</td>\n  <td><span class=\"rr-badge\">3.5:1</span></td>\n</tr>\n<tr>\n  <td><strong>SBUX</strong></td>\n  <td><span class=\"setup-badge\">Mean Rev</span></td>\n  <td><span class=\"setup-badge bias-neutral\">NEUTRAL</span></td>\n  <td>96.0</td><td>91.0</td><td>108.0</td>\n  <td><span class=\"rr-badge\">2.4:1</span></td>\n</tr>\n<tr>\n  <td><strong>ABT</strong></td>\n  <td><span class=\"setup-badge\">Trend</span></td>\n  <td><span class=\"setup-badge bias-bull\">LONG</span></td>\n  <td>113.5</td><td>109.0</td><td>128.0</td>\n  <td><span class=\"rr-badge\">3.2:1</span></td>\n</tr>\n<tr>\n  <td><strong>LOW</strong></td>\n  <td><span class=\"setup-badge\">Channel</span></td>\n  <td><span class=\"setup-badge bias-bull\">LONG</span></td>\n  <td>263.0</td><td>255.0</td><td>295.0</td>\n  <td><span class=\"rr-badge\">4.0:1</span></td>\n</tr>\n<tr>\n  <td><strong>TGT</strong></td>\n  <td><span class=\"setup-badge\">Value</span></td>\n  <td><span class=\"setup-badge bias-neutral\">WATCH</span></td>\n  <td>113.0</td><td>108.0</td><td>130.0</td>\n  <td><span class=\"rr-badge\">3.4:1</span></td>\n</tr>\n<tr>\n  <td><strong>ETH</strong></td>\n  <td><span class=\"setup-badge\">Momentum</span></td>\n  <td><span class=\"setup-badge bias-bull\">LONG</span></td>\n  <td>2050</td><td>1900</td><td>2500</td>\n  <td><span class=\"rr-badge\">3.0:1</span></td>\n</tr>\n<tr>\n  <td><strong>USD/JPY</strong></td>\n  <td><span class=\"setup-badge\">Range</span></td>\n  <td><span class=\"setup-badge bias-bear\">SHORT</span></td>\n  <td>158.5</td><td>160.0</td><td>152.0</td>\n  <td><span class=\"rr-badge\">4.3:1</span></td>\n</tr>",
+  "options_card_html": "<div class=\"options-card\">\n  <div class=\"options-header\">Today's Options Concept: Covered Call Strategy</div>\n  <div class=\"options-sub\">CFA Level I \u00b7 Derivatives \u00b7 Income Generation</div>\n  <div class=\"options-concept-grid\">\n    <div class=\"option-concept-box\">\n      <h4>What is a Covered Call?</h4>\n      <p>Own 100 shares, sell 1 call option. Collect premium, cap upside above strike.</p>\n    </div>\n    <div class=\"option-concept-box\">\n      <h4>Example on CVX</h4>\n      <p>Own CVX @ $184.22, Sell $190 Call @ $2.80 premium. Yield = 1.52% (30-day).</p>\n    </div>\n  </div>\n  <div class=\"payoff-chart-wrap\">\n    <div class=\"payoff-chart-title\"><span>Covered Call Payoff Diagram</span><span>Strike: $190 \u00b7 Premium: $2.80</span></div>\n    <svg class=\"payoff-svg\" viewBox=\"0 0 540 220\" xmlns=\"http://www.w3.org/2000/svg\">\n      <line x1=\"60\" y1=\"110\" x2=\"520\" y2=\"110\" stroke=\"var(--border-strong)\" stroke-width=\"1\"/>\n      <polyline points=\"60,180 240,110 420,60 480,60\" fill=\"none\" stroke=\"var(--blue)\" stroke-width=\"2\" stroke-linecap=\"round\"/>\n      <text x=\"400\" y=\"50\" fill=\"var(--purple)\" font-family=\"monospace\" font-size=\"9\">Max Profit</text>\n    </svg>\n  </div>\n</div>",
+  "quiz_html": "<div class=\"quiz-question\" id=\"q1\">\n  <div class=\"quiz-q-num\">Question 1 of 5 \u00b7 Equity Valuation</div>\n  <div class=\"quiz-q-text\">Using the Gordon Growth Model, what is the intrinsic value of a stock paying $3.00 dividend growing at 7% with 12% required return?</div>\n  <div class=\"quiz-formula\">V\u2080 = D\u2081 \u00f7 (r \u2212 g) | D\u2081 = D\u2080 \u00d7 (1 + g)</div>\n  <div class=\"quiz-options\">\n    <button class=\"quiz-option\" onclick=\"answerQ(1,'A','B',this)\">A) $42.86</button>\n    <button class=\"quiz-option\" onclick=\"answerQ(1,'B','B',this)\">B) $64.20</button>\n    <button class=\"quiz-option\" onclick=\"answerQ(1,'C','B',this)\">C) $60.00</button>\n    <button class=\"quiz-option\" onclick=\"answerQ(1,'D','B',this)\">D) $55.71</button>\n  </div>\n  <div class=\"quiz-explanation\" id=\"exp1\">\n    <strong>Answer: B \u2014 $64.20.</strong> D\u2081 = $3.00 \u00d7 1.07 = $3.21. V\u2080 = $3.21 \u00f7 (0.12 \u2212 0.07) = $64.20.\n  </div>\n</div>\n\n<div class=\"quiz-question\" id=\"q2\">\n  <div class=\"quiz-q-num\">Question 2 of 5 \u00b7 Derivatives</div>\n  <div class=\"quiz-q-text\">What is the maximum profit on a covered call position with stock at $100, strike $105, premium $3?</div>\n  <div class=\"quiz-options\">\n    <button class=\"quiz-option\" onclick=\"answerQ(2,'A','C',this)\">A) Unlimited</button>\n    <button class=\"quiz-option\" onclick=\"answerQ(2,'B','C',this)\">B) $300</button>\n    <button class=\"quiz-option\" onclick=\"answerQ(2,'C','C',this)\">C) $800</button>\n    <button class=\"quiz-option\" onclick=\"answerQ(2,'D','C',this)\">D) $500</button>\n  </div>\n  <div class=\"quiz-explanation\" id=\"exp2\">\n    <strong>Answer: C \u2014 $800.</strong> Max profit = (Strike \u2212 Cost) + Premium = ($105 \u2212 $100) + $3 = $8 per share \u00d7 100 = $800.\n  </div>\n</div>",
+  "glossary_html": "<div class=\"term-entry\">\n  <div class=\"term-word\">Gordon Growth Model (GGM)</div>\n  <div class=\"term-def\">A dividend discount model valuing a stock as present value of infinite growing dividends: V\u2080 = D\u2081 \u00f7 (r \u2212 g).</div>\n  <div class=\"term-origin\">Equity Valuation \u00b7 CFA Level I \u00b7 Reading 26</div>\n</div>\n\n<div class=\"term-entry\">\n  <div class=\"term-word\">Price-to-Earnings Ratio (P/E)</div>\n  <div class=\"term-def\">Compares share price to earnings per share. Used for relative valuation and benchmarking.</div>\n  <div class=\"term-origin\">Equity Valuation \u00b7 CFA Level I \u00b7 Reading 27</div>\n</div>\n\n<div class=\"term-entry\">\n  <div class=\"term-word\">Beta (\u03b2)</div>\n  <div class=\"term-def\">Measures systematic risk relative to market. \u03b2 = 1.0 = market moves. \u03b2 > 1.0 = amplified. \u03b2 < 1.0 = dampened.</div>\n  <div class=\"term-origin\">Portfolio Management \u00b7 CFA Level I \u00b7 Reading 42</div>\n</div>\n\n<div class=\"term-entry\">\n  <div class=\"term-word\">Covered Interest Rate Parity (CIP)</div>\n  <div class=\"term-def\">No-arbitrage relationship: F/S = (1+r_quote)/(1+r_base). Higher-yielding currencies trade at forward discount.</div>\n  <div class=\"term-origin\">Economics \u00b7 CFA Level I \u00b7 Reading 14</div>\n</div>"
+}

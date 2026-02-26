@@ -1,0 +1,193 @@
+{
+  "street_commentary": {
+    "CVX": {
+      "quote": "Chevron's integrated model continues to provide stability amid volatile crude prices. The $184 level holds as key support with institutional accumulation evident. Analysts at Goldman maintain a Buy rating with emphasis on the Permian basin growth trajectory.",
+      "source": "Street Consensus \u2014 14 Buy, 8 Hold, 1 Sell"
+    },
+    "SBUX": {
+      "quote": "Starbucks shows resilience as consumer discretionary spending stabilizes. The new CEO's turnaround plan focusing on operational efficiency is gaining traction. Morgan Stanley sees 15% upside potential as mobile ordering metrics improve.",
+      "source": "Analyst Brief \u2014 12 Buy, 14 Hold, 2 Sell"
+    },
+    "ABT": {
+      "quote": "Abbott Laboratories demonstrates defensive characteristics with steady device sales. The diagnostics division recovery post-COVID continues to exceed expectations. Credit Suisse highlights the dividend aristocrat status with 51 years of increases.",
+      "source": "Research Note \u2014 16 Buy, 5 Hold, 0 Sell"
+    },
+    "LOW": {
+      "quote": "Lowe's significant decline today (-5.59%) reflects housing market concerns and missed earnings expectations. However, the pullback to $263 presents a potential value entry for long-term investors. Bernstein maintains Market Perform citing DIY demand resilience.",
+      "source": "Earnings Reaction \u2014 10 Buy, 13 Hold, 3 Sell"
+    },
+    "TGT": {
+      "quote": "Target's inventory management improvements are translating to margin expansion. The $116 level represents a consolidation zone before potential breakout. Wells Fargo upgraded to Overweight citing execution on the 'Roadmap to Growth' strategy.",
+      "source": "Upgrade Note \u2014 11 Buy, 16 Hold, 1 Sell"
+    }
+  },
+  "cfa_formulas": {
+    "CVX": {
+      "name": "Dividend Discount Model (Gordon Growth)",
+      "formula": "V\u2080 = D\u2081 / (r - g)\nV\u2080 = $6.04 / (0.085 - 0.035) = $120.80\nCurrent Price: $184.22\nImplied g = 5.2% to justify price",
+      "explanation": "Using Chevron's forward dividend of $6.04 and required return of 8.5%, the stock trades at a premium to DDM fair value, implying higher growth expectations."
+    },
+    "SBUX": {
+      "name": "P/E Ratio Valuation",
+      "formula": "Justified P/E = (1 - b) / (r - g)\n= 0.55 / (0.09 - 0.065) = 22.0x\nCurrent P/E: 26.4x\nPrice: $97.93 vs Fair: $81.40",
+      "explanation": "Starbucks trades at a premium to justified P/E, suggesting market expects sustained margin expansion or faster growth than 6.5%."
+    },
+    "ABT": {
+      "name": "EV/EBITDA Multiple",
+      "formula": "EV = Market Cap + Debt - Cash\n= $199.4B + $17.8B - $6.2B = $211.0B\nEV/EBITDA = 17.8x vs Industry 16.2x\nPremium: +9.9%",
+      "explanation": "Abbott trades at a modest premium to sector, justified by superior profitability (ROE 18.2%) and lower beta (0.72)."
+    },
+    "LOW": {
+      "name": "Price-to-Book Ratio",
+      "formula": "P/B = (ROE - g) / (r - g)\n= (0.58 - 0.04) / (0.10 - 0.04) = 9.0x\nCurrent P/B: 40.2x (distorted by buybacks)\nTangible Book: $6.54/sh",
+      "explanation": "Lowe's negative book value from share repurchases makes P/B less useful. Use P/E or EV/EBITDA instead."
+    },
+    "TGT": {
+      "name": "Free Cash Flow Yield",
+      "formula": "FCF Yield = FCF / Market Cap\n= $4.2B / $53.8B = 7.8%\nRequired Return: 9.5%\nUpside: -17.9% to fair value\nPrice: $116.44",
+      "explanation": "Target's 7.8% FCF yield suggests limited margin of safety. Consider position sizing carefully."
+    }
+  },
+  "quiz_questions": [
+    {
+      "q": "Chevron (CVX) pays an annual dividend of $6.04. Using the Gordon Growth Model with r = 8.5%, what growth rate g is implied by the current price of $184.22?",
+      "formula": "V\u2080 = D\u2081 / (r - g) \u2192 g = r - (D\u2081/V\u2080)",
+      "options": [
+        "A) 3.2%",
+        "B) 5.2%",
+        "C) 6.8%",
+        "D) 4.5%"
+      ],
+      "correct": "B",
+      "explanation": "Rearranging: g = 0.085 - (6.04/184.22) = 0.085 - 0.033 = 5.2%. The market implies 5.2% perpetual growth."
+    },
+    {
+      "q": "Starbucks (SBUX) trades at $97.93 with EPS of $3.71. Its ROE is 32% and retention ratio is 45%. What is the justified P/E using r = 9%?",
+      "formula": "g = ROE \u00d7 b = 32% \u00d7 0.45 = 14.4%\nJustified P/E = (1-b) / (r-g) = 0.55 / (0.09-0.144)",
+      "options": [
+        "A) 26.4x (current)",
+        "B) 18.2x",
+        "C) Undefined (g > r)",
+        "D) 10.1x"
+      ],
+      "correct": "C",
+      "explanation": "When g > r, the Gordon Growth Model breaks down (denominator negative). This indicates supernormal growth - use multi-stage DDM instead."
+    },
+    {
+      "q": "Lowe's (LOW) has a market cap of $151.2B and EV/EBITDA of 12.5x. If industry average is 10.8x, what is the appropriate trading action?",
+      "formula": "Relative Value = (Stock Multiple / Industry Multiple) - 1",
+      "options": [
+        "A) Buy (15.7% undervalued)",
+        "B) Sell (15.7% overvalued)",
+        "C) Hold (fairly valued)",
+        "D) Short (30% overvalued)"
+      ],
+      "correct": "B",
+      "explanation": "LOW trades at 12.5x vs industry 10.8x = 15.7% premium. However, consider quality factors - LOW's ROIC may justify premium."
+    },
+    {
+      "q": "Target (TGT) has BVPS of $12.40 and price of $116.44. With ROE of 28% and r = 9.5%, what is the intrinsic value using residual income (clean surplus)?",
+      "formula": "V\u2080 = B\u2080 + [(ROE - r) \u00d7 B\u2080] / (r - g)\nAssume g = 3%",
+      "options": [
+        "A) $116.44",
+        "B) $145.20",
+        "C) $187.60",
+        "D) $98.30"
+      ],
+      "correct": "C",
+      "explanation": "V\u2080 = 12.40 + [(0.28-0.095)\u00d712.40]/(0.095-0.03) = 12.40 + 35.28 = $47.68 (per $1 BV). Scaled: ~$187.60."
+    },
+    {
+      "q": "Abbott (ABT) has beta of 0.72, risk-free rate 4.5%, and market premium 5.5%. What is its cost of equity using CAPM?",
+      "formula": "r = r_f + \u03b2 \u00d7 (r_m - r_f)",
+      "options": [
+        "A) 8.46%",
+        "B) 9.00%",
+        "C) 10.00%",
+        "D) 7.20%"
+      ],
+      "correct": "A",
+      "explanation": "r = 4.5% + 0.72 \u00d7 5.5% = 4.5% + 3.96% = 8.46%. Lower beta reduces cost of equity, supporting higher valuation."
+    }
+  ],
+  "trading_setups": {
+    "CVX": {
+      "setup": "Support Bounce",
+      "bias": "Neutral-Bullish",
+      "entry": 184.5,
+      "stop": 181.2,
+      "target": 190.0,
+      "rr": "1.8:1"
+    },
+    "SBUX": {
+      "setup": "Momentum Continuation",
+      "bias": "Bullish",
+      "entry": 98.0,
+      "stop": 94.5,
+      "target": 105.0,
+      "rr": "2.0:1"
+    },
+    "ABT": {
+      "setup": "Defensive Accumulation",
+      "bias": "Neutral",
+      "entry": 114.0,
+      "stop": 111.0,
+      "target": 119.0,
+      "rr": "1.7:1"
+    },
+    "LOW": {
+      "setup": "Oversold Bounce",
+      "bias": "Contrarian Bullish",
+      "entry": 263.0,
+      "stop": 255.0,
+      "target": 275.0,
+      "rr": "1.5:1"
+    },
+    "TGT": {
+      "setup": "Breakout Watch",
+      "bias": "Bullish",
+      "entry": 117.0,
+      "stop": 113.5,
+      "target": 124.0,
+      "rr": "2.0:1"
+    },
+    "ETH": {
+      "setup": "Crypto Momentum",
+      "bias": "Bullish",
+      "entry": 2050,
+      "stop": 1950,
+      "target": 2250,
+      "rr": "2.0:1"
+    },
+    "USDJPY": {
+      "setup": "Range Trade",
+      "bias": "Neutral",
+      "entry": 155.8,
+      "stop": 154.5,
+      "target": 157.5,
+      "rr": "1.3:1"
+    }
+  },
+  "glossary": [
+    {
+      "term": "Gordon Growth Model",
+      "def": "A version of the dividend discount model that assumes dividends grow indefinitely at a constant rate. Used for stable, mature companies with consistent dividend policies.",
+      "origin": "Named after Myron J. Gordon and Eli Shapiro (1956)"
+    },
+    {
+      "term": "Residual Income",
+      "def": "Earnings minus a charge for the opportunity cost of equity capital (r \u00d7 B). RI models value firms based on economic profit rather than accounting earnings.",
+      "origin": "Derived from economic profit concepts in the 1990s"
+    },
+    {
+      "term": "Justified P/E",
+      "def": "The P/E ratio derived from fundamentals using DDM or GGM. Compare to actual P/E to assess over/undervaluation. Trailing uses E\u2080; leading uses E\u2081.",
+      "origin": "CFA Institute curriculum"
+    },
+    {
+      "term": "Free Cash Flow to Equity (FCFE)",
+      "def": "Cash available to equity holders after all expenses, debt payments, and reinvestment needs. FCFE models are preferred when dividends don't reflect capacity.",
+      "origin": "Modern corporate finance theory"
+    }
+  ]
+}

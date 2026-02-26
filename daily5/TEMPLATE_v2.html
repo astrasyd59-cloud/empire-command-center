@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Daily 5 + 1 + 1 | February 26, 2026</title>
+<title>The Daily 5 + 1 + 1 | {{DATE}}</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
 <style>
 /* ===== DESIGN TOKENS ===== */
@@ -223,51 +223,51 @@ footer p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.7; }
 <h1 class="masthead-title">The Daily 5 + 1 + 1</h1>
 <p class="masthead-sub">Institutional Market Intelligence · CFA Level I Preparation</p>
 <div class="masthead-meta">
-<span class="meta-pill">📅 February 26, 2026</span>
-<span class="meta-pill">🕓 5:55 AM ET</span>
+<span class="meta-pill">📅 {{DATE}}</span>
+<span class="meta-pill">🕓 {{TIME}} ET</span>
 <span class="meta-pill">📊 Data: Yahoo Finance</span>
-<span class="meta-pill">🔄 Day 26 of 503</span>
+<span class="meta-pill">🔄 Day {{DAY_NUM}} of 503</span>
 </div>
 </header>
 
 <!-- MACRO STRIP -->
 <div class="macro-strip">
-<div class="macro-strip-title">▸ Macro Dashboard — As of 5:55 AM ET · Feb 26</div>
+<div class="macro-strip-title">▸ Macro Dashboard — As of {{TIME}} ET · {{DATE_SHORT}}</div>
 <div class="macro-grid">
 <div class="macro-item">
-<div class="m-val">6,946.13</div>
+<div class="m-val">{{SPX}}</div>
 <div class="m-lbl">S&P 500</div>
-<div class="m-chg m-up">▲ +0.81%</div>
+<div class="m-chg {{SPX_DIR}}">{{SPX_CHG}}</div>
 </div>
 <div class="macro-divider"></div>
 <div class="macro-item">
-<div class="m-val">17.93</div>
+<div class="m-val">{{VIX}}</div>
 <div class="m-lbl">VIX</div>
-<div class="m-chg m-neutral">—</div>
+<div class="m-chg {{VIX_DIR}}">{{VIX_CHG}}</div>
 </div>
 <div class="macro-divider"></div>
 <div class="macro-item">
-<div class="m-val">4.05%</div>
+<div class="m-val">{{YIELD10}}</div>
 <div class="m-lbl">10Y Yield</div>
-<div class="m-chg m-neutral">—</div>
+<div class="m-chg {{YIELD_DIR}}">{{YIELD_CHG}}</div>
 </div>
 <div class="macro-divider"></div>
 <div class="macro-item">
-<div class="m-val">5.33%</div>
+<div class="m-val">{{FED_FUNDS}}</div>
 <div class="m-lbl">Fed Funds</div>
 <div class="m-chg" style="color:var(--text-muted)">— unchanged</div>
 </div>
 <div class="macro-divider"></div>
 <div class="macro-item">
-<div class="m-val">97.57</div>
+<div class="m-val">{{DXY}}</div>
 <div class="m-lbl">DXY</div>
-<div class="m-chg m-down">▼ -0.13%</div>
+<div class="m-chg {{DXY_DIR}}">{{DXY_CHG}}</div>
 </div>
 <div class="macro-divider"></div>
 <div class="macro-item">
-<div class="m-val">$5,211</div>
+<div class="m-val">{{GOLD}}</div>
 <div class="m-lbl">Gold/oz</div>
-<div class="m-chg m-up">▲ +0.08%</div>
+<div class="m-chg {{GOLD_DIR}}">{{GOLD_CHG}}</div>
 </div>
 </div>
 </div>
@@ -276,20 +276,20 @@ footer p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.7; }
 <div class="progress-section">
 <div class="progress-header">
 <span class="progress-title">📊 Learning Progress Tracker</span>
-<span class="progress-count">Day 26 of 503 stocks</span>
+<span class="progress-count">Day {{DAY_NUM}} of 503 stocks</span>
 </div>
 <div class="progress-bars">
 <div class="prog-item">
-<div class="prog-label"><span>S&P 500 Coverage</span><span>25 / 503</span></div>
-<div class="prog-bar-bg"><div class="prog-bar-fill fill-blue" style="width:4.97%"></div></div>
+<div class="prog-label"><span>S&P 500 Coverage</span><span>{{STOCKS_DONE}} / 503</span></div>
+<div class="prog-bar-bg"><div class="prog-bar-fill fill-blue" style="width:{{SP_PCT}}%"></div></div>
 </div>
 <div class="prog-item">
-<div class="prog-label"><span>CFA Curriculum</span><span>1 / 10 Topics</span></div>
-<div class="prog-bar-bg"><div class="prog-bar-fill fill-gold" style="width:10%"></div></div>
+<div class="prog-label"><span>CFA Curriculum</span><span>{{CFA_DONE}} / 10 Topics</span></div>
+<div class="prog-bar-bg"><div class="prog-bar-fill fill-gold" style="width:{{CFA_PCT}}%"></div></div>
 </div>
 </div>
 <div class="cfa-topic-pills">
-<span class="topic-pill active">▶ Equity Valuation</span>
+<span class="topic-pill active">▶ {{CFA_CURRENT_TOPIC}}</span>
 <span class="topic-pill pending">Financial Reporting</span>
 <span class="topic-pill pending">Quantitative Methods</span>
 <span class="topic-pill pending">Corporate Finance</span>
@@ -309,238 +309,25 @@ footer p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.7; }
 <div class="section-divider-line"></div>
 </div>
 
-<div class="asset-card">
-  <div class="asset-card-header">
-    <div class="asset-left">
-      <div class="ticker-row"><span class="ticker">CVX</span><span class="sector-badge">Energy</span></div>
-      <div class="company-name">Oil & Gas Integrated</div>
-    </div>
-    <div class="asset-right">
-      <div class="price-main">$184.22</div>
-      <div class="price-change negative">▼ -0.60%</div>
-    </div>
-  </div>
-  <button class="collapse-toggle open"><span>Details · Technicals · CFA Lens</span><span class="arrow">▼</span></button>
-  <div class="collapsible-body expanded">
-    <div class="asset-body">
-      <div class="metrics-grid">
-        <div class="metric-tile"><div class="mt-val">▼ -0.60%</div><div class="mt-lbl">1D Chg</div></div>
-        <div class="metric-tile"><div class="mt-val">27.8x</div><div class="mt-lbl">P/E</div></div>
-        <div class="metric-tile"><div class="mt-val">0.67</div><div class="mt-lbl">Beta</div></div>
-        <div class="metric-tile"><div class="mt-val">$132</div><div class="mt-lbl">52W Low</div></div>
-      </div>
-      <div class="card-section-title">🏛️ Street Commentary</div>
-      <div class="street-quote">
-        <p>"CVX shows mixed signals with current price action near key technical levels. Watch for breakout confirmation."</p>
-        <div class="quote-source">— Analyst consensus · Feb 26, 2026</div>
-      </div>
-      <div class="card-section-title">📚 CFA Lens: Equity Valuation</div>
-      <div class="cfa-box">
-        <div class="cfa-box-title">P/E Ratio Analysis</div>
-        <div class="formula-block">P/E = Price / EPS = $184.22 / 6.63 = 27.8x</div>
-        <p>Current P/E of 27.8x compared to sector average. Consider growth prospects and risk profile.</p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="asset-card">
-  <div class="asset-card-header">
-    <div class="asset-left">
-      <div class="ticker-row"><span class="ticker">SBUX</span><span class="sector-badge">Consumer Cyclical</span></div>
-      <div class="company-name">Restaurants</div>
-    </div>
-    <div class="asset-right">
-      <div class="price-main">$97.93</div>
-      <div class="price-change positive">▲ +1.47%</div>
-    </div>
-  </div>
-  <button class="collapse-toggle open"><span>Details · Technicals · CFA Lens</span><span class="arrow">▼</span></button>
-  <div class="collapsible-body expanded">
-    <div class="asset-body">
-      <div class="metrics-grid">
-        <div class="metric-tile"><div class="mt-val">▲ +1.47%</div><div class="mt-lbl">1D Chg</div></div>
-        <div class="metric-tile"><div class="mt-val">81.6x</div><div class="mt-lbl">P/E</div></div>
-        <div class="metric-tile"><div class="mt-val">0.94</div><div class="mt-lbl">Beta</div></div>
-        <div class="metric-tile"><div class="mt-val">$76</div><div class="mt-lbl">52W Low</div></div>
-      </div>
-      <div class="card-section-title">🏛️ Street Commentary</div>
-      <div class="street-quote">
-        <p>"SBUX shows mixed signals with current price action near key technical levels. Watch for breakout confirmation."</p>
-        <div class="quote-source">— Analyst consensus · Feb 26, 2026</div>
-      </div>
-      <div class="card-section-title">📚 CFA Lens: Equity Valuation</div>
-      <div class="cfa-box">
-        <div class="cfa-box-title">P/E Ratio Analysis</div>
-        <div class="formula-block">P/E = Price / EPS = $97.93 / 1.20 = 81.6x</div>
-        <p>Current P/E of 81.6x compared to sector average. Consider growth prospects and risk profile.</p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="asset-card">
-  <div class="asset-card-header">
-    <div class="asset-left">
-      <div class="ticker-row"><span class="ticker">ABT</span><span class="sector-badge">Healthcare</span></div>
-      <div class="company-name">Medical Devices</div>
-    </div>
-    <div class="asset-right">
-      <div class="price-main">$114.76</div>
-      <div class="price-change positive">▲ +0.16%</div>
-    </div>
-  </div>
-  <button class="collapse-toggle open"><span>Details · Technicals · CFA Lens</span><span class="arrow">▼</span></button>
-  <div class="collapsible-body expanded">
-    <div class="asset-body">
-      <div class="metrics-grid">
-        <div class="metric-tile"><div class="mt-val">▲ +0.16%</div><div class="mt-lbl">1D Chg</div></div>
-        <div class="metric-tile"><div class="mt-val">30.8x</div><div class="mt-lbl">P/E</div></div>
-        <div class="metric-tile"><div class="mt-val">0.75</div><div class="mt-lbl">Beta</div></div>
-        <div class="metric-tile"><div class="mt-val">$105</div><div class="mt-lbl">52W Low</div></div>
-      </div>
-      <div class="card-section-title">🏛️ Street Commentary</div>
-      <div class="street-quote">
-        <p>"ABT shows mixed signals with current price action near key technical levels. Watch for breakout confirmation."</p>
-        <div class="quote-source">— Analyst consensus · Feb 26, 2026</div>
-      </div>
-      <div class="card-section-title">📚 CFA Lens: Equity Valuation</div>
-      <div class="cfa-box">
-        <div class="cfa-box-title">P/E Ratio Analysis</div>
-        <div class="formula-block">P/E = Price / EPS = $114.76 / 3.73 = 30.8x</div>
-        <p>Current P/E of 30.8x compared to sector average. Consider growth prospects and risk profile.</p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="asset-card">
-  <div class="asset-card-header">
-    <div class="asset-left">
-      <div class="ticker-row"><span class="ticker">LOW</span><span class="sector-badge">Consumer Cyclical</span></div>
-      <div class="company-name">Home Improvement Retail</div>
-    </div>
-    <div class="asset-right">
-      <div class="price-main">$263.02</div>
-      <div class="price-change negative">▼ -5.59%</div>
-    </div>
-  </div>
-  <button class="collapse-toggle open"><span>Details · Technicals · CFA Lens</span><span class="arrow">▼</span></button>
-  <div class="collapsible-body expanded">
-    <div class="asset-body">
-      <div class="metrics-grid">
-        <div class="metric-tile"><div class="mt-val">▼ -5.59%</div><div class="mt-lbl">1D Chg</div></div>
-        <div class="metric-tile"><div class="mt-val">23.0x</div><div class="mt-lbl">P/E</div></div>
-        <div class="metric-tile"><div class="mt-val">0.98</div><div class="mt-lbl">Beta</div></div>
-        <div class="metric-tile"><div class="mt-val">$206</div><div class="mt-lbl">52W Low</div></div>
-      </div>
-      <div class="card-section-title">🏛️ Street Commentary</div>
-      <div class="street-quote">
-        <p>"LOW shows mixed signals with current price action near key technical levels. Watch for breakout confirmation."</p>
-        <div class="quote-source">— Analyst consensus · Feb 26, 2026</div>
-      </div>
-      <div class="card-section-title">📚 CFA Lens: Equity Valuation</div>
-      <div class="cfa-box">
-        <div class="cfa-box-title">P/E Ratio Analysis</div>
-        <div class="formula-block">P/E = Price / EPS = $263.02 / 11.42 = 23.0x</div>
-        <p>Current P/E of 23.0x compared to sector average. Consider growth prospects and risk profile.</p>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="asset-card">
-  <div class="asset-card-header">
-    <div class="asset-left">
-      <div class="ticker-row"><span class="ticker">TGT</span><span class="sector-badge">Consumer Defensive</span></div>
-      <div class="company-name">Discount Stores</div>
-    </div>
-    <div class="asset-right">
-      <div class="price-main">$116.44</div>
-      <div class="price-change positive">▲ +0.80%</div>
-    </div>
-  </div>
-  <button class="collapse-toggle open"><span>Details · Technicals · CFA Lens</span><span class="arrow">▼</span></button>
-  <div class="collapsible-body expanded">
-    <div class="asset-body">
-      <div class="metrics-grid">
-        <div class="metric-tile"><div class="mt-val">▲ +0.80%</div><div class="mt-lbl">1D Chg</div></div>
-        <div class="metric-tile"><div class="mt-val">14.0x</div><div class="mt-lbl">P/E</div></div>
-        <div class="metric-tile"><div class="mt-val">1.14</div><div class="mt-lbl">Beta</div></div>
-        <div class="metric-tile"><div class="mt-val">$83</div><div class="mt-lbl">52W Low</div></div>
-      </div>
-      <div class="card-section-title">🏛️ Street Commentary</div>
-      <div class="street-quote">
-        <p>"TGT shows mixed signals with current price action near key technical levels. Watch for breakout confirmation."</p>
-        <div class="quote-source">— Analyst consensus · Feb 26, 2026</div>
-      </div>
-      <div class="card-section-title">📚 CFA Lens: Equity Valuation</div>
-      <div class="cfa-box">
-        <div class="cfa-box-title">P/E Ratio Analysis</div>
-        <div class="formula-block">P/E = Price / EPS = $116.44 / 8.31 = 14.0x</div>
-        <p>Current P/E of 14.0x compared to sector average. Consider growth prospects and risk profile.</p>
-      </div>
-    </div>
-  </div>
-</div>
+{{STOCK_CARDS}}
 
 <!-- ─── CRYPTO ─── -->
 <div class="section-divider">
 <div class="section-divider-line"></div>
-<div class="section-divider-text">Crypto — ETH</div>
+<div class="section-divider-text">Crypto — {{CRYPTO_TICKER}}</div>
 <div class="section-divider-line"></div>
 </div>
 
-<div class="asset-card crypto-card">
-  <div class="asset-card-header">
-    <div class="asset-left">
-      <div class="ticker-row"><span class="ticker">ETH</span><span class="sector-badge">Digital Asset</span></div>
-      <div class="company-name">Ethereum USD · Smart Contract Platform</div>
-    </div>
-    <div class="asset-right">
-      <div class="price-main">$2,058.04</div>
-      <div class="price-change positive">▲ +11.72%</div>
-    </div>
-  </div>
-  <button class="collapse-toggle open"><span>Details · Network Metrics · CFA Lens</span><span class="arrow">▼</span></button>
-  <div class="collapsible-body expanded">
-    <div class="asset-body">
-      <div class="metrics-grid">
-        <div class="metric-tile"><div class="mt-val">▲ +11.72%</div><div class="mt-lbl">24H Chg</div></div>
-        <div class="metric-tile"><div class="mt-val">249B</div><div class="mt-lbl">Mkt Cap</div></div>
-        <div class="metric-tile"><div class="mt-val">24.1B</div><div class="mt-lbl">Volume</div></div>
-      </div>
-      <div class="card-section-title">🏛️ Network Analysis</div>
-      <div class="street-quote"><p>ETH showing strong momentum with elevated institutional interest. Watch for continuation above key resistance.</p><div class="quote-source">— Crypto Market Watch · Feb 26, 2026</div></div>
-    </div>
-  </div>
-</div>
+{{CRYPTO_CARD}}
 
 <!-- ─── FOREX ─── -->
 <div class="section-divider">
 <div class="section-divider-line"></div>
-<div class="section-divider-text">Forex — USD/JPY</div>
+<div class="section-divider-text">Forex — {{FOREX_PAIR}}</div>
 <div class="section-divider-line"></div>
 </div>
 
-<div class="asset-card forex-card">
-  <div class="asset-card-header">
-    <div class="asset-left">
-      <div class="ticker-row"><span class="ticker">USD/JPY</span><span class="sector-badge">Forex — G10</span></div>
-      <div class="company-name">US Dollar / Japanese Yen · Carry Trade Barometer</div>
-    </div>
-    <div class="asset-right">
-      <div class="price-main">155.87</div>
-      <div class="price-change">▼ -0.01%</div>
-    </div>
-  </div>
-  <button class="collapse-toggle open"><span>Rate Context · Policy Divergence · CFA Lens</span><span class="arrow">▼</span></button>
-  <div class="collapsible-body expanded">
-    <div class="asset-body">
-      <div class="metrics-grid">
-        <div class="metric-tile"><div class="mt-val">5.33%</div><div class="mt-lbl">US Rate</div></div>
-        <div class="metric-tile"><div class="mt-val">0.50%</div><div class="mt-lbl">BOJ Rate</div></div>
-        <div class="metric-tile"><div class="mt-val">5bps</div><div class="mt-lbl">Spread</div></div>
-      </div>
-    </div>
-  </div>
-</div>
+{{FOREX_CARD}}
 
 <!-- ─── TRADING SETUPS ─── -->
 <div class="section-divider">
@@ -562,55 +349,7 @@ footer p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.7; }
 <tr>
 <th>Asset</th><th>Setup</th><th>Bias</th><th>Entry</th><th>Stop</th><th>Target</th><th>R/R</th>
 </tr>
-<tr>
-  <td><strong>CVX</strong></td>
-  <td><span class="setup-badge">Support</span></td>
-  <td><span class="setup-badge bias-bull">LONG</span></td>
-  <td>181.0</td><td>177.0</td><td>195.0</td>
-  <td><span class="rr-badge">3.5:1</span></td>
-</tr>
-<tr>
-  <td><strong>SBUX</strong></td>
-  <td><span class="setup-badge">Mean Rev</span></td>
-  <td><span class="setup-badge bias-neutral">NEUTRAL</span></td>
-  <td>96.0</td><td>91.0</td><td>108.0</td>
-  <td><span class="rr-badge">2.4:1</span></td>
-</tr>
-<tr>
-  <td><strong>ABT</strong></td>
-  <td><span class="setup-badge">Trend</span></td>
-  <td><span class="setup-badge bias-bull">LONG</span></td>
-  <td>113.5</td><td>109.0</td><td>128.0</td>
-  <td><span class="rr-badge">3.2:1</span></td>
-</tr>
-<tr>
-  <td><strong>LOW</strong></td>
-  <td><span class="setup-badge">Channel</span></td>
-  <td><span class="setup-badge bias-bull">LONG</span></td>
-  <td>263.0</td><td>255.0</td><td>295.0</td>
-  <td><span class="rr-badge">4.0:1</span></td>
-</tr>
-<tr>
-  <td><strong>TGT</strong></td>
-  <td><span class="setup-badge">Value</span></td>
-  <td><span class="setup-badge bias-neutral">WATCH</span></td>
-  <td>113.0</td><td>108.0</td><td>130.0</td>
-  <td><span class="rr-badge">3.4:1</span></td>
-</tr>
-<tr>
-  <td><strong>ETH</strong></td>
-  <td><span class="setup-badge">Momentum</span></td>
-  <td><span class="setup-badge bias-bull">LONG</span></td>
-  <td>2050</td><td>1900</td><td>2500</td>
-  <td><span class="rr-badge">3.0:1</span></td>
-</tr>
-<tr>
-  <td><strong>USD/JPY</strong></td>
-  <td><span class="setup-badge">Range</span></td>
-  <td><span class="setup-badge bias-bear">SHORT</span></td>
-  <td>158.5</td><td>160.0</td><td>152.0</td>
-  <td><span class="rr-badge">4.3:1</span></td>
-</tr>
+{{TRADING_TABLE_ROWS}}
 </table>
 </div>
 <div class="fun-fact" style="margin-top:14px">
@@ -627,73 +366,25 @@ footer p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.7; }
 <div class="section-divider-line"></div>
 </div>
 
-<div class="options-card">
-  <div class="options-header">Today's Options Concept: Covered Call Strategy</div>
-  <div class="options-sub">CFA Level I · Derivatives · Income Generation</div>
-  <div class="options-concept-grid">
-    <div class="option-concept-box">
-      <h4>What is a Covered Call?</h4>
-      <p>Own 100 shares, sell 1 call option. Collect premium, cap upside above strike.</p>
-    </div>
-    <div class="option-concept-box">
-      <h4>Example on CVX</h4>
-      <p>Own CVX @ $184.22, Sell $190 Call @ $2.80 premium. Yield = 1.52% (30-day).</p>
-    </div>
-  </div>
-  <div class="payoff-chart-wrap">
-    <div class="payoff-chart-title"><span>Covered Call Payoff Diagram</span><span>Strike: $190 · Premium: $2.80</span></div>
-    <svg class="payoff-svg" viewBox="0 0 540 220" xmlns="http://www.w3.org/2000/svg">
-      <line x1="60" y1="110" x2="520" y2="110" stroke="var(--border-strong)" stroke-width="1"/>
-      <polyline points="60,180 240,110 420,60 480,60" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round"/>
-      <text x="400" y="50" fill="var(--purple)" font-family="monospace" font-size="9">Max Profit</text>
-    </svg>
-  </div>
-</div>
+{{OPTIONS_CARD}}
 
 <!-- ─── CFA QUIZ ─── -->
 <div class="section-divider">
 <div class="section-divider-line"></div>
-<div class="section-divider-text">CFA Level I Quiz — Equity Valuation</div>
+<div class="section-divider-text">CFA Level I Quiz — {{CFA_CURRENT_TOPIC}}</div>
 <div class="section-divider-line"></div>
 </div>
 
 <div class="quiz-card">
 <div class="quiz-header">📝 Daily CFA Quiz</div>
-<div class="quiz-sub">5 Questions · Equity Valuation · Instant Feedback</div>
+<div class="quiz-sub">5 Questions · {{CFA_CURRENT_TOPIC}} · Instant Feedback</div>
 <div class="quiz-score-display">
 <span>Score</span>
 <span class="quiz-score-num" id="scoreDisplay">0 / 5</span>
 <span id="quizStatus">Answer all questions below</span>
 </div>
 
-<div class="quiz-question" id="q1">
-  <div class="quiz-q-num">Question 1 of 5 · Equity Valuation</div>
-  <div class="quiz-q-text">Using the Gordon Growth Model, what is the intrinsic value of a stock paying $3.00 dividend growing at 7% with 12% required return?</div>
-  <div class="quiz-formula">V₀ = D₁ ÷ (r − g) | D₁ = D₀ × (1 + g)</div>
-  <div class="quiz-options">
-    <button class="quiz-option" onclick="answerQ(1,'A','B',this)">A) $42.86</button>
-    <button class="quiz-option" onclick="answerQ(1,'B','B',this)">B) $64.20</button>
-    <button class="quiz-option" onclick="answerQ(1,'C','B',this)">C) $60.00</button>
-    <button class="quiz-option" onclick="answerQ(1,'D','B',this)">D) $55.71</button>
-  </div>
-  <div class="quiz-explanation" id="exp1">
-    <strong>Answer: B — $64.20.</strong> D₁ = $3.00 × 1.07 = $3.21. V₀ = $3.21 ÷ (0.12 − 0.07) = $64.20.
-  </div>
-</div>
-
-<div class="quiz-question" id="q2">
-  <div class="quiz-q-num">Question 2 of 5 · Derivatives</div>
-  <div class="quiz-q-text">What is the maximum profit on a covered call position with stock at $100, strike $105, premium $3?</div>
-  <div class="quiz-options">
-    <button class="quiz-option" onclick="answerQ(2,'A','C',this)">A) Unlimited</button>
-    <button class="quiz-option" onclick="answerQ(2,'B','C',this)">B) $300</button>
-    <button class="quiz-option" onclick="answerQ(2,'C','C',this)">C) $800</button>
-    <button class="quiz-option" onclick="answerQ(2,'D','C',this)">D) $500</button>
-  </div>
-  <div class="quiz-explanation" id="exp2">
-    <strong>Answer: C — $800.</strong> Max profit = (Strike − Cost) + Premium = ($105 − $100) + $3 = $8 per share × 100 = $800.
-  </div>
-</div>
+{{QUIZ_QUESTIONS}}
 
 <div class="quiz-controls">
 <button class="quiz-btn quiz-btn-secondary" onclick="resetQuiz()">↺ Reset Quiz</button>
@@ -709,29 +400,7 @@ footer p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.7; }
 
 <div class="terms-card">
 <div class="terms-header">📖 Terms to Know</div>
-<div class="term-entry">
-  <div class="term-word">Gordon Growth Model (GGM)</div>
-  <div class="term-def">A dividend discount model valuing a stock as present value of infinite growing dividends: V₀ = D₁ ÷ (r − g).</div>
-  <div class="term-origin">Equity Valuation · CFA Level I · Reading 26</div>
-</div>
-
-<div class="term-entry">
-  <div class="term-word">Price-to-Earnings Ratio (P/E)</div>
-  <div class="term-def">Compares share price to earnings per share. Used for relative valuation and benchmarking.</div>
-  <div class="term-origin">Equity Valuation · CFA Level I · Reading 27</div>
-</div>
-
-<div class="term-entry">
-  <div class="term-word">Beta (β)</div>
-  <div class="term-def">Measures systematic risk relative to market. β = 1.0 = market moves. β > 1.0 = amplified. β < 1.0 = dampened.</div>
-  <div class="term-origin">Portfolio Management · CFA Level I · Reading 42</div>
-</div>
-
-<div class="term-entry">
-  <div class="term-word">Covered Interest Rate Parity (CIP)</div>
-  <div class="term-def">No-arbitrage relationship: F/S = (1+r_quote)/(1+r_base). Higher-yielding currencies trade at forward discount.</div>
-  <div class="term-origin">Economics · CFA Level I · Reading 14</div>
-</div>
+{{GLOSSARY_TERMS}}
 </div>
 
 <!-- FOOTER -->
@@ -739,7 +408,7 @@ footer p { font-size: 0.75rem; color: var(--text-muted); line-height: 1.7; }
 <div class="footer-title">THE DAILY 5 + 1 + 1 · OPENCLAW EMPIRE</div>
 <p>Institutional Market Intelligence · CFA Level I Preparation · Generated by ASTRA</p>
 <p style="margin-top:6px; opacity:0.6">Markets are dynamic. Past performance does not guarantee future results. Not financial advice.</p>
-<p style="margin-top:8px; opacity:0.5; font-size:0.65rem">ASTRA Log: Day 26 · CVX · SBUX · ABT · LOW · TGT · ETH · USD/JPY covered · Rotation batch Batch 5 (stocks 21–25 of 503)</p>
+<p style="margin-top:8px; opacity:0.5; font-size:0.65rem">ASTRA Log: Day {{DAY_NUM}} · {{TICKERS}} covered · Rotation batch {{BATCH}}</p>
 </footer>
 </div>
 
