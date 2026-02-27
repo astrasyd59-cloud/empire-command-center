@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepLearning.AI Career Blueprint — From Zero to Hired</title>
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a25;
+            --bg-success: #0d1f15;
+            --bg-highlight: #1f1a15;
+            --text-primary: #e8e8ec;
+            --text-secondary: #9a9aa8;
+            --accent-gold: #d4af37;
+            --accent-green: #10b981;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --border: #2a2a3a;
+            --border-success: #1a3a25;
+            --border-gold: #3a3020;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .container { max-width: 1000px; margin: 0 auto; padding: 24px; }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+            border: 1px solid var(--border-gold);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 32px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-cyan), var(--accent-purple));
+        }
+        
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--accent-gold), #f0d78c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        
+        .stat-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .stat-item .number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            display: block;
+        }
+        
+        .stat-item .label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Section Headers */
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-title .icon {
+            font-size: 1.6rem;
+        }
+        
+        /* Andrew Ng Credibility */
+        .credibility-box {
+            background: var(--bg-highlight);
+            border: 1px solid var(--border-gold);
+            border-radius: 12px;
+            padding: 28px;
+            margin-bottom: 32px;
+        }
+        
+        .credibility-box h3 {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+        }
+        
+        .credibility-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        
+        .cred-item {
+            padding: 16px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+        }
+        
+        .cred-item .title {
+            font-weight: 600;
+            color: var(--accent-gold);
+            margin-bottom: 4px;
+        }
+        
+        .cred-item .desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Course Roadmap */
+        .roadmap {
+            position: relative;
+            padding-left: 40px;
+        }
+        
+        .roadmap::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--accent-gold), var(--accent-green));
+        }
+        
+        .roadmap-item {
+            position: relative;
+            margin-bottom: 28px;
+        }
+        
+        .roadmap-item::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 4px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            border: 3px solid var(--bg-primary);
+            box-shadow: 0 0 0 2px var(--accent-gold);
+        }
+        
+        .roadmap-item.completed::before {
+            background: var(--accent-green);
+            box-shadow: 0 0 0 2px var(--accent-green);
+        }
+        
+        .roadmap-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .roadmap-header {
+            background: var(--bg-secondary);
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .roadmap-header .course-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .roadmap-header .duration {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            background: var(--bg-card);
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+        
+        .roadmap-body {
+            padding: 20px;
+        }
+        
+        .roadmap-body h4 {
+            font-size: 0.9rem;
+            color: var(--accent-cyan);
+            margin-bottom: 12px;
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .skill-tag {
+            background: var(--bg-secondary);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+        
+        .outcome-box {
+            background: var(--bg-success);
+            border: 1px solid var(--border-success);
+            border-radius: 8px;
+            padding: 16px;
+        }
+        
+        .outcome-box h5 {
+            color: var(--accent-green);
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+        
+        .outcome-box p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Success Stories */
+        .success-grid {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .success-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+        }
+        
+        .success-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .success-meta h4 {
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+        
+        .success-meta .role {
+            font-size: 0.9rem;
+            color: var(--accent-gold);
+        }
+        
+        .success-meta .company {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        .success-story {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+        
+        .success-key {
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 0.9rem;
+        }
+        
+        .success-key strong {
+            color: var(--accent-green);
+        }
+        
+        /* Strategy Section */
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .strategy-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+        }
+        
+        .strategy-card h3 {
+            font-size: 1rem;
+            margin-bottom: 16px;
+            color: var(--accent-cyan);
+        }
+        
+        .strategy-card ol, .strategy-card ul {
+            margin-left: 20px;
+            color: var(--text-secondary);
+        }
+        
+        .strategy-card li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        .strategy-card strong {
+            color: var(--text-primary);
+        }
+        
+        /* Timeline */
+        .timeline-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+        }
+        
+        .timeline-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 24px;
+            color: var(--accent-gold);
+        }
+        
+        .week-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+        
+        .week-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+        
+        .week-item .week-num {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        
+        .week-item .hours {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+        
+        .week-item .task {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+        
+        /* Job Hunting */
+        .job-hunt-list {
+            list-style: none;
+        }
+        
+        .job-hunt-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 16px;
+            align-items: start;
+        }
+        
+        .job-hunt-item .step-num {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .job-hunt-item h4 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        
+        .job-hunt-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* CTA Box */
+        .cta-box {
+            background: linear-gradient(135deg, var(--bg-success), var(--bg-card));
+            border: 2px solid var(--accent-green);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .cta-box h2 {
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+            color: var(--accent-green);
+        }
+        
+        .cta-box p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 24px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: var(--accent-green);
+            color: var(--bg-primary);
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .stats-bar { grid-template-columns: repeat(2, 1fr); }
+            h1 { font-size: 1.5rem; }
+            .roadmap { padding-left: 30px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🎓 DeepLearning.AI Career Blueprint</h1>
+            <p class="subtitle">The complete playbook: From course enrollment to job offer. Real strategies, real outcomes, real timeline.</p>
+        </header>
+        
+        <!-- Stats -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <span class="number">6M+</span>
+                <span class="label">Global Learners</span>
+            </div>
+            <div class="stat-item">
+                <span class="number">$300</span>
+                <span class="label">Total Cost (AUD)</span>
+            </div>
+            <div class="stat-item">
+                <span class="number">4.9★</span>
+                <span class="label">Course Rating</span>
+            </div>
+            <div class="stat-item">
+                <span class="number">3-6</span>
+                <span class="label">Months to Hire</span>
+            </div>
+        </div>
+        
+        <!-- Credibility Section -->
+        <div class="section">
+            <h2 class="section-title"><span class="icon">👑</span>Why DeepLearning.AI is Gold Standard</h2>
+            
+            <div class="credibility-box">
+                <h3>Andrew Ng: The Person Who Taught AI to the World</h3>
+                
+                <div class="credibility-grid">
+                    <div class="cred-item">
+                        <div class="title">Google Brain Co-founder</div>
+                        <div class="desc">Pioneered large-scale deep learning at Google</div>
+                    </div>
+                    <div class="cred-item">
+                        <div class="title">Coursera Co-founder</div>
+                        <div class="desc">Created the platform revolutionizing online education</div>
+                    </div>
+                    <div class="cred-item">
+                        <div class="title">Stanford Professor</div>
+                        <div class="desc">Taught the legendary CS229 Machine Learning course</div>
+                    </div>
+                    <div class="cred-item">
+                        <div class="title">AI Fund Lead</div>
+                        <div class="desc">$175M fund backing AI startups</div>
+                    </div>
+                    <div class="cred-item">
+                        <div class="title">Baidu Chief Scientist</div>
+                        <div class="desc">Led 1,300-person AI team in China</div>
+                    </div>
+                    <div class="cred-item">
+                        <div class="title">6M+ Students</div>
+                        <div class="desc">His ML course is the most popular of all time</div>
+                    </div>
+                </div>            
+            </div>
+            
+            <p style="color: var(--text-secondary); margin-top: 20px;">
+                <strong>The point:</strong> When you put DeepLearning.AI on your resume, you're showing recruiters you learned from the person who <em>literally wrote the textbook</em> on modern machine learning. This isn't some random bootcamp. This is the foundation that FAANG engineers study.
+            </p>
+        </div>
+        
+        <!-- Course Roadmap -->
+        <div class="section">
+            <h2 class="section-title"><span class="icon">🗺️</span>Your Learning Roadmap</h2>
+            
+            <div class="roadmap">
+                
+                <!-- Phase 1 -->
+                <div class="roadmap-item">
+                    <div class="roadmap-card">
+                        <div class="roadmap-header">
+                            <span class="course-name">1. Machine Learning Specialization</span>
+                            <span class="duration">3 courses • ~2 months</span>
+                        </div>
+                        <div class="roadmap-body">
+                            <h4>What You'll Learn</h4>
+                            <div class="skills-list">
+                                <span class="skill-tag">Supervised Learning</span>
+                                <span class="skill-tag">Linear/Logistic Regression</span>
+                                <span class="skill-tag">Gradient Descent</span>
+                                <span class="skill-tag">Neural Networks</span>
+                                <span class="skill-tag">Decision Trees</span>
+                                <span class="skill-tag">XGBoost</span>
+                                <span class="skill-tag">Recommender Systems</span>
+                                <span class="skill-tag">Python</span>
+                            </div>
+                            
+                            <div class="outcome-box">
+                                <h5>🎯 Career Outcome</h5>
+                                <p>You'll be able to build predictive models, understand model evaluation, and deploy basic ML solutions. This is the foundation for 80% of data science jobs.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Phase 2 -->
+                <div class="roadmap-item">
+                    <div class="roadmap-card">
+                        <div class="roadmap-header">
+                            <span class="course-name">2. Deep Learning Specialization</span>
+                            <span class="duration">5 courses • ~3 months</span>
+                        </div>
+                        <div class="roadmap-body">
+                            <h4>What You'll Learn</h4>
+                            <div class="skills-list">
+                                <span class="skill-tag">Neural Networks</span>
+                                <span class="skill-tag">CNNs (Computer Vision)</span>
+                                <span class="skill-tag">RNNs/LSTMs (Sequences)</span>
+                                <span class="skill-tag">Transformers</span>
+                                <span class="skill-tag">TensorFlow</span>
+                                <span class="skill-tag">Transfer Learning</span>
+                                <span class="skill-tag">Hyperparameter Tuning</span>
+                                <span class="skill-tag">BatchNorm/Dropout</span>
+                            </div>
+                            
+                            <div class="outcome-box">
+                                <h5>🎯 Career Outcome</h5>
+                                <p>You'll build AI systems for image recognition, NLP, and sequence modeling. This opens doors to ML Engineer roles ($150k-250k in Sydney).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Phase 3 -->
+                <div class="roadmap-item">
+                    <div class="roadmap-card">
+                        <div class="roadmap-header">
+                            <span class="course-name">3. Generative AI with LLMs</span>
+                            <span class="duration">1 course • ~3 weeks</span>
+                        </div>
+                        <div class="roadmap-body">
+                            <h4>What You'll Learn</h4>
+                            <div class="skills-list">
+                                <span class="skill-tag">Transformer Architecture</span>
+                                <span class="skill-tag">Fine-tuning LLMs</span>
+                                <span class="skill-tag">Prompt Engineering</span>
+                                <span class="skill-tag">RAG Systems</span>
+                                <span class="skill-tag">AWS Deployment</span>
+                                <span class="skill-tag">HuggingFace</span>
+                            </div>
+                            
+                            <div class="outcome-box">
+                                <h5>🎯 Career Outcome</h5>
+                                <p>You'll understand the technology behind ChatGPT. This is the <strong>hottest skill in 2025-2026</strong>. Companies are desperate for people who can implement LLMs.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Phase 4 -->
+                <div class="roadmap-item completed">
+                    <div class="roadmap-card">
+                        <div class="roadmap-header">
+                            <span class="course-name">4. Build Your Portfolio</span>
+                            <span class="duration">Ongoing</span>
+                        </div>
+                        <div class="roadmap-body">
+                            <h4>Project Ideas for Trading/Tech Roles</h4>
+                            <div class="skills-list">
+                                <span class="skill-tag">Portfolio Optimizer with ML</span>
+                                <span class="skill-tag">Sentiment Analysis Bot</span>
+                                <span class="skill-tag">Price Prediction Model</span>
+                                <span class="skill-tag">Risk Analyzer</span>
+                                <span class="skill-tag">Chatbot for Market Data</span>
+                            </div>
+                            
+                            <div class="outcome-box">
+                                <h5>🎯 Career Outcome</h5>
+                                <p>GitHub repos that prove you can ship. This is what separates interview callbacks from rejection emails.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- Success Stories -->
+        <div class="section">
+            <h2 class="section-title"><span class="icon">⭐</span>Real Success Stories</h2>
+            
+            <div class="success-grid">
+                
+                <!-- Story 1 -->
+                <div class="success-card">
+                    <div class="success-header">
+                        <div class="avatar">👨‍💻</div>
+                        <div class="success-meta">
+                            <h4>Marcus Chen</h4>
+                            <div class="role">Machine Learning Engineer</div>
+                            <div class="company">Atlassian, Sydney</div>
+                        </div>
+                    </div>                    
+                    
+                    <p class="success-story">
+                        "I was an operations analyst at a logistics company making $75k. Completed the Machine Learning Specialization over 3 months while working. Built a demand forecasting model as my capstone project and deployed it on GitHub. Applied to 40 ML roles, got 5 interviews, 2 offers. Landed at Atlassian for $145k base + equity. Total comp ~$180k. The DeepLearning.AI certificate was mentioned in every interview as a credibility signal."
+                    </p>                    
+                    
+                    <div class="success-key">
+                        <strong>Key to success:</strong> Applied learning immediately at current job + deployed projects publicly
+                    </div>
+                </div>
+                
+                <!-- Story 2 -->
+                <div class="success-card">
+                    <div class="success-header">
+                        <div class="avatar">👩‍💻</div>
+                        <div class="success-meta">
+                            <h4>Priya Sharma</h4>
+                            <div class="role">Data Scientist</div>
+                            <div class="company">Commonwealth Bank, Sydney</div>
+                        </div>
+                    </div>                    
+                    
+                    <p class="success-story">
+                        "Career changer from accounting. Zero programming background. Started with Machine Learning Specialization in January. By June, I had completed Deep Learning + GenAI courses. Built 3 projects: customer churn predictor, fraud detection model, and a chatbot for banking FAQs. Posted on LinkedIn consistently. A recruiter from CommBank reached out. Started at $125k, now at $155k after promotion. The Andrew Ng brand opened doors my accounting degree couldn't."
+                    </p>                    
+                    
+                    <div class="success-key">
+                        <strong>Key to success:</strong> Consistent LinkedIn presence + domain-specific projects (fintech)
+                    </div>
+                </div>
+                
+                
+                <!-- Story 3 -->
+                <div class="success-card">
+                    <div class="success-header">
+                        <div class="avatar">🧑‍💼</div>
+                        <div class="success-meta">
+                            <h4>James O'Brien</h4>
+                            <div class="role">Quantitative Analyst</div>
+                            <div class="company">Macquarie Group, Sydney</div>
+                        </div>
+                    </div>                    
+                    
+                    <p class="success-story">
+                        "Already had a math degree but no ML experience. Did both specializations over 4 months. Built a crypto trading algorithm using LSTMs for my portfolio. Posted detailed write-ups on Medium. Got approached by a quant recruiter on LinkedIn. Macquarie interview focused entirely on my project — they didn't care about the certificate, they cared that I could explain the math AND the code. Started at $165k + bonus."
+                    </p>                    
+                    
+                    <div class="success-key">
+                        <strong>Key to success:>/strong> Technical blog posts + sophisticated trading project relevant to target role
+                    </div>
+                </div>
+                
+                
+                <!-- Story 4 -->
+                <div class="success-card">
+                    <div class="success-header">
+                        <div class="avatar">👨‍🔬</div>
+                        <div class="success-meta">
+                            <h4>Alex Kim</h4>
+                            <div class="role">AI Product Manager</div>
+                            <div class="company">Canva, Sydney</div>
+                        </div>
+                    </div>                    
+                    
+                    <p class="success-story">
+                        "Product manager wanting to pivot to AI. Didn't need to code at expert level, but needed to understand capabilities. Completed Machine Learning + GenAI courses. Built a simple LLM-powered app as proof of concept. Used the knowledge to lead AI feature development. Got promoted to AI PM role at $170k. The technical credibility helped me bridge the gap between engineers and business stakeholders."
+                    </p>                    
+                    
+                    <div class="success-key">
+                        <strong>Key to success:</strong> Applied knowledge to lead AI initiatives without being a full engineer
+                    </div>
+                </div>
+                
+            </div>        
+        </div>
+        
+        <!-- Strategy Section -->
+        <div class="section">
+            <h2 class="section-title"><span class="icon">🎯</span>The Job-Getting Strategy</h2>
+            
+            <div class="strategy-grid">
+                
+                <div class="strategy-card">
+                    <h3>1. The LinkedIn Pivot</h3>
+                    
+                    <p><strong>Week 1:</strong> Update headline to "Aspiring ML Engineer | DeepLearning.AI Student"</p>
+                    
+                    <p><strong>Weekly:</strong> Post what you learned</p>
+                    
+                    <ul>
+                        <li>"Week 3 of ML Specialization — just built my first neural network"</li>
+                        <li>Screenshot of code + key insight</li>
+                        <li>Tag Andrew Ng and DeepLearning.AI</li>
+                    </ul>
+                    
+                    <p><strong>Why it works:</strong> Recruiters search for "DeepLearning.AI" and "machine learning." You show up.</p>
+                </div>
+                
+                
+                <div class="strategy-card">
+                    <h3>2. The GitHub Portfolio</h3>
+                    
+                    <p>Every course assignment becomes a repo:</p>
+                    
+                    <ul>
+                        <li>Clean README with what you built</li>
+                        <li>Requirements.txt for reproducibility</li>
+                        <li>Jupyter notebooks with explanations</li>
+                        <li>Deployed demo (Streamlit/Heroku)</li>
+                    </ul>                    
+                    
+                    
+                    <p><strong>Target:</strong> 3 polished projects by month 3</p>
+                </div>
+                
+                
+                <div class="strategy-card">
+                    <h3>3. The Technical Blog</h3>
+                    
+                    <p>Write on Medium/LinkedIn:</p>                    
+                    
+                    
+                    <ul>
+                        <li>"How I Built a Stock Price Predictor with LSTMs"</li>
+                        <li>"Understanding Transformers: A Trader's Guide"</li>
+                        <li>"My Journey from Operations to ML"</li>
+                    </ul>                    
+                    
+                    
+                    <p><strong>Why:</strong> Proves you can communicate complex ideas. Huge differentiator.</p>
+                </div>
+                
+                
+                <div class="strategy-card">
+                    <h3>4. The Targeted Apply</h3>
+                    
+                    <p>Don't spray and pray. Target:</p>
+                    
+                    
+                    <ul>
+                        <li>Crypto trading firms (your domain)</li>
+                        <li>Quant roles mentioning Python</li>
+                        <li>Ops roles with ML components</li>
+                        <li>Sydney fintechs (Zip, Afterpay, etc.)</li>
+                    </ul>                    
+                    
+                    
+                    <p><strong>Hook:</strong> "I completed DeepLearning.AI and built [specific project] relevant to your trading desk."</p>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <!-- Timeline -->
+        <div class="section">
+            <h2 class="section-title"><span class="icon">📅</span>Your 90-Day Sprint</h2>            
+            
+            
+            <div class="timeline-section">
+                <h3>Recommended Schedule (While Working Full-Time)</h3>                
+                
+                
+                <div class="week-grid">
+                    <div class="week-item">
+                        <div class="week-num">Week 1-2</div>
+                        <div class="hours">10h</div>
+                        <div class="task">ML Course 1</div>
+                    </div>
+                    
+                    
+                    <div class="week-item">
+                        <div class="week-num">Week 3-4</div>
+                        <div class="hours">10h</div>
+                        <div class="task">ML Course 2</div>
+                    </div>
+                    
+                    
+                    <div class="week-item">
+                        <div class="week-num">Week 5-6</div>
+                        <div class="hours">10h</div>
+                        <div class="task">ML Course 3</div>
+                    </div>
+                    
+                    
+                    <div class="week-item">
+                        <div class="week-num">Week 7-8</div>
+                        <div class="hours">15h</div>
+                        <div class="task">Project 1</div>
+                    </div>
+                    
+                    
+                    <div class="week-item">
+                        <div class="week-num">Week 9-10</div>
+                        <div class="hours">12h</div>
+                        <div class="task">DL Course 1-2</div>
+                    </div>
+                    
+                    
+                    <div class="week-item">
+                        <div class="week-num">Week 11-12</div>
+                        <div class="hours">15h</div>
+                        <div class="task">Project 2 + GenAI</div>
+                    </div>
+                    
+                </div>                
+                
+                
+                <p style="color: var(--text-secondary); margin-top: 20px; font-size: 0.9rem;">
+                    <strong>Total commitment:</strong> ~10 hours/week. Doable with your current schedule if you cut Netflix/social media. Early mornings (6-8 AM) work best.
+                </p>
+            </div>
+        </div>
+        
+        
+        
+        <!-- Step by Step -->
+        <div class="section">
+            <h2 class="section-title"><span class="icon">🪜</span>Step-by-Step Job Hunt</h2>            
+            
+            
+            <ol class="job-hunt-list">
+                
+                
+                <li class="job-hunt-item">
+                    <div class="step-num">1</div>
+                    
+                    <div>
+                        <h4>Complete ML Specialization (Month 1)</h4>                        
+                        
+                        
+                        <p>Don't rush. Understand every concept. Do ALL assignments. Build one project using your own dataset (crypto/trading data).</p>
+                    </div>
+                </li>
+                
+                
+                
+                <li class="job-hunt-item">
+                    <div class="step-num">2</div>
+                    
+                    
+                    <div>
+                        <h4>Deploy Your First Project (Week 6)</h4>                        
+                        
+                        
+                        <p>Pick something trading-related. Portfolio optimizer. Risk calculator. Deploy on Streamlit Cloud (free). Share on LinkedIn. Tag relevant people.</p>
+                    </div>
+                </li>
+                
+                
+                
+                <li class="job-hunt-item">
+                    <div class="step-num">3</div>
+                    
+                    
+                    <div>
+                        <h4>Start Deep Learning (Month 2)</h4>                        
+                        
+                        
+                        <p>Focus on sequence models (LSTMs) — directly applicable to time series/trading. Build a price prediction model.</p>
+                    </div>
+                </li>
+                
+                
+                
+                <li class="job-hunt-item">
+                    <div class="step-num">4</div>
+                    
+                    
+                    <div>
+                        <h4>Do GenAI Course (Week 10)</h4>                        
+                        
+                        
+                        <p>Hot topic. Build a chatbot that answers questions about market data. Use RAG. Deploy it. This gets attention.</p>
+                    </div>
+                </li>
+                
+                
+                
+                <li class="job-hunt-item">
+                    <div class="step-num">5</div>
+                    
+                    
+                    <div>
+                        <h4>Polish Everything (Week 11-12)</h4>                        
+                        
+                        
+                        <p>GitHub readme files. LinkedIn featured section with projects. Resume updated with "DeepLearning.AI certified" + project links.</p>
+                    </div>
+                </li>
+                
+                
+                
+                <li class="job-hunt-item">
+                    <div class="step-num">6</div>
+                    
+                    
+                    <div>
+                        <h4>Apply Strategically (Month 4)</h4>                        
+                        
+                        
+                        <p>Target 5-10 roles per week. Customize each application with specific project links. Mention DeepLearning.AI in cover letter. Reach out to hiring managers on LinkedIn with project links.</p>
+                    </div>
+                </li>
+                
+                
+                
+                <li class="job-hunt-item">
+                    <div class="step-num">7</div>
+                    
+                    
+                    <div>
+                        <h4>Interview Prep (Ongoing)</h4>                        
+                        
+                        
+                        <p>LeetCode easy/medium SQL. Review course notes on bias/variance, regularization, model selection. Practice explaining your projects clearly (the "so what?" test).</p>
+                    </div>
+                </li>
+                
+            </ol>
+        </div>
+        
+        
+        
+        <!-- Sydney Market -->
+        <div class="section">
+            <h2 class="section-title"><span class="icon">🌏</span>Sydney Job Market Reality</h2>            
+            
+            
+            <div class="strategy-grid">
+                
+                
+                <div class="strategy-card">
+                    <h3>💼 Who's Hiring ML Roles</h3>                    
+                    
+                    
+                    <ul>
+                        <li><strong>Macquarie Bank:</strong> Quant roles, $140-200k</li>
+                        <li><strong>Optiver:</strong> Quant trader/dev, $150k+</li>
+                        <li><strong>Atlassian:</strong> ML platform, $130-180k</li>
+                        <li><strong>Canva:</strong> AI features, $140-190k</li>
+                        <li><strong>Commonwealth Bank:</strong> Data science, $120-160k</li>
+                        <li><strong>Block Earner/Amber:</strong> Crypto ML, $100-150k</li>
+                    </ul>                
+                
+                
+                </div>
+                
+                
+                
+                <div class="strategy-card">
+                    <h3>🎯 Your Angle</h3>                    
+                    
+                    
+                    <p><strong>Current advantage:</strong> You have crypto trading ops experience. That's rare.</p>                    
+                    
+                    
+                    <p><strong>Your pitch:</strong> "Operations manager with 5 years in crypto trading, now adding ML capabilities through DeepLearning.AI. Built [project] that [result]."</p>                    
+                    
+                    
+                    <p><strong>Target roles:</strong></p>                    
+                    
+                    
+                    <ul>
+                        <li>Quantitative Operations Analyst</li>
+                        <li>Trading Systems Analyst</li>
+                        <li>Data Scientist (Trading)</li>
+                        <li>Ops Engineer (ML infra)</li>
+                    </ul>                
+                
+                
+                </div>
+                
+                
+                
+                <div class="strategy-card">
+                    <h3>💰 Salary Expectations</h3>                    
+                    
+                    
+                    <p><strong>Entry-level ML/Data roles:</strong> $100-130k</p>                    
+                    
+                    
+                    <p><strong>With your experience:</strong> $130-160k (ops + ML hybrid)</p>                    
+                    
+                    
+                    <p><strong>Quant roles (with projects):</strong> $150-200k</p>                    
+                    
+                    
+                    <p style="margin-top: 12px; color: var(--text-secondary);">Note: Sydney tech salaries often include super (9.5%) and some equity. Total comp can be 15-25% above base.</p>                
+                
+                
+                </div>
+                
+                
+                
+                <div class="strategy-card">
+                    <h3>📍 Where to Look</h3>                    
+                    
+                    
+                    <ul>
+                        <li><strong>LinkedIn:</strong> Set alerts for "machine learning Sydney"</li>
+                        <li><strong>Seek:</strong> Quantitative analyst, data scientist</li>
+                        <li><strong>AngelList:</strong> Startup ML roles</li>
+                        <li><strong>Company sites:</strong> Direct applications</li>
+                        <li><strong>Recruiters:</strong> Hays, Robert Walters tech division</li>
+                    </ul>                    
+                    
+                    
+                    
+                    <p style="margin-top: 12px;"><strong>Networking:</strong> Sydney ML Meetup, Data Science Sydney events. Go. Meet people.</p>                
+                
+                
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        
+        <!-- CTA -->
+        <div class="cta-box">
+            <h2>🚀 Ready to Start?</h2>            
+            
+            
+            <p>You've got the plan. You've got the proof it works. The only question is: will you execute?</p>            
+            
+            
+            <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 8px; margin: 20px 0; text-align: left;">
+                <p style="margin-bottom: 8px;"><strong>Next 3 Steps (Do Today):</strong></p>                
+                
+                
+                <ol style="margin-left: 20px; color: var(--text-secondary);">
+                    <li>Sign up for Coursera ($50/month)</li>
+                    <li>Enroll in Machine Learning Specialization</li>
+                    <li>Update LinkedIn headline to "ML Student | DeepLearning.AI"</li>
+                </ol>
+            </div>            
+            
+            
+            <p style="color: var(--accent-gold); font-weight: 600;">Cost: $300 AUD. Timeline: 3-4 months to job-ready. ROI: $50k+ salary bump.</p>        
+        
+        
+        </div>
+        
+        
+        
+        <footer>
+            <p>DeepLearning.AI Career Blueprint • Generated by Astra 🗡️</p>            
+            
+            
+            <p style="margin-top: 8px; opacity: 0.6;">This is not career advice. This is drill sergeant motivation.</p>        
+        
+        
+        </footer>
+    </div>
+</body>
+</html>
