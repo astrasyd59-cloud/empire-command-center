@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Horoscope — Dibashis | February 28, 2026</title>
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a25;
+            --text-primary: #e8e8ec;
+            --text-secondary: #9a9aa8;
+            --accent-gold: #d4af37;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --border: #2a2a3a;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+        
+        .date-badge {
+            display: inline-block;
+            background: var(--bg-secondary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            border: 1px solid var(--border);
+        }
+        
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--accent-gold), #f0d78c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        
+        .cosmic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+        
+        .cosmic-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .cosmic-card .icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+        
+        .cosmic-card h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        
+        .cosmic-card .value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+        }
+        
+        .section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .section h2 {
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section p {
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+        
+        .muhurta-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+        
+        .muhurta-table th,
+        .muhurta-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .muhurta-table th {
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .muhurta-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .tag-success {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+        }
+        
+        .tag-warning {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--warning);
+        }
+        
+        .tag-danger {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--danger);
+        }
+        
+        .guidance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+        }
+        
+        .guidance-item {
+            padding: 16px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-purple);
+        }
+        
+        .guidance-item h4 {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            color: var(--accent-purple);
+        }
+        
+        .guidance-item p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        .drill-sergeant {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(139, 92, 246, 0.1));
+            border: 1px solid var(--accent-gold);
+        }
+        
+        .drill-sergeant h2 {
+            color: var(--accent-gold);
+        }
+        
+        .mantra-box {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        
+        .mantra-box .sanskrit {
+            font-size: 1.4rem;
+            color: var(--accent-gold);
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+        
+        .mantra-box .translation {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 600px) {
+            h1 { font-size: 1.5rem; }
+            .cosmic-grid { grid-template-columns: 1fr; }
+            .guidance-grid { grid-template-columns: 1fr; }
+            .muhurta-table { font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="date-badge">Saturday, February 28, 2026</div>
+            <h1>🌟 Daily Cosmic Brief</h1>
+            <p class="subtitle">Dibashis • Aquarius • Mauritius</p>
+        </header>
+        
+        <div class="cosmic-grid">
+            <div class="cosmic-card">
+                <div class="icon">♒</div>
+                <h3>Sun Sign</h3>
+                <div class="value">Aquarius (Kumbha)</div>
+            </div>
+            <div class="cosmic-card">
+                <div class="icon">🌙</div>
+                <h3>Moon Phase</h3>
+                <div class="value">Waxing Gibbous</div>
+            </div>
+            <div class="cosmic-card">
+                <div class="icon">🪐</div>
+                <h3>Key Transit</h3>
+                <div class="value">Saturn in Aquarius</div>
+            </div>
+            <div class="cosmic-card">
+                <div class="icon">⚡</div>
+                <h3>Yoga</h3>
+                <div class="value">Vyaghata</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🌙 Moon Phase Insights</h2>
+            <p><strong>Waxing Gibbous (Shukla Paksha, 11th Tithi)</strong> — The Moon is approaching fullness, a time of <strong>culmination and near-completion</strong>. Energy is building toward realization.</p>
+            <p>This is a favorable period for <strong>finalizing projects</strong>, reviewing progress, and wrapping up loose ends. <strong>Not ideal</strong> for initiating new long-term ventures.</p>
+        </div>
+        
+        <div class="section">
+            <h2>🪐 Key Planetary Transit</h2>
+            <p><strong>Saturn (Shani) continues its transit through Aquarius</strong> — your ruling planet's 2.5-year sojourn through your own sign marks the final phase of Sade Sati, a period of profound maturation.</p>
+            <p><strong>Today's specific alignment:</strong></p>
+            <ul style="margin-left: 20px; color: var(--text-secondary);">
+                <li>Saturn forms a supportive aspect to Venus — grounding romantic and financial matters</li>
+                <li>Mercury's recent entry into Pisces softens communication — trust intuition over logic today</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>⏰ Auspicious Times (Muhurta)</h2>
+            <p style="font-size: 0.9rem; margin-bottom: 16px;">All times in Mauritius timezone (UTC+4)</p>
+            <table class="muhurta-table">
+                <thead>
+                    <tr>
+                        <th>Muhurta</th>
+                        <th>Time</th>
+                        <th>Activity</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Amrit Kalam</strong></td>
+                        <td>6:30 AM — 8:00 AM</td>
+                        <td>Spiritual practices, meditation, prayers</td>
+                        <td><span class="tag tag-success">Favorable</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rahu Kalam</strong></td>
+                        <td>9:00 AM — 10:30 AM</td>
+                        <td>Avoid initiating conflicts or arguments</td>
+                        <td><span class="tag tag-danger">Avoid</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Abhijit</strong></td>
+                        <td>11:45 AM — 12:30 PM</td>
+                        <td>Best for important decisions, signing documents</td>
+                        <td><span class="tag tag-success">Most Auspicious</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Varjyam</strong></td>
+                        <td>2:15 PM — 3:45 PM</td>
+                        <td>No new beginnings, major purchases</td>
+                        <td><span class="tag tag-warning">Caution</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2>📿 Practical Guidance</h2>
+            <div class="guidance-grid">
+                <div class="guidance-item">
+                    <h4>💼 Career / Work</h4>
+                    <p>The Waxing Gibbous Moon favors review over revolution. Audit your week's trading notes. That "small $10-15 profit" pattern? Document it. Saturn demands discipline, not desperation.</p>
+                </div>
+                <div class="guidance-item">
+                    <h4>💕 Relationships</h4>
+                    <p>Venus-Saturn alignment suggests a grounded conversation with family about Mauritius plans. The villa dream? Share the timeline. Don't keep it internal.</p>
+                </div>
+                <div class="guidance-item">
+                    <h4>💪 Health</h4>
+                    <p>Saturn in your sign can manifest as joint stiffness or low energy. Morning mobility work before that 7 AM Sydney wake-up. Your gym schedule (4x/week) is non-negotiable today.</p>
+                </div>
+                <div class="guidance-item">
+                    <h4>💰 Finance</h4>
+                    <p>Muhurta says avoid new positions during Rahu Kalam (9-10:30 AM your time). Wait for Abhijit (11:45 AM) for any meaningful financial decisions.</p>
+                </div>
+                <div class="guidance-item">
+                    <h4>🧘 Spiritual</h4>
+                    <p>With Sun approaching your 12th house (Pisces), introspection serves you. 10 minutes of silence before the day begins. Your "gods shelf" prayer — deepen it today.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section drill-sergeant">
+            <h2>🔥 The Drill Sergeant Take</h2>
+            <p>You've been hitting snooze on 5 AM. <strong>Saturn sees you.</strong> The Sade Sati doesn't reward excuses — it rewards consistency.</p>
+            <p>That "soul-crushing admin" at work? It's building the operational discipline you'll need when you're running your own trading desk.</p>
+            <p style="margin-bottom: 0; color: var(--accent-gold);"><strong>No guilt. No pity. Just execution.</strong></p>
+        </div>
+        
+        <div class="mantra-box">
+            <p class="sanskrit">"Sham Shanicharaya Namah"</p>
+            <p class="translation">I bow to Lord Saturn, the slow-moving one<br>Honor the slow grind. It compounds.</p>
+        </div>
+        
+        <footer>
+            <p>Jyotish reading for Dibashis • Born: Feb 1, 1998, 12:45 PM, Mauritius</p>
+            <p style="margin-top: 8px; opacity: 0.6;">Generated by Astra 🗡️ • Empire Command Center</p>
+        </footer>
+    </div>
+</body>
+</html>
