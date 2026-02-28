@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Institutional Crypto Analysis | SOL·HYPE·XRP | Feb 28, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0c0f;--bg2:#111418;--bg3:#181d23;--border:rgba(255,255,255,0.08);--border-strong:rgba(255,255,255,0.15);--text:#e8e6e0;--text-muted:rgba(232,230,224,0.45);--text-dim:rgba(232,230,224,0.65);--gold:#c9a84c;--gold-dim:rgba(201,168,76,0.2);--green:#4caf82;--green-dim:rgba(76,175,130,0.15);--red:#e05555;--red-dim:rgba(224,85,85,0.15);--blue:#5b9cf6;--blue-dim:rgba(91,156,246,0.15);--purple:#a78bfa;--purple-dim:rgba(167,139,250,0.15);--orange:#f59e42;--orange-dim:rgba(245,158,66,0.15);--cyan:#22d3ee;--cyan-dim:rgba(34,211,238,0.15);--font-serif:'Playfair Display',Georgia,serif;--font-body:'Source Serif 4',Georgia,serif;--font-mono:'IBM Plex Mono',monospace}
+[data-theme="light"]{--bg:#f5f2eb;--bg2:#ede9df;--bg3:#e4dfd3;--border:rgba(0,0,0,0.09);--border-strong:rgba(0,0,0,0.18);--text:#1a1814;--text-muted:rgba(26,24,20,0.45);--text-dim:rgba(26,24,20,0.65);--gold:#8a6b1a;--gold-dim:rgba(138,107,26,0.12);--green:#1c7a4f;--green-dim:rgba(28,122,79,0.1);--red:#b02020;--red-dim:rgba(176,32,32,0.1);--blue:#2563c9;--blue-dim:rgba(37,99,201,0.1);--cyan:#0891b2;--cyan-dim:rgba(8,145,178,0.1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.65;-webkit-font-smoothing:antialiased}
+.container{max-width:1000px;margin:0 auto;padding:20px 16px 48px}
+header{text-align:center;padding:36px 0 28px;border-bottom:1px solid var(--border);margin-bottom:24px}
+.data-badge{display:inline-block;background:var(--green-dim);border:1px solid var(--green);color:var(--green);font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.1em;padding:4px 10px;border-radius:2px;margin-bottom:16px}
+.masthead-label{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.masthead-title{font-family:var(--font-serif);font-size:clamp(1.8rem,5vw,2.6rem);font-weight:900;line-height:1.15;color:var(--text);margin-bottom:8px}
+.masthead-sub{font-size:0.85rem;color:var(--text-dim);font-style:italic;margin-bottom:16px}
+.timestamp{font-family:var(--font-mono);font-size:0.6rem;color:var(--text-muted)}
+
+/* Snapshot Table */
+.snapshot-table{width:100%;border-collapse:collapse;margin-bottom:32px;font-size:0.85rem}
+.snapshot-table th{background:var(--bg3);border:1px solid var(--border);padding:12px;font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);text-align:left}
+.snapshot-table td{border:1px solid var(--border);padding:12px;font-family:var(--font-mono)}
+.snapshot-table tr:hover{background:var(--bg2)}
+.ticker-sol{color:var(--purple);font-weight:600}
+.ticker-hype{color:var(--cyan);font-weight:600}
+.ticker-xrp{color:var(--blue);font-weight:600}
+.positive{color:var(--green)}
+.negative{color:var(--red)}
+
+/* Valuation Cards */
+.valuation-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}
+.val-card{background:var(--bg2);border:1px solid var(--border);border-top:3px solid var(--gold);border-radius:2px;padding:20px}
+.val-card h3{font-family:var(--font-serif);font-size:1rem;margin-bottom:12px;color:var(--text)}
+.val-metric{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed var(--border);font-size:0.8rem}
+.val-metric:last-child{border-bottom:none}
+.val-label{color:var(--text-muted);font-family:var(--font-mono);font-size:0.65rem;text-transform:uppercase}
+.val-value{font-family:var(--font-mono);font-weight:600}
+.val-value.highlight{color:var(--gold)}
+
+/* Tokenomics Section */
+.tokenomics-card{background:var(--bg2);border:1px solid var(--border);border-radius:2px;margin-bottom:20px;overflow:hidden}
+.token-header{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid var(--border);background:var(--bg3)}
+.token-name{font-family:var(--font-serif);font-size:1.1rem;font-weight:700}
+.token-price{font-family:var(--font-mono);font-size:1.2rem;font-weight:600}
+.token-body{padding:18px}
+.supply-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:16px}
+.supply-item{background:var(--bg3);border:1px solid var(--border);padding:12px;border-radius:2px}
+.supply-label{font-family:var(--font-mono);font-size:0.6rem;color:var(--text-muted);text-transform:uppercase;margin-bottom:4px}
+.supply-value{font-family:var(--font-mono);font-size:1rem;font-weight:600}
+.supply-sub{font-family:var(--font-mono);font-size:0.6rem;color:var(--text-dim);margin-top:2px}
+
+/* Ratio Bars */
+.ratio-section{margin-bottom:16px}
+.ratio-title{font-family:var(--font-mono);font-size:0.6rem;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px}
+.ratio-bar{height:24px;background:var(--bg3);border-radius:2px;overflow:hidden;position:relative}
+.ratio-fill{height:100%;border-radius:2px}
+.ratio-fill.green{background:var(--green)}
+.ratio-fill.orange{background:var(--orange)}
+.ratio-fill.red{background:var(--red)}
+.ratio-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--font-mono);font-size:0.7rem;font-weight:600;color:var(--text)}
+
+/* Metrics Grid */
+.metrics-section{margin-top:16px}
+.metrics-title{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.1em;color:var(--gold);text-transform:uppercase;margin-bottom:12px;border-bottom:1px solid var(--border);padding-bottom:6px}
+.metrics-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px}
+.metric-box{background:var(--bg3);border:1px solid var(--border);padding:10px;border-radius:2px;text-align:center}
+.metric-val{font-family:var(--font-mono);font-size:0.9rem;font-weight:600;color:var(--text)}
+.metric-val.green{color:var(--green)}
+.metric-val.red{color:var(--red)}
+.metric-lbl{font-family:var(--font-mono);font-size:0.55rem;color:var(--text-muted);text-transform:uppercase;margin-top:3px}
+
+/* Explanation Box */
+.explain-box{background:var(--bg2);border-left:3px solid var(--gold);padding:16px 18px;margin-bottom:24px;font-size:0.85rem;color:var(--text-dim);line-height:1.7}
+.explain-box strong{color:var(--text)}
+
+/* Comparison Table */
+.comparison-table{width:100%;border-collapse:collapse;margin-bottom:24px;font-size:0.8rem}
+.comparison-table th{background:var(--bg3);border:1px solid var(--border);padding:10px;font-family:var(--font-mono);font-size:0.55rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);text-align:center}
+.comparison-table td{border:1px solid var(--border);padding:10px;font-family:var(--font-mono);text-align:center}
+.comparison-table .label{text-align:left;font-weight:600}
+.comparison-table tr:hover{background:var(--bg2)}
+.best{background:var(--green-dim);color:var(--green)}
+.worst{background:var(--red-dim);color:var(--red)}
+
+/* Section Divider */
+.section-divider{display:flex;align-items:center;gap:14px;margin:32px 0 20px}
+.section-divider-line{flex:1;height:1px;background:var(--border)}
+.section-divider-text{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);white-space:nowrap}
+
+/* Allocation Section */
+.alloc-card{background:var(--bg2);border:1px solid var(--border);border-radius:2px;padding:20px;margin-bottom:16px}
+.alloc-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.alloc-title{font-family:var(--font-serif);font-size:1.1rem;font-weight:700}
+.alloc-risk{font-family:var(--font-mono);font-size:0.55rem;padding:4px 10px;border-radius:2px;text-transform:uppercase}
+.risk-low{background:var(--green-dim);border:1px solid var(--green);color:var(--green)}
+.risk-med{background:var(--orange-dim);border:1px solid var(--orange);color:var(--orange)}
+.risk-high{background:var(--red-dim);border:1px solid var(--red);color:var(--red)}
+
+.alloc-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed var(--border)}
+.alloc-row:last-child{border-bottom:none}
+.alloc-token{font-family:var(--font-mono);font-weight:600}
+.alloc-details{text-align:right;font-family:var(--font-mono);font-size:0.8rem}
+.alloc-usd{color:var(--text-muted)}
+
+.footer{text-align:center;padding:40px 20px;border-top:1px solid var(--border);margin-top:40px;color:var(--text-muted);font-family:var(--font-mono);font-size:0.75rem}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+<div class="data-badge">✓ LIVE DATA — CoinGecko API | Feb 28, 2026 11:13 UTC</div>
+<div class="masthead-label">Dibs Capital Management · Institutional Research</div>
+<h1 class="masthead-title">Crypto Valuation Analysis</h1>
+<div class="masthead-sub">Tokenomics, Ratios & Allocation Framework for $1,490 Deployment</div>
+<div class="timestamp">Prices: SOL $79.28 | HYPE $27.49 | XRP $1.29</div>
+</header>
+
+<!-- LIVE SNAPSHOT TABLE -->
+<table class="snapshot-table">
+<tr>
+<th>Asset</th>
+<th>Price</th>
+<th>24h Change</th>
+<th>Market Cap</th>
+<th>FDV</th>
+<th>Rank</th>
+<th>ATH Distance</th>
+</tr>
+<tr>
+<td><span class="ticker-sol">SOL</span> Solana</td>
+<td>$79.28</td>
+<td class="negative">-6.56%</td>
+<td>$45.2B</td>
+<td>$49.3B</td>
+<td>#7</td>
+<td class="negative">-73%</td>
+</tr>
+<tr>
+<td><span class="ticker-xrp">XRP</span> Ripple</td>
+<td>$1.29</td>
+<td class="negative">-7.35%</td>
+<td>$78.9B</td>
+<td>$129.1B</td>
+<td>#5</td>
+<td class="negative">-65%</td>
+</tr>
+<tr>
+<td><span class="ticker-hype">HYPE</span> Hyperliquid</td>
+<td>$27.49</td>
+<td class="negative">-5.21%</td>
+<td>$6.5B</td>
+<td>$26.4B</td>
+<td>#16</td>
+<td class="negative">-54%</td>
+</tr>
+</table>
+
+<!-- VALUATION METRICS EXPLAINED -->
+<div class="explain-box">
+<strong>How to Value Crypto vs Stocks:</strong><br>
+Unlike stocks, crypto has no earnings or cash flows (mostly). Instead we use:<br><br>
+• <strong>MC/FDV Ratio:</strong> Market Cap ÷ Fully Diluted Value. Lower = more supply inflation risk. < 0.5 is concerning.<br>
+• <strong>Float/Turnover:</strong> Daily volume ÷ Circulating supply. Higher = more liquid, efficient price discovery.<br>
+• <strong>Fee/Market Cap:</strong> Annualized fees ÷ Market Cap (DeFi only). > 10% is exceptional value.<br>
+• <strong>Network Value/Tx:</strong> Market Cap ÷ Daily transactions. Lower = cheaper per unit of utility.
+</div>
+
+<!-- TOKENOMICS CARDS -->
+<div class="section-divider">
+<div class="section-divider-line"></div>
+<div class="section-divider-text">TOKENOMICS DEEP DIVE</div>
+<div class="section-divider-line"></div>
+</div>
+
+<!-- SOLANA -->
+<div class="tokenomics-card">
+<div class="token-header">
+<div class="token-name"><span style="color:var(--purple)">●</span> SOLANA (SOL)</div>
+<div class="token-price">$79.28</div>
+</div>
+<div class="token-body">
+<div class="supply-grid">
+<div class="supply-item">
+<div class="supply-label">Circulating Supply</div>
+<div class="supply-value">569.5M SOL</div>
+<div class="supply-sub">91.7% of total</div>
+</div>
+<div class="supply-item">
+<div class="supply-label">Total Supply</div>
+<div class="supply-value">621.3M SOL</div>
+<div class="supply-sub">No hard cap</div>
+</div>
+<div class="supply-item">
+<div class="supply-label">Max Supply</div>
+<div class="supply-value">∞ (Inflationary)</div>
+<div class="supply-sub">~8% annual issuance</div>
+</div>
+<div class="supply-item">
+<div class="supply-label">Market Cap / FDV</div>
+<div class="supply-value" style="color:var(--green)">0.92</div>
+<div class="supply-sub">EXCELLENT (low unlock risk)</div>
+</div>
+</div>
+
+<div class="ratio-section">
+<div class="ratio-title">Circulation Ratio (91.7%)</div>
+<div class="ratio-bar">
+<div class="ratio-fill green" style="width:91.7%"></div>
+<div class="ratio-text">91.7% Circulating</div>
+</div>
+</div>
+
+<div class="metrics-section">
+<div class="metrics-title">Key Valuation Metrics</div>
+<div class="metrics-row">
+<div class="metric-box">
+<div class="metric-val">$4.55B</div>
+<div class="metric-lbl">24h Volume</div>
+</div>
+<div class="metric-box">
+<div class="metric-val">10.1%</div>
+<div class="metric-lbl">Vol/Market Cap</div>
+</div>
+<div class="metric-box">
+<div class="metric-val green">6.2%</div>
+<div class="metric-lbl">Staking Yield</div>
+</div>
+</div>
+</div>
+
+<div style="font-size:0.8rem;color:var(--text-dim);margin-top:12px;padding:12px;background:var(--bg3);border-radius:2px">
+<strong>Tokenomics Assessment:</strong> SOL has the healthiest tokenomics of the three. 92% circulating means minimal unlock pressure. Inflation is modest (~8%) and offset by staking. Network is profitable (fees > issuance). FTX estate overhang is the main risk.
+</div>
+</div>
+</div>
+
+<!-- HYPERLIQUID -->
+<div class="tokenomics-card">
+<div class="token-header">
+<div class="token-name"><span style="color:var(--cyan)">●</span> HYPERLIQUID (HYPE)</div>
+<div class="token-price">$27.49</div>
+</div>
+<div class="token-body">
+<div class="supply-grid">
+<div class="supply-item">
+<div class="supply-label">Circulating Supply</div>
+<div class="supply-value">238.4M HYPE</div>
+<div class="supply-sub">24.8% of total</div>
+</div>
+<div class="supply-item">
+<div class="supply-label">Total Supply</div>
+<div class="supply-value">962.3M HYPE</div>
+<div class="supply-sub">Hard cap: 1B</div>
+</div>
+<div class="supply-item">
+<div class="supply-label">Max Supply</div>
+<div class="supply-value">1,000,000,000</div>
+<div class="supply-sub">Fixed cap</div>
+</div>
+<div class="supply-item">
+<div class="supply-label">Market Cap / FDV</div>
+<div class="supply-value" style="color:var(--red)">0.25</div>
+<div class="supply-sub">WARNING (75% locked)</div>
+</div>
+</div>
+
+<div class="ratio-section">
+<div class="ratio-title">Circulation Ratio (24.8%) — HIGH INFLATION RISK</div>
+<div class="ratio-bar">
+<div class="ratio-fill red" style="width:24.8%"></div>
+<div class="ratio-text">24.8% Circulating</div>
+</div>
+</div>
+
+<div class="metrics-section">
+<div class="metrics-title">Key Valuation Metrics</div>
+<div class="metrics-row">
+<div class="metric-box">
+<div class="metric-val">$263M</div>
+<div class="metric-lbl">24h Volume</div>
+</div>
+<div class="metric-box">
+<div class="metric-val">4.0%</div>
+<div class="metric-lbl">Vol/Market Cap</div>
+</div>
+<div class="metric-box">
+<div class="metric-val green">8.4%</div>
+<div class="metric-lbl">Fee/MC Ratio</div>
+</div>
+</div>
+</div>
+
+<div style="font-size:0.8rem;color:var(--text-dim);margin-top:12px;padding:12px;background:var(--bg3);border-radius:2px">
+<strong>Tokenomics Assessment:</strong> HYPE has the riskiest tokenomics. Only 25% circulating with massive unlock schedule ahead. However, 97% of fees go to buybacks (not team), which is unique. Fee/MC of 8.4% is exceptional — if sustained, current price could be undervalued despite unlock risk.
+</div>
+</div>
+</div>
+
+<!-- XRP -->
+<div class="tokenomics-card">
+<div class="token-header">
+<div class="token-name"><span style="color:var(--blue)">●</span> RIPPLE (XRP)</div>
+<div class="token-price">$1.29</div>
+</div>
+<div class="token-body">
+<div class="supply-grid">
+<div class="supply-item">
+<div class="supply-label">Circulating Supply</div>
+<div class="supply-value">61.09B XRP</div>
+<div class="supply-sub">61.1% of max</div>
+</div>
+<div class="supply-item">
+<div class="supply-label">Total Supply</div>
+<div class="supply-value">99.99B XRP</div>
+<div class="supply-sub">Escrow releases</div>
+</div>
+<div class="supply-item">
+<div class="supply-label">Max Supply</div>
+<div class="supply-value">100,000,000,000</div>
+<div class="supply-sub">Hard cap</div>
+</div>
+<div class="supply-item">
+<div class="supply-label">Market Cap / FDV</div>
+<div class="supply-value" style="color:var(--orange)">0.61</div>
+<div class="supply-sub">MODERATE (39% locked)</div>
+</div>
+</div>
+
+<div class="ratio-section">
+<div class="ratio-title">Circulation Ratio (61.1%)</div>
+<div class="ratio-bar">
+<div class="ratio-fill orange" style="width:61.1%"></div>
+<div class="ratio-text">61.1% Circulating</div>
+</div>
+</div>
+
+<div class="metrics-section">
+<div class="metrics-title">Key Valuation Metrics</div>
+<div class="metrics-row">
+<div class="metric-box">
+<div class="metric-val">$3.77B</div>
+<div class="metric-lbl">24h Volume</div>
+</div>
+<div class="metric-box">
+<div class="metric-val">4.8%</div>
+<div class="metric-lbl">Vol/Market Cap</div>
+</div>
+<div class="metric-box">
+<div class="metric-val">N/A</div>
+<div class="metric-lbl">No Staking</div>
+</div>
+</div>
+</div>
+
+<div style="font-size:0.8rem;color:var(--text-dim);margin-top:12px;padding:12px;background:var(--bg3);border-radius:2px">
+<strong>Tokenomics Assessment:</strong> XRP has moderate inflation via monthly escrow releases (1B XRP/month, 55% burned/returned). No staking = no yield. Centralized supply distribution (Ripple Labs holds significant). SEC lawsuit resolution removes major overhang, but institutional adoption remains slower than promised.
+</div>
+</div>
+</div>
+
+<!-- COMPARISON TABLE -->
+<div class="section-divider">
+<div class="section-divider-line"></div>
+<div class="section-divider-text">COMPARATIVE ANALYSIS</div>
+<div class="section-divider-line"></div>
+</div>
+
+<table class="comparison-table">
+<tr>
+<th>Metric</th>
+<th>SOL</th>
+<th>HYPE</th>
+<th>XRP</th>
+</tr>
+<tr>
+<td class="label">Market Cap</td>
+<td>$45.2B</td>
+<td>$6.5B</td>
+<td>$78.9B</td>
+</tr>
+<tr>
+<td class="label">MC/FDV Ratio</td>
+<td class="best">0.92 ✓</td>
+<td class="worst">0.25 ⚠</td>
+<td>0.61</td>
+</tr>
+<tr>
+<td class="label">Circulating %</td>
+<td class="best">91.7% ✓</td>
+<td class="worst">24.8% ⚠</td>
+<td>61.1%</td>
+</tr>
+<tr>
+<td class="label">Daily Volume/MC</td>
+<td class="best">10.1% ✓</td>
+<td>4.0%</td>
+<td>4.8%</td>
+</tr>
+<tr>
+<td class="label">Revenue/Fees to Holders</td>
+<td>~6% (staking)</td>
+<td class="best">8.4% (buybacks) ✓</td>
+<td class="worst">0% (no yield) ✗</td>
+</tr>
+<tr>
+<td class="label">Inflation Risk</td>
+<td class="best">LOW ✓</td>
+<td class="worst">HIGH (75% unlock) ⚠</td>
+<td>MODERATE</td>
+</tr>
+<tr>
+<td class="label">ATH Distance</td>
+<td class="worst">-73% ✗</td>
+<td>-54%</td>
+<td>-65%</td>
+</tr>
+<tr>
+<td class="label">Catalyst Strength</td>
+<td>Firedancer, ETF</td>
+<td class="best">Fee sharing, EVM ✓</td>
+<td>SEC win, RLUSD</td>
+</tr>
+</table>
+
+<!-- RECOMMENDED ALLOCATION -->
+<div class="section-divider">
+<div class="section-divider-line"></div>
+<div class="section-divider-text">RECOMMENDED ALLOCATION — $1,490</div>
+<div class="section-divider-line"></div>
+</div>
+
+<div class="explain-box">
+<strong>Thesis:</strong> Based on tokenomics, SOL offers the best risk/reward with 92% circulation and staking yield. HYPE has exceptional fee generation but extreme unlock risk. XRP provides regulatory clarity hedge but no yield and slower growth. Weight toward SOL for sleep-at-night factor, keep HYPE as asymmetric bet, XRP as portfolio stabilizer.
+</div>
+
+<div class="alloc-card">
+<div class="alloc-header">
+<div class="alloc-title">⚖️ Balanced Tokenomics Play</div>
+<span class="alloc-risk risk-med">Medium Risk</span>
+</div>
+<div class="alloc-row">
+<span class="alloc-token" style="color:var(--purple)">SOL</span>
+<span class="alloc-details">40% · $596 · ~7.52 SOL @ $79.28</span>
+</div>
+<div class="alloc-row">
+<span class="alloc-token" style="color:var(--cyan)">HYPE</span>
+<span class="alloc-details">30% · $447 · ~16.26 HYPE @ $27.49</span>
+</div>
+<div class="alloc-row">
+<span class="alloc-token" style="color:var(--blue)">XRP</span>
+<span class="alloc-details">25% · $373 · ~289 XRP @ $1.29</span>
+</div>
+<div class="alloc-row" style="border-top:1px solid var(--border);margin-top:8px;padding-top:12px">
+<span class="alloc-token">CASH (USDT)</span>
+<span class="alloc-details">5% · $74 · Dry powder</span>
+</div>
+</div>
+
+<div class="footer">
+🗡️ Astra Research | Data: CoinGecko API | Feb 28, 2026<br>
+Not financial advice. DYOR.
+</div>
+
+</div>
+</body>
+</html>
