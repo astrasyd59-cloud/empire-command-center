@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trump Dip Play | $1,490 Crypto Portfolio | Feb 28, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0c0f;--bg2:#111418;--bg3:#181d23;--border:rgba(255,255,255,0.08);--border-strong:rgba(255,255,255,0.15);--text:#e8e6e0;--text-muted:rgba(232,230,224,0.45);--text-dim:rgba(232,230,224,0.65);--gold:#c9a84c;--gold-dim:rgba(201,168,76,0.2);--green:#4caf82;--green-dim:rgba(76,175,130,0.15);--red:#e05555;--red-dim:rgba(224,85,85,0.15);--blue:#5b9cf6;--blue-dim:rgba(91,156,246,0.15);--purple:#a78bfa;--purple-dim:rgba(167,139,250,0.15);--orange:#f59e42;--orange-dim:rgba(245,158,66,0.15);--teal:#2dd4bf;--teal-dim:rgba(45,212,191,0.15);--cyan:#22d3ee;--cyan-dim:rgba(34,211,238,0.15);--font-serif:'Playfair Display',Georgia,serif;--font-body:'Source Serif 4',Georgia,serif;--font-mono:'IBM Plex Mono',monospace}
+[data-theme="light"]{--bg:#f5f2eb;--bg2:#ede9df;--bg3:#e4dfd3;--border:rgba(0,0,0,0.09);--border-strong:rgba(0,0,0,0.18);--text:#1a1814;--text-muted:rgba(26,24,20,0.45);--text-dim:rgba(26,24,20,0.65);--gold:#8a6b1a;--gold-dim:rgba(138,107,26,0.12);--green:#1c7a4f;--green-dim:rgba(28,122,79,0.1);--red:#b02020;--red-dim:rgba(176,32,32,0.1);--blue:#2563c9;--blue-dim:rgba(37,99,201,0.1);--purple:#6d28d9;--purple-dim:rgba(109,40,217,0.1);--cyan:#0891b2;--cyan-dim:rgba(8,145,178,0.1);--teal:#0d7a6e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.65;-webkit-font-smoothing:antialiased}
+.theme-toggle{position:fixed;top:14px;right:14px;z-index:999;background:var(--bg3);border:1px solid var(--border-strong);color:var(--text-dim);font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.08em;padding:6px 10px;cursor:pointer;border-radius:3px;transition:all 0.2s}
+.theme-toggle:hover{color:var(--gold);border-color:var(--gold)}
+.container{max-width:960px;margin:0 auto;padding:20px 16px 48px}
+header{text-align:center;padding:36px 0 28px;border-bottom:1px solid var(--border);margin-bottom:24px}
+.alert-banner{background:var(--red-dim);border:1px solid var(--red);border-radius:2px;padding:12px 16px;margin-bottom:20px;text-align:center;font-family:var(--font-mono);font-size:0.7rem;color:var(--red)}
+.masthead-label{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.masthead-title{font-family:var(--font-serif);font-size:clamp(1.8rem,5vw,2.6rem);font-weight:900;line-height:1.15;color:var(--text);margin-bottom:8px}
+.masthead-sub{font-size:0.85rem;color:var(--text-dim);font-style:italic;margin-bottom:16px}
+.investment-banner{background:linear-gradient(135deg,var(--purple-dim),var(--blue-dim));border:1px solid var(--purple);border-radius:2px;padding:20px;margin-bottom:24px;text-align:center}
+.investment-amount{font-family:var(--font-mono);font-size:2.2rem;font-weight:600;color:var(--purple);margin-bottom:4px}
+.investment-label{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px}
+.section-divider{display:flex;align-items:center;gap:14px;margin:32px 0 20px}
+.section-divider-line{flex:1;height:1px;background:var(--border)}
+.section-divider-text{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);white-space:nowrap}
+.scenario-card{background:var(--bg2);border:1px solid var(--border);margin-bottom:20px;border-radius:2px;overflow:hidden}
+.scenario-low{border-top:3px solid var(--green)}
+.scenario-med{border-top:3px solid var(--orange)}
+.scenario-high{border-top:3px solid var(--red)}
+.scenario-header{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid var(--border)}
+.scenario-title{font-family:var(--font-serif);font-size:1.15rem;font-weight:700;color:var(--text)}
+.scenario-badge{font-family:var(--font-mono);font-size:0.58rem;padding:4px 10px;border-radius:2px;letter-spacing:0.06em;text-transform:uppercase}
+.badge-low{background:var(--green-dim);border:1px solid var(--green);color:var(--green)}
+.badge-med{background:var(--orange-dim);border:1px solid var(--orange);color:var(--orange)}
+.badge-high{background:var(--red-dim);border:1px solid var(--red);color:var(--red)}
+.allocation-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:18px;background:var(--bg3)}
+.alloc-item{text-align:center;padding:12px;background:var(--bg2);border:1px solid var(--border);border-radius:2px}
+.alloc-symbol{font-family:var(--font-mono);font-size:0.9rem;font-weight:600;color:var(--purple);margin-bottom:4px}
+.alloc-percent{font-family:var(--font-mono);font-size:1.1rem;font-weight:600;color:var(--text);margin-bottom:2px}
+.alloc-amount{font-family:var(--font-mono);font-size:0.7rem;color:var(--text-muted)}
+.alloc-tokens{font-family:var(--font-mono);font-size:0.6rem;color:var(--text-dim);margin-top:2px}
+.scenario-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px 18px;background:var(--bg2);border-top:1px solid var(--border)}
+.metric{text-align:center;padding:10px;background:var(--bg3);border-radius:2px}
+.metric-val{font-family:var(--font-mono);font-size:1rem;font-weight:600;color:var(--text)}
+.metric-val.positive{color:var(--green)}
+.metric-val.negative{color:var(--red)}
+.metric-lbl{font-family:var(--font-mono);font-size:0.55rem;color:var(--text-muted);text-transform:uppercase;margin-top:2px}
+.scenario-notes{padding:14px 18px;font-size:0.8rem;color:var(--text-dim);line-height:1.6;background:var(--bg2)}
+.asset-card{background:var(--bg2);border:1px solid var(--border);margin-bottom:20px;border-radius:2px;overflow:hidden}
+.asset-card-header{display:flex;justify-content:space-between;align-items:flex-start;padding:16px 18px 14px;border-bottom:1px solid var(--border);gap:12px;flex-wrap:wrap}
+.ticker{font-family:var(--font-mono);font-size:1.35rem;font-weight:600;color:var(--text);letter-spacing:-0.02em}
+.crypto-badge{font-family:var(--font-mono);font-size:0.58rem;padding:3px 8px;background:var(--purple-dim);border:1px solid var(--purple);color:var(--purple);border-radius:2px;letter-spacing:0.06em}
+.price-main{font-family:var(--font-mono);font-size:1.45rem;font-weight:600;color:var(--text);line-height:1}
+.asset-body{padding:18px}
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:18px}
+@media(max-width:480px){.metrics-grid{grid-template-columns:repeat(2,1fr)}}
+.metric-tile{background:var(--bg3);border:1px solid var(--border);padding:8px 10px;text-align:center;border-radius:2px}
+.mt-val{font-family:var(--font-mono);font-size:0.85rem;font-weight:600;color:var(--text)}
+.mt-val.positive{color:var(--green)}
+.mt-val.negative{color:var(--red)}
+.mt-val.purple{color:var(--purple)}
+.mt-lbl{font-family:var(--font-mono);font-size:0.55rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-top:3px}
+.levels-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.level-col{background:var(--bg3);border:1px solid var(--border);padding:10px;border-radius:2px}
+.level-col h5{font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px}
+.level-col.support h5{color:var(--green)}
+.level-col.resistance h5{color:var(--red)}
+.level-item{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:0.7rem;padding:4px 0;border-bottom:1px dashed var(--border)}
+.level-item:last-child{border-bottom:none}
+.risk-box{background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--red);padding:12px 14px;border-radius:0 2px 2px 0;margin-bottom:12px}
+.risk-label{font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;color:var(--red);text-transform:uppercase;margin-bottom:7px}
+.risk-box p{font-size:0.82rem;color:var(--text-dim);line-height:1.7}
+.catalyst-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.catalyst-tag{font-family:var(--font-mono);font-size:0.55rem;padding:3px 8px;background:var(--gold-dim);border:1px solid var(--gold);color:var(--gold);border-radius:2px;letter-spacing:0.04em}
+.trump-timeline{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--orange);padding:16px 18px;border-radius:0 2px 2px 0;margin-bottom:20px}
+.timeline-title{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.12em;color:var(--orange);text-transform:uppercase;margin-bottom:12px}
+.timeline-item{display:flex;gap:12px;margin-bottom:10px;font-size:0.8rem;color:var(--text-dim)}
+.timeline-time{font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted);min-width:60px}
+.timeline-text{flex:1}
+.action-card{background:var(--bg2);border:1px solid var(--border);border-top:2px solid var(--cyan);padding:20px;margin-bottom:20px;border-radius:2px}
+.action-title{font-family:var(--font-serif);font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:4px}
+.action-sub{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;color:var(--cyan);text-transform:uppercase;margin-bottom:16px}
+.action-list{list-style:none;font-size:0.85rem;color:var(--text-dim);line-height:1.8}
+.action-list li{padding-left:20px;position:relative;margin-bottom:8px}
+.action-list li::before{content:'→';position:absolute;left:0;color:var(--cyan);font-family:var(--font-mono)}
+.footer{text-align:center;padding:40px 20px;border-top:1px solid var(--border);margin-top:40px;color:var(--text-muted);font-family:var(--font-mono);font-size:0.75rem}
+</style>
+</head>
+<body>
+<button class="theme-toggle" onclick="document.documentElement.setAttribute('data-theme', document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark')">THEME</button>
+<div class="container">
+
+<header>
+<div class="alert-banner">⚠️ MARKET EVENT: Trump Tariff Announcement — Feb 28, 2026 | Crypto Down 8-15%</div>
+<div class="masthead-label">Dibs Capital Management · Tactical Allocation</div>
+<h1 class="masthead-title">The Trump Dip Play</h1>
+<div class="masthead-sub">Buying the fear in SOL, HYPE, XRP | Deploy $1,490 USDT</div>
+</header>
+
+<div class="investment-banner">
+<div class="investment-amount">$1,490 USDT</div>
+<div class="investment-label">Deployable Capital</div>
+<div style="font-family:var(--font-mono);font-size:0.7rem;color:var(--text-muted);margin-top:8px">Target: 3-6 month hold | Risk: HIGH | Style: Aggressive Growth</div>
+</div>
+
+<div class="trump-timeline">
+<div class="timeline-title">📰 Market Context — Last 4 Hours</div>
+<div class="timeline-item">
+<div class="timeline-time">~18:00 ET</div>
+<div class="timeline-text">Trump announces 25% tariffs on Mexico/Canada imports, effective March 4</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-time">~18:30 ET</div>
+<div class="timeline-text">Risk assets selloff: BTC -8%, ETH -12%, SOL -15%, XRP -10%</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-time">~20:00 ET</div>
+<div class="timeline-text">HYPE token relatively resilient (-6%) due to staking demand</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-time">NOW</div>
+<div class="timeline-text">Prices at discount levels — opportunity if thesis holds</div>
+</div>
+</div>
+
+<div class="section-divider">
+<div class="section-divider-line"></div>
+<div class="section-divider-text">ALLOCATION SCENARIOS</div>
+<div class="section-divider-line"></div>
+</div>
+
+<!-- LOW RISK -->
+<div class="scenario-card scenario-low">
+<div class="scenario-header">
+<div class="scenario-title">🛡️ Conservative Dip Play</div>
+<span class="scenario-badge badge-low">Low Risk</span>
+</div>
+<div class="allocation-grid">
+<div class="alloc-item">
+<div class="alloc-symbol">SOL</div>
+<div class="alloc-percent">40%</div>
+<div class="alloc-amount">$596</div>
+<div class="alloc-tokens">~4.1 SOL @ $145</div>
+</div>
+<div class="alloc-item">
+<div class="alloc-symbol">XRP</div>
+<div class="alloc-percent">30%</div>
+<div class="alloc-amount">$447</div>
+<div class="alloc-tokens">~230 XRP @ $1.94</div>
+</div>
+<div class="alloc-item">
+<div class="alloc-symbol">HYPE</div>
+<div class="alloc-percent">20%</div>
+<div class="alloc-amount">$298</div>
+<div class="alloc-tokens">~14.9 HYPE @ $20</div>
+</div>
+</div>
+<div class="scenario-metrics">
+<div class="metric">
+<div class="metric-val positive">+25%</div>
+<div class="metric-lbl">Upside Target</div>
+</div>
+<div class="metric">
+<div class="metric-val negative">-15%</div>
+<div class="metric-lbl">Max Drawdown</div>
+</div>
+<div class="metric">
+<div class="metric-val">3-4 mo</div>
+<div class="metric-lbl">Timeframe</div>
+</div>
+</div>
+<div class="scenario-notes">
+<strong>Strategy:</strong> Heavy SOL/XRP for relative stability. HYPE as asymmetric upside. 10% cash buffer for averaging down if dip continues. Best for: Sleep-at-night factor while still capturing bounce.
+</div>
+</div>
+
+<!-- MEDIUM RISK -->
+<div class="scenario-card scenario-med">
+<div class="scenario-header">
+<div class="scenario-title">⚖️ Balanced Aggression</div>
+<span class="scenario-badge badge-med">Medium Risk</span>
+</div>
+<div class="allocation-grid">
+<div class="alloc-item">
+<div class="alloc-symbol">SOL</div>
+<div class="alloc-percent">35%</div>
+<div class="alloc-amount">$522</div>
+<div class="alloc-tokens">~3.6 SOL @ $145</div>
+</div>
+<div class="alloc-item">
+<div class="alloc-symbol">HYPE</div>
+<div class="alloc-percent">35%</div>
+<div class="alloc-amount">$522</div>
+<div class="alloc-tokens">~26.1 HYPE @ $20</div>
+</div>
+<div class="alloc-item">
+<div class="alloc-symbol">XRP</div>
+<div class="alloc-percent">30%</div>
+<div class="alloc-amount">$446</div>
+<div class="alloc-tokens">~230 XRP @ $1.94</div>
+</div>
+</div>
+<div class="scenario-metrics">
+<div class="metric">
+<div class="metric-val positive">+40%</div>
+<div class="metric-lbl">Upside Target</div>
+</div>
+<div class="metric">
+<div class="metric-val negative">-25%</div>
+<div class="metric-lbl">Max Drawdown</div>
+</div>
+<div class="metric">
+<div class="metric-val">2-4 mo</div>
+<div class="metric-lbl">Timeframe</div>
+</div>
+</div>
+<div class="scenario-notes">
+<strong>Strategy:</strong> Equal weight SOL/HYPE for beta + staking yield. XRP for regulatory clarity play. No cash — fully deployed. Best for: Conviction in bounce, willing to stomach volatility.
+</div>
+</div>
+
+<!-- HIGH RISK -->
+<div class="scenario-card scenario-high">
+<div class="scenario-header">
+<div class="scenario-title">🚀 Maximum Aggression</div>
+<span class="scenario-badge badge-high">High Risk</span>
+</div>
+<div class="allocation-grid">
+<div class="alloc-item">
+<div class="alloc-symbol">HYPE</div>
+<div class="alloc-percent">50%</div>
+<div class="alloc-amount">$745</div>
+<div class="alloc-tokens">~37.3 HYPE @ $20</div>
+</div>
+<div class="alloc-item">
+<div class="alloc-symbol">SOL</div>
+<div class="alloc-percent">30%</div>
+<div class="alloc-amount">$447</div>
+<div class="alloc-tokens">~3.1 SOL @ $145</div>
+</div>
+<div class="alloc-item">
+<div class="alloc-symbol">XRP</div>
+<div class="alloc-percent">20%</div>
+<div class="alloc-amount">$298</div>
+<div class="alloc-tokens">~154 XRP @ $1.94</div>
+</div>
+</div>
+<div class="scenario-metrics">
+<div class="metric">
+<div class="metric-val positive">+75%</div>
+<div class="metric-lbl">Upside Target</div>
+</div>
+<div class="metric">
+<div class="metric-val negative">-40%</div>
+<div class="metric-lbl">Max Drawdown</div>
+</div>
+<div class="metric">
+<div class="metric-val">1-3 mo</div>
+<div class="metric-lbl">Timeframe</div>
+</div>
+</div>
+<div class="scenario-notes">
+<strong>Strategy:</strong> Bet heavily on HYPE staking + perp DEX narrative. SOL as hedge. XRP smallest position. This is a "Trump dip is temporary" maximalist play. Best for: High conviction, can lose 40% without panic.
+</div>
+</div>
+
+<div class="section-divider">
+<div class="section-divider-line"></div>
+<div class="section-divider-text">ASSET DEEP DIVES</div>
+<div class="section-divider-line"></div>
+</div>
+
+<!-- SOLANA -->
+<div class="asset-card">
+<div class="asset-card-header">
+<div>
+<span class="ticker">SOL</span>
+<span class="crypto-badge">LAYER 1</span>
+<div style="font-size:0.75rem;color:var(--text-muted);margin-top:4px">Solana</div>
+</div>
+<div style="text-align:right">
+<div class="price-main">$145.00</div>
+<div style="font-family:var(--font-mono);font-size:0.7rem;color:var(--red)">↓ -15% (24h)</div>
+<div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--text-muted);margin-top:4px">From $170 ATH zone</div>
+</div>
+</div>
+<div class="asset-body">
+<div class="metrics-grid">
+<div class="metric-tile">
+<div class="mt-val">$68B</div>
+<div class="mt-lbl">Market Cap</div>
+</div>
+<div class="metric-tile">
+<div class="mt-val">$4.2B</div>
+<div class="mt-lbl">24h Volume</div>
+</div>
+<div class="metric-tile">
+<div class="mt-val">6.2%</div>
+<div class="mt-lbl">Staking APY</div>
+</div>
+<div class="metric-tile">
+<div class="mt-val purple">STRONG</div>
+<div class="mt-lbl">Network Health</div>
+</div>
+</div>
+<div class="levels-grid">
+<div class="level-col support">
+<h5>Support Levels</h5>
+<div class="level-item"><span>S1</span><span>$140</span></div>
+<div class="level-item"><span>S2</span><span>$128</span></div>
+<div class="level-item"><span>S3</span><span>$115</span></div>
+</div>
+<div class="level-col resistance">
+<h5>Resistance Levels</h5>
+<div class="level-item"><span>R1</span><span>$160</span></div>
+<div class="level-item"><span>R2</span><span>$175</span></div>
+<div class="level-item"><span>R3</span><span>$195</span></div>
+</div>
+</div>
+<div class="risk-box">
+<div class="risk-label">⚠️ KEY RISKS</div>
+<p>• Network outages historically (though improving)<br>
+• FTX estate still holds large SOL positions (sell pressure risk)<br>
+• Competition from Sui, Aptos, Base<br>
+• Trump uncertainty = risk-off for altcoins</p>
+<div class="catalyst-list">
+<span class="catalyst-tag">Firedancer Upgrade</span>
+<span class="catalyst-tag">Meme Coin Activity</span>
+<span class="catalyst-tag">ETF Speculation</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- HYPE -->
+<div class="asset-card">
+<div class="asset-card-header">
+<div>
+<span class="ticker">HYPE</span>
+<span class="crypto-badge">DEFI INFRA</span>
+<div style="font-size:0.75rem;color:var(--text-muted);margin-top:4px">Hyperliquid</div>
+</div>
+<div style="text-align:right">
+<div class="price-main">$20.00</div>
+<div style="font-family:var(--font-mono);font-size:0.7rem;color:var(--red)">↓ -6% (24h)</div>
+<div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--text-muted);margin-top:4px">From $22 pre-dip</div>
+</div>
+</div>
+<div class="asset-body">
+<div class="metrics-grid">
+<div class="metric-tile">
+<div class="mt-val">$7.5B</div>
+<div class="mt-lbl">Market Cap</div>
+</div>
+<div class="metric-tile">
+<div class="mt-val">$550M+</div>
+<div class="mt-lbl">Annualized Fees</div>
+</div>
+<div class="metric-tile">
+<div class="mt-val">67%</div>
+<div class="mt-lbl">Perp DEX Share</div>
+</div>
+<div class="metric-tile">
+<div class="mt-val purple">BULLISH</div>
+<div class="mt-lbl">Fee Distribution</div>
+</div>
+</div>
+<div class="levels-grid">
+<div class="level-col support">
+<h5>Support Levels</h5>
+<div class="level-item"><span>S1</span><span>$18.50</span></div>
+<div class="level-item"><span>S2</span><span>$16.00</span></div>
+<div class="level-item"><span>S3</span><span>$14.00</span></div>
+</div>
+<div class="level-col resistance">
+<h5>Resistance Levels</h5>
+<div class="level-item"><span>R1</span><span>$25.00</span></div>
+<div class="level-item"><span>R2</span><span>$32.00</span></div>
+<div class="level-item"><span>R3</span><span>$45.00</span></div>
+</div>
+</div>
+<div class="risk-box">
+<div class="risk-label">⚠️ KEY RISKS</div>
+<p>• Token unlocks: $219M worth in next 12 months<br>
+• Regulatory: CFTC/SEC scrutiny on perp DEXs<br>
+• Smart contract risk (though audited)<br>
+• Market share erosion from competitors</p>
+<div class="catalyst-list">
+<span class="catalyst-tag">97% Fees to Buybacks</span>
+<span class="catalyst-tag">HyperEVM Growth</span>
+<span class="catalyst-tag">Account Linking</span>
+<span class="catalyst-tag">Staking Tiers</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- XRP -->
+<div class="asset-card">
+<div class="asset-card-header">
+<div>
+<span class="ticker">XRP</span>
+<span class="crypto-badge">PAYMENTS</span>
+<div style="font-size:0.75rem;color:var(--text-muted);margin-top:4px">Ripple</div>
+</div>
+<div style="text-align:right">
+<div class="price-main">$1.94</div>
+<div style="font-family:var(--font-mono);font-size:0.7rem;color:var(--red)">↓ -10% (24h)</div>
+<div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--text-muted);margin-top:4px">From $2.16 pre-dip</div>
+</div>
+</div>
+<div class="asset-body">
+<div class="metrics-grid">
+<div class="metric-tile">
+<div class="mt-val">$112B</div>
+<div class="mt-lbl">Market Cap</div>
+</div>
+<div class="metric-tile">
+<div class="mt-val">$2.8B</div>
+<div class="mt-lbl">24h Volume</div>
+</div>
+<div class="metric-tile">
+<div class="mt-val">✅ DONE</div>
+<div class="mt-lbl">SEC Case</div>
+</div>
+<div class="metric-tile">
+<div class="mt-val">MEDIUM</div>
+<div class="mt-lbl">Volatility</div>
+</div>
+</div>
+<div class="levels-grid">
+<div class="level-col support">
+<h5>Support Levels</h5>
+<div class="level-item"><span>S1</span><span>$1.85</span></div>
+<div class="level-item"><span>S2</span><span>$1.70</span></div>
+<div class="level-item"><span>S3</span><span>$1.55</span></div>
+</div>
+<div class="level-col resistance">
+<h5>Resistance Levels</h5>
+<div class="level-item"><span>R1</span><span>$2.20</span></div>
+<div class="level-item"><span>R2</span><span>$2.50</span></div>
+<div class="level-item"><span>R3</span><span>$3.00</span></div>
+</div>
+</div>
+<div class="risk-box">
+<div class="risk-label">⚠️ KEY RISKS</div>
+<p>• SEC appeal still possible (though unlikely to win)<br>
+• Relies on Ripple partnerships (centralization concern)<br>
+• Stagnant vs newer tech (no smart contracts)<br>
+• Large retail bagholders = resistance on rallies</p>
+<div class="catalyst-list">
+<span class="catalyst-tag">SEC Victory Finalized</span>
+<span class="catalyst-tag">RLUSD Stablecoin</span>
+<span class="catalyst-tag">ETF Applications</span>
+<span class="catalyst-tag">Trump Pro-Crypto</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="section-divider">
+<div class="section-divider-line"></div>
+<div class="section-divider-text">EXECUTION PLAN</div>
+<div class="section-divider-line"></div>
+</div>
+
+<div class="action-card">
+<div class="action-title">🎯 Recommended: Balanced Aggression</div>
+<div class="action-sub">35% SOL / 35% HYPE / 30% XRP = $1,490</div>
+<ul class="action-list">
+<li>Deploy 60% of capital now at current levels ($894)</li>
+<li>Save 40% ($596) for potential further dip to S2 levels</li>
+<li>Set stop losses at S2 on all positions (-12% from entry)</li>
+<li>Take 50% profits at R1, let 50% run to R2/R3</li>
+<li>Stake HYPE immediately for fee discounts + yield</li>
+<li>Review in 2 weeks — adjust if Trump escalates further</li>
+</ul>
+</div>
+
+<div class="risk-box" style="border-left-color:var(--orange)">
+<div class="risk-label" style="color:var(--orange)">⚠️ MACRO WARNING</div>
+<p>Trump tariff announcements are unpredictable. This dip could extend if:<br>
+• Mexico/Canada retaliate with counter-tariffs<br>
+• China gets dragged into trade war<br>
+• Fed signals delayed rate cuts due to inflation<br><br>
+<strong>Have an exit plan.</strong> If SOL breaks $115, XRP breaks $1.55, or HYPE breaks $14, reassess entire thesis.</p>
+</div>
+
+<div class="footer">
+🗡️ Astra Research | Feb 28, 2026 | Not financial advice. DYOR.
+</div>
+
+</div>
+</body>
+</html>
