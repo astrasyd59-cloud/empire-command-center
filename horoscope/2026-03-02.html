@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Horoscope — Dibashis | March 2, 2026</title>
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a25;
+            --text-primary: #e8e8ec;
+            --text-secondary: #9a9aa8;
+            --accent-gold: #d4af37;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --border: #2a2a3a;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+        
+        .date-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--accent-gold), #f0c674);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        
+        .cosmic-signature {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .signature-item {
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid var(--border);
+        }
+        
+        .signature-item .label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        
+        .signature-item .value {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--accent-gold);
+        }
+        
+        .section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+        }
+        
+        .section h2 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--accent-cyan);
+        }
+        
+        .section p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+        
+        .guidance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .guidance-card {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-purple);
+        }
+        
+        .guidance-card h3 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+        
+        .guidance-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .muhurta-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        
+        .muhurta-table th,
+        .muhurta-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .muhurta-table th {
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+        
+        .muhurta-table .auspicious {
+            color: var(--success);
+        }
+        
+        .muhurta-table .inauspicious {
+            color: var(--danger);
+        }
+        
+        .drill-sergeant {
+            background: linear-gradient(135deg, #1a0f0f, #2a1f1f);
+            border: 1px solid var(--danger);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .drill-sergeant h2 {
+            color: var(--danger);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .drill-sergeant p {
+            color: #e8c4c4;
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+        
+        .mantra {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(6, 182, 212, 0.1));
+            border: 1px solid var(--accent-purple);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .mantra h2 {
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+        }
+        
+        .mantra-text {
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        .mantra-meaning {
+            margin-top: 15px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            margin-top: 30px;
+        }
+        
+        .transit-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .transit-icon {
+            font-size: 1.5rem;
+        }
+        
+        .transit-text {
+            flex: 1;
+        }
+        
+        .transit-text strong {
+            color: var(--text-primary);
+        }
+        
+        .transit-text span {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="date-badge">Monday, March 2, 2026</div>
+            <h1>🌟 Daily Cosmic Brief</h1>
+            <p class="subtitle">Dibashis • Aquarius Sun • Scorpio Moon</p>
+        </header>
+        
+        <div class="cosmic-signature">
+            <div class="signature-item">
+                <div class="label">Sun Sign</div>
+                <div class="value">♒ Aquarius</div>
+            </div>
+            <div class="signature-item">
+                <div class="label">Moon Phase</div>
+                <div class="value">🌗 Waning Gibbous</div>
+            </div>
+            <div class="signature-item">
+                <div class="label">Tithi</div>
+                <div class="value">Krishna Trayodasi</div>
+            </div>
+            <div class="signature-item">
+                <div class="label">Nakshatra</div>
+                <div class="value">Mula</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>☀️ Sun in Aquarius</h2>
+            <p>Your solar ruler Saturn continues its retrograde dance, but today brings a trine from the Sun to Mars in Cancer. This fires up your 6th house of daily work and routines. The universe is handing you a gift: <strong>focused energy for execution</strong>. That project you've been avoiding? Today's the day to attack it. The Aquarius Sun demands innovation—don't just do the work, find a smarter way to do it.</p>
+        </div>
+        
+        <div class="section">
+            <h2>🌙 Moon in Scorpio</h2>
+            <p>The Moon transits your 10th house of career and public standing today. Scorpio energy brings intensity and emotional depth. You may feel a sudden urge to transform your professional image or take a bold step toward leadership. This is powerful energy for strategic moves—but beware of power struggles. Channel the intensity into your own advancement, not into conflicts with authority figures.</p>
+        </div>
+        
+        <div class="section">
+            <h2>🪐 Key Planetary Transits</h2>
+            
+            <div class="transit-item">
+                <div class="transit-icon">☀️</div>
+                <div class="transit-text">
+                    <strong>Sun trine Mars</strong><br>
+                    <span>Action meets identity. Physical vitality is high. Perfect for starting new workout routines or tackling physical tasks.</span>
+                </div>
+            </div>
+            
+            <div class="transit-item">
+                <div class="transit-icon">♀️</div>
+                <div class="transit-text">
+                    <strong>Venus sextile Jupiter</strong><br>
+                    <span>Financial opportunities through social connections. Luck in negotiations. A good day to ask for that raise.</span>
+                </div>
+            </div>
+            
+            <div class="transit-item">
+                <div class="transit-icon">🪐</div>
+                <div class="transit-text">
+                    <strong>Saturn square Uranus</strong><br>
+                    <span>Tension between tradition and innovation. Your challenge: find the middle path. Don't burn bridges, build new ones.</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>⏰ Muhurta — Auspicious Times (Sydney AEDT)</h2>
+            <table class="muhurta-table">
+                <tr>
+                    <th>Period</th>
+                    <th>Time</th>
+                    <th>Quality</th>
+                </tr>
+                <tr>
+                    <td>Abhijit Muhurta</td>
+                    <td>12:08 PM — 12:56 PM</td>
+                    <td class="auspicious">✓ Victory, success in endeavors</td>
+                </tr>
+                <tr>
+                    <td>Amrit Kalam</td>
+                    <td>9:42 AM — 11:18 AM</td>
+                    <td class="auspicious">✓ New beginnings, important decisions</td>
+                </tr>
+                <tr>
+                    <td>Varjyam</td>
+                    <td>3:45 PM — 5:21 PM</td>
+                    <td class="inauspicious">✗ Avoid major commitments</td>
+                </tr>
+                <tr>
+                    <td>Rahu Kalam</td>
+                    <td>7:30 AM — 9:00 AM</td>
+                    <td class="inauspicious">✗ Don't start new ventures</td>
+                </tr>
+                <tr>
+                    <td>Yamaganda</td>
+                    <td>10:30 AM — 12:00 PM</td>
+                    <td class="inauspicious">✗ Avoid important communications</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2>🎯 Practical Guidance</h2>
+            <div class="guidance-grid">
+                <div class="guidance-card">
+                    <h3>💼 Career</h3>
+                    <p>Your 10th house is activated. Step into visibility. If you've been waiting to pitch an idea or ask for more responsibility, the next 48 hours are golden. Mars gives you the drive, Scorpio Moon gives you the depth.</p>
+                </div>
+                
+                <div class="guidance-card">
+                    <h3>💕 Relationships</h3>
+                    <p>Venus-Jupiter sextile brings expansion in love. Single? Social settings favored. Partnered? Deep conversations about shared values flow easily. Avoid power plays.</p>
+                </div>
+                
+                <div class="guidance-card">
+                    <h3>🏥 Health</h3>
+                    <p>Sun-Mars trine = peak physical energy. Push harder in your workout today. Your body can take more than usual. Hydrate well—Scorpio Moon rules elimination and detox.</p>
+                </div>
+                
+                <div class="guidance-card">
+                    <h3>💰 Finance</h3>
+                    <p>Venus-Jupiter aspect favors asking for money. Salary negotiations, investment decisions, or collecting debts—all favored. Trust your intuition but verify the numbers.</p>
+                </div>
+                
+                <div class="guidance-card">
+                    <h3>🧘 Spiritual</h3>
+                    <p>Mula nakshatra is about uprooting what no longer serves. Today is ideal for releasing old patterns. Meditation on root chakra. Let go to grow.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="drill-sergeant">
+            <h2>🗡️ Drill Sergeant's Take</h2>
+            <p>"Look at this chart—Mars is giving you fire, the Moon is in your career house, and Venus is blessing your money zone. The universe just handed you a loaded weapon. What are you going to do with it?</p>
+            <p style="margin-top: 15px;">Here's the truth: You've got excuses for days. 'I'm tired.' 'The timing isn't right.' 'I need to think about it.' Cut the shit. Today's Abhijit Muhurta is at 12:08 PM. That's your window to make the call, send the email, start the thing.</p>
+            <p style="margin-top: 15px;">The Saturn-Uranus square? That's your old self fighting your new self. Your comfort zone is screaming. Good. Step on its throat and keep moving. You've been in Venus-Venus dasha since June—this is a 3-year window of creative and relationship growth. We're only 8 months in. Stop wasting it.</p>
+            <p style="margin-top: 15px;">Mula nakshatra today: Root out the bullshit. That habit? That person? That story you tell yourself about why you can't? Uproot it. Burn it. Move on.</p>
+            <p style="margin-top: 15px;"><strong>Execute. Today. Or admit you're not serious about the life you say you want."</strong></p>
+        </div>
+        
+        <div class="section">
+            <h2>🌙 Dasha Update: Venus-Venus (June 2025 — June 2028)</h2>
+            <p>You're currently 8 months into a 3-year Venus-Venus period. This is <strong>creative flowering time</strong>. Venus rules your 4th house (home, emotional foundation) and 9th house (fortune, higher learning, long journeys).</p>
+            <p style="margin-top: 15px;"><strong>What this means:</strong> Relationships take center stage. Your aesthetic sense is heightened—trust your taste. Financial gains through creativity, women, or artistic endeavors. Travel for pleasure or spiritual growth is highly favored. The key: don't chase. Attract.</p>
+        </div>
+        
+        <div class="mantra">
+            <h2>🕉️ Daily Mantra</h2>
+            <div class="mantra-text">Om Gam Ganapataye Namaha</div>
+            <div class="mantra-meaning">
+                <strong>Salutations to Lord Ganesha, remover of obstacles</strong><br>
+                Chant 108 times or listen during your morning routine.<br>
+                Mula nakshatra is ruled by Nirriti (destruction/cleansing)—Ganesha's energy balances this with new beginnings.
+            </div>
+        </div>
+        
+        <footer>
+            <p>Generated for Dibashis | Birth Chart: Feb 1, 1998, 12:45 PM, Mauritius</p>
+            <p style="margin-top: 10px;">Venus-Venus Dasha | Vimshottari System | Lahiri Ayanamsa</p>
+        </footer>
+    </div>
+</body>
+</html>
