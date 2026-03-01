@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astra Command Center | Daily Dashboard</title>
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a25;
+            --text-primary: #ffffff;
+            --text-secondary: #8892a0;
+            --accent-blue: #00d4ff;
+            --accent-purple: #b829f7;
+            --accent-green: #00ff88;
+            --accent-orange: #ff9f43;
+            --accent-red: #ff4757;
+            --border: #2a2a3a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, rgba(184,41,247,0.2), rgba(0,212,255,0.2));
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .current-date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .nav-link {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0,212,255,0.1);
+            border-radius: 6px;
+            border: 1px solid rgba(0,212,255,0.2);
+            transition: all 0.2s;
+        }
+        
+        .nav-link:hover {
+            background: rgba(0,212,255,0.2);
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .day-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+        
+        .day-header {
+            background: var(--bg-secondary);
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .day-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .day-badge {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            background: var(--accent-purple);
+            border-radius: 12px;
+        }
+        
+        .day-badge.today {
+            background: var(--accent-green);
+            color: var(--bg-primary);
+            font-weight: 600;
+        }
+        
+        .day-content {
+            padding: 1.5rem;
+        }
+        
+        .link-grid {
+            display: grid;
+            gap: 0.75rem;
+        }
+        
+        .link-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+        
+        .link-item:hover {
+            border-color: var(--accent-blue);
+        }
+        
+        .link-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,212,255,0.1);
+            border-radius: 8px;
+            font-size: 1.25rem;
+        }
+        
+        .link-details {
+            flex: 1;
+        }
+        
+        .link-title {
+            font-weight: 500;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: block;
+        }
+        
+        .link-title:hover {
+            color: var(--accent-blue);
+        }
+        
+        .link-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        .link-arrow {
+            color: var(--text-secondary);
+        }
+        
+        .task-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .task-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .task-item:last-child {
+            border-bottom: none;
+        }
+        
+        .task-check {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border);
+            border-radius: 4px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        .task-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .task-pending {
+            color: var(--accent-orange);
+        }
+        
+        .voice-note {
+            background: rgba(184,41,247,0.1);
+            border-left: 3px solid var(--accent-purple);
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin-top: 1rem;
+        }
+        
+        .voice-label {
+            font-size: 0.75rem;
+            color: var(--accent-purple);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .voice-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        .pinned-note {
+            background: linear-gradient(135deg, rgba(0,255,136,0.1), rgba(0,212,255,0.1));
+            border: 1px solid rgba(0,255,136,0.3);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .pinned-note strong {
+            color: var(--accent-green);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .header {
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                gap: 0.5rem;
+            }
+            
+            .nav-link {
+                padding: 0.4rem 0.75rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-top">
+            <div class="logo">🗡️ ASTRA COMMAND CENTER</div>
+            <div class="current-date" id="currentDate"></div>
+        </div>
+        <div class="nav-links">
+            <a href="ai-study-plan.html" class="nav-link">📚 AI Study Plan</a>
+            <a href="#today" class="nav-link">📍 Today</a>
+            <a href="https://github.com/astrasyd59-cloud/empire-command-center" class="nav-link">⚙️ GitHub</a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="pinned-note">
+            <strong>📌 PIN THIS LINK</strong> — This dashboard updates daily. Bookmark it in your Telegram or browser.
+        </div>
+        
+        <!-- TODAY'S SECTION -->
+        <div class="day-section" id="today">
+            <div class="day-header">
+                <span class="day-title">📅 Sunday, March 1, 2026</span>
+                <span class="day-badge today">TODAY</span>
+            </div>
+            <div class="day-content">
+                <div class="link-grid">
+                    <div class="link-item">
+                        <div class="link-icon">📊</div>
+                        <div class="link-details">
+                            <a href="https://astrasyd59-cloud.github.io/empire-command-center/daily5/2026-03-01.html" class="link-title">Daily 5 + 1 + 1 Report</a>
+                            <div class="link-desc">March 1st market briefing — BMY, COP, ABNB, SNOW, ADSK + ADA + GBP/USD</div>
+                        </div>
+                        <span class="link-arrow">→</span>
+                    </div>
+                    
+                    <div class="link-item">
+                        <div class="link-icon">🎯</div>
+                        <div class="link-details">
+                            <a href="https://jobs.ashbyhq.com/Keyrock/3ad23ed6-95bd-4cad-92bb-705d8489f148/application" class="link-title">Keyrock Application</a>
+                            <div class="link-desc">Reminder #4 — Submit today</div>
+                        </div>
+                        <span class="link-arrow">→</span>
+                    </div>
+                    
+                    <div class="link-item">
+                        <div class="link-icon">📚</div>
+                        <div class="link-details">
+                            <a href="ai-study-plan.html" class="link-title">AI Study Plan (3-Month)</a>
+                            <div class="link-desc">New: Complete curriculum from Operations to AI/ML Engineer</div>
+                        </div>
+                        <span class="link-arrow">→</span>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 1.5rem;">
+                    <h4 style="color: var(--accent-orange); margin-bottom: 0.75rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">Today's Tasks</h4>
+                    <ul class="task-list">
+                        <li class="task-item">
+                            <div class="task-check"></div>
+                            <span class="task-text">📚 Reading — 10 pages (book title pending)</span>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-check"></div>
+                            <span class="task-text task-pending">🎯 Keyrock application — Submit today</span>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-check"></div>
+                            <span class="task-text">🗡️ Pick Phase 3 mission (Missions 7-21)</span>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-check"></div>
+                            <span class="task-text">📅 Week review + plan ahead</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="voice-note">
+                    <div class="voice-label">🎙️ Voice Note — 10:25 AM</div>
+                    <div class="voice-text">"We're going to be pivoting and applying to AI jobs... I'm going to send you some sample job descriptions that I can find on SEEK Australia... building towards that, including all my projects..."</div>
+                </div>
+                
+                <div class="voice-note">
+                    <div class="voice-label">🎙️ Voice Note — 11:59 AM</div>
+                    <div class="voice-text">"Give me a full report of what to study... AI ready in the next three months... HTML professional style... dashboard link pinned up in the chat..."</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FEB 28 -->
+        <div class="day-section">
+            <div class="day-header">
+                <span class="day-title">📅 Friday, February 28, 2026</span>
+                <span class="day-badge">PAST</span>
+            </div>
+            <div class="day-content">
+                <div class="link-grid">
+                    <div class="link-item">
+                        <div class="link-icon">📊</div>
+                        <div class="link-details">
+                            <a href="https://astrasyd59-cloud.github.io/empire-command-center/daily5/2026-02-28.html" class="link-title">Daily 5 + 1 + 1 Report</a>
+                            <div class="link-desc">February 28th market briefing</div>
+                        </div>
+                        <span class="link-arrow">→</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        🗡️ Astra Command Center | Auto-updated daily | Pin this link for quick access
+    </div>
+    
+    <script>
+        // Auto-update current date
+        function updateDate() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            document.getElementById('currentDate').textContent = now.toLocaleDateString('en-AU', options) + ' AEDT';
+        }
+        updateDate();
+        setInterval(updateDate, 60000);
+    </script>
+</body>
+</html>
