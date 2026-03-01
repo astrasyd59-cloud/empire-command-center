@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Operations Enablement — Complete Research & Implementation Plan | Dibs</title>
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a25;
+            --bg-tertiary: #252532;
+            --text-primary: #ffffff;
+            --text-secondary: #8892a0;
+            --accent-blue: #00d4ff;
+            --accent-purple: #b829f7;
+            --accent-green: #00ff88;
+            --accent-orange: #ff9f43;
+            --accent-red: #ff4757;
+            --border: #2a2a3a;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 15px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, rgba(184,41,247,0.3), rgba(0,212,255,0.3));
+            padding: 3rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .header h1 {
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        
+        .header-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .header-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .header-meta-item {
+            text-align: center;
+        }
+        
+        .header-meta-item .label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .header-meta-item .value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .toc {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .toc h3 {
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+        
+        .toc ul {
+            list-style: none;
+            columns: 2;
+        }
+        
+        .toc li {
+            padding: 0.4rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .toc a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+        
+        .toc a:hover {
+            color: var(--accent-blue);
+        }
+        
+        .section {
+            margin: 3rem 0;
+        }
+        
+        .section-title {
+            font-size: 1.4rem;
+            color: var(--accent-purple);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-purple);
+        }
+        
+        .subsection-title {
+            font-size: 1.1rem;
+            color: var(--accent-blue);
+            margin: 2rem 0 1rem 0;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(0,255,136,0.1), rgba(0,255,136,0.05));
+            border: 1px solid var(--accent-green);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+        }
+        
+        .highlight-box h4 {
+            color: var(--accent-green);
+            margin-bottom: 0.75rem;
+        }
+        
+        .warning-box {
+            background: rgba(255,159,67,0.1);
+            border-left: 4px solid var(--accent-orange);
+            padding: 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+        
+        .warning-box strong {
+            color: var(--accent-orange);
+        }
+        
+        .danger-box {
+            background: rgba(248,81,73,0.1);
+            border: 1px solid rgba(248,81,73,0.3);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .danger-box strong {
+            color: var(--accent-red);
+        }
+        
+        .course-detail {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+        
+        .course-header {
+            background: var(--bg-secondary);
+            padding: 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .course-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .course-platform-tag {
+            background: var(--accent-blue);
+            color: var(--bg-primary);
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .course-content {
+            padding: 1.5rem;
+        }
+        
+        .signup-section {
+            background: var(--bg-tertiary);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .signup-section h5 {
+            color: var(--accent-green);
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+        }
+        
+        .signup-link {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: var(--bg-primary);
+            padding: 0.75rem 1.25rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+        }
+        
+        .signup-link:hover {
+            background: var(--accent-purple);
+        }
+        
+        .price-tag {
+            display: inline-block;
+            background: var(--accent-green);
+            color: var(--bg-primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        
+        .free-tag {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: var(--bg-primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .comparison-table th {
+            background: var(--bg-secondary);
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 2px solid var(--border);
+            font-weight: 600;
+        }
+        
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .comparison-table tr:hover {
+            background: var(--bg-tertiary);
+        }
+        
+        .check {
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+        
+        .cross {
+            color: var(--accent-red);
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--accent-purple);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-purple);
+            border-radius: 50%;
+            margin-left: -5px;
+        }
+        
+        .timeline-date {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+        
+        .timeline-title {
+            font-weight: 600;
+            margin: 0.25rem 0;
+        }
+        
+        .timeline-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .deliverable {
+            background: rgba(184,41,247,0.1);
+            border-left: 3px solid var(--accent-purple);
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
+        
+        .deliverable h5 {
+            color: var(--accent-purple);
+            margin-bottom: 0.5rem;
+        }
+        
+        .action-items {
+            background: var(--bg-card);
+            border: 2px solid var(--accent-green);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+        
+        .action-items h3 {
+            color: var(--accent-green);
+            margin-bottom: 1rem;
+        }
+        
+        .action-items ol {
+            padding-left: 1.5rem;
+        }
+        
+        .action-items li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .action-items li:last-child {
+            border-bottom: none;
+        }
+        
+        .action-items strong {
+            color: var(--accent-blue);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border);
+            margin-top: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .toc ul { columns: 1; }
+            .header-meta { flex-direction: column; gap: 1rem; }
+            .comparison-table { font-size: 0.8rem; }
+            .comparison-table th, .comparison-table td { padding: 0.75rem 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🗡️ AI Operations Enablement</h1>
+        <p class="header-subtitle">Complete Research, Analysis & Implementation Plan<br>Customized for Dibs | Start: March 3, 2026 | End: June 30, 2026</p>
+        
+        <div class="header-meta">
+            <div class="header-meta-item">
+                <div class="label">Timeline</div>
+                <div class="value">16 Weeks</div>
+            </div>
+            <div class="header-meta-item">
+                <div class="label">Weekly Hours</div>
+                <div class="value">6 hrs</div>
+            </div>
+            <div class="header-meta-item">
+                <div class="label">Total Cost</div>
+                <div class="value">$124</div>
+            </div>
+            <div class="header-meta-item">
+                <div class="label">Certificates</div>
+                <div class="value">4</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        
+        <div class="toc">
+            <h3>📋 Table of Contents</h3>
+            <ul>
+                <li><a href="#executive-summary">1. Executive Summary</a></li>
+                <li><a href="#current-state">2. Current State Analysis</a></li>
+                <li><a href="#alternatives">3. Alternatives Considered</a></li>
+                <li><a href="#recommendation">4. Recommended Path</a></li>
+                <li><a href="#phase1">5. Phase 1: SQL (Weeks 1-4)</a></li>
+                <li><a href="#phase2">6. Phase 2: Python (Weeks 5-9)</a></li>
+                <li><a href="#phase3">7. Phase 3: AI/GenAI (Weeks 10-14)</a></li>
+                <li><a href="#phase4">8. Phase 4: Portfolio (Weeks 15-16)</a></li>
+                <li><a href="#signup">9. Sign-Up Instructions</a></li>
+                <li><a href="#checklist">10. Pre-Start Checklist</a></li>
+            </ul>
+        </div>
+        
+        
+        <div class="section" id="executive-summary">
+            <h2 class="section-title">1. Executive Summary</h2>
+            
+            <p>This plan is designed to transition Dibs from Operations Manager to AI Operations Enablement Professional in 16 weeks. The curriculum is intentionally structured with <strong>paid, guided courses</strong> rather than scattered free resources to ensure completion and skill acquisition.</p>
+            
+            <div class="highlight-box">
+                <h4>🎯 Why This Plan Was Selected</h4>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li><strong>Structured learning:</strong> DataCamp's linear progression prevents getting lost</li>
+                    <li><strong>Industry recognition:</strong> Google + NVIDIA + DeepLearning.AI certificates carry weight</li>
+                    <li><strong>Cost-efficient:</strong> $124 total vs. $2,500+ for bootcamps</li>
+                    <li><strong>Time-realistic:</strong> 6 hours/week fits your schedule</li>
+                    <li><strong>Job-aligned:</strong> Skills map directly to AI Operations job requirements</li>
+                </ul>
+            </div>
+            
+            <div class="warning-box">
+                <strong>⚠️ Critical Success Factors:</strong><br>
+                1. No trading projects until Week 9<br>
+                2. No skipped sessions (Mon/Wed/Fri 2-hour blocks)<br>
+                3. Must complete by June 30 (wedding trip hard deadline)
+            </div>
+        </div>
+        
+        
+        <div class="section" id="current-state">
+            <h2 class="section-title">2. Current State Analysis</h2>
+            
+            <h3 class="subsection-title">2.1 Skills Assessment</h3>
+            
+            <table class="comparison-table">
+                <tr>
+                    <th>Skill</th>
+                    <th>Current Level</th>
+                    <th>Target Level</th>
+                    <th>Gap</th>
+                </tr>
+                <tr>
+                    <td>SQL</td>
+                    <td>1/10 (Beginner)</td>
+                    <td>6/10 (Intermediate)</td>
+                    <td style="color: var(--accent-red);">HIGH</td>
+                </tr>
+                <tr>
+                    <td>Python</td>
+                    <td>3/10 (Basic)</td>
+                    <td>7/10 (Proficient)</td>
+                    <td style="color: var(--accent-orange);">MEDIUM</td>
+                </tr>
+                <tr>
+                    <td>AI/ML</td>
+                    <td>0/10 (None)</td>
+                    <td>6/10 (Operational)</td>
+                    <td style="color: var(--accent-red);">HIGH</td>
+                </tr>
+                <tr>
+                    <td>No-Code Tools</td>
+                    <td>2/10 (Minimal)</td>
+                    <td>7/10 (Advanced)</td>
+                    <td style="color: var(--accent-orange);">MEDIUM</td>
+                </tr>
+            </table>
+            
+            <h3 class="subsection-title">2.2 Constraints & Requirements</h3>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="highlight-box" style="margin: 0;">
+                    <h4>✅ Constraints (Hard)</h4>
+                    <ul style="margin-left: 1rem;">
+                        <li>16 weeks maximum</li>
+                        <li>6 hours/week maximum</li>
+                        <li>Must finish by June 30</li>
+                        <li>Budget flexible but efficient</li>
+                    </ul>
+                </div>
+                <div class="highlight-box" style="margin: 0;">
+                    <h4>🎯 Requirements (Hard)</h4>
+                    <ul style="margin-left: 1rem;">
+                        <li>Structured courses (no scattered resources)</li>
+                        <li>Recognized certificates</li>
+                        <li>Job-ready portfolio</li>
+                        <li>AI Operations focus (not pure engineering)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="section" id="alternatives">
+            <h2 class="section-title">3. Alternatives Considered</h2>
+            
+            <h3 class="subsection-title">3.1 Option A: IBM Applied AI Professional Certificate</h3>
+            
+            <div class="danger-box">
+                <strong>❌ NOT RECOMMENDED — Rejected</strong><br><br>
+                <strong>Why:</strong> 6-8 months duration, heavy traditional ML focus, minimal GenAI coverage.<br><br>
+                <strong>Cost:</strong> ~$200-300 AUD<br>
+                <strong>Time:</strong> 6-8 months (exceeds your June 30 deadline)<br>
+                <strong>GenAI Coverage:</strong> Minimal — focuses on classic ML (scikit-learn, Watson)
+            </div>
+            
+            <h3 class="subsection-title">3.2 Option B: Fast.ai Practical Deep Learning</h3>
+            
+            <div class="warning-box">
+                <strong>⚠️ PARTIAL RECOMMENDATION — Supplement Only</strong><br><br>
+                <strong>Why:</strong> Excellent content, but assumes Python proficiency. Too advanced for SQL: 1/10, Python: 3/10.<br><br>
+                <strong>Cost:</strong> FREE<br>
+                <strong>Time:</strong> 7 weeks<br>
+                <strong>Recommendation:</strong> Consider for Month 4+ after fundamentals are solid
+            </div>
+            
+            <h3 class="subsection-title">3.3 Option C: Google Data Analytics Certificate</h3>
+            
+            <div class="warning-box">
+                <strong>⚠️ NOT RECOMMENDED — Wrong Focus</strong><br><br>
+                <strong>Why:</strong> 6 months, R-heavy, minimal AI/ML. Teaches Tableau, not Python.<br><br>
+                <strong>Cost:</strong> ~$150-200 AUD<br>
+                <strong>Time:</strong> 6 months (exceeds deadline)<br>
+                <strong>AI Coverage:</strong> None — this is pure data analytics
+            </div>
+            
+            <h3 class="subsection-title">3.4 Option D: MIT Professional Certificate (Applied Data Science)</h3>
+            
+            
+            <div class="danger-box">
+                <strong>❌ NOT RECOMMENDED — Overkill</strong><br><br>
+                <strong>Why:</strong> $3,000+, 12 weeks intensive, assumes strong math background. Classic ML focus.<br><br>
+                <strong>Cost:</strong> ~$3,000-4,000 AUD<br>
+                <strong>Time:</strong> 12 weeks (full-time equivalent)<br>
+                <strong>GenAI Coverage:</strong> Minimal — this is traditional data science
+            </div>
+            
+            <h3 class="subsection-title">3.5 Comparison Matrix</h3>
+            
+            <table class="comparison-table">
+                <tr>
+                    <th>Option</th>
+                    <th>Cost</th>
+                    <th>Duration</th>
+                    <th>GenAI</th>
+                    <th>Structured</th>
+                    <th>Fits Deadline</th>
+                </tr>
+                <tr>
+                    <td><strong>Selected Plan</strong></td>
+                    <td>$124</td>
+                    <td>16 weeks</td>
+                    <td class="check">✓ High</td>
+                    <td class="check">✓ Yes</td>
+                    <td class="check">✓ Yes</td>
+                </tr>
+                <tr>
+                    <td>IBM Applied AI</td>
+                    <td>$250</td>
+                    <td>6-8 mo</td>
+                    <td class="cross">✗ Low</td>
+                    <td class="check">✓ Yes</td>
+                    <td class="cross">✗ No</td>
+                </tr>
+                <tr>
+                    <td>Fast.ai</td>
+                    <td>FREE</td>
+                    <td>7 weeks</td>
+                    <td class="check">✓ High</td>
+                    <td class="cross">✗ Assumes Python</td>
+                    <td class="check">✓ Yes</td>
+                </tr>
+                <tr>
+                    <td>Google Data Analytics</td>
+                    <td>$200</td>
+                    <td>6 mo</td>
+                    <td class="cross">✗ None</td>
+                    <td class="check">✓ Yes</td>
+                    <td class="cross">✗ No</td>
+                </tr>
+                <tr>
+                    <td>MIT Certificate</td>
+                    <td>$3,500</td>
+                    <td>12 weeks</td>
+                    <td class="cross">✗ Low</td>
+                    <td class="check">✓ Yes</td>
+                    <td class="cross">✗ Overkill</td>
+                </tr>
+            </table>
+        </div>
+        
+        
+        <div class="section" id="recommendation">
+            <h2 class="section-title">4. Recommended Path</h2>
+            
+            <h3 class="subsection-title">4.1 The 4-Phase Structure</h3>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">March 3 — March 30</div>
+                    <div class="timeline-title">Phase 1: SQL Fundamentals</div>
+                    <div class="timeline-desc">DataCamp SQL Track → Level 1→6/10</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">March 31 — May 4</div>
+                    <div class="timeline-title">Phase 2: Python + Data Analysis</div>
+                    <div class="timeline-desc">DataCamp Data Analyst Track → Level 3→7/10 + Certificate</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">May 5 — June 8</div>
+                    <div class="timeline-title">Phase 3: AI/GenAI Specialization</div>
+                    <div class="timeline-desc">Google + DeepLearning.AI + NVIDIA → 3 Certificates</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">June 9 — June 30</div>
+                    <div class="timeline-title">Phase 4: Portfolio + Job Applications</div>
+                    <div class="timeline-desc">Projects + Resume + 10 Job Applications</div>
+                </div>
+            </div>
+            
+            <h3 class="subsection-title">4.2 Why This Sequence?</h3>
+            
+            <ol style="margin-left: 1.5rem;">
+                <li><strong>SQL First:</strong> Every AI Ops job pulls data. Can't skip this. Easiest skill to acquire quickly.</li>
+                <li><strong>Python Second:</strong> Foundation for everything AI. DataCamp's guided approach prevents getting lost.</li>
+                <li><strong>AI Third:</strong> Now you have the foundation to understand RAG, agents, and GenAI systems.</li>
+                <li><strong>Portfolio Last:</strong> Apply skills to real projects with tight deadline to job applications.</li>
+            </ol>
+            
+            <div class="deliverable">
+                <h5>📋 Final Deliverables (June 30)</h5>
+                <ul style="margin-left: 1rem;">
+                    <li>4 Industry-recognized certificates</li>
+                    <li>2 GitHub projects (SQL analysis + RAG app)>
+                    <li>Updated LinkedIn with new skills</li>
+                    <li>Resume optimized for AI Operations roles</li>
+                    <li>10 job applications submitted</li>
+                </ul>
+            </div>
+        </div>
+        
+        
+        <div class="section" id="phase1">
+            <h2 class="section-title">5. Phase 1: SQL Fundamentals (Weeks 1-4)</h2>
+            
+            <div class="course-detail">
+                <div class="course-header">
+                    <span class="course-name">SQL Fundamentals Track</span>
+                    <span class="course-platform-tag">DataCamp</span>
+                </div>
+                <div class="course-content">
+                    <p style="margin-bottom: 1rem;"><strong>Description:</strong> 4-course track designed for beginners. Browser-based coding environment — no setup required.</p>
+                    
+                    <div class="signup-section">
+                        <h5>📝 Course Modules</h5>
+                        <ol style="margin-left: 1.5rem;">
+                            <li><strong>Introduction to SQL:</strong> SELECT, WHERE, ORDER BY, LIMIT (4 hours)</li>
+                            <li><strong>Intermediate SQL:</strong> CASE, JOINs, set theory (4 hours)</li>
+                            <li><strong>Joining Data in SQL:</strong> INNER, LEFT, RIGHT, FULL JOINs (4 hours)</li>
+                            <li><strong>Data Manipulation in SQL:</strong> UPDATE, DELETE, INSERT, DDL (4 hours)</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="signup-section">
+                        <h5>🔗 Sign-Up Link</h5>
+                        <a href="https://www.datacamp.com/" class="signup-link" target="_blank">Go to DataCamp</a>
+                        <p style="margin-top: 0.75rem; color: var(--text-secondary); font-size: 0.9rem;">
+                            <strong>Steps:</strong><br>
+                            1. Create account<br>
+                            2. Click "Premium" in top menu<br>
+                            3. Select "Premium" plan ($25/month)<br>
+                            4. Search for "SQL Fundamentals" track<br>
+                            5. Enroll and start Module 1
+                        </p>
+                    </div>
+                    
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+                        <div><span class="price-tag">$25/month</span></div>
+                        <div><span style="color: var(--text-secondary);">⏱️ 16 hours total</span></div>
+                        <div><span style="color: var(--text-secondary);">🏆 Statement of Accomplishment</span></div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="warning-box">
+                <strong>⚠️ Why DataCamp for SQL?</strong><br><br>
+                Unlike free resources (W3Schools, SQLBolt), DataCamp provides:
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Real database environment (no local setup)</li>
+                    <li>Immediate feedback on exercises</li>
+                    <li>Spaced repetition for retention</li>
+                    <li>Progress tracking (gamification)</li>
+                    <li>Certificate for LinkedIn</li>
+                </ul>
+            </div>
+        </div>
+        
+        
+        <div class="section" id="phase2">
+            <h2 class="section-title">6. Phase 2: Python + Data Analysis (Weeks 5-9)</h2>
+            
+            <div class="course-detail">
+                <div class="course-header">
+                    <span class="course-name">Data Analyst with Python Track</span>
+                    <span class="course-platform-tag">DataCamp</span>
+                </div>
+                <div class="course-content">
+                    <p style="margin-bottom: 1rem;"><strong>Description:</strong> 19-course career track. Covers Python fundamentals through data visualization. Culminates in Data Analyst Associate certification.</p>
+                    
+                    <div class="signup-section">
+                        <h5>📝 Key Courses</h5>
+                        <ol style="margin-left: 1.5rem;">
+                            <li><strong>Introduction to Python:</strong> Variables, lists, functions (4 hours)</li>
+                            <li><strong>Intermediate Python:</strong> Dictionaries, pandas intro (4 hours)</li>
+                            <li><strong>Data Manipulation with Pandas:</strong> Slicing, filtering, aggregation (4 hours)</li>
+                            <li><strong>Joining Data with Pandas:</strong> Merging, concat, data integration (4 hours)</li>
+                            <li><strong>Introduction to Data Visualization:</strong> Matplotlib, Seaborn (4 hours)</li>
+                            <li><strong>Importing Data:</strong> SQL + Python, APIs, flat files (4 hours)</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="signup-section">
+                        <h5>🔗 Sign-Up Link</h5>
+                        <a href="https://www.datacamp.com/tracks/data-analyst-with-python" class="signup-link" target="_blank">Data Analyst Track</a>
+                        <p style="margin-top: 0.75rem; color: var(--text-secondary); font-size: 0.9rem;">
+                            <strong>Note:</strong> Already subscribed from Phase 1. Just navigate to this track and click "Start Track".
+                        </p>
+                    </div>
+                    
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+                        <div><span class="free-tag">Included in $25/mo</span></div>
+                        <div><span style="color: var(--text-secondary);">⏱️ 36 hours total</span></div>
+                        <div><span style="color: var(--text-secondary);">🏆 Data Analyst Associate Certificate</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="section" id="phase3">
+            <h2 class="section-title">7. Phase 3: AI/GenAI Specialization (Weeks 10-14)</h2>
+            
+            <div class="course-detail">
+                <div class="course-header">
+                    <span class="course-name">Generative AI Learning Path</span>
+                    <span class="course-platform-tag" style="background: var(--accent-green);">Google Cloud — FREE</span>
+                </div>
+                <div class="course-content">
+                    <p style="margin-bottom: 1rem;"><strong>Description:</strong> Google's official GenAI curriculum. Mobile-friendly, video-based with quizzes. Focuses on practical applications and responsible AI.</p>
+                    
+                    <div class="signup-section">
+                        <h5>📝 Course Modules</h5>
+                        <ol style="margin-left: 1.5rem;">
+                            <li><strong>Introduction to Generative AI:</strong> What is GenAI, use cases (1 hour)</li>
+                            <li><strong>Introduction to Large Language Models:</strong> Prompts, tuning, Vertex AI (1 hour)</li>
+                            <li><strong>Introduction to Responsible AI:</strong> Ethics, safety, MLOps intro (1 hour)</li>
+                        </ol>
+                    </div>
+                    
+                    
+                    <div class="signup-section">
+                        <h5>🔗 Sign-Up Link</h5>
+                        <a href="https://www.cloudskillsboost.google/paths/118" class="signup-link" target="_blank">Google GenAI Path</a>
+                        <p style="margin-top: 0.75rem; color: var(--text-secondary); font-size: 0.9rem;">
+                            <strong>Steps:</strong><br>
+                            1. Create Google account (or use existing)<br>
+                            2. Go to cloudskillsboost.google.com<br>
+                            3. Click "Catalog" → Search "Generative AI"<br>
+                            4. Select "Generative AI Learning Path"<br>
+                            5. Click "Enroll" (free)
+                        </p>
+                    </div>
+                    
+                    
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+                        <div><span class="free-tag">FREE</span></div>
+                        <div><span style="color: var(--text-secondary);">⏱️ 8 hours total</span></div>
+                        <div><span style="color: var(--text-secondary);">🏆 Google Cloud Skills Badge</span></div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="course-detail">
+                <div class="course-header">
+                    <span class="course-name">LangChain for LLM Application Development</span>
+                    <span class="course-platform-tag">DeepLearning.AI</span>
+                </div>
+                <div class="course-content">
+                    <p style="margin-bottom: 1rem;"><strong>Description:</strong> Created by Harrison Chase (LangChain founder). Teaches RAG, chains, agents — exactly what AI Operations roles require.</p>
+                    
+                    <div class="signup-section">
+                        <h5>📝 Course Modules</h5>
+                        <ol style="margin-left: 1.5rem;">
+                            <li><strong>Models, Prompts, Parsers:</strong> LangChain basics (1 hour)</li>
+                            <li><strong>Memory:</strong> Conversation history, buffer memory (1 hour)</li>
+                            <li><strong>Chains:</strong> Sequential, router, transformation (1 hour)</li>
+                            <li><strong>Question Answering over Documents:</strong> RAG implementation (1 hour)</li>
+                        </ol>
+                    </div>
+                    
+                    
+                    <div class="signup-section">
+                        <h5>🔗 Sign-Up Link</h5>
+                        <a href="https://www.deeplearning.ai/short-courses/langchain-for-llm-application-development/" class="signup-link" target="_blank">LangChain Course</a>
+                        <p style="margin-top: 0.75rem; color: var(--text-secondary); font-size: 0.9rem;">
+                            <strong>Steps:</strong><br>
+                            1. Go to deeplearning.ai/short-courses<br>
+                            2. Find "LangChain for LLM Application Development"<br>
+                            3. Click "Enroll for Free" (requires Coursera account)<br>
+                            4. Pay $49 for certificate (optional but recommended)<br>
+                            5. Access course materials immediately
+                        </p>
+                    </div>
+                    
+                    
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+                        <div><span class="price-tag">$49</span></div>
+                        <div><span style="color: var(--text-secondary);">⏱️ 4 hours total</span></div>
+                        <div><span style="color: var(--text-secondary);">🏆 DeepLearning.AI Certificate</span></div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="course-detail">
+                <div class="course-header">
+                    <span class="course-name">Building RAG Agents with LLMs</span>
+                    <span class="course-platform-tag" style="background: var(--accent-green);">NVIDIA — FREE</span>
+                </div>
+                <div class="course-content">
+                    <p style="margin-bottom: 1rem;"><strong>Description:</strong> NVIDIA's latest course on RAG and AI agents. Technical depth with hands-on labs using NeMo Guardrails.</p>
+                    
+                    
+                    <div class="signup-section">
+                        <h5>🔗 Sign-Up Link</h5>
+                        <a href="https://www.nvidia.com/en-us/training/" class="signup-link" target="_blank">NVIDIA Training</a>
+                        <p style="margin-top: 0.75rem; color: var(--text-secondary); font-size: 0.9rem;">
+                            <strong>Steps:</strong><br>
+                            1. Go to nvidia.com/en-us/training<br>
+                            2. Click "Browse Courses"<br>
+                            3. Search "Building RAG Agents"<br>
+                            4. Click course → "Enroll" (free)<br>
+                            5. Requires NVIDIA Developer account (free)
+                        </p>
+                    </div>
+                    
+                    
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+                        <div><span class="free-tag">FREE</span></div>
+                        <div><span style="color: var(--text-secondary);">⏱️ 8 hours total</span></div>
+                        <div><span style="color: var(--text-secondary);">🏆 NVIDIA Certificate</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="section" id="phase4">
+            <h2 class="section-title">8. Phase 4: Portfolio + Job Applications (Weeks 15-16)</h2>
+            
+            <h3 class="subsection-title">8.1 Portfolio Projects</h3>
+            
+            <div class="course-detail">
+                <div class="course-header">
+                    <span class="course-name">Project 1: Trading Data SQL Analysis</span>
+                    <span class="course-platform-tag" style="background: var(--accent-purple);">GitHub</span>
+                </div>
+                <div class="course-content">
+                    <p><strong>Description:</strong> Analyze your own trading data using SQL. Show data extraction, cleaning, and insight generation.</p>
+                    
+                    <div class="signup-section">
+                        <h5>📋 Requirements</h5>
+                        <ul style="margin-left: 1.5rem;">
+                            <li>SQLite database of trades (export from your broker)</li>
+                            <li>5+ SQL queries with analysis</li>
+                            <li>Jupyter notebook with visualizations</li>
+                            <li>README with insights and methodology</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="course-detail">
+                <div class="course-header">
+                    <span class="course-name">Project 2: Market Research RAG App</span>
+                    <span class="course-platform-tag" style="background: var(--accent-purple);">GitHub + Deployed</span>
+                </div>
+                <div class="course-content">
+                    <p><strong>Description:</strong> RAG system that answers questions about trading strategies using your documents. Deployed with Streamlit.</p>
+                    
+                    
+                    <div class="signup-section">
+                        <h5>📋 Requirements</h5>
+                        <ul style="margin-left: 1.5rem;">
+                            <li>Upload trading strategy PDFs/documents</li>
+                            <li>ChromaDB for vector storage</li>
+                            <li>OpenAI embeddings + GPT-4</li>
+                            <li>Streamlit frontend</li>
+                            <li>Deployed to Streamlit Cloud (free)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <h3 class="subsection-title">8.2 Job Application Targets</h3>
+            
+            <div class="highlight-box">
+                <h4>🎯 Target Roles (Week 16)</h4>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li><strong>AI Operations Enablement Lead</strong> (like the Taylor Tech role you found)</li>
+                    <li><strong>AI Implementation Specialist</strong></li>
+                    <li><strong>Generative AI Analyst</strong></li>
+                    <li><strong>AI Product Operations</strong></li>
+                    <li><strong>Automation + AI Specialist</strong></li>
+                </ul>
+                <p style="margin-top: 1rem;"><strong>Platforms:</strong> Seek.com.au, LinkedIn Jobs, Indeed, company career pages</p>
+            </div>
+        </div>
+        
+        
+        <div class="section" id="signup">
+            <h2 class="section-title">9. Sign-Up Instructions Summary</h2>
+            
+            <div class="action-items">
+                <h3>📋 TONIGHT (Sunday, March 1)</h3>
+                <ol>
+                    <li><strong>DataCamp:</strong> Go to <a href="https://www.datacamp.com/" style="color: var(--accent-blue);">datacamp.com</a> → Sign up → Subscribe to Premium ($25/month) → Enroll in "SQL Fundamentals" track</li>
+                    <li><strong>Coursera:</strong> Go to <a href="https://www.coursera.org/" style="color: var(--accent-blue);">coursera.org</a> → Create account → Save DeepLearning.AI LangChain course to wishlist</li>
+                    <li><strong>Google Cloud Skills Boost:</strong> Go to <a href="https://www.cloudskillsboost.google/" style="color: var(--accent-blue);">cloudskillsboost.google.com</a> → Sign in with Google → Enroll in "Generative AI Learning Path" (free)</li>
+                    <li><strong>NVIDIA:</strong> Go to <a href="https://www.nvidia.com/en-us/training/" style="color: var(--accent-blue);">nvidia.com/training</a> → Create Developer account (free) → Find "Building RAG Agents" → Enroll</li>
+                    <li><strong>GitHub:</strong> Create new repo "ai-operations-portfolio" for projects</li>
+                </ol>
+            </div>
+            
+            
+            <div class="cost-bar">
+                <h3>💰 Final Cost Breakdown</h3>
+                <div class="cost-breakdown">
+                    <div class="cost-item">
+                        <div class="platform">DataCamp (3 months)</div>
+                        <div class="amount">$75</div>
+                    </div>
+                    <div class="cost-item">
+                        <div class="platform">DeepLearning.AI</div>
+                        <div class="amount">$49</div>
+                    </div>
+                    <div class="cost-item">
+                        <div class="platform">Google</div>
+                        <div class="amount">$0</div>
+                    </div>
+                    <div class="cost-item">
+                        <div class="platform">NVIDIA</div>
+                        <div class="amount">$0</div>
+                    </div>
+                    <div class="cost-item cost-total">
+                        <div class="platform">TOTAL</div>
+                        <div class="amount">$124</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="section" id="checklist">
+            <h2 class="section-title">10. Pre-Start Checklist</h2>
+            
+            <div class="action-items">
+                <h3>✅ Before Monday, March 3 (9 AM)</h3>
+                <ol>
+                    <li><input type="checkbox" style="margin-right: 0.5rem;"> DataCamp Premium subscribed</li>
+                    <li><input type="checkbox" style="margin-right: 0.5rem;"> All 4 platforms have accounts created</li>
+                    <li><input type="checkbox" style="margin-right: 0.5rem;"> Calendar blocked: Mon/Wed/Fri 7-9 AM (2 hours)</li>
+                    <li><input type="checkbox" style="margin-right: 0.5rem;"> Trading projects paused (until Week 9)</li>
+                    <li><input type="checkbox" style="margin-right: 0.5rem;"> Whiteboard updated with 16-week timeline</li>
+                    <li><input type="checkbox" style="margin-right: 0.5rem;"> GitHub repo "ai-operations-portfolio" created</li>
+                    <li><input type="checkbox" style="margin-right: 0.5rem;"> Phone notifications off during study blocks</li>
+                    <li><input type="checkbox" style="margin-right: 0.5rem;"> Laptop charged + workspace ready</li>
+                </ol>
+            </div>
+            
+            
+            <div class="highlight-box">
+                <h4>🎯 Success Metrics (June 30)</h4>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>SQL: 1/10 → 6/10 (can write complex JOINs)</li>
+                    <li>Python: 3/10 → 7/10 (can build data pipelines)</li>
+                    <li>AI/ML: 0/10 → 6/10 (can build RAG systems)</li>
+                    <li>4 certificates earned</li>
+                    <li>2 GitHub projects published</li>
+                    <li>10 job applications submitted</li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+    <footer>
+        <p>🗡️ Astra Command Center | Research Document v1.0</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">Prepared for Dibs | March 1, 2026 | 16-Week AI Operations Enablement Plan</p>
+    </footer>
+</body>
+</html>
