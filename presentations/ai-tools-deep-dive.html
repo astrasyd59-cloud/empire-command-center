@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Tools Deep Dive — Dibs's Productivity Stack</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0c0f;--bg2:#111418;--bg3:#181d23;--bg-hover:#1f252d;--border:rgba(255,255,255,0.08);--border-strong:rgba(255,255,255,0.15);--text:#e8e6e0;--text-muted:rgba(232,230,224,0.5);--text-dim:rgba(232,230,224,0.7);--gold:#c9a84c;--gold-dim:rgba(201,168,76,0.15);--green:#4caf82;--green-dim:rgba(76,175,130,0.15);--blue:#5b9cf6;--blue-dim:rgba(91,156,246,0.15);--purple:#a78bfa;--purple-dim:rgba(167,139,250,0.15);--orange:#f59e42;--orange-dim:rgba(245,158,66,0.15);--red:#e05555;--font-serif:'Playfair Display',Georgia,serif;--font-sans:'Inter',system-ui,sans-serif;--font-mono:'IBM Plex Mono',monospace}
+[data-theme="light"]{--bg:#f5f2eb;--bg2:#ede9df;--bg3:#e4dfd3;--bg-hover:#dbd5c6;--border:rgba(0,0,0,0.09);--border-strong:rgba(0,0,0,0.18);--text:#1a1814;--text-muted:rgba(26,24,20,0.5);--text-dim:rgba(26,24,20,0.7);--gold:#8a6b1a;--gold-dim:rgba(138,107,26,0.12);--green:#1c7a4f;--green-dim:rgba(28,122,79,0.1);--blue:#2563c9;--blue-dim:rgba(37,99,201,0.1);--purple:#6d28d9;--purple-dim:rgba(109,40,217,0.1);--orange:#b45309;--orange-dim:rgba(180,83,9,0.1);--red:#b02020}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+.theme-toggle{position:fixed;top:14px;right:14px;z-index:999;background:var(--bg3);border:1px solid var(--border-strong);color:var(--text-dim);font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.08em;padding:6px 10px;cursor:pointer;border-radius:3px;transition:all 0.2s}
+.theme-toggle:hover{color:var(--gold);border-color:var(--gold)}
+.container{max-width:900px;margin:0 auto;padding:20px 16px 48px}
+header{text-align:center;padding:40px 0 32px;border-bottom:1px solid var(--border);margin-bottom:28px}
+.masthead-label{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.masthead-title{font-family:var(--font-serif);font-size:clamp(1.9rem,5vw,2.6rem);font-weight:900;line-height:1.15;color:var(--text);margin-bottom:10px}
+.masthead-sub{font-size:0.9rem;color:var(--text-dim);max-width:500px;margin:0 auto}
+.intro-box{background:linear-gradient(135deg,var(--bg2),var(--bg3));border:1px solid var(--border);border-left:3px solid var(--gold);padding:20px 24px;margin-bottom:32px;border-radius:0 4px 4px 0}
+.intro-box p{font-size:0.92rem;color:var(--text-dim);line-height:1.7}
+.section-title{font-family:var(--font-serif);font-size:1.4rem;font-weight:700;color:var(--text);margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.section-sub{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:20px}
+.priority-section{margin-bottom:36px}
+.priority-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--border-strong)}
+.priority-badge{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border-radius:2px;font-weight:600}
+.p1{background:var(--green-dim);color:var(--green);border:1px solid var(--green)}
+.p2{background:var(--blue-dim);color:var(--blue);border:1px solid var(--blue)}
+.p3{background:var(--purple-dim);color:var(--purple);border:1px solid var(--purple)}
+.p4{background:var(--orange-dim);color:var(--orange);border:1px solid var(--orange)}
+.priority-title{font-family:var(--font-serif);font-size:1.15rem;font-weight:700}
+.tools-grid{display:grid;grid-template-columns:1fr;gap:14px}
+.tool-card{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:18px 20px;transition:all 0.2s}
+.tool-card:hover{background:var(--bg-hover);border-color:var(--border-strong)}
+.tool-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:10px}
+.tool-name{font-family:var(--font-serif);font-size:1.1rem;font-weight:700;color:var(--text)}
+.tool-category{font-family:var(--font-mono);font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;padding:3px 8px;background:var(--bg3);border:1px solid var(--border);border-radius:2px;color:var(--text-muted)}
+.tool-desc{font-size:0.87rem;color:var(--text-dim);line-height:1.6;margin-bottom:12px}
+.use-case{background:var(--bg3);border-left:2px solid var(--gold);padding:10px 14px;border-radius:0 2px 2px 0;margin-bottom:10px}
+.use-case-label{font-family:var(--font-mono);font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.use-case p{font-size:0.82rem;color:var(--text-dim);line-height:1.5}
+.action-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.action-btn{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.08em;text-transform:uppercase;padding:6px 12px;border-radius:2px;border:1px solid var(--border);background:var(--bg3);color:var(--text-dim);cursor:pointer;transition:all 0.15s}
+.action-btn:hover{border-color:var(--green);color:var(--green);background:var(--green-dim)}
+.action-btn.primary{border-color:var(--gold);color:var(--gold)}
+.action-btn.primary:hover{background:var(--gold-dim)}
+.divider{display:flex;align-items:center;gap:14px;margin:32px 0}
+.divider-line{flex:1;height:1px;background:var(--border)}
+.divider-text{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted)}
+.implementation-section{background:var(--bg2);border:1px solid var(--border);border-top:2px solid var(--gold);padding:24px;border-radius:0 0 4px 4px;margin-bottom:32px}
+.implementation-title{font-family:var(--font-serif);font-size:1.1rem;font-weight:700;margin-bottom:16px}
+.timeline-item{display:flex;gap:16px;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.timeline-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.timeline-marker{width:28px;height:28px;border-radius:50%;background:var(--bg3);border:1px solid var(--border-strong);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted);flex-shrink:0}
+.timeline-content{flex:1}
+.timeline-title{font-weight:600;font-size:0.95rem;margin-bottom:4px}
+.timeline-desc{font-size:0.85rem;color:var(--text-dim)}
+.checklist{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:20px}
+.checklist-title{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:14px}
+.checklist-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:0.87rem;color:var(--text-dim)}
+.checklist-item::before{content:"☐";font-size:1rem;color:var(--text-muted)}
+.checklist-item.done::before{content:"✓";color:var(--green)}
+.checklist-item.done{color:var(--text);text-decoration:line-through;opacity:0.6}
+footer{text-align:center;padding:32px 0 16px;border-top:1px solid var(--border);margin-top:24px}
+.footer-text{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.15em;color:var(--text-muted);text-transform:uppercase}
+@media(max-width:480px){.tool-header{flex-direction:column;gap:8px}.priority-header{flex-wrap:wrap}}
+</style>
+</head>
+<body>
+<button class="theme-toggle" onclick="document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'light':'dark'">◐ THEME</button>
+
+<div class="container">
+<header>
+<div class="masthead-label">OpenClaw Empire · AI Intelligence</div>
+<h1 class="masthead-title">AI Tools Deep Dive</h1>
+<p class="masthead-sub">Curated productivity stack based on r/openclaw research — prioritized for your workflow</p>
+</header>
+
+<div class="intro-box">
+<p><strong>From Reddit research + your context:</strong> Operations Manager at crypto trading firm, pivoting to AI automation, needs efficiency gains across trading analysis, job hunting, and content creation. Here's your prioritized implementation roadmap.</p>
+</div>
+
+<!-- PRIORITY 1: IMMEDIATE WINS -->
+<div class="priority-section">
+<div class="priority-header">
+<span class="priority-badge p1">Priority 1</span>
+<span class="priority-title">Immediate Wins — This Week</span>
+</div>
+<div class="section-sub">Zero learning curve, instant productivity gains</div>
+
+<div class="tools-grid">
+<div class="tool-card">
+<div class="tool-header">
+<span class="tool-name">ChatGPT Plus</span>
+<span class="tool-category">General LLM</span>
+</div>
+<div class="tool-desc">Still the default for general AI tasks. Fast, reliable, great for brainstorming, summarizing docs, and quick analysis.</div>
+<div class="use-case">
+<div class="use-case-label">Your Use Case</div>
+<p>Draft emails, summarize trading research papers, brainstorm side hustle ideas, prep for interviews</p>
+</div>
+<div class="action-row">
+<span class="action-btn primary">Already Using</span>
+</div>
+</div>
+
+<div class="tool-card">
+<div class="tool-header">
+<span class="tool-name">Claude</span>
+<span class="tool-category">General LLM</span>
+</div>
+<div class="tool-desc">Improving rapidly, especially for reasoning-heavy tasks and coding. Better at following complex instructions.</div>
+<div class="use-case">
+<div class="use-case-label">Your Use Case</div>
+<p>Python script debugging, complex data analysis logic, multi-step trading system design</p>
+</div>
+<div class="action-row">
+<span class="action-btn">Try This Week</span>
+</div>
+</div>
+
+<div class="tool-card">
+<div class="tool-header">
+<span class="tool-name">Grammarly</span>
+<span class="tool-category">Writing</span>
+</div>
+<div class="tool-desc">Essential for grammar fixes and writing polish. Browser extension works everywhere.</div>
+<div class="use-case">
+<div class="use-case-label">Your Use Case</div>
+<p>Polish CV and cover letters, professional emails to recruiters, LinkedIn posts</p>
+</div>
+<div class="action-row">
+<span class="action-btn">Install Today</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="divider"><div class="divider-line"></div><span class="divider-text">Phase 2</span><div class="divider-line"></div></div>
+
+<!-- PRIORITY 2: TRADING & ANALYSIS -->
+<div class="priority-section">
+<div class="priority-header">
+<span class="priority-badge p2">Priority 2</span>
+<span class="priority-title">Trading & Analysis — Next 2 Weeks</span>
+</div>
+<div class="section-sub">Tools that enhance your current trading workflow</div>
+
+<div class="tools-grid">
+<div class="tool-card">
+<div class="tool-header">
+<span class="tool-name">Gemini (Google)</span>
+<span class="tool-category">General LLM</span>
+</div>
+<div class="tool-desc">Strong multimodal AI integrated with Google Workspace. Good for analyzing charts and docs together.</div>
+<div class="use-case">
+<div class="use-case-label">Your Use Case</div>
+<p>Upload trading charts for analysis, query Gmail for trade confirmations, analyze PDF research reports</p>
+</div>
+<div class="action-row">
+<span class="action-btn">Test This Week</span>
+</div>
+</div>
+
+<div class="tool-card">
+<div class="tool-header">
+<span class="tool-name">ElevenLabs</span>
+<span class="tool-category">Audio</span>
+</div>
+<div class="tool-desc">Best-in-class AI voice generation. Natural-sounding voices for content creation.</div>
+<div class="use-case">
+<div class="use-case-label">Your Use Case</div>
+<p>Create audio versions of trading reports, voiceovers for Notion tutorial videos, podcast-style content</p>
+</div>
+<div class="action-row">
+<span class="action-btn">Explore</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="divider"><div class="divider-line"></div><span class="divider-text">Phase 3</span><div class="divider-line"></div></div>
+
+<!-- PRIORITY 3: CONTENT & AUTOMATION -->
+<div class="priority-section">
+<div class="priority-header">
+<span class="priority-badge p3">Priority 3</span>
+<span class="priority-title">Content & Automation — Month 1</span>
+</div>
+<div class="section-sub">Build your AI automation skillset and side hustle content</div>
+
+<div class="tools-grid">
+<div class="tool-card">
+<div class="tool-header">
+<span class="tool-name">Jasper</span>
+<span class="tool-category">Writing</span>
+</div>
+<div class="tool-desc">Purpose-built for marketing copy and content generation. Templates for ads, emails, social posts.</div>
+<div class="use-case">
+<div class="use-case-label">Your Use Case</div>
+<p>Notion template descriptions, Gumroad product copy, Twitter/X threads about trading</p>
+</div>
+<div class="action-row">
+<span class="action-btn">30-Day Trial</span>
+</div>
+</div>
+
+<div class="tool-card">
+<div class="tool-header">
+<span class="tool-name">Canva</span>
+<span class="tool-category">Design</span>
+</div>
+<div class="tool-desc">Quick edits, templates, simple AI generation. Perfect for non-designers creating professional visuals.</div>
+<div class="use-case">
+<div class="use-case-label">Your Use Case</div>
+<p>Notion template thumbnails, social media graphics for trading tips, presentation decks</p>
+</div>
+<div class="action-row">
+<span class="action-btn">Free Tier</span>
+</div>
+</div>
+
+<div class="tool-card">
+<div class="tool-header">
+<span class="tool-name">Midjourney</span>
+<span class="tool-category">Design</span>
+</div>
+<div class="tool-desc">Strongest for creative artwork and concept designs. Best-in-class image generation quality.</div>
+<div class="use-case">
+<div class="use-case-label">Your Use Case</div>
+<p>Custom illustrations for Notion templates, branded visuals for side hustle, concept art for app ideas</p>
+</div>
+<div class="action-row">
+<span class="action-btn">Discord Required</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="divider"><div class="divider-line"></div><span class="divider-text">Phase 4</span><div class="divider-line"></div></div>
+
+<!-- PRIORITY 4: ADVANCED/EXPERIMENTAL -->
+<div class="priority-section">
+<div class="priority-header">
+<span class="priority-badge p4">Priority 4</span>
+<span class="priority-title">Advanced / Experimental — Month 2+</span>
+</div>
+<div class="section-sub">Explore after core stack is integrated</div>
+
+<div class="tools-grid">
+<div class="tool-card">
+<div class="tool-header">
+<span class="tool-name">Veo</span>
+<span class="tool-category">Video</span>
+</div>
+<div class="tool-desc">Easy AI video editing. Good for quick content creation without learning complex software.</div>
+<div class="use-case">
+<div class="use-case-label">Your Use Case</div>
+<p>Quick trading analysis videos, Notion tutorial clips, social media video content</p>
+</div>
+<div class="action-row">
+<span class="action-btn">Later</span>
+</div>
+</div>
+
+<div class="tool-card">
+<div class="tool-header">
+<span class="tool-name">Writesonic</span>
+<span class="tool-category">Writing</span>
+</div>
+<div class="tool-desc">Helpful for quick drafts and variations. Good for SEO-optimized content at scale.</div>
+<div class="use-case">
+<div class="use-case-label">Your Use Case</div>
+<p>Blog post variations, SEO content for trading website, bulk product descriptions</p>
+</div>
+<div class="action-row">
+<span class="action-btn">Low Priority</span>
+</div>
+</div>
+
+<div class="tool-card">
+<div class="tool-header">
+<span class="tool-name">Gemini Nano Banana</span>
+<span class="tool-category">Design</span>
+</div>
+<div class="tool-desc">AI-generated visuals with specific aesthetic. Niche tool, good for specific visual styles.</div>
+<div class="use-case">
+<div class="use-case-label">Your Use Case</div>
+<p>Experimental visuals, unique aesthetic for personal brand, artistic trading charts</p>
+</div>
+<div class="action-row">
+<span class="action-btn">Explore Later</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- IMPLEMENTATION ROADMAP -->
+<div class="implementation-section">
+<h2 class="implementation-title">🗺️ Your Implementation Roadmap</h2>
+
+<div class="timeline-item">
+<div class="timeline-marker">1</div>
+<div class="timeline-content">
+<div class="timeline-title">This Week — Foundation</div>
+<div class="timeline-desc">Install Grammarly browser extension. Test Claude for your next Python script. Compare outputs vs ChatGPT for trading analysis.</div>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-marker">2</div>
+<div class="timeline-content">
+<div class="timeline-title">Week 2 — Trading Enhancement</div>
+<div class="timeline-desc">Set up Gemini with Google Workspace. Test chart analysis capabilities. Try ElevenLabs for voice memos to text conversion.</div>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-marker">3</div>
+<div class="timeline-content">
+<div class="timeline-title">Week 3-4 — Content Creation</div>
+<div class="timeline-desc">Start Canva for Notion template thumbnails. Trial Jasper for product descriptions. Explore Midjourney for custom visuals.</div>
+</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-marker">4</div>
+<div class="timeline-content">
+<div class="timeline-title">Month 2+ — Scale & Optimize</div>
+<div class="timeline-desc">Integrate winning tools into daily workflow. Drop what doesn't stick. Add advanced tools (Veo, etc.) only if needed.</div>
+</div>
+</div>
+</div>
+
+<!-- QUICK WINS CHECKLIST -->
+<div class="checklist">
+<div class="checklist-title">☑️ Quick Wins Checklist</div>
+<div class="checklist-item done">ChatGPT Plus — Already active</div>
+<div class="checklist-item">Grammarly extension — Install today</div>
+<div class="checklist-item">Claude account — Create & test</div>
+<div class="checklist-item">Canva free account — For thumbnails</div>
+<div class="checklist-item">Gemini Workspace integration — Connect Gmail</div>
+<div class="checklist-item">ElevenLabs trial — Test voice generation</div>
+<div class="checklist-item">Jasper trial — For marketing copy</div>
+<div class="checklist-item">Midjourney — Join Discord, test prompts</div>
+</div>
+
+<footer>
+<p class="footer-text">Prioritized for Dibs · Trading + Career Pivot · Generated by Astra</p>
+</footer>
+</div>
+</body>
+</html>
