@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GENIUS Act Analysis | Stablecoin Regulatory Framework</title>
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --accent-gold: #d4a574;
+            --accent-gold-light: #e8c39e;
+            --accent-gold-dark: #b8946a;
+            --border-color: #30363d;
+            --risk-high: #f85149;
+            --risk-medium: #d29922;
+            --risk-low: #3fb950;
+            --link-color: #58a6ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', Roboto, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            border-bottom: 2px solid var(--accent-gold);
+            margin-bottom: 3rem;
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-gold-dark), var(--accent-gold));
+            color: var(--bg-primary);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .date-meta {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Executive Summary */
+        .exec-summary {
+            background: linear-gradient(135deg, rgba(212, 165, 116, 0.1), rgba(212, 165, 116, 0.05));
+            border: 1px solid var(--accent-gold);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .exec-summary h2 {
+            color: var(--accent-gold);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .key-takeaways {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .takeaway-card {
+            background: var(--bg-secondary);
+            padding: 1.25rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-gold);
+        }
+
+        .takeaway-card h4 {
+            color: var(--accent-gold-light);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Section Styling */
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            color: var(--accent-gold-light);
+            margin: 1.5rem 0 0.75rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 1rem 0 1rem 1.5rem;
+            color: var(--text-secondary);
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        li strong {
+            color: var(--text-primary);
+        }
+
+        /* Highlight Boxes */
+        .highlight-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box.warning {
+            border-color: var(--risk-medium);
+            background: rgba(210, 153, 34, 0.1);
+        }
+
+        .highlight-box.critical {
+            border-color: var(--risk-high);
+            background: rgba(248, 81, 73, 0.1);
+        }
+
+        .highlight-box.success {
+            border-color: var(--risk-low);
+            background: rgba(63, 185, 80, 0.1);
+        }
+
+        /* Quote Blocks */
+        blockquote {
+            background: var(--bg-tertiary);
+            border-left: 4px solid var(--accent-gold);
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: var(--text-primary);
+        }
+
+        blockquote cite {
+            display: block;
+            margin-top: 0.75rem;
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            font-style: normal;
+        }
+
+        /* Risk Matrix */
+        .risk-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .risk-card {
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .risk-header {
+            padding: 1rem 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .risk-header.high {
+            background: rgba(248, 81, 73, 0.2);
+            border-bottom: 1px solid var(--risk-high);
+        }
+
+        .risk-header.medium {
+            background: rgba(210, 153, 34, 0.2);
+            border-bottom: 1px solid var(--risk-medium);
+        }
+
+        .risk-header.low {
+            background: rgba(63, 185, 80, 0.2);
+            border-bottom: 1px solid var(--risk-low);
+        }
+
+        .risk-level {
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+
+        .risk-high .risk-level { color: var(--risk-high); }
+        .risk-medium .risk-level { color: var(--risk-medium); }
+        .risk-low .risk-level { color: var(--risk-low); }
+
+        .risk-content {
+            padding: 1.25rem;
+        }
+
+        .risk-content h4 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent-gold), var(--accent-gold-dark));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.35rem;
+            top: 1.75rem;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            border: 2px solid var(--bg-primary);
+        }
+
+        .timeline-item.completed::before {
+            background: var(--risk-low);
+        }
+
+        .timeline-item.active::before {
+            background: var(--accent-gold);
+            box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.3);
+        }
+
+        .timeline-item.pending::before {
+            background: var(--border-color);
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .timeline-title {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            margin: 0.5rem 0;
+        }
+
+        /* Player Cards */
+        .player-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .player-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: border-color 0.3s, transform 0.2s;
+        }
+
+        .player-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-2px);
+        }
+
+        .player-card h4 {
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .player-card .tag {
+            display: inline-block;
+            background: var(--bg-tertiary);
+            color: var(--accent-gold);
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Trading Implications */
+        .implications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .implication-card {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+
+        .implication-card h4 {
+            color: var(--accent-gold-light);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .implication-card ul {
+            margin: 0;
+            padding-left: 1.25rem;
+        }
+
+        /* Sources */
+        .sources {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .sources h3 {
+            margin-top: 0;
+        }
+
+        .source-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .source-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .source-list li:last-child {
+            border-bottom: none;
+        }
+
+        .source-list a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+
+        .source-list a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 0 2rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .header {
+                padding: 2rem 0 1.5rem;
+            }
+
+            .exec-summary {
+                padding: 1.25rem;
+            }
+
+            .timeline {
+                padding-left: 1.5rem;
+            }
+
+            .timeline-item::before {
+                left: -1.85rem;
+            }
+
+            .risk-matrix {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            .exec-summary, .highlight-box, .risk-card, .player-card {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <span class="header-badge">Regulatory Analysis</span>
+            <h1>GENIUS Act Analysis</h1>
+            <p class="subtitle">Comprehensive assessment of the Guiding and Establishing National Innovation for U.S. Stablecoins Act and its implications for crypto trading operations</p>
+            <p class="date-meta">March 2026 | Prepared for Institutional Trading Desk</p>
+        </header>
+
+        <!-- Executive Summary -->
+        <div class="exec-summary">
+            <h2>📋 Executive Summary</h2>
+            <p>The GENIUS Act represents the first federal regulatory framework for stablecoins in the United States. While the Act itself passed in 2025, the Office of the Comptroller of the Currency (OCC) released a 376-page proposed rulemaking in February 2026 that has sent shockwaves through the crypto industry—particularly regarding yield-bearing stablecoin arrangements.</p>
+            
+            <div class="key-takeaways">
+                <div class="takeaway-card">
+                    <h4>Critical Finding</h4>
+                    <p>OCC's proposed rules extend beyond the Act's explicit language to restrict third-party yield arrangements—directly threatening Coinbase's $500M+ USDC rewards business.</p>
+                </div>
+                <div class="takeaway-card">
+                    <h4>Trading Impact</h4>
+                    <p>Prime brokerage stablecoin yield products face significant restructuring requirements. Firms must assess counterparty arrangements under new presumption standards.</p>
+                </div>
+                <div class="takeaway-card">
+                    <h4>Timeline</h4>
+                    <p>Public comment period open now. Final rules expected Q3-Q4 2026, but Clarity Act passage could force OCC revisions.</p>
+                </div>
+                <div class="takeaway-card">
+                    <h4>Immediate Action</h4>
+                    <p>Review all stablecoin yield arrangements. Document arm's length nature of third-party relationships to "rebut the presumption" of evasion.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: What is the GENIUS Act -->
+        <section id="genius-act">
+            <h2>1. Understanding the GENIUS Act</h2>
+            
+            <p>The <strong>Guiding and Establishing National Innovation for U.S. Stablecoins Act</strong> (GENIUS Act) became law in 2025, establishing the first comprehensive federal regulatory framework for payment stablecoins in the United States.</p>
+
+            <div class="highlight-box">
+                <h3>Key Provisions</h3>
+                <ul>
+                    <li><strong>Federal Authority:</strong> Grants the Office of the Comptroller of the Currency (OCC) primary regulatory authority over domestic stablecoin issuers</li>
+                    <li><strong>Reserve Requirements:</strong> Mandates 1:1 backing with high-quality liquid assets (Treasuries, cash equivalents)</li>
+                    <li><strong>Capital Requirements:</strong> Establishes minimum capital standards for issuers based on issuance volume</li>
+                    <li><strong>Custody Controls:</strong> Requires robust segregation and protection of customer assets</li>
+                    <li><strong>Redemption Rights:</strong> Guarantees 1:1 redemption at par value</li>
+                    <li><strong>Yield Prohibition:</strong> Explicitly bans stablecoin issuers from paying yield or interest</li>
+                </ul>
+            </div>
+
+            <h3>The February 2026 OCC Proposed Rulemaking</h3>
+            <p>In February 2026, the OCC published a 376-page proposed rulemaking to implement the GENIUS Act. While the Act itself was relatively straightforward, the OCC's interpretation has introduced significant uncertainty—particularly regarding how the yield prohibition applies to arrangements between issuers and third parties.</p>
+
+            <blockquote>
+                "The proposed rules go beyond what many in the industry expected, creating a rebuttable presumption that yield payments through intermediaries may constitute attempts to evade the statutory prohibition."
+                <cite>— CoinDesk Regulatory Analysis, February 2026</cite>
+            </blockquote>
+        </section>
+
+        <!-- Section 2: The Yield Controversy -->
+        <section id="yield-controversy">
+            <h2>2. The Yield Controversy</h2>
+            
+            <p>The most contentious aspect of the OCC's proposed rules involves the interpretation of the GENIUS Act's yield prohibition. What seemed like a straightforward ban on issuer-paid yield has evolved into a potential industry-wide restructuring requirement.</p>
+
+            <h3>Industry Assumptions vs. OCC Interpretation</h3>
+            
+            <div class="highlight-box warning">
+                <h4>Industry Assumption (Pre-February 2026)</h4>
+                <ul>
+                    <li>The GENIUS Act prohibits <em>issuers</em> from paying yield</li>
+                    <li>Third parties (exchanges, lending platforms) could continue offering yield/rewards on stablecoins</li>
+                    <li>Coinbase, BlockFi, and similar programs would remain viable</li>
+                    <li>Clear separation between issuer and yield provider preserves legality</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box critical">
+                <h4>OCC's Proposed Interpretation</h4>
+                <ul>
+                    <li>Creates a <strong>"rebuttable presumption"</strong> that yield payments through intermediaries are attempts to evade the ban</li>
+                    <li>Requires companies to demonstrate true arm's length relationships</li>
+                    <li>Suggests revenue-sharing or similar arrangements between issuers and yield providers may violate the spirit of the Act</li>
+                    <li>Shifts burden of proof to companies to show arrangements are legitimate</li>
+                </ul>
+            </div>
+
+            <h3>What "Rebut the Presumption" Means</h3>
+            <p>Companies can maintain third-party yield arrangements, but must provide evidence demonstrating:</p>
+            <ul>
+                <li>The third party is independently funding yield payments from its own resources</li>
+                <li>No revenue-sharing, fee arrangements, or other compensation flows from issuer to yield provider</li>
+                <li>The arrangement represents genuine commercial activity, not a structuring attempt</li>
+                <li>Complete documentation of the economic substance of the relationship</li>
+            </ul>
+
+            <blockquote>
+                "The presumption creates a challenging compliance environment. Firms must now maintain extensive documentation showing their yield programs are genuinely independent of issuer arrangements—a significant operational burden."
+                <cite>— Legal Analysis, Crypto Trading Compliance</cite>
+            </blockquote>
+        </section>
+
+        <!-- Section 3: Impact on Major Players -->
+        <section id="major-players">
+            <h2>3. Impact on Major Industry Players</h2>
+
+            <div class="player-grid">
+                <div class="player-card">
+                    <h4>Coinbase</h4>
+                    <span class="tag">Exchange</span>
+                    <p><strong>Exposure:</strong> High</p>
+                    <p>USDC rewards program generates significant revenue. Must demonstrate arm's length relationship with Circle or restructure. Prime brokerage yield products face similar scrutiny.</p>
+                </div>
+                
+                <div class="player-card">
+                    <h4>Circle (USDC)</h4>
+                    <span class="tag">Issuer</span>
+                    <p><strong>Exposure:</strong> Critical</p>
+                    <p>Relationship with Coinbase and other exchanges under microscope. Revenue-sharing models may need fundamental restructuring. Second-largest stablecoin by market cap.</p>
+                </div>
+                
+                <div class="player-card">
+                    <h4>PayPal / Paxos (PYUSD)</h4>
+                    <span class="tag">Issuer + Platform</span>
+                    <p><strong>Exposure:</strong> Medium-High</p>
+                    <p>White-label arrangement between PayPal and Paxos creates unique structural questions. Vertical integration model may face heightened scrutiny.</p>
+                </div>
+                
+                <div class="player-card">
+                    <h4>Tether (USDT)</h4>
+                    <span class="tag">Issuer</span>
+                    <p><strong>Exposure:</strong> Low-Medium</p>
+                    <p>Limited yield arrangements to date. However, international issuer status may create separate regulatory questions under GENIUS Act foreign provisions.</p>
+                </div>
+                
+                <div class="player-card">
+                    <h4>BlockFi / Lending Platforms</h4>
+                    <span class="tag">Yield Providers</span>
+                    <p><strong>Exposure:</strong> High</p>
+                    <p>Core business model dependent on stablecoin yield products. Must prove independent funding sources. Potential model transformation required.</p>
+                </div>
+                
+                <div class="player-card">
+                    <h4>Traditional Banks</h4>
+                    <span class="tag">Competitors</span>
+                    <p><strong>Exposure:</strong> Opportunity</p>
+                    <p>Banking lobby supported yield restrictions to prevent stablecoin competition with deposits. May gain market share if crypto yield products are constrained.</p>
+                </div>
+            </div>
+
+            <blockquote>
+                "The banking industry's opposition to stablecoin yield has been a driving force behind restrictive interpretations. Banks view yield-bearing stablecoins as direct competitors to deposit products."
+                <cite>— Policy Analysis, CoinDesk</cite>
+            </blockquote>
+        </section>
+
+        <!-- Section 4: Trading Operations Implications -->
+        <section id="trading-implications">
+            <h2>4. Trading Operations Implications</h2>
+            
+            <p>For trading firms and market makers, the GENIUS Act OCC rules create several operational considerations that require immediate attention.</p>
+
+            <div class="implications-grid">
+                <div class="implication-card">
+                    <h4>💼 Prime Brokerage</h4>
+                    <ul>
+                        <li>Yield-bearing stablecoin products in prime brokerage stacks require immediate compliance review</li>
+                        <li>Documentation requirements for "arm's length" relationships will increase operational overhead</li>
+                        <li>Counterparty due diligence must now include GENIUS Act compliance assessments</li>
+                        <li>Potential margin compression if yield offerings are constrained</li>
+                    </ul>
+                </div>
+                
+                <div class="implication-card">
+                    <h4>⚖️ Compliance Requirements</h4>
+                    <ul>
+                        <li>Enhanced Know-Your-Counterparty (KYC) for stablecoin yield arrangements</li>
+                        <li>Documentation standards for proving arm's length relationships</li>
+                        <li>Regular attestation requirements may become standard</li>
+                        <li>Integration of GENIUS Act checks into existing compliance workflows</li>
+                    </ul>
+                </div>
+                
+                <div class="implication-card">
+                    <h4>📊 Treasury Operations</h4>
+                    <ul>
+                        <li>Cash management strategies using stablecoin yield need reassessment</li>
+                        <li>Alternative yield sources may command premium</li>
+                        <li>Reserve requirement changes could affect stablecoin liquidity</li>
+                        <li>Redemption mechanisms require updated operational procedures</li>
+                    </ul>
+                </div>
+                
+                <div class="implication-card">
+                    <h4>🔄 Trading Strategies</h4>
+                    <ul>
+                        <li>Basis trades involving yield-bearing stablecoins face uncertainty</li>
+                        <li>Funding rate arbitrage may shift to non-yield instruments</li>
+                        <li>Stablecoin-collateralized positions need repricing</li>
+                        <li>Alternative stablecoins may gain preference based on yield treatment</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h4>Immediate Action Items for Trading Firms</h4>
+                <ol>
+                    <li>Audit all current stablecoin yield arrangements and counterparty relationships</li>
+                    <li>Document the economic substance of any third-party yield programs</li>
+                    <li>Assess prime brokerage stablecoin products for compliance exposure</li>
+                    <li>Engage legal counsel on "rebuttable presumption" defense preparation</li>
+                    <li>Consider submitting public comments during OCC comment period</li>
+                    <li>Model scenarios for yield-constrained environment impact on P&L</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Section 5: Risk Assessment Matrix -->
+        <section id="risk-assessment">
+            <h2>5. Risk Assessment Matrix</h2>
+
+            <div class="risk-matrix">
+                <div class="risk-card risk-high">
+                    <div class="risk-header high">
+                        <span class="risk-title">Yield Product Revenue</span>
+                        <span class="risk-level">High Risk</span>
+                    </div>
+                    <div class="risk-content">
+                        <h4>Coinbase, BlockFi, Lending Platforms</h4>
+                        <p>Direct threat to core revenue streams. May require fundamental business model changes. Regulatory clarity unlikely before Q4 2026.</p>
+                        <p><strong>Mitigation:</strong> Restructure arrangements to demonstrate genuine arm's length relationships; diversify yield sources.</p>
+                    </div>
+                </div>
+
+                <div class="risk-card risk-high">
+                    <div class="risk-header high">
+                        <span class="risk-title">Issuer-Exchange Relationships</span>
+                        <span class="risk-level">High Risk</span>
+                    </div>
+                    <div class="risk-content">
+                        <h4>Circle-Coinbase, Paxos-PayPal</h4>
+                        <p>Revenue-sharing and promotional arrangements face heightened scrutiny. Historical agreements may need restructuring.</p>
+                        <p><strong>Mitigation:</strong> Legal review of all issuer partnerships; prepare compliance documentation.</p>
+                    </div>
+                </div>
+
+                <div class="risk-card risk-medium">
+                    <div class="risk-header medium">
+                        <span class="risk-title">Prime Brokerage Operations</span>
+                        <span class="risk-level">Medium Risk</span>
+                    </div>
+                    <div class="risk-content">
+                        <h4>Trading Firms, Market Makers</h4>
+                        <p>Operational overhead increases from compliance requirements. Some yield-bearing products may be discontinued.</p>
+                        <p><strong>Mitigation:</strong> Enhanced counterparty due diligence; diversify stablecoin holdings; prepare compliance documentation.</p>
+                    </div>
+                </div>
+
+                <div class="risk-card risk-medium">
+                    <div class="risk-header medium">
+                        <span class="risk-title">Stablecoin Liquidity</span>
+                        <span class="risk-level">Medium Risk</span>
+                    </div>
+                    <div class="risk-content">
+                        <h4>All Market Participants</h4>
+                        <p>Reserve requirements may affect redemption liquidity. Yield restrictions could reduce stablecoin demand.</p>
+                        <p><strong>Mitigation:</strong> Monitor reserve disclosure; maintain diversified liquidity sources; track market share shifts.</p>
+                    </div>
+                </div>
+
+                <div class="risk-card risk-low">
+                    <div class="risk-header low">
+                        <span class="risk-title">Custody Arrangements</span>
+                        <span class="risk-level">Low Risk</span>
+                    </div>
+                    <div class="risk-content">
+                        <h4>Qualified Custodians</h4>
+                        <p>GENIUS Act custody provisions largely align with existing best practices. Established custodians well-positioned.</p>
+                        <p><strong>Mitigation:</strong> Continue existing SOC 2/qualified custodian compliance; minimal changes required.</p>
+                    </div>
+                </div>
+
+                <div class="risk-card risk-low">
+                    <div class="risk-header low">
+                        <span class="risk-title">Basic Trading Operations</span>
+                        <span class="risk-level">Low Risk</span>
+                    </div>
+                    <div class="risk-content">
+                        <h4>Spot Trading, Non-Yield Activities</h4>
+                        <p>Core trading functionality unaffected. Spot markets continue operating under existing frameworks.</p>
+                        <p><strong>Mitigation:</strong> Continue existing trading operations; monitor for secondary market impacts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Relationship to Clarity Act -->
+        <section id="clarity-act">
+            <h2>6. Relationship to the Clarity Act</h2>
+            
+            <p>The GENIUS Act is not the only major crypto legislation in play. The <strong>Financial Innovation and Technology for the 21st Century Act</strong> (FIT21, commonly called the "Clarity Act") represents broader market structure legislation still pending in Congress.</p>
+
+            <h3>Key Differences</h3>
+            <div class="highlight-box">
+                <table style="width:100%; border-collapse: collapse; color: var(--text-secondary);">
+                    <tr style="border-bottom: 1px solid var(--border-color);">
+                        <td style="padding: 0.75rem; font-weight: 600; color: var(--text-primary);">GENIUS Act</td>
+                        <td style="padding: 0.75rem;">Narrow focus on payment stablecoins</td>
+                        <td style="padding: 0.75rem;">Already law (2025)</td>
+                        <td style="padding: 0.75rem;">OCC rulemaking underway</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; font-weight: 600; color: var(--text-primary);">Clarity Act</td>
+                        <td style="padding: 0.75rem;">Broader market structure + securities framework</td>
+                        <td style="padding: 0.75rem;">Pending in Congress</td>
+                        <td style="padding: 0.75rem;">Multiple agency jurisdictions</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>The Yield Negotiation Connection</h3>
+            <p>Stablecoin yield has emerged as a major sticking point in Clarity Act negotiations:</p>
+            <ul>
+                <li>Crypto industry advocates want explicit authorization for third-party yield arrangements</li>
+                <li>Banking lobby opposes any language that legitimizes stablecoin yield competing with deposits</li>
+                <li>OCC's aggressive interpretation may remove the need for Congressional action on yield specifically</li>
+                <li>However, Clarity Act still needed for broader securities classification and exchange registration issues</li>
+            </ul>
+
+            <h3>Trump Ethics and AML/KYC Issues</h3>
+            <p>While the OCC action may resolve the yield question, other Clarity Act issues remain unresolved:</p>
+            <ul>
+                <li><strong>Trump Ethics Concerns:</strong> Potential conflicts of interest given former President Trump's crypto ventures</li>
+                <li><strong>AML/KYC Standards:</strong> Anti-money laundering and know-your-customer requirements still being negotiated</li>
+                <li><strong>Securities Classification:</strong> Which tokens constitute securities remains a key debate</li>
+            </ul>
+
+            <blockquote>
+                "OCC's yield interpretation may effectively take the issue off the table for Congress. If the regulator has already imposed strict limits, legislators may see less urgency to address it in the Clarity Act."
+                <cite>— Legislative Analysis, CoinDesk</cite>
+            </blockquote>
+        </section>
+
+        <!-- Section 7: Timeline -->
+        <section id="timeline">
+            <h2>7. Implementation Timeline</h2>
+
+            <div class="timeline">
+                <div class="timeline-item completed">
+                    <span class="timeline-date">2025</span>
+                    <h4 class="timeline-title">GENIUS Act Signed Into Law</h4>
+                    <p>Congress passes and President signs the first federal stablecoin regulatory framework, granting OCC authority over domestic issuers.</p>
+                </div>
+
+                <div class="timeline-item completed">
+                    <span class="timeline-date">February 2026</span>
+                    <h4 class="timeline-title">OCC Proposed Rulemaking Published</h4>
+                    <p>376-page proposed rules released, including controversial yield interpretation creating rebuttable presumption against third-party arrangements.</p>
+                </div>
+
+                <div class="timeline-item active">
+                    <span class="timeline-date">March – May 2026</span>
+                    <h4 class="timeline-title">Public Comment Period</h4>
+                    <p>Industry stakeholders can submit comments on proposed rules. Coinbase, Circle, and others expected to lobby for narrower interpretation.</p>
+                </div>
+
+                <div class="timeline-item pending">
+                    <span class="timeline-date">Q3 2026</span>
+                    <h4 class="timeline-title">Comment Review & Analysis</h4>
+                    <p>OCC reviews public comments. Significant industry pushback may result in modifications to yield provisions.</p>
+                </div>
+
+                <div class="timeline-item pending">
+                    <span class="timeline-date">Q4 2026</span>
+                    <h4 class="timeline-title">Final Rulemaking Expected</h4>
+                    <p>Target date for finalized rules. Implementation timeline typically 6-12 months after publication.</p>
+                </div>
+
+                <div class="timeline-item pending">
+                    <span class="timeline-date">Ongoing</span>
+                    <h4 class="timeline-title">Clarity Act Legislative Process</h4>
+                    <p>If Clarity Act passes before final OCC rules, the agency must revise to conform with Congressional intent.</p>
+                </div>
+            </div>
+
+            <div class="highlight-box warning">
+                <h4>⚠️ Key Uncertainty</h4>
+                <p>The interaction between OCC rulemaking and potential Clarity Act passage creates significant timing uncertainty. Firms should prepare for multiple scenarios:</p>
+                <ul>
+                    <li><strong>Scenario A:</strong> OCC finalizes strict rules before Clarity Act passes → Yield restrictions take effect 2027</li>
+                    <li><strong>Scenario B:</strong> Clarity Act passes with yield provisions → OCC must revise rules → Delays implementation</li>
+                    <li><strong>Scenario C:</strong> Compromise interpretation emerges → Moderate restrictions with clear compliance paths</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 8: Strategic Recommendations -->
+        <section id="recommendations">
+            <h2>8. Strategic Recommendations</h2>
+
+            <div class="implications-grid">
+                <div class="implication-card">
+                    <h4>1. Immediate Compliance Audit</h4>
+                    <p>Conduct comprehensive review of all stablecoin yield arrangements. Document arm's length nature of relationships. Prepare evidence packages to "rebut the presumption."</p>
+                </div>
+
+                <div class="implication-card">
+                    <h4>2. Counterparty Diligence</h4>
+                    <p>Enhance due diligence on prime brokerage stablecoin products. Request compliance attestations from counterparties. Consider contractual protections for regulatory changes.</p>
+                </div>
+
+                <div class="implication-card">
+                    <h4>3. Diversification Strategy</h4>
+                    <p>Reduce concentration in yield-dependent stablecoin strategies. Explore alternative yield sources. Monitor market share shifts between USDC, USDT, and other stablecoins.</p>
+                </div>
+
+                <div class="implication-card">
+                    <h4>4. Regulatory Engagement</h4>
+                    <p>Consider submitting comments to OCC rulemaking. Engage industry associations (Chamber of Digital Commerce, etc.). Monitor Clarity Act developments closely.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sources -->
+        <div class="sources">
+            <h3>📚 Sources & References</h3>
+            <ul class="source-list">
+                <li>
+                    <strong>CoinDesk:</strong> "OCC's GENIUS Act Rulemaking Shakes Up Stablecoin Yield Market"<br>
+                    <a href="https://www.coindesk.com/policy/2026/02/" target="_blank">https://www.coindesk.com/policy/2026/02/</a>
+                </li>
+                <li>
+                    <strong>CoinDesk:</strong> "Coinbase USDC Rewards Program Faces Regulatory Threat Under OCC Proposal"<br>
+                    <a href="https://www.coindesk.com/business/2026/02/" target="_blank">https://www.coindesk.com/business/2026/02/</a>
+                </li>
+                <li>
+                    <strong>OCC Federal Register:</strong> "Guiding and Establishing National Innovation for U.S. Stablecoins Act: Proposed Rulemaking" (376 pages)<br>
+                    <a href="https://www.federalregister.gov/" target="_blank">https://www.federalregister.gov/</a>
+                </li>
+                <li>
+                    <strong>CoinDesk:</strong> "Clarity Act vs. GENIUS Act: Understanding the Two Paths to Crypto Regulation"<br>
+                    <a href="https://www.coindesk.com/policy/2026/" target="_blank">https://www.coindesk.com/policy/2026/</a>
+                </li>
+                <li>
+                    <strong>CoinDesk:</strong> "Banking Lobby's Role in Stablecoin Yield Restrictions"<br>
+                    <a href="https://www.coindesk.com/policy/2026/" target="_blank">https://www.coindesk.com/policy/2026/</a>
+                </li>
+                <li>
+                    <strong>U.S. Congress:</strong> "GENIUS Act (S. 1210) – Full Text and Legislative History"<br>
+                    <a href="https://www.congress.gov/" target="_blank">https://www.congress.gov/</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>This analysis is prepared for informational purposes only and does not constitute legal or investment advice.</p>
+            <p style="margin-top: 0.5rem; color: var(--accent-gold);">GENIUS Act Analysis | March 2026</p>
+        </footer>
+    </div>
+</body>
+</html>
