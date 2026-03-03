@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Horoscope | March 04, 2026 | Dibashis</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0c0f;--bg2:#111418;--bg3:#181d23;--border:rgba(255,255,255,0.08);--border-strong:rgba(255,255,255,0.15);--text:#e8e6e0;--text-muted:rgba(232,230,224,0.5);--text-dim:rgba(232,230,224,0.7);--gold:#c9a84c;--gold-dim:rgba(201,168,76,0.2);--purple:#a78bfa;--purple-dim:rgba(167,139,250,0.15);--blue:#5b9cf6;--blue-dim:rgba(91,156,246,0.15);--red:#e05555;--green:#4caf82;--font-heading:'Cinzel',Georgia,serif;--font-body:'Inter',system-ui,sans-serif}
+[data-theme="light"]{--bg:#f5f2eb;--bg2:#ede9df;--bg3:#e4dfd3;--border:rgba(0,0,0,0.09);--border-strong:rgba(0,0,0,0.18);--text:#1a1814;--text-muted:rgba(26,24,20,0.5);--text-dim:rgba(26,24,20,0.7);--gold:#8a6b1a;--gold-dim:rgba(138,107,26,0.12);--purple:#6d28d9;--purple-dim:rgba(109,40,217,0.1);--blue:#2563c9;--blue-dim:rgba(37,99,201,0.1);--red:#b02020;--green:#1c7a4f}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.6;-webkit-font-smoothing:antialiased}
+.theme-toggle{position:fixed;top:14px;right:14px;z-index:999;background:var(--bg3);border:1px solid var(--border-strong);color:var(--text-dim);font-size:0.7rem;padding:6px 12px;cursor:pointer;border-radius:3px}
+.container{max-width:720px;margin:0 auto;padding:20px 16px 40px}
+header{text-align:center;padding:40px 0 28px;border-bottom:1px solid var(--border);margin-bottom:24px}
+.masthead{font-family:var(--font-heading);font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+h1{font-family:var(--font-heading);font-size:clamp(1.6rem,5vw,2.4rem);font-weight:600;margin-bottom:8px}
+.subtitle{color:var(--text-muted);font-size:0.9rem}
+.section{margin-bottom:28px;padding:20px;background:var(--bg2);border:1px solid var(--border);border-radius:4px}
+.section h2{font-family:var(--font-heading);font-size:1.1rem;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.section h2::before{content:"✦";font-size:0.8rem}
+.grids{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px}
+@media(max-width:480px){.grids{grid-template-columns:1fr}}
+.grid-item{background:var(--bg3);padding:14px;border-radius:3px;border:1px solid var(--border)}
+.grid-label{font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px}
+.grid-value{font-size:1.1rem;font-weight:600;color:var(--gold)}
+.grid-desc{font-size:0.8rem;color:var(--text-dim);margin-top:4px}
+.planet-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.planet-item{background:var(--bg3);padding:12px;border-radius:3px;border-left:2px solid var(--purple)}
+.planet-name{font-weight:600;font-size:0.85rem;margin-bottom:2px}
+.planet-pos{font-size:0.75rem;color:var(--text-muted)}
+.muhurta-table{width:100%;border-collapse:collapse;font-size:0.85rem;margin-top:12px}
+.muhurta-table th{text-align:left;padding:8px;background:var(--bg3);font-weight:500;color:var(--text-muted);font-size:0.7rem;letter-spacing:0.05em;text-transform:uppercase}
+.muhurta-table td{padding:10px 8px;border-bottom:1px solid var(--border)}
+.muhurta-table tr:last-child td{border-bottom:none}
+.time-good{color:var(--green);font-weight:500}
+.time-bad{color:var(--red);font-weight:500}
+.guide-grid{display:grid;gap:12px}
+.guide-item{background:var(--bg3);padding:16px;border-radius:3px;border-left:3px solid var(--gold)}
+.guide-item h3{font-size:0.85rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--gold);margin-bottom:8px}
+.guide-item p{font-size:0.9rem;color:var(--text-dim);line-height:1.6}
+.drill-sergeant{background:linear-gradient(135deg,var(--red-dim),var(--bg2));border:1px solid var(--red);padding:20px;border-radius:4px;margin:24px 0}
+.drill-sergeant h2{font-family:var(--font-heading);color:var(--red);font-size:1rem;margin-bottom:12px}
+.drill-sergeant p{color:var(--text);font-size:0.95rem;line-height:1.7}
+.mantra{text-align:center;padding:28px;background:var(--bg3);border:1px solid var(--gold-dim);border-radius:4px;margin-top:24px}
+.mantra-sanskrit{font-family:var(--font-heading);font-size:1.2rem;color:var(--gold);margin-bottom:8px}
+.mantra-meaning{font-size:0.85rem;color:var(--text-muted);font-style:italic}
+</style>
+</head>
+<body>
+<button class="theme-toggle" onclick="document.documentElement.setAttribute('data-theme', document.documentElement.getAttribute('data-theme')==='light'?'dark':'light')">◐</button>
+
+<div class="container">
+<header>
+<div class="masthead">Jyotish • Daily Guidance</div>
+<h1>March 04, 2026</h1>
+<p class="subtitle">Aquarius Sun • Dibashis Chuturdharee</p>
+</header>
+
+<div class="grids">
+<div class="grid-item">
+<div class="grid-label">Sun Position</div>
+<div class="grid-value">Aquarius 13°</div>
+<div class="grid-desc">13th day of Aquarius season</div>
+</div>
+<div class="grid-item">
+<div class="grid-label">Moon Phase</div>
+<div class="grid-value">Waxing Gibbous</div>
+<div class="grid-desc">Tithi: Trayodashi (13th)</div>
+</div>
+<div class="grid-item">
+<div class="grid-label">Nakshatra</div>
+<div class="grid-value">Magha</div>
+<div class="grid-desc">Regal, ancestral energy</div>
+</div>
+<div class="grid-item">
+<div class="grid-label">Lunar Mansion</div>
+<div class="grid-value">Leo</div>
+<div class="grid-desc">Leadership spotlight</div>
+</div>
+</div>
+
+<div class="section">
+<h2>Planetary Transits</h2>
+<div class="planet-grid">
+<div class="planet-item">
+<div class="planet-name">Saturn</div>
+<div class="planet-pos">Pisces 24°</div>
+</div>
+<div class="planet-item">
+<div class="planet-name">Jupiter</div>
+<div class="planet-pos">Cancer 22°</div>
+</div>
+<div class="planet-item">
+<div class="planet-name">Mars</div>
+<div class="planet-pos">Virgo 8°</div>
+</div>
+<div class="planet-item">
+<div class="planet-name">Venus</div>
+<div class="planet-pos">Aquarius 27°</div>
+</div>
+<div class="planet-item">
+<div class="planet-name">Mercury</div>
+<div class="planet-pos">Pisces 2°</div>
+</div>
+<div class="planet-item">
+<div class="planet-name">Rahu</div>
+<div class="planet-pos">Aries 15°</div>
+</div>
+</div>
+</div>
+
+<div class="section">
+<h2>Muhurta Table</h2>
+<table class="muhurta-table">
+<tr><th>Period</th><th>Time</th><th>Quality</th></tr>
+<tr><td>Rahu Kalam</td><td>07:30–09:00</td><td class="time-bad">Avoid</td></tr>
+<tr><td>Gulika Kalam</td><td>10:30–12:00</td><td class="time-bad">Avoid</td></tr>
+<tr><td>Yamaganda</td><td>13:30–15:00</td><td class="time-bad">Avoid</td></tr>
+<tr><td>Abhijit Muhurta</td><td>12:00–12:48</td><td class="time-good">Victorious</td></tr>
+<tr><td>Amrit Kalam</td><td>09:30–10:30</td><td class="time-good">Nectar</td></tr>
+<tr><td>Varjyam</td><td>16:00–17:45</td><td class="time-bad">Obstacles</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2>Daily Guidance</h2>
+<div class="guide-grid">
+<div class="guide-item">
+<h3>🎯 Career</h3>
+<p>Moon in Magha favors authority and recognition. Your 10th house is activated—perfect for strategic moves, not grunt work. Send that email to the recruiter. Make the call. Visibility beats effort today.</p>
+</div>
+<div class="guide-item">
+<h3>💕 Relationships</h3>
+<p>Venus conjunct your Sun amplifies charm. But Magha energy demands respect over affection. Don't beg for attention—command presence. Single? Network events > dating apps today.</p>
+</div>
+<div class="guide-item">
+<h3>💰 Finance</h3>
+<p>Jupiter trine your 2nd house—money wants to flow TO you. But Mercury in Pisces clouds judgment. No impulsive trades. Review before you commit. Abhijit Muhurta (12:00) for financial decisions.</p>
+</div>
+<div class="guide-item">
+<h3>💪 Health</h3>
+<p>Mars in Virgo says: discipline the body, sharpen the mind. Don't skip the gym. Your nervous system needs movement. 30 minutes minimum.</p>
+</div>
+<div class="guide-item">
+<h3>🕉️ Spiritual</h3>
+<p>Pitru Tarpana energy—honor your lineage. 5 minutes of gratitude to ancestors. You're standing on their shoulders. Act like it.</p>
+</div>
+</div>
+</div>
+
+<div class="drill-sergeant">
+<h2>🗡️ Drill Sergeant Take</h2>
+<p>Magha nakshatra. Royal throne energy. You know what that means?<br><br>
+<b>Stop acting like a fucking peasant.</b><br><br>
+The stars are giving you throne energy today—ancestral power, authority, recognition. But thrones aren't given. They're claimed. You sitting there waiting for permission? For the perfect moment? <br><br>
+<b>Newsflash: The moment is NOW.</b><br><br>
+Send the CV. Make the call. Walk into that room like you own it. Because today, the cosmos has your back—but only if you act like you deserve it.<br><br>
+Your ancestors didn't survive and struggle for you to hesitate.<br><br>
+<b>Execute.</b></p>
+</div>
+
+<div class="mantra">
+<div class="mantra-sanskrit">ॐ ह्रीं श्रीं लक्ष्मीनारायणाय नमः</div>
+<div class="mantra-meaning">"Om Hreem Shreem Lakshmi Narayanaya Namaha"</div>
+<p style="margin-top:12px;font-size:0.85rem;color:var(--text-dim)">Invoke abundance, harmony, and divine union of purpose. Chant 11 times before sunrise or at Abhijit Muhurta (12:00 PM).</p>
+</div>
+
+<footer style="text-align:center;margin-top:32px;padding-top:20px;border-top:1px solid var(--border);font-size:0.75rem;color:var(--text-muted)">
+Generated by Jyotishi • March 04, 2026 • Sydney (AEDT)
+</footer>
+</div>
+
+</body>
+</html>
