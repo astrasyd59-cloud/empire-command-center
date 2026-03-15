@@ -1,0 +1,127 @@
+{
+  "timestamp": "2026-03-02T18:56:45.844864+00:00",
+  "stocks": {
+    "UNH": {
+      "sources": [
+        {
+          "price": 292.12,
+          "prev_close": 293.27,
+          "change_pct": -0.39,
+          "source": "Yahoo Finance"
+        }
+      ],
+      "verified": true,
+      "status": "VERIFIED",
+      "price": 292.12,
+      "change_pct": -0.39,
+      "prev_close": 293.27
+    },
+    "MA": {
+      "sources": [
+        {
+          "price": 522.16,
+          "prev_close": 517.21,
+          "change_pct": 0.96,
+          "source": "Yahoo Finance"
+        }
+      ],
+      "verified": true,
+      "status": "VERIFIED",
+      "price": 522.16,
+      "change_pct": 0.96,
+      "prev_close": 517.21
+    },
+    "PG": {
+      "sources": [
+        {
+          "price": 164.16,
+          "prev_close": 167.2,
+          "change_pct": -1.82,
+          "source": "Yahoo Finance"
+        }
+      ],
+      "verified": true,
+      "status": "VERIFIED",
+      "price": 164.16,
+      "change_pct": -1.82,
+      "prev_close": 167.2
+    },
+    "HD": {
+      "sources": [
+        {
+          "price": 369.74,
+          "prev_close": 380.72,
+          "change_pct": -2.88,
+          "source": "Yahoo Finance"
+        }
+      ],
+      "verified": true,
+      "status": "VERIFIED",
+      "price": 369.74,
+      "change_pct": -2.88,
+      "prev_close": 380.72
+    },
+    "LLY": {
+      "sources": [
+        {
+          "price": 1026.6722,
+          "prev_close": 1051.99,
+          "change_pct": -2.41,
+          "source": "Yahoo Finance"
+        }
+      ],
+      "verified": true,
+      "status": "VERIFIED",
+      "price": 1026.6722,
+      "change_pct": -2.41,
+      "prev_close": 1051.99
+    }
+  },
+  "crypto": {
+    "sources": [
+      {
+        "price": 9.04,
+        "change_24h_pct": 2.44,
+        "market_cap": 6406894912.811836,
+        "source": "CoinGecko"
+      },
+      {
+        "price": 9.04013653180859,
+        "change_24h_pct": 0,
+        "source": "CoinMarketCap"
+      }
+    ],
+    "verified": true,
+    "status": "VERIFIED",
+    "price": 9.04,
+    "change_pct": 2.44
+  },
+  "forex": {
+    "pair": "AUD/USD",
+    "rate": 0.7085,
+    "change_pct": -0.24,
+    "status": "VERIFIED"
+  },
+  "macro": {
+    "VIX": {
+      "value": 21.27,
+      "change_pct": 7.1,
+      "status": "VERIFIED"
+    },
+    "DXY": {
+      "value": 98.591,
+      "change_pct": 1.01,
+      "status": "VERIFIED"
+    },
+    "GOLD": {
+      "value": 5318.7998,
+      "change_pct": 1.69,
+      "status": "VERIFIED"
+    },
+    "TEN_YR": {
+      "value": 4.054,
+      "change_pct": 2.32,
+      "status": "VERIFIED"
+    }
+  }
+}

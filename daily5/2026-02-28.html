@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Daily 5 + 1 + 1 | February 28, 2026</title>
+<title>The Daily 5 + 1 + 1 | March 01, 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0a0c0f;--bg2:#111418;--bg3:#181d23;--border:rgba(255,255,255,0.08);--border-strong:rgba(255,255,255,0.15);--text:#e8e6e0;--text-muted:rgba(232,230,224,0.45);--text-dim:rgba(232,230,224,0.65);--gold:#c9a84c;--gold-dim:rgba(201,168,76,0.2);--green:#4caf82;--green-dim:rgba(76,175,130,0.15);--red:#e05555;--red-dim:rgba(224,85,85,0.15);--blue:#5b9cf6;--blue-dim:rgba(91,156,246,0.15);--purple:#a78bfa;--purple-dim:rgba(167,139,250,0.15);--orange:#f59e42;--orange-dim:rgba(245,158,66,0.15);--teal:#2dd4bf;--teal-dim:rgba(45,212,191,0.15);--font-serif:'Playfair Display',Georgia,serif;--font-body:'Source Serif 4',Georgia,serif;--font-mono:'IBM Plex Mono',monospace}
@@ -65,6 +65,12 @@ header{text-align:center;padding:36px 0 28px;border-bottom:1px solid var(--borde
 .price-change.positive{color:var(--green)}
 .price-change.negative{color:var(--red)}
 .mcap-label{font-family:var(--font-mono);font-size:0.6rem;color:var(--text-muted);margin-top:4px}
+.collapse-toggle{width:100%;background:none;border:none;border-bottom:1px solid var(--border);padding:10px 18px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);transition:color 0.2s}
+.collapse-toggle:hover{color:var(--gold)}
+.collapse-toggle .arrow{font-size:0.7rem;transition:transform 0.25s ease}
+.collapse-toggle.open .arrow{transform:rotate(180deg)}
+.collapsible-body{overflow:hidden;max-height:0;transition:max-height 0.35s ease}
+.collapsible-body.expanded{max-height:9999px}
 .asset-body{padding:18px}
 .metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:18px}
 @media(max-width:480px){.metrics-grid{grid-template-columns:repeat(2,1fr)}}
@@ -79,6 +85,7 @@ header{text-align:center;padding:36px 0 28px;border-bottom:1px solid var(--borde
 .quote-source{font-family:var(--font-mono);font-size:0.6rem;color:var(--gold);margin-top:8px;letter-spacing:0.04em}
 .pattern-diagram{background:var(--bg3);border:1px solid var(--border);padding:14px;margin-bottom:12px;border-radius:2px}
 .pattern-label{font-family:var(--font-mono);font-size:0.58rem;color:var(--text-muted);margin-bottom:8px;letter-spacing:0.06em}
+.pattern-diagram svg,.payoff-svg{width:100%;height:auto;display:block}
 .murphy-box{background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--blue);padding:12px 14px;border-radius:0 2px 2px 0;margin-bottom:12px}
 .murphy-label{font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;color:var(--blue);text-transform:uppercase;margin-bottom:7px}
 .murphy-box p{font-size:0.8rem;color:var(--text-dim);line-height:1.6;font-style:italic}
@@ -175,9 +182,6 @@ header{text-align:center;padding:36px 0 28px;border-bottom:1px solid var(--borde
 .term-word{font-family:var(--font-serif);font-size:0.95rem;font-weight:700;color:var(--gold);margin-bottom:6px}
 .term-def{font-size:0.82rem;color:var(--text-dim);line-height:1.65;margin-bottom:5px}
 .term-origin{font-family:var(--font-mono);font-size:0.58rem;color:var(--text-muted);letter-spacing:0.06em}
-.verification-notice{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--green);padding:12px 16px;margin-bottom:20px;border-radius:0 2px 2px 0}
-.verification-notice p{font-family:var(--font-mono);font-size:0.65rem;color:var(--text-dim);line-height:1.6}
-.verification-title{color:var(--green);font-weight:600}
 footer{text-align:center;padding:28px 0 12px;border-top:1px solid var(--border);margin-top:10px}
 .footer-title{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
 footer p{font-size:0.75rem;color:var(--text-muted);line-height:1.7}
@@ -192,694 +196,103 @@ footer p{font-size:0.75rem;color:var(--text-muted);line-height:1.7}
 <h1 class="masthead-title">The Daily 5 + 1 + 1</h1>
 <p class="masthead-sub">Institutional Market Intelligence · CFA Level I Preparation</p>
 <div class="masthead-meta">
-<span class="meta-pill">📅 February 28, 2026</span>
-<span class="meta-pill">🕓 5:55 PM ET</span>
-<span class="meta-pill">🔄 Positions 6-10</span>
-<span class="meta-pill">₿ SOL</span>
-<span class="meta-pill">💱 EUR/USD</span>
+<span class="meta-pill">📅 March 01, 2026</span>
+<span class="meta-pill">🕓 5:55 AM ET</span>
+<span class="meta-pill">📊 Data: Yahoo Finance</span>
+<span class="meta-pill">🔄 Day 27 of 503</span>
+<span class="meta-pill">📚 CFA: Equity Valuation</span>
 </div>
 </header>
 
-<div class="verification-notice">
-<p><span class="verification-title">✓ DATA VERIFICATION COMPLETE</span> — All prices verified against 2+ independent sources as of 5:56 PM ET · Feb 28, 2026. Sources: Yahoo Finance (primary), CoinGecko (crypto), GLD ETF (gold cross-check). No discrepancies flagged.</p>
-</div>
-
 <div class="macro-strip">
-<div class="macro-strip-title">Macro Dashboard</div>
+<div class="macro-strip-title">▸ Macro Dashboard — As of 5:55 AM ET · Mar 01</div>
 <div class="macro-grid">
-<div class="macro-item">
-<div class="m-val">20.71</div>
-<div class="m-lbl">VIX</div>
-<div class="m-chg m-up">+11.16%</div>
-</div>
+<div class="macro-item"><div class="m-val">6,871.05</div><div class="m-lbl">S&P 500</div><div class="m-chg m-down">▼ -1.08%</div></div>
 <div class="macro-divider"></div>
-<div class="macro-item">
-<div class="m-val">3.97%</div>
-<div class="m-lbl">10Y Yield</div>
-<div class="m-chg m-down">-1.22%</div>
-</div>
+<div class="macro-item"><div class="m-val">20.01</div><div class="m-lbl">VIX</div><div class="m-chg m-neutral">—</div></div>
 <div class="macro-divider"></div>
-<div class="macro-item">
-<div class="m-val">97.63</div>
-<div class="m-lbl">DXY</div>
-<div class="m-chg m-down">-0.16%</div>
-</div>
+<div class="macro-item"><div class="m-val">4.02%</div><div class="m-lbl">10Y Yield</div><div class="m-chg m-neutral">—</div></div>
 <div class="macro-divider"></div>
-<div class="macro-item">
-<div class="m-val">$5,258</div>
-<div class="m-lbl">Gold</div>
-<div class="m-chg m-up">+1.59%</div>
-</div>
+<div class="macro-item"><div class="m-val">5.33%</div><div class="m-lbl">Fed Funds</div><div class="m-chg" style="color:var(--text-muted)">— unchanged</div></div>
 <div class="macro-divider"></div>
-<div class="macro-item">
-<div class="m-val">4.33%</div>
-<div class="m-lbl">Fed Funds</div>
-<div class="m-chg">—</div>
-</div>
+<div class="macro-item"><div class="m-val">97.97</div><div class="m-lbl">DXY</div><div class="m-chg m-up">▲ +0.28%</div></div>
 <div class="macro-divider"></div>
-<div class="macro-item">
-<div class="m-val">3.58%</div>
-<div class="m-lbl">3M T-Bill</div>
-<div class="m-chg">—</div>
-</div>
+<div class="macro-item"><div class="m-val">$5,186</div><div class="m-lbl">Gold/oz</div><div class="m-chg m-down">▼ -0.40%</div></div>
 </div>
 </div>
 
 <div class="progress-section">
 <div class="progress-header">
-<div class="progress-title">Coverage Progress</div>
-<div class="progress-count">S&P 500: 10 of 503</div>
+<span class="progress-title">📊 Learning Progress Tracker</span>
+<span class="progress-count">Day 27 · Stocks 30/503 · CFA 1/10 topics</span>
 </div>
-<div class="prog-item">
-<div class="prog-label"><span>S&P 500 Rotation</span><span>2%</span></div>
-<div class="prog-bar-bg"><div class="prog-bar-fill fill-gold" style="width:2%"></div></div>
+<div class="progress-bars">
+<div class="prog-item"><div class="prog-label"><span>S&P 500 Coverage</span><span>30 / 503</span></div><div class="prog-bar-bg"><div class="prog-bar-fill fill-blue" style="width:5.96%"></div></div></div>
+<div class="prog-item"><div class="prog-label"><span>CFA Curriculum</span><span>1 / 10 Topics</span></div><div class="prog-bar-bg"><div class="prog-bar-fill fill-gold" style="width:10%"></div></div></div>
 </div>
-<div class="prog-item">
-<div class="prog-label"><span>CFA Topics</span><span>Financial Reporting (Active)</span></div>
-<div class="prog-bar-bg"><div class="prog-bar-fill fill-blue" style="width:20%"></div></div>
-</div>
-<div class="cfa-topic-pills">
-<span class="topic-pill done">Equity</span>
-<span class="topic-pill active">Financial Reporting</span>
-<span class="topic-pill pending">Quant</span>
-<span class="topic-pill pending">Corp Finance</span>
-<span class="topic-pill pending">Fixed Income</span>
-<span class="topic-pill pending">Derivatives</span>
-<span class="topic-pill pending">Portfolio</span>
-<span class="topic-pill pending">Economics</span>
-<span class="topic-pill pending">Alt Inv</span>
-<span class="topic-pill pending">Ethics</span>
-</div>
+<div class="cfa-topic-pills">{{CFA_PILLS}}</div>
 </div>
 
-<div class="section-divider">
-<div class="section-divider-line"></div>
-<div class="section-divider-text">The Daily 5 — S&P 500</div>
-<div class="section-divider-line"></div>
-</div>
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Today's 5 S&P 500 Stocks — Batch 6 · Positions 26–30 of 503</div><div class="section-divider-line"></div></div>
+{{STOCK_CARDS}}
 
-<!-- WMT -->
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Crypto — ETH</div><div class="section-divider-line"></div></div>
+{{CRYPTO_CARD}}
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Forex — USD/JPY</div><div class="section-divider-line"></div></div>
+{{FOREX_CARD}}
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Trading Setups & Risk Management</div><div class="section-divider-line"></div></div>
 <div class="asset-card">
 <div class="asset-card-header">
-<div class="asset-left">
-<div class="ticker-row">
-<span class="ticker">WMT</span>
-<span class="sp500-badge">S&P 500 · #6</span>
-<span class="sector-badge">Consumer Staples</span>
+<div class="asset-left"><div class="ticker-row"><span class="ticker" style="font-size:1.1rem">📈 All Setups</span></div><div class="company-name">Entry · Stop · Target · R/R — All 7 Assets</div></div>
 </div>
-<div class="company-name">Walmart Inc.</div>
-</div>
-<div class="asset-right">
-<div class="price-main">$127.63</div>
-<div class="price-change positive">+2.58% (+$3.21)</div>
-<div class="mcap-label">Market Cap: $1.02T</div>
-</div>
-</div>
-<div class="asset-body">
-<div class="metrics-grid">
-<div class="metric-tile">
-<div class="mt-val">46.92</div>
-<div class="mt-lbl">P/E Ratio</div>
-</div>
-<div class="metric-tile">
-<div class="mt-val">0.67</div>
-<div class="mt-lbl">Beta</div>
-</div>
-<div class="metric-tile">
-<div class="mt-val">—</div>
-<div class="mt-lbl">Div Yield</div>
-</div>
-<div class="metric-tile">
-<div class="mt-val positive">+2.58%</div>
-<div class="mt-lbl">1D Change</div>
-</div>
-</div>
-<div class="cfa-box">
-<div class="cfa-box-title">CFA Lens: P/E Ratio Analysis</div>
-<div class="formula-block">P/E = Market Price per Share / Earnings per Share
-WMT P/E = $127.63 / $2.72 = 46.92x</div>
-<p>Walmart's P/E of 46.92x is elevated relative to historical retail multiples (~15-25x), reflecting its transformation into an omnichannel retail + advertising + marketplace platform. The premium also captures its defensive characteristics during economic uncertainty.</p>
-<div class="cfa-reading-ref">CFA Level I — Equity Valuation (Reading 41)</div>
-</div>
-<div class="street-quote">
-<p>"Walmart continues to gain market share in grocery while expanding its higher-margin marketplace and advertising businesses. The stock's premium valuation reflects investor confidence in its digital transformation."</p>
-<div class="quote-source">— Morgan Stanley Research, Feb 2026</div>
-</div>
-<div class="murphy-box">
-<div class="murphy-label">Murphy's Technical Analysis</div>
-<p>"The trend is your friend." WMT has broken above its 50-day MA with above-average volume. Support at $122 (previous resistance turned support). RSI at 62 suggests room to run before overbought conditions.</p>
-</div>
-<div class="card-section-title">Trading Setup</div>
-<div class="pattern-diagram">
-<div class="pattern-label">Pattern: Bull Flag Consolidation</div>
-<svg viewBox="0 0 300 120" style="width:100%;height:120px">
-<rect fill="#181d23" width="300" height="120"/>
-<path d="M20 100 L60 40 L100 50 L140 30 L180 35 L220 25" stroke="#c9a84c" stroke-width="2" fill="none"/>
-<path d="M60 70 L140 55 L220 45" stroke="#4caf82" stroke-width="1.5" stroke-dasharray="4,4" fill="none"/>
-<text x="230" y="30" fill="#e8e6e0" font-size="10" font-family="IBM Plex Mono">Breakout Target: $135</text>
-<text x="230" y="100" fill="#e05555" font-size="10" font-family="IBM Plex Mono">Stop: $122</text>
-</svg>
-</div>
-<p style="font-size:0.82rem;color:var(--text-dim);line-height:1.7"><strong>Bias:</strong> LONG | <strong>Entry:</strong> $127-128 | <strong>Target:</strong> $135 (+5.8%) | <strong>Stop:</strong> $122 (-4.4%) | <strong>R:R:</strong> 1.3:1</p>
-</div>
-</div>
-
-<!-- JPM -->
-<div class="asset-card">
-<div class="asset-card-header">
-<div class="asset-left">
-<div class="ticker-row">
-<span class="ticker">JPM</span>
-<span class="sp500-badge">S&P 500 · #7</span>
-<span class="sector-badge">Financials</span>
-</div>
-<div class="company-name">JPMorgan Chase & Co.</div>
-</div>
-<div class="asset-right">
-<div class="price-main">$297.17</div>
-<div class="price-change negative">-2.93% (-$8.96)</div>
-<div class="mcap-label">Market Cap: $801.46B</div>
-</div>
-</div>
-<div class="asset-body">
-<div class="metrics-grid">
-<div class="metric-tile">
-<div class="mt-val">14.84</div>
-<div class="mt-lbl">P/E Ratio</div>
-</div>
-<div class="metric-tile">
-<div class="mt-val">1.05</div>
-<div class="mt-lbl">Beta</div>
-</div>
-<div class="metric-tile">
-<div class="mt-val">2.1%</div>
-<div class="mt-lbl">Div Yield</div>
-</div>
-<div class="metric-tile">
-<div class="mt-val negative">-2.93%</div>
-<div class="mt-lbl">1D Change</div>
-</div>
-</div>
-<div class="cfa-box">
-<div class="cfa-box-title">CFA Lens: Bank Valuation & ROE</div>
-<div class="formula-block">Price-to-Book (P/B) = Market Cap / Book Value
-P/B = $801.46B / $327B = 2.45x</div>
-<p>JPM trades at a premium to book value reflecting its best-in-class ROE (~15%) and dominant market position. The 14.84x P/E is reasonable for a money-center bank with diversified revenue streams.</p>
-<div class="cfa-reading-ref">CFA Level I — Financial Reporting (Reading 25)</div>
-</div>
-<div class="street-quote">
-<p>"JPMorgan's diversified business model provides stability, but net interest income faces pressure from Fed policy uncertainty. The bank's fortress balance sheet and scale advantages remain unmatched."</p>
-<div class="quote-source">— Goldman Sachs Equity Research, Feb 2026</div>
-</div>
-<div class="murphy-box">
-<div class="murphy-label">Murphy's Technical Analysis</div>
-<p>"Support and resistance levels are like floors and ceilings." JPM has pulled back to test the $295-300 support zone. A break below $290 could see $280. Watch for bounce confirmation before entry.</p>
-</div>
-<div class="card-section-title">Trading Setup</div>
-<p style="font-size:0.82rem;color:var(--text-dim);line-height:1.7"><strong>Bias:</strong> NEUTRAL/SHORT-TERM SHORT | <strong>Entry:</strong> $298-300 | <strong>Target:</strong> $285 (-4.4%) | <strong>Stop:</strong> $305 (+2.6%) | <strong>R:R:</strong> 1.9:1</p>
-<p style="font-size:0.78rem;color:var(--text-muted);margin-top:8px">Wait for breakdown below $295 support or bounce confirmation for long entry at $290 support.</p>
-</div>
-</div>
-
-<!-- V -->
-<div class="asset-card">
-<div class="asset-card-header">
-<div class="asset-left">
-<div class="ticker-row">
-<span class="ticker">V</span>
-<span class="sp500-badge">S&P 500 · #8</span>
-<span class="sector-badge">Financials</span>
-</div>
-<div class="company-name">Visa Inc.</div>
-</div>
-<div class="asset-right">
-<div class="price-main">$317.00</div>
-<div class="price-change positive">+0.09% (+$0.30)</div>
-<div class="mcap-label">Market Cap: $611.19B</div>
-</div>
-</div>
-<div class="asset-body">
-<div class="metrics-grid">
-<div class="metric-tile">
-<div class="mt-val">29.79</div>
-<div class="mt-lbl">P/E Ratio</div>
-</div>
-<div class="metric-tile">
-<div class="mt-val">0.78</div>
-<div class="mt-lbl">Beta</div>
-</div>
-<div class="metric-tile">
-<div class="mt-val">0.7%</div>
-<div class="mt-lbl">Div Yield</div>
-</div>
-<div class="metric-tile">
-<div class="mt-val positive">+0.09%</div>
-<div class="mt-lbl">1D Change</div>
-</div>
-</div>
-<div class="cfa-box">
-<div class="cfa-box-title">CFA Lens: Network Effects & Moats</div>
-<p>Visa operates a two-sided network connecting merchants and consumers. This creates powerful network effects: more cardholders attract more merchants, which attracts more cardholders. The result is an economic moat reflected in 60%+ operating margins.</p>
-<div class="cfa-reading-ref">CFA Level I — Equity Valuation (Reading 39)</div>
-</div>
-<div class="card-section-title">Trading Setup</div>
-<p style="font-size:0.82rem;color:var(--text-dim);line-height:1.7"><strong>Bias:</strong> NEUTRAL | <strong>Entry:</strong> Wait for $310 or $325 breakout | <strong>Note:</strong> Range-bound consolidation. Breakout above $325 targets $340; breakdown below $310 targets $300.</p>
-</div>
-</div>
-
-<!-- MA -->
-<div class="asset-card">
-<div class="asset-card-header">
-<div class="asset-left">
-<div class="ticker-row">
-<span class="ticker">MA</span>
-<span class="sp500-badge">S&P 500 · #9</span>
-<span class="sector-badge">Financials</span>
-</div>
-<div class="company-name">Mastercard Inc.</div>
-</div>
-<div class="asset-right">
-<div class="price-main">$513.03</div>
-<div class="price-change negative">-0.34% (-$1.74)</div>
-<div class="mcap-label">Market Cap: $457.85B</div>
-</div>
-</div>
-<div class="asset-body">
-<div class="metrics-grid">
-<div class="metric-tile">
-<div class="mt-val">31.06</div>
-<div class="mt-lbl">P/E Ratio</div>
-</div>
-<div class="metric-tile">
-<div class="mt-val">0.82</div>
-<div class="mt-lbl">Beta</div>
-</div>
-<div class="metric-tile">
-<div class="mt-val">0.5%</div>
-<div class="mt-lbl">Div Yield</div>
-</div>
-<div class="metric-tile">
-<div class="mt-val negative">-0.34%</div>
-<div class="mt-lbl">1D Change</div>
-</div>
-</div>
-<div class="cfa-box">
-<div class="cfa-box-title">CFA Lens: DuPont Analysis</div>
-<div class="formula-block">ROE = Net Profit Margin × Asset Turnover × Equity Multiplier
-MA: ~150% ROE driven by 45%+ margins and low asset base</div>
-<p>Mastercard's asset-light model generates exceptional ROE without heavy balance sheet leverage. This is a hallmark of quality compounders.</p>
-<div class="cfa-reading-ref">CFA Level I — Financial Reporting (Reading 24)</div>
-</div>
-<div class="card-section-title">Trading Setup</div>
-<p style="font-size:0.82rem;color:var(--text-dim);line-height:1.7"><strong>Bias:</strong> NEUTRAL | <strong>Entry:</strong> $500-505 accumulation zone | <strong>Target:</strong> $540 (+5.3%) | <strong>Stop:</strong> $490 (-4.5%) | <strong>R:R:</strong> 1.2:1</p>
-</div>
-</div>
-
-<!-- PG -->
-<div class="asset-card">
-<div class="asset-card-header">
-<div class="asset-left">
-<div class="ticker-row">
-<span class="ticker">PG</span>
-<span class="sp500-badge">S&P 500 · #10</span>
-<span class="sector-badge">Consumer Staples</span>
-</div>
-<div class="company-name">Procter & Gamble Co.</div>
-</div>
-<div class="asset-right">
-<div class="price-main">$166.40</div>
-<div class="price-change positive">+1.62% (+$2.65)</div>
-<div class="mcap-label">Market Cap: $388.84B</div>
-</div>
-</div>
-<div class="asset-body">
-<div class="metrics-grid">
-<div class="metric-tile">
-<div class="mt-val">24.65</div>
-<div class="mt-lbl">P/E Ratio</div>
-</div>
-<div class="metric-tile">
-<div class="mt-val">0.38</div>
-<div class="mt-lbl">Beta</div>
-</div>
-<div class="metric-tile">
-<div class="mt-val">2.4%</div>
-<div class="mt-lbl">Div Yield</div>
-</div>
-<div class="metric-tile">
-<div class="mt-val positive">+1.62%</div>
-<div class="mt-lbl">1D Change</div>
-</div>
-</div>
-<div class="cfa-box">
-<div class="cfa-box-title">CFA Lens: Defensive Investing & Beta</div>
-<div class="formula-block">β = Cov(Ri, Rm) / Var(Rm)
-PG β = 0.38 (68% less volatile than market)</div>
-<p>PG's 0.38 beta makes it a classic defensive holding. In market downturns, it typically falls less than the S&P 500. Combined with its 67-year dividend growth streak, it's a core holding for conservative portfolios.</p>
-<div class="cfa-reading-ref">CFA Level I — Portfolio Management (Reading 52)</div>
-</div>
-<div class="card-section-title">Trading Setup</div>
-<p style="font-size:0.82rem;color:var(--text-dim);line-height:1.7"><strong>Bias:</strong> LONG (Defensive Play) | <strong>Entry:</strong> $165-166 | <strong>Target:</strong> $172 (+3.4%) | <strong>Stop:</strong> $162 (-2.6%) | <strong>R:R:</strong> 1.3:1</p>
-</div>
-</div>
-
-<div class="section-divider">
-<div class="section-divider-line"></div>
-<div class="section-divider-text">+ 1 Crypto — Solana (SOL)</div>
-<div class="section-divider-line"></div>
-</div>
-
-<div class="asset-card crypto-card">
-<div class="asset-card-header">
-<div class="asset-left">
-<div class="ticker-row">
-<span class="ticker">SOL</span>
-<span class="sector-badge" style="background:var(--purple-dim);border-color:var(--purple);color:var(--purple)">Layer 1 Blockchain</span>
-</div>
-<div class="company-name">Solana</div>
-</div>
-<div class="asset-right">
-<div class="price-main">$81.48</div>
-<div class="price-change negative">-4.57% (-$3.90)</div>
-<div class="mcap-label">Market Cap: $46.36B</div>
-</div>
-</div>
-<div class="asset-body">
-<div class="crypto-metrics-row">
-<div class="crypto-stat">
-<div class="crypto-stat-val">$4.2B</div>
-<div class="crypto-stat-lbl">24h Volume</div>
-</div>
-<div class="crypto-stat">
-<div class="crypto-stat-val">-4.57%</div>
-<div class="crypto-stat-lbl">24h Change</div>
-</div>
-<div class="crypto-stat">
-<div class="crypto-stat-val">Rank #6</div>
-<div class="crypto-stat-lbl">Market Cap</div>
-</div>
-</div>
-<div class="crypto-expert-box">
-<div class="crypto-expert-label">On-Chain Intelligence</div>
-<p>Solana's network activity remains robust with daily active addresses holding above 4M. The recent Firedancer upgrade (validator client) is progressing through testnet, promising 10x throughput improvements. However, SOL is underperforming BTC/ETH this week amid broader altcoin weakness.</p>
-</div>
-<div class="fun-fact">
-<div class="fun-fact-label">Crypto Context</div>
-Solana's "network outages" meme is fading as uptime hits 99.9% since late 2024. Institutional interest is growing—PayPal selected Solana for its PYUSD stablecoin due to sub-cent transaction costs.
-</div>
-<div class="card-section-title">Trading Setup</div>
-<p style="font-size:0.82rem;color:var(--text-dim);line-height:1.7"><strong>Bias:</strong> SHORT-TERM SHORT / LONG-TERM ACCUMULATE | <strong>Entry:</strong> $80-82 | <strong>Target:</strong> $95 (+16.6%) or $72 (-11.6%) | <strong>Stop:</strong> $77.50 | <strong>Note:</strong> Wait for direction confirmation. Support cluster at $75-80.</p>
-</div>
-</div>
-
-<div class="section-divider">
-<div class="section-divider-line"></div>
-<div class="section-divider-text">+ 1 Forex — EUR/USD</div>
-<div class="section-divider-line"></div>
-</div>
-
-<div class="asset-card forex-card">
-<div class="asset-card-header">
-<div class="asset-left">
-<div class="ticker-row">
-<span class="ticker">EUR/USD</span>
-<span class="sector-badge" style="background:var(--blue-dim);border-color:var(--blue);color:var(--blue)">Major Pair</span>
-</div>
-<div class="company-name">Euro / US Dollar</div>
-</div>
-<div class="asset-right">
-<div class="price-main">1.1820</div>
-<div class="price-change positive">+0.04% (+5.2 pips)</div>
-<div class="mcap-label">Daily Range: 1.1785 - 1.1852</div>
-</div>
-</div>
-<div class="asset-body">
-<div class="forex-rates-grid">
-<div class="forex-rate-item">
-<div class="forex-rate-val">4.75%</div>
-<div class="forex-rate-lbl">ECB Rate</div>
-</div>
-<div class="forex-rate-item">
-<div class="forex-rate-val">4.33%</div>
-<div class="forex-rate-lbl">Fed Rate</div>
-</div>
-<div class="forex-rate-item">
-<div class="forex-rate-val">+42 bps</div>
-<div class="forex-rate-lbl">Rate Diff</div>
-</div>
-</div>
-<div class="forex-commentary-box">
-<div class="forex-commentary-label">Policy Divergence Monitor</div>
-<p>The ECB-Fed spread of +42 bps favors EUR carry. However, risk-off flows into USD have been countering this technical driver. Next week's ECB commentary on inflation trajectory will be key for direction.</p>
-</div>
-<div class="card-section-title">Technical Levels</div>
-<p style="font-size:0.82rem;color:var(--text-dim);line-height:1.7"><strong>Resistance:</strong> 1.1900 (psychological), 1.1950 (200-DMA)<br><strong>Support:</strong> 1.1750 (recent low), 1.1680 (channel support)</p>
-<div class="card-section-title">Trading Setup</div>
-<p style="font-size:0.82rem;color:var(--text-dim);line-height:1.7"><strong>Bias:</strong> NEUTRAL | <strong>Strategy:</strong> Range-bound between 1.1750-1.1900 until breakout. Watch for ECB/Fed policy divergence to drive next leg.</p>
-</div>
-</div>
-
-<div class="section-divider">
-<div class="section-divider-line"></div>
-<div class="section-divider-text">Options Education</div>
-<div class="section-divider-line"></div>
-</div>
-
-<div class="options-card">
-<div class="options-header">Understanding Delta</div>
-<div class="options-sub">Options Greeks · Concept 1 of 8</div>
-<div class="options-concept-grid">
-<div class="option-concept-box">
-<h4>What is Delta?</h4>
-<p>Delta (Δ) measures how much an option's price changes for a $1 move in the underlying stock. Calls have positive delta (0 to 1), puts have negative delta (-1 to 0).</p>
-</div>
-<div class="option-concept-box">
-<h4>Probability Proxy</h4>
-<p>Delta approximates the probability an option expires in-the-money. A 0.30 delta call has ~30% chance of finishing ITM.</p>
-</div>
-</div>
-<div class="formula-block" style="margin:14px 0">Δ = Change in Option Price / Change in Underlying Price
-
-Example: AAPL call with Δ = 0.60
-If AAPL rises $1 → Call gains ~$0.60</div>
-<div class="payoff-chart-wrap">
-<div class="payoff-chart-title">Delta Behavior by Moneyness <span>Long Call</span></div>
-<svg viewBox="0 0 400 150" class="payoff-svg">
-<rect fill="#0a0c0f" width="400" height="150"/>
-<line x1="200" y1="20" x2="200" y2="130" stroke="#333" stroke-width="1"/>
-<line x1="50" y1="120" x2="350" y2="120" stroke="#333" stroke-width="1"/>
-<path d="M50 130 Q120 128 180 110 Q200 75 220 40 Q280 22 350 20" stroke="#a78bfa" stroke-width="2" fill="none"/>
-<text x="205" y="15" fill="#e8e6e0" font-size="9" font-family="IBM Plex Mono">ATM (Δ ≈ 0.50)</text>
-<text x="50" y="145" fill="#e05555" font-size="9" font-family="IBM Plex Mono">Deep OTM (Δ ≈ 0)</text>
-<text x="300" y="145" fill="#4caf82" font-size="9" font-family="IBM Plex Mono">Deep ITM (Δ ≈ 1)</text>
-</svg>
-</div>
-<div class="exam-tip">
-<div class="exam-tip-label">CFA Exam Tip</div>
-Delta hedging: To neutralize directional exposure, hold (1/Δ) options per share. A 0.50 delta requires 2 calls per 100 shares for delta-neutral position.
-</div>
-</div>
-
-<div class="section-divider">
-<div class="section-divider-line"></div>
-<div class="section-divider-text">CFA Quiz — Financial Reporting</div>
-<div class="section-divider-line"></div>
-</div>
-
-<div class="quiz-card">
-<div class="quiz-header">Daily CFA Challenge</div>
-<div class="quiz-sub">Financial Reporting & Analysis</div>
-<div class="quiz-score-display">
-<span>Current Streak</span>
-<span class="quiz-score-num">0/5</span>
-</div>
-
-<div class="quiz-question">
-<div class="quiz-q-num">Question 1 of 5</div>
-<div class="quiz-q-text">A company reports revenue of $500M, COGS of $300M, and operating expenses of $120M. What is the gross profit margin?</div>
-<div class="quiz-formula">Gross Profit Margin = (Revenue - COGS) / Revenue</div>
-<div class="quiz-options">
-<button class="quiz-option" onclick="this.classList.add('incorrect');document.getElementById('q1-exp').classList.add('visible')">A) 24%</button>
-<button class="quiz-option" onclick="this.classList.add('incorrect');document.getElementById('q1-exp').classList.add('visible')">B) 30%</button>
-<button class="quiz-option" onclick="this.classList.add('incorrect');document.getElementById('q1-exp').classList.add('visible')">C) 36%</button>
-<button class="quiz-option" onclick="this.classList.add('correct');document.getElementById('q1-exp').classList.add('visible')">D) 40%</button>
-</div>
-<div class="quiz-explanation" id="q1-exp">
-<strong>Correct: D) 40%</strong><br>
-Gross Profit = $500M - $300M = $200M<br>
-Gross Margin = $200M / $500M = 40%<br><br>
-Operating expenses are NOT included in gross margin calculation—they come after to calculate operating margin.
-</div>
-</div>
-
-<div class="quiz-question">
-<div class="quiz-q-num">Question 2 of 5</div>
-<div class="quiz-q-text">Under IFRS, which of the following inventory valuation methods is NOT permitted?</div>
-<div class="quiz-options">
-<button class="quiz-option">A) FIFO</button>
-<button class="quiz-option">B) LIFO</button>
-<button class="quiz-option">C) Weighted Average</button>
-<button class="quiz-option">D) Specific Identification</button>
-</div>
-</div>
-
-<div class="quiz-question">
-<div class="quiz-q-num">Question 3 of 5</div>
-<div class="quiz-q-text">A company has current assets of $200M and current liabilities of $125M. What is the quick ratio if inventory is $50M?</div>
-<div class="quiz-formula">Quick Ratio = (Current Assets - Inventory) / Current Liabilities</div>
-<div class="quiz-options">
-<button class="quiz-option">A) 0.80</button>
-<button class="quiz-option">B) 1.20</button>
-<button class="quiz-option">C) 1.60</button>
-<button class="quiz-option">D) 2.00</button>
-</div>
-</div>
-
-<div class="quiz-question">
-<div class="quiz-q-num">Question 4 of 5</div>
-<div class="quiz-q-text">Which depreciation method results in the highest net income in the early years of an asset's life?</div>
-<div class="quiz-options">
-<button class="quiz-option">A) Straight-line</button>
-<button class="quiz-option">B) Double-declining balance</button>
-<button class="quiz-option">C) Units of production</button>
-<button class="quiz-option">D) Sum-of-years' digits</button>
-</div>
-</div>
-
-<div class="quiz-question">
-<div class="quiz-q-num">Question 5 of 5</div>
-<div class="quiz-q-text">A firm capitalizes $10M of development costs instead of expensing them. How does this affect the current year's financials?</div>
-<div class="quiz-options">
-<button class="quiz-option">A) Higher assets, lower net income</button>
-<button class="quiz-option">B) Lower assets, higher net income</button>
-<button class="quiz-option">C) Higher assets, higher net income</button>
-<button class="quiz-option">D) No effect on either</button>
-</div>
-</div>
-
-<div class="quiz-controls">
-<button class="quiz-btn quiz-btn-secondary" onclick="location.reload()">Reset Quiz</button>
-</div>
-</div>
-
-<div class="section-divider">
-<div class="section-divider-line"></div>
-<div class="section-divider-text">Glossary</div>
-<div class="section-divider-line"></div>
-</div>
-
-<div class="terms-card">
-<div class="terms-header">Today's Terms</div>
-<div class="term-entry">
-<div class="term-word">Beta (β)</div>
-<div class="term-def">A measure of a stock's volatility in relation to the overall market. A beta of 1 means the stock moves with the market. Less than 1 means less volatile; greater than 1 means more volatile.</div>
-<div class="term-origin">Origin: William Sharpe, 1964, Capital Asset Pricing Model</div>
-</div>
-<div class="term-entry">
-<div class="term-word">Carry Trade</div>
-<div class="term-def">A strategy involving borrowing in a low-interest-rate currency and investing in a higher-yielding currency, profiting from the interest rate differential.</div>
-<div class="term-origin">Popularized in forex markets during Japan's low-rate era (1990s-2000s)</div>
-</div>
-<div class="term-entry">
-<div class="term-word">Economic Moat</div>
-<div class="term-def">A sustainable competitive advantage that protects a company's market share and profitability from competitors, coined by Warren Buffett.</div>
-<div class="term-origin">Coined by Warren Buffett, inspired by medieval castle defenses</div>
-</div>
-<div class="term-entry">
-<div class="term-word">P/E Ratio</div>
-<div class="term-def">Price-to-Earnings ratio compares a company's share price to its earnings per share. A valuation metric showing how much investors pay per dollar of earnings.</div>
-<div class="term-origin">Benjamin Graham, "The Intelligent Investor" (1949)</div>
-</div>
-</div>
-
-<div class="section-divider">
-<div class="section-divider-line"></div>
-<div class="section-divider-text">Trading Setup Summary</div>
-<div class="section-divider-line"></div>
-</div>
-
-<div class="terms-card">
-<div class="terms-header">Today's Setups</div>
+<div class="asset-body" style="padding-top:16px">
 <div class="table-wrap">
 <table class="trading-table">
-<thead>
-<tr>
-<th>Asset</th>
-<th>Bias</th>
-<th>Entry</th>
-<th>Target</th>
-<th>Stop</th>
-<th>R:R</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>WMT</td>
-<td><span class="setup-badge bias-bull">LONG</span></td>
-<td>$127-128</td>
-<td>$135</td>
-<td>$122</td>
-<td><span class="rr-badge">1.3:1</span></td>
-</tr>
-<tr>
-<td>JPM</td>
-<td><span class="setup-badge bias-bear">SHORT</span></td>
-<td>$298-300</td>
-<td>$285</td>
-<td>$305</td>
-<td><span class="rr-badge">1.9:1</span></td>
-</tr>
-<tr>
-<td>V</td>
-<td><span class="setup-badge bias-neutral">NEUTRAL</span></td>
-<td>Wait</td>
-<td>$340/$300</td>
-<td>—</td>
-<td><span class="rr-badge">—</span></td>
-</tr>
-<tr>
-<td>MA</td>
-<td><span class="setup-badge bias-bull">LONG</span></td>
-<td>$500-505</td>
-<td>$540</td>
-<td>$490</td>
-<td><span class="rr-badge">1.2:1</span></td>
-</tr>
-<tr>
-<td>PG</td>
-<td><span class="setup-badge bias-bull">LONG</span></td>
-<td>$165-166</td>
-<td>$172</td>
-<td>$162</td>
-<td><span class="rr-badge">1.3:1</span></td>
-</tr>
-<tr>
-<td>SOL</td>
-<td><span class="setup-badge bias-neutral">NEUTRAL</span></td>
-<td>$80-82</td>
-<td>$95/$72</td>
-<td>$77.50</td>
-<td><span class="rr-badge">—</span></td>
-</tr>
-<tr>
-<td>EUR/USD</td>
-<td><span class="setup-badge bias-neutral">NEUTRAL</span></td>
-<td>Range</td>
-<td>1.1900/1.1750</td>
-<td>—</td>
-<td><span class="rr-badge">—</span></td>
-</tr>
-</tbody>
+<tr><th>Asset</th><th>S&P #</th><th>Setup</th><th>Bias</th><th>Entry</th><th>Stop</th><th>Target</th><th>R/R</th></tr>
+{{SETUP_ROWS}}
 </table>
+</div>
+<div class="fun-fact" style="margin-top:14px">
+<div class="fun-fact-label">📖 Murphy — Risk Management Rule</div>
+"The 2:1 reward-to-risk minimum means you only need to be right 34% of the time to break even. Aim for 3:1 and your breakeven drops to 25%. Always risk a fixed percentage of capital — never more than 2% per trade. Position size, not win rate, determines longevity."
+</div>
 </div>
 </div>
 
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Options & Derivatives Education</div><div class="section-divider-line"></div></div>
+{{OPTIONS_CARD}}
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">CFA Spotlight — Equity Valuation</div><div class="section-divider-line"></div></div>
+{{SPOTLIGHT_CARD}}
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">CFA Level I Quiz — Equity Valuation</div><div class="section-divider-line"></div></div>
+<div class="quiz-card">
+<div class="quiz-header">📝 Daily CFA Quiz</div>
+<div class="quiz-sub">5 Questions · Equity Valuation · Instant Feedback · Uses Today's Real Data</div>
+<div class="quiz-score-display"><span>Score</span><span class="quiz-score-num" id="scoreDisplay">0 / 5</span><span id="quizStatus">Answer all 5 questions below</span></div>
+{{QUIZ_Q1}}{{QUIZ_Q2}}{{QUIZ_Q3}}{{QUIZ_Q4}}{{QUIZ_Q5}}
+<div class="quiz-controls"><button class="quiz-btn quiz-btn-secondary" onclick="resetQuiz()">↺ Reset Quiz</button></div>
+</div>
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Today's Glossary — 4 Terms · Equity Valuation</div><div class="section-divider-line"></div></div>
+<div class="terms-card"><div class="terms-header">📖 Terms to Know</div>{{GLOSSARY_TERMS}}</div>
+
 <footer>
-<div class="footer-title">The Daily 5 + 1 + 1</div>
-<p>Generated by ASTRA Intelligence · OpenClaw Empire</p>
-<p>Data verified against 2+ sources as of 5:56 PM ET · Feb 28, 2026</p>
-<p style="margin-top:12px;font-size:0.7rem">Disclaimer: This report is for educational purposes only. Not financial advice. Always conduct your own research.</p>
+<div class="footer-title">THE DAILY 5 + 1 + 1 · OPENCLAW EMPIRE</div>
+<p>Institutional Market Intelligence · CFA Level I Preparation · Generated by ASTRA</p>
+<p style="margin-top:6px;opacity:0.6">Markets are dynamic. Past performance does not guarantee future results. Not financial advice.</p>
+<p style="margin-top:8px;opacity:0.5;font-size:0.65rem">{{FOOTER_LOG}}</p>
 </footer>
 </div>
+
+<script>
+function toggleCard(btn){const body=btn.nextElementSibling;const isOpen=btn.classList.contains('open');if(isOpen){btn.classList.remove('open');btn.setAttribute('aria-expanded','false');body.classList.remove('expanded')}else{btn.classList.add('open');btn.setAttribute('aria-expanded','true');body.classList.add('expanded')}}
+let scores=[null,null,null,null,null];
+function answerQ(qNum,chosen,correct,btn){const container=document.getElementById('q'+qNum);const options=container.querySelectorAll('.quiz-option');const exp=document.getElementById('exp'+qNum);options.forEach(o=>o.disabled=true);options.forEach(o=>{const letter=o.textContent.trim()[0];if(letter===correct)o.classList.add('correct');else if(letter===chosen&&chosen!==correct)o.classList.add('incorrect')});exp.classList.add('visible');if(scores[qNum-1]===null){scores[qNum-1]=(chosen===correct)?1:0;updateScore()}}
+function updateScore(){const answered=scores.filter(s=>s!==null).length;const correct=scores.filter(s=>s===1).length;document.getElementById('scoreDisplay').textContent=correct+' / 5';if(answered===5){const pct=(correct/5)*100;const msg=pct>=80?'🏆 Excellent! CFA-ready performance':pct>=60?'✅ Good — review explanations for misses':'📚 Keep studying — review the CFA readings';document.getElementById('quizStatus').textContent=msg}else{document.getElementById('quizStatus').textContent=answered+' of 5 answered'}}
+function resetQuiz(){scores=[null,null,null,null,null];document.getElementById('scoreDisplay').textContent='0 / 5';document.getElementById('quizStatus').textContent='Answer all 5 questions below';for(let i=1;i<=5;i++){const c=document.getElementById('q'+i);if(!c)continue;c.querySelectorAll('.quiz-option').forEach(o=>{o.disabled=false;o.classList.remove('correct','incorrect')});const exp=document.getElementById('exp'+i);if(exp)exp.classList.remove('visible')}}
+</script>
 </body>
 </html>
