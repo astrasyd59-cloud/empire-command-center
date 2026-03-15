@@ -120,3 +120,102 @@
 ---
 
 *Memory updated: Feb 23, 2026 — 11:15 PM AEDT*
+
+
+---
+
+## 📅 February 27, 2026 — DAILY 5 + 1 + 1 SYSTEM REBUILD
+
+**Issue:** Template inconsistencies causing user frustration
+**Resolution:** Complete rebuild from scratch with locked configuration
+
+**System Lock File:** `memory/DAILY5_SYSTEM_LOCK.md` — **READ THIS EVERY SESSION**
+
+**Key Locked Items:**
+- Template: v6 (Feb 26 format)
+- Schedule: 5:55 AM daily (365 days/year)
+- Data: Yahoo Finance (no API keys needed)
+- S&P Rotation: Sequential through 503 (currently at 6-10)
+- Crypto Rotation: Daily, no repeats (SOL, ADA, DOT, LINK...)
+- Forex Rotation: Daily (EUR/USD, GBP/USD, USD/JPY...)
+
+**Test Report:** https://astrasyd59-cloud.github.io/empire-command-center/daily5/2026-02-28.html
+
+
+---
+
+## 📅 March 15, 2026 — FULL SYSTEM AUDIT + CLEANUP
+
+**Trigger:** User requested full audit after file structure changes
+**Auditor:** Astra (self-audit)
+**Grade:** B+ — Solid foundation, execution issues on long-running agents
+
+### 🔴 Issues Fixed Today
+
+| Issue | Fix | Status |
+|-------|-----|--------|
+| 3 cron jobs timing out | Increased timeouts (120s → 300s) | ✅ Fixed |
+| Astra Daily Identity Reminder | Converted to systemEvent | ✅ Fixed |
+| Root directory clutter | Moved 20+ files to proper folders | ✅ Fixed |
+| Old mission-control folders | Archived to `/archive/` | ✅ Fixed |
+| MEMORY.md stale | Updated with current state | ✅ Fixed |
+
+### 📁 New Folder Structure
+
+```
+/workspace/
+├── archive/
+│   ├── mission-control/
+│   └── old-drafts/
+├── personal/
+│   ├── dibs-deep-dive.html
+│   └── dibs-roadmap/
+├── dating/
+│   ├── 30-day-flirting-plan.md
+│   └── dating-strategy.md
+├── trading/reports/
+│   ├── hyperliquid-*.html
+│   ├── sp500-*.html
+│   └── ...
+├── job-hunt/
+│   └── muhurta_job_application_*.md
+└── avatars/
+    ├── astra-avatar-design-brief.md
+    ├── astra-avatar-quickref.md
+    └── generate_avatars.py
+```
+
+### 🛠️ Skills Inventory (18 Total)
+
+**Core Operational:** daily5-builder, morning-enforcer, daily-briefing-reader, persistent-memory-writer, session-bootstrap
+**External Integration:** github, github-integration, linear, monday, agentmail
+**Data & Research:** web-research, market-scraper, playwright-mcp, playwright-scraper-skill
+**Specialized:** astra-trade-ops, job-pipeline, automation-workflows
+
+### 📊 Cron Job Health (29 Jobs)
+
+| Category | Count | Status |
+|----------|-------|--------|
+| Daily accountability | 8 | ✅ All healthy |
+| Daily 5 build/deliver | 2 | ✅ Working |
+| Job hunt reminders | 7 | ✅ Working |
+| Weekly reports | 3 | 1 timeout (fixed), 2 healthy |
+| **Total Active** | **27** | **✅ All operational** |
+| Disabled | 2 | Context7, Local Agent (model issue) |
+
+### 🎯 Recommended Next Steps
+
+1. **Create `trading-journal` skill** — High priority for trade logging
+2. **Create `cfa-study-tracker` skill** — Track quiz scores, topic progress
+3. **Create `interview-prep` skill** — Store company research, prep notes
+4. **Update AGENTS.md** — Remove DAILY5_SYSTEM_LOCK.md reference (using JSON rotation)
+
+### 📝 Known Issues (Acceptable)
+
+- **Notion API 401 flapping:** Known pattern, Dibs aware, Ledger handles silently
+- **Daily 5 rotation:** Using `daily5/rotation_state.json` (not DAILY5_SYSTEM_LOCK.md)
+
+---
+
+*Memory updated: March 15, 2026 — 2:30 PM AEDT*
+
