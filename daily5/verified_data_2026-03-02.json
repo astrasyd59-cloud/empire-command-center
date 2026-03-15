@@ -1,0 +1,175 @@
+{
+  "report_date": "2026-03-02",
+  "generated_at": "2026-03-04T05:55:19.728045",
+  "stocks": [
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc",
+      "asset_type": "stock",
+      "price": 392.7583,
+      "change_pct": -2.6187,
+      "prev_close": 403.32,
+      "volume": 44205549,
+      "source_primary": "Yahoo Finance (yfinance)",
+      "source_secondary": "Alpha Vantage (no API key or unavailable)",
+      "verification_status": "pending",
+      "notes": "Secondary source unavailable"
+    },
+    {
+      "symbol": "JNJ",
+      "name": "Johnson & Johnson",
+      "asset_type": "stock",
+      "price": 246.2501,
+      "change_pct": -0.9293,
+      "prev_close": 248.56,
+      "volume": 3107282,
+      "source_primary": "Yahoo Finance (yfinance)",
+      "source_secondary": "Alpha Vantage (no API key or unavailable)",
+      "verification_status": "pending",
+      "notes": "Secondary source unavailable"
+    },
+    {
+      "symbol": "WMT",
+      "name": "Walmart Inc",
+      "asset_type": "stock",
+      "price": 127.8762,
+      "change_pct": 0.6107,
+      "prev_close": 127.1,
+      "volume": 8112217,
+      "source_primary": "Yahoo Finance (yfinance)",
+      "source_secondary": "Alpha Vantage (no API key or unavailable)",
+      "verification_status": "pending",
+      "notes": "Secondary source unavailable"
+    },
+    {
+      "symbol": "JPM",
+      "name": "JPMorgan Chase & Co",
+      "asset_type": "stock",
+      "price": 300.73,
+      "change_pct": 1.0653,
+      "prev_close": 297.56,
+      "volume": 5775446,
+      "source_primary": "Yahoo Finance (yfinance)",
+      "source_secondary": "Alpha Vantage (no API key or unavailable)",
+      "verification_status": "pending",
+      "notes": "Secondary source unavailable"
+    },
+    {
+      "symbol": "V",
+      "name": "Visa Inc",
+      "asset_type": "stock",
+      "price": 321.09,
+      "change_pct": 0.181,
+      "prev_close": 320.51,
+      "volume": 3091807,
+      "source_primary": "Yahoo Finance (yfinance)",
+      "source_secondary": "Alpha Vantage (no API key or unavailable)",
+      "verification_status": "pending",
+      "notes": "Secondary source unavailable"
+    }
+  ],
+  "crypto": [
+    {
+      "symbol": "DOT",
+      "name": "Polkadot",
+      "asset_type": "crypto",
+      "price": 1.54,
+      "change_pct": -0.1664,
+      "prev_close": 1.542568,
+      "volume": 203200506,
+      "source_primary": "CoinGecko API",
+      "source_secondary": "Yahoo Finance (yfinance)",
+      "verification_status": "verified",
+      "notes": "Price difference 0.23% within tolerance"
+    }
+  ],
+  "forex": [
+    {
+      "symbol": "USD/JPY",
+      "name": "US Dollar / Japanese Yen",
+      "asset_type": "forex",
+      "price": 157.625,
+      "change_pct": 0.6333,
+      "prev_close": 156.633,
+      "volume": 0,
+      "source_primary": "Yahoo Finance (yfinance)",
+      "source_secondary": "Alpha Vantage (no API key or unavailable)",
+      "verification_status": "pending",
+      "notes": "Secondary source unavailable"
+    }
+  ],
+  "macro": [
+    {
+      "symbol": "VIX",
+      "name": "CBOE Volatility Index",
+      "asset_type": "macro",
+      "price": 22.84,
+      "change_pct": 6.5298,
+      "prev_close": 21.44,
+      "volume": 0,
+      "source_primary": "Yahoo Finance (yfinance)",
+      "source_secondary": "None",
+      "verification_status": "pending",
+      "notes": "Secondary source unavailable"
+    },
+    {
+      "symbol": "10Y",
+      "name": "US 10-Year Treasury Yield",
+      "asset_type": "macro",
+      "price": 4.052,
+      "change_pct": 0.0988,
+      "prev_close": 4.048,
+      "volume": 0,
+      "source_primary": "Yahoo Finance (yfinance)",
+      "source_secondary": "None",
+      "verification_status": "pending",
+      "notes": "Secondary source unavailable"
+    },
+    {
+      "symbol": "DXY",
+      "name": "US Dollar Index",
+      "asset_type": "macro",
+      "price": 99.023,
+      "change_pct": 0.6536,
+      "prev_close": 98.38,
+      "volume": 0,
+      "source_primary": "Yahoo Finance (yfinance)",
+      "source_secondary": "None",
+      "verification_status": "pending",
+      "notes": "Secondary source unavailable"
+    },
+    {
+      "symbol": "GOLD",
+      "name": "Gold Spot Price",
+      "asset_type": "macro",
+      "price": 5139.6001,
+      "change_pct": -2.9238,
+      "prev_close": 5294.3999,
+      "volume": 243528,
+      "source_primary": "Yahoo Finance (yfinance)",
+      "source_secondary": "None",
+      "verification_status": "pending",
+      "notes": "Secondary source unavailable"
+    },
+    {
+      "symbol": "FEDFUNDS",
+      "name": "Federal Funds Rate",
+      "asset_type": "macro",
+      "price": 3.598,
+      "change_pct": 0.2228,
+      "prev_close": 3.59,
+      "volume": 0,
+      "source_primary": "Yahoo Finance (yfinance)",
+      "source_secondary": "FRED (FEDFUNDS) - API unavailable",
+      "verification_status": "pending",
+      "notes": "Secondary source unavailable"
+    }
+  ],
+  "summary": {
+    "total_instruments": 12,
+    "verified": 1,
+    "pending": 11,
+    "omitted": 0,
+    "verification_rate": "8.3%"
+  }
+}

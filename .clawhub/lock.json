@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "skills": {
+    "github": {
+      "version": "1.0.0",
+      "installedAt": 1773543138816
+    },
+    "agentmail": {
+      "version": "1.1.1",
+      "installedAt": 1773543157401
+    },
+    "linear": {
+      "version": "1.0.0",
+      "installedAt": 1773543179119
+    },
+    "automation-workflows": {
+      "version": "0.1.0",
+      "installedAt": 1773543204698
+    },
+    "monday": {
+      "version": "1.0.3",
+      "installedAt": 1773543261529
+    },
+    "playwright-scraper-skill": {
+      "version": "1.2.0",
+      "installedAt": 1773543366943
+    },
+    "playwright-mcp": {
+      "version": "1.0.0",
+      "installedAt": 1773543388732
+    }
+  }
+}

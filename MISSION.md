@@ -108,7 +108,12 @@ Status: NOT STARTED
 - 20 specific ways to help Dibs
 - One sentence each, 2 sentences on how it works
 - Impact ranking (high/medium/low)
-- **STATUS:** Not started
+- **STATUS:** ✅ **COMPLETE**
+- **Completed:** 2026-03-06
+- **Output:** `mission8_use_case_brainstorm.md`
+- **High Impact (10):** LinkedIn outreach, Job tracker, Interview prep, Trading journal, Pre-market brief, Notion research, Morning enforcer, Dating optimizer, Mauritius deals, Sydney house hacking, CFA drill
+- **Medium Impact (7):** Crypto arb, Copywriting, Phone interceptor, Conversation coach, Social events, Portfolio rebalancer, Economist summaries
+- **Low Impact (3):** Customer support, Gym optimizer, Support tasks
 
 **Mission 9: Create First Skill**
 - Document what was built
