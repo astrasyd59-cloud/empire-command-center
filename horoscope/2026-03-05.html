@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Horoscope - March 5, 2026 | Astra Jyotishi</title>
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --text-primary: #e6edf3;
+            --text-secondary: #7d8590;
+            --accent-gold: #d4a853;
+            --accent-blue: #58a6ff;
+            --accent-purple: #a371f7;
+            --accent-green: #3fb950;
+            --accent-red: #f85149;
+            --border: #30363d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #0d1117 0%, #1a1f2e 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+
+        .astro-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--accent-gold), #f0d78c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .date {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .birth-info {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+        }
+
+        .birth-info h2 {
+            color: var(--accent-blue);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .birth-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-label {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-value {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .section {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .section h2 {
+            color: var(--accent-gold);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            font-size: 1.5rem;
+        }
+
+        .moon-phase {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--bg-tertiary);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .moon-icon {
+            font-size: 60px;
+        }
+
+        .moon-details h3 {
+            color: var(--accent-purple);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .moon-details p {
+            color: var(--text-secondary);
+        }
+
+        .transit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .transit-item {
+            background: var(--bg-tertiary);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .transit-planet {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .transit-sign {
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+
+        .transit-house {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .muhurta-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .muhurta-table th,
+        .muhurta-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .muhurta-table th {
+            color: var(--accent-gold);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+
+        .muhurta-time {
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
+        .muhurta-type {
+            color: var(--text-secondary);
+        }
+
+        .guidance-grid {
+            display: grid;
+            gap: 15px;
+        }
+
+        .guidance-card {
+            background: var(--bg-tertiary);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-blue);
+        }
+
+        .guidance-card.career { border-left-color: var(--accent-blue); }
+        .guidance-card.love { border-left-color: var(--accent-purple); }
+        .guidance-card.health { border-left-color: var(--accent-green); }
+        .guidance-card.finance { border-left-color: var(--accent-gold); }
+        .guidance-card.spiritual { border-left-color: #ff9e42; }
+
+        .guidance-card h3 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .drill-sergeant {
+            background: linear-gradient(135deg, #3d1f1f 0%, #2d1818 100%);
+            border: 2px solid var(--accent-red);
+            position: relative;
+        }
+
+        .drill-sergeant::before {
+            content: "⚠️";
+            position: absolute;
+            top: -15px;
+            left: 25px;
+            background: var(--accent-red);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .drill-sergeant h2 {
+            color: var(--accent-red);
+            margin-top: 10px;
+        }
+
+        .drill-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #ffb4b4;
+        }
+
+        .mantra-section {
+            background: linear-gradient(135deg, #1a2a1a 0%, #0d1a0d 100%);
+            border: 1px solid var(--accent-green);
+            text-align: center;
+        }
+
+        .mantra-section h2 {
+            color: var(--accent-green);
+            justify-content: center;
+        }
+
+        .mantra-text {
+            font-size: 1.4rem;
+            color: var(--accent-gold);
+            font-style: italic;
+            padding: 20px;
+            line-height: 2;
+        }
+
+        .mantra-meaning {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-top: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            margin-top: 30px;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .moon-phase {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .transit-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .muhurta-table {
+                font-size: 0.9rem;
+            }
+
+            .mantra-text {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="astro-icon">🗡️</div>
+            <h1>Daily Vedic Horoscope</h1>
+            <p class="date">Thursday, March 5, 2026</p>
+        </header>
+
+        <div class="birth-info">
+            <h2>📋 Birth Details</h2>
+            <div class="birth-details">
+                <div class="detail-item">
+                    <span class="detail-label">Name</span>
+                    <span class="detail-value">Dibashis</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Date of Birth</span>
+                    <span class="detail-value">February 1, 1998</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Time</span>
+                    <span class="detail-value">12:45 PM</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Location</span>
+                    <span class="detail-value">Mauritius</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Sun Sign</span>
+                    <span class="detail-value">♒ Aquarius</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Moon Sign</span>
+                    <span class="detail-value">♊ Gemini (Mithuna)</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Nakshatra</span>
+                    <span class="detail-value">Ardra (Birth Star)</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Ascendant</span>
+                    <span class="detail-value">♉ Taurus (Vrishabha)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-icon">☀️</span> Sun in Aquarius Analysis</h2>
+            <p>With the Sun transiting through your 10th house of career and public standing, today illuminates your professional path. Aquarius energy brings innovation, rebellion against outdated structures, and a drive for collective progress.</p>
+            <br>
+            <p><strong>For you today:</strong> The Sun forms a supportive trine to your natal Moon in Gemini, creating harmony between your conscious will and emotional needs. This is excellent for communication, networking, and presenting ideas to authority figures. Your natural charm is heightened — use it strategically.</p>
+            <br>
+            <p>The 10th house activation demands attention to your public image. Are you positioning yourself correctly for the career jump you want? Today's energy supports bold moves, but calculated ones.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-icon">🌙</span> Moon Phase & Tithi</h2>
+            <div class="moon-phase">
+                <div class="moon-icon">🌔</div>
+                <div class="moon-details">
+                    <h3>Waxing Gibbous (Shukla Paksha)</h3>
+                    <p><strong>Tithi:</strong> Trayodashi (13th Lunar Day)<br>
+                    <strong>Moon in:</strong> ♌ Leo (Simha)<br>
+                    <strong>Nakshatra:</strong> Purva Phalguni<br>
+                    <strong>Moonrise:</strong> 2:47 PM | <strong>Moonset:</strong> 2:23 AM (next day)</p>
+                </div>
+            </div>
+            <p>The Moon in Leo activates your 4th house of home, emotional security, and inner foundations. This is a time of building — both materially and emotionally. The waxing gibbous phase represents culmination approaching; projects started earlier in the lunar cycle now need focused energy to reach completion.</p>
+            <br>
+            <p><strong>Trayodashi Tithi</strong> is ruled by Cupid (Kamadeva) — a day favorable for creative pursuits, romance, and matters of the heart. Your emotional intensity is high today. Channel it productively.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-icon">🪐</span> Key Planetary Transits</h2>
+            <div class="transit-grid">
+                <div class="transit-item">
+                    <div class="transit-planet">☉</div>
+                    <div class="transit-sign">♒ Aquarius</div>
+                    <div class="transit-house">10th House</div>
+                </div>
+                <div class="transit-item">
+                    <div class="transit-planet">☽</div>
+                    <div class="transit-sign">♌ Leo</div>
+                    <div class="transit-house">4th House</div>
+                </div>
+                <div class="transit-item">
+                    <div class="transit-planet">♂</div>
+                    <div class="transit-sign">♊ Gemini</div>
+                    <div class="transit-house">2nd House</div>
+                </div>
+                <div class="transit-item">
+                    <div class="transit-planet">♃</div>
+                    <div class="transit-sign">♋ Cancer</div>
+                    <div class="transit-house">3rd House</div>
+                </div>
+                <div class="transit-item">
+                    <div class="transit-planet">♄</div>
+                    <div class="transit-sign">♓ Pisces</div>
+                    <div class="transit-house">11th House</div>
+                </div>
+                <div class="transit-item">
+                    <div class="transit-planet">♀</div>
+                    <div class="transit-sign">♈ Aries</div>
+                    <div class="transit-house">12th House</div>
+                </div>
+                <div class="transit-item">
+                    <div class="transit-planet">☿</div>
+                    <div class="transit-sign">♒ Aquarius</div>
+                    <div class="transit-house">10th House</div>
+                </div>
+                <div class="transit-item">
+                    <div class="transit-planet">♇</div>
+                    <div class="transit-sign">♒ Aquarius</div>
+                    <div class="transit-house">10th House</div>
+                </div>
+            </div>
+            <br>
+            <p><strong>⚡ Key Aspect:</strong> Mars conjunct your natal Moon in Gemini energizes your speech and mental processes. You'll be sharp, quick, and potentially impatient. Watch for heated words.</p>
+            <br>
+            <p><strong>🌟 Jupiter's Blessing:</strong> Jupiter in your 3rd house forms a harmonious aspect to today's Sun — excellent for learning, short travels, and communications that expand your horizons.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-icon">⏰</span> Muhurta - Auspicious Times</h2>
+            <p style="margin-bottom: 15px; color: var(--text-secondary);">All times in Mauritius Time (MUT, UTC+4) / Sydney AEDT (UTC+11)</p>
+            <table class="muhurta-table">
+                <thead>
+                    <tr>
+                        <th>Period</th>
+                        <th>Time (MUT)</th>
+                        <th>Time (Sydney)</th>
+                        <th>Suitable For</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="muhurta-type">🌅 Brahma Muhurta</td>
+                        <td class="muhurta-time">4:48 - 5:36 AM</td>
+                        <td class="muhurta-time">11:48 AM - 12:36 PM</td>
+                        <td>Meditation, planning, spiritual practice</td>
+                    </tr>
+                    <tr>
+                        <td class="muhurta-type">☀️ Abhijit Muhurta</td>
+                        <td class="muhurta-time">11:46 AM - 12:34 PM</td>
+                        <td class="muhurta-time">6:46 - 7:34 PM</td>
+                        <td>Victory in endeavors, important decisions</td>
+                    </tr>
+                    <tr>
+                        <td class="muhurta-type">🌙 Amrit Kalam</td>
+                        <td class="muhurta-time">10:12 AM - 11:48 AM</td>
+                        <td class="muhurta-time">5:12 - 6:48 PM</td>
+                        <td>New ventures, healing, important meetings</td>
+                    </tr>
+                    <tr>
+                        <td class="muhurta-type">💼 Vijaya Muhurta</td>
+                        <td class="muhurta-time">2:24 - 3:12 PM</td>
+                        <td class="muhurta-time">9:24 - 10:12 PM</td>
+                        <td>Business dealings, negotiations</td>
+                    </tr>
+                    <tr>
+                        <td class="muhurta-type">🌑 Rahu Kalam</td>
+                        <td class="muhurta-time" style="color: var(--accent-red);">1:30 - 3:00 PM</td>
+                        <td class="muhurta-time" style="color: var(--accent-red);">8:30 - 10:00 PM</td>
+                        <td style="color: var(--accent-red);">⚠️ Avoid new beginnings</td>
+                    </tr>
+                    <tr>
+                        <td class="muhurta-type">🌑 Yama Gandam</td>
+                        <td class="muhurta-time" style="color: var(--accent-red);">6:00 - 7:30 AM</td>
+                        <td class="muhurta-time" style="color: var(--accent-red);">1:00 - 2:30 PM</td>
+                        <td style="color: var(--accent-red);">⚠️ Avoid important work</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2><span class="section-icon">📿</span> Practical Guidance</h2>
+            <div class="guidance-grid">
+                <div class="guidance-card career">
+                    <h3>💼 Career</h3>
+                    <p>The 10th house stellium (Sun, Mercury, Pluto) is screaming career transformation. You've been thinking about that job hunt — today's the day to update that CV. Mercury here gives you the gift of persuasion. Reach out to that connection. Apply for that role. The window for professional advancement is open, but it won't stay that way forever. Your current company's dying anyway — act before you're forced to.</p>
+                </div>
+                <div class="guidance-card love">
+                    <h3>❤️ Relationships</h3>
+                    <p>Venus in your 12th house suggests hidden romantic developments. Someone from your past or a private connection may resurface. With Mars activating your speech house, choose your words with romantic interests carefully — your intensity could either magnetize or repel. The Trayodashi tithi favors heartfelt conversations. If you've been avoiding a relationship talk, tonight's energy supports honesty.</p>
+                </div>
+                <div class="guidance-card health">
+                    <h3>💪 Health</h3>
+                    <p>Mars-Moon conjunction can spike adrenaline and cortisol. Watch for nervous energy manifesting as restlessness or digestive issues. Channel this fiery energy into physical activity — hit the gym hard today, but avoid overexertion. The Leo Moon asks you to honor your heart — both metaphorically and physically. Skip the cigarettes today; your cardiovascular system needs a break.</p>
+                </div>
+                <div class="guidance-card finance">
+                    <h3>💰 Finance</h3>
+                    <p>Mars in your 2nd house of wealth can indicate impulsive spending OR aggressive income generation. Be mindful of snap financial decisions today. The energy favors active wealth-building (side hustles, trading with discipline) over passive speculation. Your trading system — remember that? Review your rules before any positions. Jupiter's aspect suggests a learning opportunity that could pay dividends.</p>
+                </div>
+                <div class="guidance-card spiritual">
+                    <h3>🕉️ Spiritual</h3>
+                    <p>Sun in the 10th is about dharma through work — your spiritual practice today is doing your job with integrity. The 4th house Moon calls you to create sacred space at home. Light a lamp, sit in silence, connect with your roots. As an Ardra native, storms are your teachers — today's inner turbulence is just energy to be transmuted. Don't run from the intensity; breathe into it.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section drill-sergeant">
+            <h2><span class="section-icon">🗡️</span> The Drill Sergeant Report</h2>
+            <div class="drill-text">
+                <p>Listen up, Dibashis. The stars are handing you a plate of opportunities and you're sitting there doom-scrolling on your phone.</p>
+                <br>
+                <p>Sun in your 10th house of career with Mercury AND Pluto? That's not a horoscope, that's a fucking command from the universe to get your professional shit together. Your company is circling the drain — you know it, I know it, everyone knows it. So why the hell are you still just thinking about that job hunt?</p>
+                <br>
+                <p>Today's Trayodashi tithi is ruled by Kamadeva — god of desire. You want that $200k role? That trading income? That villa in Mauritius? <strong>GO TAKE IT.</strong> The universe doesn't reward people who sit on their hands waiting for permission.</p>
+                <br>
+                <p>Mars is lighting up your money house and your Moon. You have energy today — probably nervous, maybe restless energy. Good. Use it. Hit the gym. Send those LinkedIn messages. Update that CV. Do ONE thing that moves the needle.</p>
+                <br>
+                <p>And don't give me that "I'm tired from work" bullshit. You're 28. Your company is dying. You have maybe a year before the rug gets pulled. Every day you don't act is a day you're choosing comfort over the life you say you want.</p>
+                <br>
+                <p>The muhurta table shows Abhijit Muhurta at 6:46-7:34 PM Sydney time — the window of victory. That's your window to send that application, make that call, take that trade. Miss it and you're telling the universe you're not serious.</p>
+                <br>
+                <p style="font-weight: 700; color: #fff;">Bottom line: The planets are aligned. Are you?</p>
+            </div>
+        </div>
+
+        <div class="section mantra-section">
+            <h2><span class="section-icon">🕉️</span> Daily Mantra</h2>
+            <div class="mantra-text">
+                ॐ गं गणपतये नमः<br>
+                <span style="font-size: 1rem; color: var(--text-secondary);">Om Gam Ganapataye Namaha</span>
+            </div>
+            <p class="mantra-meaning">
+                <strong>Translation:</strong> "Salutations to Lord Ganesha, remover of obstacles and lord of beginnings."<br><br>
+                As an Ardra native ruled by Rahu, obstacles often appear suddenly and without warning. Today's Mars energy can create friction. Chant this mantra 108 times or simply hold its vibration before any important work today. Ganesha governs the root chakra — your foundation. Strengthen it before building higher.
+            </p>
+        </div>
+
+        <footer>
+            <div class="footer-logo">🗡️</div>
+            <p><strong>Astra Jyotishi</strong> — Vedic Astrology for the Modern Warrior</p>
+            <p style="margin-top: 10px; font-size: 0.8rem;">Generated for Dibashis | March 5, 2026</p>
+            <p style="margin-top: 5px; font-size: 0.75rem; opacity: 0.7;">This horoscope is for guidance and entertainment. Your actions create your destiny.</p>
+        </footer>
+    </div>
+</body>
+</html>
