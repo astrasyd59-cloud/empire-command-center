@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Operations Enablement — Custom 12-Week Plan | Dibs</title>
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a25;
+            --bg-tertiary: #252532;
+            --text-primary: #ffffff;
+            --text-secondary: #8892a0;
+            --accent-blue: #00d4ff;
+            --accent-purple: #b829f7;
+            --accent-green: #00ff88;
+            --accent-orange: #ff9f43;
+            --accent-red: #ff4757;
+            --border: #2a2a3a;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, rgba(184,41,247,0.2), rgba(0,212,255,0.2));
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .header h1 {
+            font-size: 1.75rem;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header p { color: var(--text-secondary); font-size: 0.9rem; }
+        
+        .container { max-width: 1000px; margin: 0 auto; padding: 1.5rem; }
+        
+        .skills-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .skills-box h3 {
+            color: var(--accent-orange);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .skill-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        
+        .skill-name {
+            width: 100px;
+            font-size: 0.9rem;
+        }
+        
+        .skill-level {
+            flex: 1;
+            height: 8px;
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+            margin: 0 1rem;
+            overflow: hidden;
+        }
+        
+        .skill-fill {
+            height: 100%;
+            border-radius: 4px;
+        }
+        
+        .skill-fill.sql { width: 10%; background: var(--accent-red); }
+        .skill-fill.python { width: 30%; background: var(--accent-orange); }
+        .skill-fill.ai { width: 5%; background: var(--accent-purple); }
+        
+        .skill-score {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        .week-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        
+        .week-header {
+            background: var(--bg-secondary);
+            padding: 1rem 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .week-title { font-weight: 600; font-size: 1rem; }
+        .week-focus { color: var(--accent-blue); font-size: 0.8rem; }
+        
+        .week-content { padding: 1.25rem; }
+        
+        .day-row {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .day-row:last-child { border-bottom: none; }
+        
+        .day-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            padding-top: 0.25rem;
+        }
+        
+        .day-task {
+            font-size: 0.9rem;
+        }
+        
+        .day-task strong {
+            color: var(--accent-green);
+            font-weight: 500;
+        }
+        
+        .badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin-left: 0.5rem;
+            text-transform: uppercase;
+        }
+        
+        .badge-cert { background: rgba(0,255,136,0.2); color: var(--accent-green); }
+        .badge-project { background: rgba(184,41,247,0.2); color: var(--accent-purple); }
+        .badge-free { background: rgba(0,212,255,0.2); color: var(--accent-blue); }
+        
+        .phase-header {
+            background: linear-gradient(135deg, rgba(184,41,247,0.3), rgba(0,212,255,0.3));
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0 1rem 0;
+        }
+        
+        .phase-header h2 {
+            font-size: 1.1rem;
+            margin: 0;
+        }
+        
+        .phase-header p {
+            margin: 0.25rem 0 0 0;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+        
+        .resource-link {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+        
+        .resource-link:hover { text-decoration: underline; }
+        
+        .note-box {
+            background: rgba(255,159,67,0.1);
+            border-left: 3px solid var(--accent-orange);
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .note-box strong { color: var(--accent-orange); }
+        
+        .project-card {
+            background: var(--bg-tertiary);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        .project-card h4 {
+            color: var(--accent-purple);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        .cost-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .cost-card {
+            background: var(--bg-card);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+        
+        .cost-card h4 {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cost-card p {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+        
+        .ibm-skip {
+            background: rgba(248,81,73,0.1);
+            border: 1px solid rgba(248,81,73,0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .ibm-skip strong { color: var(--accent-red); }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .day-row { grid-template-columns: 60px 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🗡️ AI Operations Enablement — 12-Week Custom Plan</h1>
+        <p>SQL: 1/10 | Python: 3/10 | Target: AI Ops Roles</p>
+    </div>
+    
+    <div class="container">
+        
+        <div class="skills-box">
+            <h3>📊 Current Skill Assessment</h3>
+            <div class="skill-bar">
+                <span class="skill-name">SQL</span>
+                <div class="skill-level"><div class="skill-fill sql"></div></div>
+                <span class="skill-score">1/10</span>
+            </div>
+            <div class="skill-bar">
+                <span class="skill-name">Python</span>
+                <div class="skill-level"><div class="skill-fill python"></div></div>
+                <span class="skill-score">3/10</span>
+            </div>
+            <div class="skill-bar">
+                <span class="skill-name">AI/ML</span>
+                <div class="skill-level"><div class="skill-fill ai"></div></div>
+                <span class="skill-score">Starting</span>
+            </div>
+        </div>
+        
+        
+        <div class="ibm-skip">
+            <strong>⚠️ SKIP IBM APPLIED AI/DATA SCIENCE</strong><br>
+            6-8 months, heavy traditional ML, minimal GenAI. Too slow for your pivot. Use that time for job applications instead.
+        </div>
+        
+        
+        <div class="phase-header">
+            <h2>📅 Phase 1: Foundations (Weeks 1-4)</h2>
+            <p>SQL + Python basics + AI workflow tools</p>
+        </div>
+        
+        <div class="week-card">
+            <div class="week-header">
+                <span class="week-title">Week 1: SQL Fundamentals</span>
+                <span class="week-focus">Mar 3-9</span>
+            </div>
+            <div class="week-content">
+                <div class="day-row">
+                    <span class="day-label">Mon</span>
+                    <span class="day-task"><strong>SQL Basics:</strong> SELECT, WHERE, ORDER BY <span class="badge badge-free">Free</span><br><a href="https://www.sqlteaching.com/" class="resource-link">sqlteaching.com</a> or <a href="https://sqlbolt.com/" class="resource-link">sqlbolt.com</a></span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Wed</span>
+                    <span class="day-task"><strong>SQL Joins:</strong> INNER, LEFT, RIGHT, JOINs with multiple tables</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Fri</span>
+                    <span class="day-task"><strong>SQL Aggregations:</strong> GROUP BY, COUNT, SUM, AVG, HAVING</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Weekend</span>
+                    <span class="day-task"><strong>Practice:</strong> 10 SQL problems on <a href="https://leetcode.com/problemset/database/" class="resource-link">LeetCode</a></span>
+                </div>
+                
+                <div class="note-box">
+                    <strong>Why SQL Week 1:</strong> AI Operations roles pull data constantly. You can't be the person asking engineers for CSV exports.
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="week-card">
+            <div class="week-header">
+                <span class="week-title">Week 2: Python + Pandas (Your Level)</span>
+                <span class="week-focus">Mar 10-16</span>
+            </div>
+            <div class="week-content">
+                <div class="day-row">
+                    <span class="day-label">Mon</span>
+                    <span class="day-task"><strong>Python Review:</strong> Lists, dicts, loops, functions <span class="badge badge-free">Free</span><br><a href="https://www.kaggle.com/learn/python" class="resource-link">Kaggle Learn</a> (first 4 lessons)</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Wed</span>
+                    <span class="day-task"><strong>Pandas Intro:</strong> DataFrames, read_csv, basic operations<br><a href="https://www.kaggle.com/learn/pandas" class="resource-link">Kaggle: Pandas</a> (lessons 1-3)</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Fri</span>
+                    <span class="day-task"><strong>Pandas + SQL:</strong> Query databases with Python (sqlite3, pandas.read_sql)</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Weekend</span>
+                    <span class="day-task"><strong>Project:</strong> Load trading data CSV → analyze with Pandas <span class="badge badge-project">GitHub</span></span>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="week-card">
+            <div class="week-header">
+                <span class="week-title">Week 3: Zapier + No-Code AI Workflows</span>
+                <span class="week-focus">Mar 17-23</span>
+            </div>
+            <div class="week-content">
+                <div class="day-row">
+                    <span class="day-label">Mon</span>
+                    <span class="day-task"><strong>Zapier Basics:</strong> Triggers, actions, multi-step zaps <span class="badge badge-free">Free Tier</span><br>Build 3 simple automations (Gmail → Sheets, etc.)</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Wed</span>
+                    <span class="day-task"><strong>Zapier + OpenAI:</strong> Add GPT-4 to your workflows<br>Auto-summarize emails, classify support tickets</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Fri</span>
+                    <span class="day-task"><strong>Make.com:</strong> Alternative to Zapier, more visual<br>Build same workflow in Make, compare</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Weekend</span>
+                    <span class="day-task"><strong>Project:</strong> AI workflow for your current job (report automation, data processing) <span class="badge badge-project">GitHub</span></span>
+                </div>
+                
+                <div class="note-box">
+                    <strong>Job Skill Match:</strong> AI Operations roles want people who can build AI workflows without coding everything. Zapier/Make + AI = instant productivity demos.
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="week-card">
+            <div class="week-header">
+                <span class="week-title">Week 4: Google GenAI Path (Continue)</span>
+                <span class="week-focus">Mar 24-30</span>
+            </div>
+            <div class="week-content">
+                <div class="day-row">
+                    <span class="day-label">Mon</span>
+                    <span class="day-task"><strong>Google GenAI:</strong> Introduction to Generative AI module <span class="badge badge-cert">Cert</span></span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Wed</span>
+                    <span class="day-task"><strong>Google GenAI:</strong> LLMs + Prompt Engineering modules</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Fri</span>
+                    <span class="day-task"><strong>Google GenAI:</strong> Responsible AI + wrap-up</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Weekend</span>
+                    <span class="day-task"><strong>Certificate:</strong> Complete Google GenAI Learning Path <span class="badge badge-cert">LinkedIn</span></span>
+                </div>
+                
+                <div class="project-card">
+                    <h4>📊 Phase 1 Capstone</h4>
+                    <p>Build an AI-powered reporting dashboard using SQL + Python + Zapier. Document on GitHub with before/after metrics.</p>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="phase-header">
+            <h2>📅 Phase 2: AI Technical Skills (Weeks 5-8)</h2>
+            <p>RAG + Agents + Python API integration</p>
+        </div>
+        
+        <div class="week-card">
+            <div class="week-header">
+                <span class="week-title">Week 5: OpenAI API + Python Integration</span>
+                <span class="week-focus">Mar 31 - Apr 6</span>
+            </div>
+            <div class="week-content">
+                <div class="day-row">
+                    <span class="day-label">Mon</span>
+                    <span class="day-task"><strong>OpenAI API:</strong> Setup, first API calls, understanding tokens/cost <span class="badge badge-free">Free Tier</span><br><a href="https://platform.openai.com/docs/quickstart" class="resource-link">OpenAI Docs</a></span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Wed</span>
+                    <span class="day-task"><strong>Prompt Engineering:</strong> System prompts, few-shot, chain-of-thought<br><a href="https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/" class="resource-link">DeepLearning.AI (Free)</a></span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Fri</span>
+                    <span class="day-task"><strong>Python + OpenAI:</strong> Build a script that processes your trading data with GPT</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Weekend</span>
+                    <span class="day-task"><strong>Project:</strong> AI trading journal analyzer — feed trades, get insights <span class="badge badge-project">GitHub</span></span>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="week-card">
+            <div class="week-header">
+                <span class="week-title">Week 6: Vector Databases + RAG Basics</span>
+                <span class="week-focus">Apr 7-13</span>
+            </div>
+            <div class="week-content">
+                <div class="day-row">
+                    <span class="day-label">Mon</span>
+                    <span class="day-task"><strong>Embeddings:</strong> What are they, OpenAI embeddings API <span class="badge badge-free">Free</span></span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Wed</span>
+                    <span class="day-task"><strong>ChromaDB:</strong> Local vector database, store + retrieve embeddings<br><a href="https://docs.trychroma.com/" class="resource-link">Chroma Docs</a></span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Fri</span>
+                    <span class="day-task"><strong>RAG Pipeline:</strong> Document → chunks → embeddings → retrieve → GPT answer</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Weekend</span>
+                    <span class="day-task"><strong>Project:</strong> RAG system for trading strategy docs — ask questions, get answers <span class="badge badge-project">GitHub</span></span>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="week-card">
+            <div class="week-header">
+                <span class="week-title">Week 7: LangChain + AI Agents</span>
+                <span class="week-focus">Apr 14-20</span>
+            </div>
+            <div class="week-content">
+                <div class="day-row">
+                    <span class="day-label">Mon</span>
+                    <span class="day-task"><strong>LangChain Intro:</strong> Chains, prompts, models <span class="badge badge-cert">Cert</span><br><a href="https://www.deeplearning.ai/short-courses/langchain-for-llm-application-development/" class="resource-link">DeepLearning.AI ($49)</a></span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Wed</span>
+                    <span class="day-task"><strong>LangChain + RAG:</strong> Document loaders, text splitters, retrieval chains</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Fri</span>
+                    <span class="day-task"><strong>AI Agents:</strong> Tools, ReAct pattern, agent loops<br>Build agent that can search web + answer questions</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Weekend</span>
+                    <span class="day-task"><strong>Project:</strong> Trading research agent — finds news, summarizes, suggests trades <span class="badge badge-project">GitHub</span></span>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="week-card">
+            <div class="week-header">
+                <span class="week-title">Week 8: NVIDIA RAG Agents Course</span>
+                <span class="week-focus">Apr 21-27</span>
+            </div>
+            <div class="week-content">
+                <div class="day-row">
+                    <span class="day-label">Mon</span>
+                    <span class="day-task"><strong>NVIDIA Course:</strong> Building RAG Agents with LLMs — Modules 1-2 <span class="badge badge-cert">NVIDIA Cert</span><br><a href="https://www.nvidia.com/en-us/training/" class="resource-link">nvidia.com/training</a></span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Wed</span>
+                    <span class="day-task"><strong>NVIDIA Course:</strong> Modules 3-4 (Advanced RAG patterns)</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Fri</span>
+                    <span class="day-task"><strong>NVIDIA Course:</strong> Modules 5-6 (Production deployment)</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Weekend</span>
+                    <span class="day-task"><strong>Certificate:</strong> Complete NVIDIA Building RAG Agents <span class="badge badge-cert">LinkedIn</span></span>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="phase-header">
+            <h2>📅 Phase 3: Production + Portfolio (Weeks 9-12)</h2>
+            <p>Deploy + Job prep + Interview ready</p>
+        </div>
+        
+        <div class="week-card">
+            <div class="week-header">
+                <span class="week-title">Week 9: Deploy Your AI Apps</span>
+                <span class="week-focus">Apr 28 - May 4</span>
+            </div>
+            <div class="week-content">
+                <div class="day-row">
+                    <span class="day-label">Mon</span>
+                    <span class="day-task"><strong>Streamlit:</strong> Build web UI for your RAG app <span class="badge badge-free">Free</span><br>No frontend skills needed, pure Python</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Wed</span>
+                    <span class="day-task"><strong>Deployment:</strong> Deploy to Streamlit Cloud or Hugging Face Spaces</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Fri</span>
+                    <span class="day-task"><strong>GitHub Polish:</strong> READMEs, demos, clear documentation</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Weekend</span>
+                    <span class="day-task"><strong>Project:</strong> Live deployed AI app with public URL <span class="badge badge-project">Portfolio</span></span>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="week-card">
+            <div class="week-header">
+                <span class="week-title">Week 10: Advanced SQL + DataCamp Cert</span>
+                <span class="week-focus">May 5-11</span>
+            </div>
+            <div class="week-content">
+                <div class="day-row">
+                    <span class="day-label">Mon</span>
+                    <span class="day-task"><strong>Advanced SQL:</strong> Window functions, CTEs, performance <span class="badge badge-cert">Cert</span><br>DataCamp: Intermediate SQL</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Wed</span>
+                    <span class="day-task"><strong>SQL + Python:</strong> Connect to PostgreSQL, query from Python</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Fri</span>
+                    <span class="day-task"><strong>DataCamp:</strong> Complete Data Analyst Associate track</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Weekend</span>
+                    <span class="day-task"><strong>Certificate:</strong> DataCamp Data Analyst Associate <span class="badge badge-cert">LinkedIn</span></span>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="week-card">
+            <div class="week-header">
+                <span class="week-title">Week 11: Portfolio + LinkedIn</span>
+                <span class="week-focus">May 12-18</span>
+            </div>
+            <div class="week-content">
+                <div class="day-row">
+                    <span class="day-label">Mon</span>
+                    <span class="day-task"><strong>GitHub Portfolio:</strong> Polish all projects, consistent READMEs</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Wed</span>
+                    <span class="day-task"><strong>LinkedIn:</strong> Update headline, skills, featured projects, certificates</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Fri</span>
+                    <span class="day-task"><strong>Resume:</strong> AI Operations focus, metrics, project links</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Weekend>
+                    <span class="day-task"><strong>Content:</strong> Write LinkedIn post about your AI learning journey <span class="badge badge-project">Network</span></span>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="week-card">
+            <div class="week-header">
+                <span class="week-title">Week 12: Interview Prep + Job Applications</span>
+                <span class="week-focus">May 19-25</span>
+            </div>
+            <div class="week-content">
+                <div class="day-row">
+                    <span class="day-label">Mon</span>
+                    <span class="day-task"><strong>Interview Prep:</strong> Common AI Ops questions, STAR method</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Wed</span>
+                    <span class="day-task"><strong>Mock Interview:</strong> Practice explaining your projects</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Fri</span>
+                    <span class="day-task"><strong>Apply:</strong> 5 AI Operations roles (Seek, LinkedIn)</span>
+                </div>
+                <div class="day-row">
+                    <span class="day-label">Weekend</span>
+                    <span class="day-task"><strong>Celebrate:</strong> 12 weeks done. You're job-ready. <span class="badge badge-cert">🎉</span></span>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="phase-header">
+            <h2>💰 Cost Summary</h2>
+        </div>
+        
+        <div class="cost-summary">
+            <div class="cost-card">
+                <h4>DataCamp</h4>
+                <p>~$75</p>
+            </div>
+            <div class="cost-card">
+                <h4>DeepLearning.AI</h4>
+                <p>~$49</p>
+            </div>
+            <div class="cost-card">
+                <h4>OpenAI API</h4>
+                <p>~$20</p>
+            </div>
+            <div class="cost-card">
+                <h4>TOTAL</h4>
+                <p>~$144</p>
+            </div>
+        </div>
+        
+        
+        <div class="note-box">
+            <strong>📌 Your Certificate Stack (12 Weeks):</strong><br>
+            1. Google Generative AI Learning Path (Free)<br>
+            2. DeepLearning.AI LangChain ($49)<br>
+            3. NVIDIA Building RAG Agents (Free)<br>
+            4. DataCamp Data Analyst Associate (~$75)<br>
+            <br>
+            Plus: 6+ GitHub projects tied to your trading journey
+        </div>
+        
+    </div>
+    
+    <footer>
+        🗡️ Astra Command Center | Custom AI Operations Enablement Plan | Start: March 3, 2026
+    </footer>
+</body>
+</html>

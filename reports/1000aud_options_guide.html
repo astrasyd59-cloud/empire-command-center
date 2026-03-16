@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1,000 AUD Options Trading Guide | CFA-Level Beginner's Roadmap</title>
+    <style>
+        :root {
+            --gold-primary: #C9A227;
+            --gold-light: #D4AF37;
+            --gold-dark: #B8860B;
+            --bg-dark: #0D1117;
+            --bg-card: #161B22;
+            --bg-elevated: #1C2128;
+            --text-primary: #E6EDF3;
+            --text-secondary: #8B949E;
+            --text-muted: #6E7681;
+            --accent-green: #238636;
+            --accent-red: #DA3633;
+            --accent-blue: #58A6FF;
+            --border-subtle: #30363D;
+            --border-gold: rgba(201, 162, 39, 0.3);
+            --shadow-gold: 0 0 20px rgba(201, 162, 39, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #0a0e14 100%);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-elevated) 100%);
+            border-bottom: 2px solid var(--gold-primary);
+            padding: 2.5rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold-dark), var(--gold-primary), var(--gold-light));
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold-primary));
+            color: var(--bg-dark);
+            padding: 0.35rem 0.85rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 50%, var(--gold-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle { color: var(--text-secondary); font-size: 1.1rem; max-width: 800px; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        .warning-banner {
+            background: linear-gradient(135deg, rgba(218, 54, 51, 0.15) 0%, rgba(218, 54, 51, 0.05) 100%);
+            border: 1px solid var(--accent-red);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .warning-banner h2 {
+            color: var(--accent-red);
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .section h2 {
+            color: var(--gold-primary);
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border-gold);
+        }
+
+        .section h3 {
+            color: var(--gold-light);
+            font-size: 1.15rem;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        .math-box {
+            background: var(--bg-dark);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+
+        .math-box .highlight {
+            color: var(--accent-red);
+            font-weight: bold;
+        }
+
+        .math-box .ok {
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: var(--bg-elevated);
+            color: var(--gold-light);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+        }
+
+        tr:hover td { background: rgba(201, 162, 39, 0.05); }
+
+        .callout {
+            background: linear-gradient(135deg, rgba(201, 162, 39, 0.1) 0%, rgba(201, 162, 39, 0.03) 100%);
+            border-left: 4px solid var(--gold-primary);
+            border-radius: 0 8px 8px 0;
+            padding: 1.25rem;
+            margin: 1.5rem 0;
+        }
+
+        .callout-title {
+            color: var(--gold-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .strategy-card {
+            background: var(--bg-dark);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .strategy-card h4 {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .tag.success { background: rgba(35, 134, 54, 0.2); color: var(--accent-green); }
+        .tag.warning { background: rgba(201, 162, 39, 0.2); color: var(--gold-primary); }
+        .tag.danger { background: rgba(218, 54, 51, 0.2); color: var(--accent-red); }
+
+        .step-box {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: var(--bg-dark);
+            border-radius: 8px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold-primary));
+            color: var(--bg-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            color: var(--gold-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .footer {
+            background: var(--bg-card);
+            border-top: 1px solid var(--border-subtle);
+            padding: 2rem 1.5rem;
+            margin-top: 3rem;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .step-box { flex-direction: column; }
+            table { font-size: 0.85rem; }
+            th, td { padding: 0.75rem 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <span class="badge">CFA-Level Beginner's Guide</span>
+            <h1>1,000 AUD Options Trading Guide</h1>
+            <p class="subtitle">How to start trading options with limited capital while staying alive long enough to learn</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Reality Check -->
+        <div class="warning-banner">
+            <h2>⚠️ BRUTAL TRUTH FIRST</h2>
+            <p>With 1,000 AUD, you <strong>cannot</strong> sell naked puts on DAX. One contract = €5 × 25,000 strike = €125,000 (~$205,000 AUD) notional exposure. Even on margin, brokers require 10-20% = $20-40K. Your 1,000 AUD would evaporate on a 0.5% move against you.</p>
+        </div>
+
+        <!-- The Math -->
+        <section class="section">
+            <h2>💰 The Capital Reality</h2>
+            
+            <div class="math-box">
+                <strong>DAX Naked Put Requirements:</strong><br><br>
+                Strike: 25,000<br>
+                Contract Multiplier: €5 per point<br>
+                Notional if Assigned: 25,000 × €5 = <span class="highlight">€125,000 (~$205,000 AUD)</span><br><br>
+                
+                Margin Requirement (10-20%): <span class="highlight">$20,000 - $40,000 AUD</span><br>
+                Your Capital: <span class="ok">$1,000 AUD</span><br><br>
+                
+                <strong>Result:</strong> <span class="highlight">❌ IMPOSSIBLE</span> — You cannot open this position.
+            </div>
+
+            <div class="callout">
+                <div class="callout-title">💡 What This Means</div>
+                <p>With 1,000 AUD, your only options are: (1) <strong>Defined-risk strategies</strong> like spreads where max loss is capped, or (2) <strong>Smaller underlyings</strong> with lower notional values. DAX naked puts are off the table entirely.</p>
+            </div>
+        </section>
+
+        <!-- Step A: Reading Options Chain -->
+        <section class="section">
+            <h2>📖 Step A: How to Read an Options Chain</h2>
+            
+            <div class="step-box">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Expiry Date (DTE)</h4>
+                    <p><strong>DTE = Days to Expiry.</strong> Shorter DTE = faster time decay (good for sellers), but less time to be right. For beginners: 20-45 DTE is the sweet spot. Avoid 0-7 DTE ("0 DTE") until you have 100+ trades under your belt.</p>
+                </div>
+            </div>
+
+            <div class="step-box">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Strike Prices (ITM, ATM, OTM)</h4>
+                    <p><strong>ATM (At-The-Money):</strong> Strike ≈ Current price. Highest premium, 50/50 chance.<br>
+                    <strong>OTM (Out-of-The-Money):</strong> Strike below current price (for puts). Lower premium, higher probability of profit.<br>
+                    <strong>ITM (In-The-Money):</strong> Strike above current price. High premium, behaves like stock.</p>
+                </div>
+            </div>
+
+            <div class="step-box">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Bid/Ask Spread (Liquidity)</h4>
+                    <p>Always check the spread. <strong>Bid</strong> = what buyers will pay. <strong>Ask</strong> = what sellers want. Wide spreads (>10% of premium) = poor liquidity. You'll lose money just entering/exiting. Look for tight spreads (&lt;5%).</p>
+                </div>
+            </div>
+
+            <div class="step-box">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>Implied Volatility (IV)</h4>
+                    <p><strong>IV Rank (0-100%):</strong> Where current IV sits vs. 52-week range.<br>
+                    • 0-30%: Low IV (bad for selling, good for buying)<br>
+                    • 30-70%: Medium IV (neutral)<br>
+                    • 70-100%: High IV (good for selling, fear premium)<br><br>
+                    <strong>Rule:</strong> Sell options when IV Rank > 50%.</p>
+                </div>
+            </div>
+
+            <div class="step-box">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h4>Delta (Probability Proxy)</h4>
+                    <p>Delta ≈ Probability of expiring ITM. A put with 0.20 delta has ~20% chance of being ITM at expiry, or 80% chance of expiring worthless (good for sellers). <strong>Target: 0.15-0.30 delta for OTM puts.</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Suitable Strategies -->
+        <section class="section">
+            <h2>🎯 Strategies for 1,000 AUD Capital</h2>
+
+            <div class="strategy-card">
+                <h4>✅ PUT CREDIT SPREADS (Recommended)</h4>
+                <span class="tag success">Defined Risk</span>
+                <span class="tag success">Beginner-Friendly</span>
+                <p style="margin-top: 1rem; color: var(--text-secondary);">
+                    Sell a put at one strike, buy a cheaper put further down. Max loss = width between strikes minus premium received. Max profit = premium collected.
+                </p>
+                
+                <table>
+                    <tr>
+                        <th>Example: DAX Mar 20</th>
+                        <th>Strike</th>
+                        <th>Premium</th>
+                    </tr>
+                    <tr>
+                        <td>Sell Put</td>
+                        <td>24,800</td>
+                        <td>+€95</td>
+                    </tr>
+                    <tr>
+                        <td>Buy Put</td>
+                        <td>24,400</td>
+                        <td>-€35</td>
+                    </tr>
+                    <tr style="background: rgba(35, 134, 54, 0.1);">
+                        <td><strong>Net Credit</strong></td>
+                        <td>—</td>
+                        <td><strong>€60 (~$100 AUD)</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Max Risk</td>
+                        <td>400 points × €5</td>
+                        <td>€2,000 (~$540 AUD)</td>
+                    </tr>
+                </table>
+
+                <div class="callout">
+                    <div class="callout-title">Position Sizing for 1,000 AUD</div>
+                    <p><strong>Maximum 1 contract.</strong> This spread uses $540 of your $1,000, leaving $460 for other trades or cushion. <strong>Never risk more than 50% of capital on one trade.</strong></p>
+                </div>
+            </div>
+
+            <div class="strategy-card">
+                <h4>⚠️ IRON CONDORS (Advanced)</h4>
+                <span class="tag warning">Higher Complexity</span>
+                <span class="tag success">Defined Risk</span>
+                <p style="margin-top: 1rem; color: var(--text-secondary);">
+                    Sell a put spread AND a call spread. Profits if price stays in a range. Higher probability, lower max profit. Requires understanding of both sides. Save for after you've mastered put spreads.
+                </p>
+            </div>
+
+            <div class="strategy-card">
+                <h4>❌ WHY NOT 0 DTE?</h4>
+                <span class="tag danger">High Risk</span>
+                <span class="tag danger">Avoid as Beginner</span>
+                <p style="margin-top: 1rem; color: var(--text-secondary);">
+                    0 DTE (same-day expiry) offers huge theta decay but:<br>
+                    • Gamma risk is extreme (price moves kill you fast)<br>
+                    • No time to adjust if wrong<br>
+                    • Requires constant monitoring<br>
+                    • One bad trade wipes out 10 good ones<br><br>
+                    <strong>Your friend does 0 DTE. He has experience and larger capital. You don't. Yet.</strong>
+                </p>
+            </div>
+        </section>
+
+        <!-- Specific Trade Ideas -->
+        <section class="section">
+            <h2>📊 Specific DAX Trade Ideas (1,000 AUD)</h2>
+
+            <h3>Trade #1: Conservative Starter</h3>
+            <table>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Strategy</td>
+                    <td>Put Credit Spread</td>
+                </tr>
+                <tr>
+                    <td>Expiry</td>
+                    <td>Mar 20, 2026 (24 DTE)</td>
+                </tr>
+                <tr>
+                    <td>Short Strike</td>
+                    <td>24,800 (0.18 delta)</td>
+                </tr>
+                <tr>
+                    <td>Long Strike</td>
+                    <td>24,400</td>
+                </tr>
+                <tr>
+                    <td>Width</td>
+                    <td>400 points</td>
+                </tr>
+                <tr>
+                    <td>Net Credit</td>
+                    <td>~€60 ($100 AUD)</td>
+                </tr>
+                <tr>
+                    <td>Max Risk</td>
+                    <td>€2,000 - €60 = €1,940 ($540 AUD)</td>
+                </tr>
+                <tr>
+                    <td>Max Profit</td>
+                    <td>$100 AUD (18.5% return on risk)</td>
+                </tr>
+                <tr>
+                    <td>Breakeven</td>
+                    <td>24,740</td>
+                </tr>
+                <tr>
+                    <td>POP</td>
+                    <td>~82%</td>
+                </tr>
+            </table>
+
+            <h3>Trade #2: Aggressive (Higher Risk/Reward)</h3>
+            <table>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Strategy</td>
+                    <td>Put Credit Spread</td>
+                </tr>
+                <tr>
+                    <td>Expiry</td>
+                    <td>Feb 27, 2026 (3 DTE) — Weekly</td>
+                </tr>
+                <tr>
+                    <td>Short Strike</td>
+                    <td>24,900 (0.25 delta)</td>
+                </tr>
+                <tr>
+                    <td>Long Strike</td>
+                    <td>24,500</td>
+                </tr>
+                <tr>
+                    <td>Net Credit</td>
+                    <td>~€45 ($75 AUD)</td>
+                </tr>
+                <tr>
+                    <td>Max Risk</td>
+                    <td>€2,000 - €45 = €1,955 ($535 AUD)</td>
+                </tr>
+                <tr>
+                    <td>Max Profit</td>
+                    <td>$75 AUD (14% return on risk)</td>
+                </tr>
+                <tr>
+                    <td>POP</td>
+                    <td>~75%</td>
+                </tr>
+            </table>
+
+            <div class="callout">
+                <div class="callout-title">⚠️ Trade #2 Warning</div>
+                <p>Weekly options (3 DTE) have extreme gamma risk. The market can move against you faster than you can react. <strong>Start with Trade #1 (monthly).</strong> Master the mechanics before going shorter duration.</p>
+            </div>
+        </section>
+
+        <!-- Alternative Underlyings -->
+        <section class="section">
+            <h2>🌍 Alternative Underlyings (Better for Small Accounts)</h2>
+
+            <table>
+                <tr>
+                    <th>Underlying</th>
+                    <th>Notional</th>
+                    <th>Spread Width</th>
+                    <th>Min Capital</th>
+                    <th>Suitable?</th>
+                </tr>
+                <tr>
+                    <td>DAX (Germany 40)</td>
+                    <td>~$205K AUD</td>
+                    <td>400 pts = $3,300</td>
+                    <td>$5,000+</td>
+                    <td><span class="tag warning">Risky</span></td>
+                </tr>
+                <tr>
+                    <td>SPY (S&P 500 ETF)</td>
+                    <td>~$800 AUD/contract</td>
+                    <td>$5 = $500</td>
+                    <td>$1,000</td>
+                    <td><span class="tag success">✓ Good</span></td>
+                </tr>
+                <tr>
+                    <td>QQQ (Nasdaq ETF)</td>
+                    <td>~$500 AUD/contract</td>
+                    <td>$5 = $500</td>
+                    <td>$1,000</td>
+                    <td><span class="tag success">✓ Good</span></td>
+                </tr>
+                <tr>
+                    <td>IWM (Russell 2000)</td>
+                    <td>~$220 AUD/contract</td>
+                    <td>$5 = $500</td>
+                    <td>$500</td>
+                    <td><span class="tag success">✓ Best</span></td>
+                </tr>
+                <tr>
+                    <td>Micro Futures (/MES)</td>
+                    <td>~$25K USD</td>
+                    <td>50 pts = $2,500</td>
+                    <td>$3,000</td>
+                    <td><span class="tag warning">Medium</span></td>
+                </tr>
+            </table>
+
+            <div class="callout">
+                <div class="callout-title">💡 Better Starting Point</div>
+                <p><strong>IWM (Russell 2000 ETF)</strong> is your best friend with 1,000 AUD. Lower notional, high liquidity, smaller moves. You can trade 1-2 contracts with defined risk instead of sweating every DAX tick.</p>
+            </div>
+        </section>
+
+        <!-- CFA Thought Nuggets -->
+        <section class="section">
+            <h2>🎓 CFA Thought Nuggets</h2>
+
+            <h3>1. Risk-Adjusted Returns</h3>
+            <p style="color: var(--text-secondary);">
+                Making $100 on $500 risk (20% return) sounds great. But if you have an 80% chance of success, your <strong>expected value</strong> is: (0.80 × $100) + (0.20 × -$500) = $80 - $100 = <span class="highlight">-$20</span>. You're expected to lose money despite the high win rate!
+            </p>
+
+            <div class="math-box">
+                <strong>Expected Value Formula:</strong><br><br>
+                EV = (Probability of Profit × Max Profit) + (Probability of Loss × Max Loss)<br><br>
+                For positive edge: (POP × Max Profit) > ((1 - POP) × |Max Loss|)
+            </div>
+
+            <h3>2. Position Sizing (Kelly Criterion Simplified)</h3>
+            <p style="color: var(--text-secondary);">
+                The Kelly Criterion tells you optimal bet size: <strong>f = (bp - q) / b</strong><br>
+                Where: b = odds, p = win probability, q = loss probability<br><br>
+                With 1,000 AUD and a trade risking $540: <strong>Kelly suggests 2-5% of portfolio.</strong> You'd need $10,000-25,000 to safely take this trade. With 1,000 AUD, you're essentially gambling.
+            </p>
+
+            <h3>3. Why Retail Traders Fail at Options</h3>
+            <ul style="color: var(--text-secondary); margin: 1rem 0 1rem 2rem;">
+                <li><strong>Overconfidence:</strong> Win 5 trades, think you're a genius, go big on #6, blow up.</li>
+                <li><strong>Position Sizing:</strong> Risking 50%+ of capital on single trades.</li>
+                <li><strong>Early Exit:</strong> Taking profits too early, letting losers run (disposition effect).</li>
+                <li><strong>Complexity Creep:</strong> Adding legs to trades they don't understand.</li>
+                <li><strong>Gamma Blindness:</strong> Not respecting how fast short-dated options move.</li>
+            </ul>
+        </section>
+
+        <!-- Action Plan -->
+        <section class="section">
+            <h2>🚀 Your 4-Week Action Plan</h2>
+
+            <div class="step-box">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Week 1-2: Paper Trade</h4>
+                    <p>Open a paper trading account (CMC, Interactive Brokers). Trade 10 put credit spreads on IWM or SPY. Track every trade: entry, exit, P&L, what you learned. <strong>Do not use real money yet.</strong></p>
+                </div>
+            </div>
+
+            <div class="step-box">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Week 3: First Live Trade</h4>
+                    <p>Fund account with $500 (not the full 1,000). Trade 1 contract maximum. Set a hard stop: if you lose $100, stop trading for the week and review.</p>
+                </div>
+            </div>
+
+            <div class="step-box">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Week 4: Scale or Stop</h4>
+                    <p>If profitable after 5+ live trades with proper sizing: continue with remaining $500. If unprofitable: go back to paper trading for another 2 weeks.</p>
+                </div>
+            </div>
+
+            <div class="step-box">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>Ongoing: The 1% Rule</h4>
+                    <p>Never risk more than 1% of your portfolio on a single trade. With $1,000, that's $10. This seems tiny, but it's how you survive long enough to learn. Scale up position size only as your account grows.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Summary -->
+        <section class="section">
+            <h2>📝 Bottom Line</h2>
+            
+            <div class="callout">
+                <div class="callout-title">The Honest Truth</div>
+                <p>
+                    With 1,000 AUD, you're not going to get rich trading options. You're going to learn. Treat this as <strong>tuition money</strong>, not investment capital. Your goal: survive 100 trades while learning the mechanics. Profit is a bonus.<br><br>
+                    <strong>Start with:</strong> IWM put credit spreads, 30-45 DTE, 0.15-0.20 delta, 1 contract max.<br>
+                    <strong>Avoid:</strong> DAX (too big), 0 DTE (too fast), naked options (too risky).<br>
+                    <strong>Remember:</strong> Your friend has more experience and capital. Don't compare your Chapter 1 to his Chapter 20.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p><strong>1,000 AUD Options Trading Guide</strong></p>
+        <p>CFA-Level Methodology | For Educational Purposes Only | February 24, 2026</p>
+        <p style="margin-top: 1rem; font-size: 0.85rem;">
+            Trading options involves substantial risk of loss. This guide does not constitute investment advice. 
+            Past performance is not indicative of future results. Consult a qualified financial advisor before trading.
+        </p>
+    </footer>
+</body>
+</html>

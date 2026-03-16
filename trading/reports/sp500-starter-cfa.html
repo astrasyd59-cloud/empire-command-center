@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S&P 500 Starter Analysis Report | CFA Level I Framework</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-color: #fafafa;
+            --grid-color: rgba(200, 200, 200, 0.3);
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --accent-blue: #1e3a5f;
+            --accent-gold: #b8860b;
+            --card-bg: #ffffff;
+            --border-color: #d0d0d0;
+            --success: #2e7d32;
+            --danger: #c62828;
+            --cfa-box: #f5f5dc;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --grid-color: rgba(100, 100, 100, 0.2);
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --accent-blue: #64b5f6;
+            --accent-gold: #ffd700;
+            --card-bg: #2a2a2a;
+            --border-color: #404040;
+            --cfa-box: #3a3a2a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 20px 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom: 2px solid var(--accent-gold);
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: var(--accent-blue);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .header .date {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 15px;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-family: inherit;
+            color: var(--text-primary);
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.05);
+        }
+
+        /* Section Headers */
+        .section {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .section h2 {
+            color: var(--accent-blue);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--accent-gold);
+        }
+
+        .section h3 {
+            color: var(--accent-blue);
+            font-size: 1.4rem;
+            margin: 25px 0 15px;
+        }
+
+        /* CFA Concept Box */
+        .cfa-box {
+            background: var(--cfa-box);
+            border-left: 4px solid var(--accent-gold);
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .cfa-box .cfa-title {
+            font-weight: bold;
+            color: var(--accent-blue);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .cfa-box .cfa-ref {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* Jargon Tooltip */
+        .jargon {
+            border-bottom: 1px dotted var(--accent-gold);
+            cursor: help;
+            position: relative;
+        }
+
+        .jargon:hover::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-blue);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            z-index: 100;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        /* Tables */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+
+        .data-table th {
+            background: var(--accent-blue);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .data-table td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .data-table tr:hover {
+            background: rgba(184, 134, 11, 0.1);
+        }
+
+        .positive { color: var(--success); font-weight: bold; }
+        .negative { color: var(--danger); font-weight: bold; }
+
+        /* Stock Card */
+        .stock-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .stock-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .stock-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .stock-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stock-symbol {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-blue);
+        }
+
+        .stock-name {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .stock-return {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .lens-section {
+            margin: 15px 0;
+            padding: 12px;
+            background: rgba(30, 58, 95, 0.05);
+            border-radius: 6px;
+        }
+
+        .lens-title {
+            font-weight: bold;
+            color: var(--accent-blue);
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .lens-content {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Chart Container */
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin: 25px 0;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+        }
+
+        /* Sector Tags */
+        .sector-tag {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin: 2px;
+        }
+
+        /* Volume Indicator */
+        .volume-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 5px 0;
+        }
+
+        .volume-bar {
+            height: 8px;
+            background: var(--accent-gold);
+            border-radius: 4px;
+            transition: width 0.5s;
+        }
+
+        /* Legend */
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(30, 58, 95, 0.05);
+            border-radius: 6px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 3px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .stock-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .chart-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .data-table {
+                font-size: 0.85rem;
+            }
+            
+            .data-table th,
+            .data-table td {
+                padding: 8px;
+            }
+        }
+
+        /* Executive Summary */
+        .exec-summary {
+            background: linear-gradient(135deg, var(--accent-blue) 0%, #2c5282 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .exec-summary h2 {
+            color: var(--accent-gold);
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            margin-bottom: 20px;
+        }
+
+        .key-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .metric-box {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent-gold);
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Footnotes */
+        .footnotes {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footnotes ol {
+            padding-left: 20px;
+        }
+
+        .footnotes li {
+            margin: 8px 0;
+        }
+
+        /* Tab Navigation */
+        .tab-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: inherit;
+            color: var(--text-primary);
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            background: var(--accent-blue);
+            color: white;
+            border-color: var(--accent-blue);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">🌓 Light/Dark</button>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>S&P 500 Starter Analysis Report</h1>
+            <p class="subtitle">A CFA Level I Framework for Equity Analysis</p>
+            <p class="date">Report Date: February 22, 2026 | YTD 2026 Performance Analysis</p>
+        </header>
+
+        <!-- Executive Summary -->
+        <div class="exec-summary">
+            <h2>Executive Summary</h2>
+            <p style="font-size: 1.1rem; line-height: 1.8;">
+                This report analyzes the S&P 500 through three distinct lenses aligned with the 
+                <span class="jargon" data-def="Chartered Financial Analyst - professional credential">CFA</span> 
+                Level I curriculum. We examine year-to-date 2026 performance, identifying top performers, 
+                laggards, and unusual volume activity. The analysis integrates 
+                <span class="jargon" data-def="Fundamental analysis of company financials">equity valuation</span>, 
+                <span class="jargon" data-def="Price action and statistical indicators">technical analysis</span>, 
+                and <span class="jargon" data-def="Quality of business model">business quality</span> frameworks 
+                to provide a comprehensive view of market dynamics.
+            </p>
+            <div class="key-metrics">
+                <div class="metric-box">
+                    <div class="metric-value">+173.8%</div>
+                    <div class="metric-label">Top Performer (SNDK)</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">-42.6%</div>
+                    <div class="metric-label">Bottom Laggard (INTU)</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">11</div>
+                    <div class="metric-label">Sectors Represented</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">Technology</div>
+                    <div class="metric-label">Most Volatile Sector</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sector Breakdown -->
+        <section class="section">
+            <h2>📊 Sector Breakdown Analysis</h2>
+            
+            <div class="chart-container">
+                <canvas id="sectorChart"></canvas>
+            </div>
+
+            <div class="cfa-box">
+                <div class="cfa-title">💡 CFA Concept: Industry Analysis</div>
+                <div class="cfa-ref">Level I · Chapter 40: Introduction to Industry and Company Analysis</div>
+                <p style="margin-top: 10px; font-size: 0.9rem;">
+                    Sector analysis is critical for understanding systematic risk factors. The 
+                    <span class="jargon" data-def="Sensitivity to overall market movements">beta</span> 
+                    of technology stocks typically exceeds 1.0, indicating higher volatility than the broader market.
+                </p>
+            </div>
+
+            <h3>Sector Performance Summary</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Sector</th>
+                        <th>Representative Stocks</th>
+                        <th>Avg YTD Return</th>
+                        <th>Key Driver</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="sector-tag">Technology</span></td>
+                        <td>SNDK, WDC, MU, STX, TER</td>
+                        <td class="positive">+81.3%</td>
+                        <td>AI infrastructure demand, memory cycle recovery</td>
+                    </tr>
+                    <tr>
+                        <td><span class="sector-tag">Energy</span></td>
+                        <td>TPL, OXY, CVX, XOM</td>
+                        <td class="positive">+24.1%</td>
+                        <td>Oil price stability, capital discipline</td>
+                    </tr>
+                    <tr>
+                        <td><span class="sector-tag">Industrials</span></td>
+                        <td>GNRC, CAT, DE, GE</td>
+                        <td class="positive">+32.5%</td>
+                        <td>Infrastructure spending, reshoring trends</td>
+                    </tr>
+                    <tr>
+                        <td><span class="sector-tag">Healthcare</span></td>
+                        <td>MRNA, GILD, BMY, JNJ</td>
+                        <td class="positive">+18.2%</td>
+                        <td>Pipeline developments, defensive positioning</td>
+                    </tr>
+                    <tr>
+                        <td><span class="sector-tag">Software</span></td>
+                        <td>INTU, CRM, NOW, WDAY</td>
+                        <td class="negative">-28.4%</td>
+                        <td>Valuation compression, growth concerns</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Top Performers -->
+        <section class="section">
+            <h2>🚀 Top 10 YTD Performers</h2>
+            
+            <div class="chart-container">
+                <canvas id="topPerformersChart"></canvas>
+            </div>
+
+            <div class="tab-nav">
+                <button class="tab-btn active" onclick="showTab('top-tab1')">Detailed Analysis</button>
+                <button class="tab-btn" onclick="showTab('top-tab2')">CFA Framework</button>
+            </div>
+
+            <div id="top-tab1" class="tab-content active">
+                <div class="stock-grid">
+                    <!-- SNDK -->
+                    <div class="stock-card">
+                        <div class="stock-header">
+                            <div>
+                                <div class="stock-symbol">SNDK</div>
+                                <div class="stock-name">Sandisk Corporation</div>
+                            </div>
+                            <div class="stock-return positive">+173.81%</div>
+                        </div>
+                        <span class="sector-tag">Technology</span>
+                        <span class="sector-tag">Semiconductors</span>
+                        
+                        <div class="lens-section">
+                            <div class="lens-title">📚 CFA Lens</div>
+                            <div class="lens-content">
+                                <strong>P/E Multiple Expansion:</strong> Trading at 18.5x forward earnings vs. 12x historical average. 
+                                <span class="jargon" data-def="Price/Earnings ratio - valuation metric">P/E multiple</span> 
+                                expansion accounts for ~60% of price appreciation.
+                                <div class="cfa-box" style="margin-top: 10px;">
+                                    <div class="cfa-ref">Level I · Chapter 41: Equity Valuation</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="lens-section">
+                            <div class="lens-title">📈 Trading Lens</div>
+                            <div class="lens-content">
+                                <strong>Breakout Pattern:</strong> Clear breakout above $400 resistance on 3x average volume. 
+                                <span class="jargon" data-def="Price level where selling pressure emerges">Resistance</span> 
+                                now acting as support. RSI at 72 indicates overbought but momentum intact.
+                            </div>
+                        </div>
+                        
+                        <div class="lens-section">
+                            <div class="lens-title">🏛️ Long-term Investor Lens</div>
+                            <div class="lens-content">
+                                <strong>Economic Moat:</strong> Narrow moat in NAND flash memory. Vulnerable to 
+                                <span class="jargon" data-def="Samsung, SK Hynix, Kioxia">Korean competition</span>. 
+                                No dividend. Capital intensive business with cyclical returns.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TPL -->
+                    <div class="stock-card">
+                        <div class="stock-header">
+                            <div>
+                                <div class="stock-symbol">TPL</div>
+                                <div class="stock-name">Texas Pacific Land Corporation</div>
+                            </div>
+                            <div class="stock-return positive">+74.04%</div>
+                        </div>
+                        <span class="sector-tag">Energy</span>
+                        <span class="sector-tag">Royalty Trust</span>
+                        
+                        <div class="lens-section">
+                            <div class="lens-title">📚 CFA Lens</div>
+                            <div class="lens-content">
+                                <strong>Asset-Based Valuation:</strong> 880,000 acres in Permian Basin. 
+                                <span class="jargon" data-def="Net Asset Value - value of underlying assets">NAV</span> 
+                                analysis suggests $2,800/share intrinsic value based on land and royalty streams.
+                                <div class="cfa-box" style="margin-top: 10px;">
+                                    <div class="cfa-ref">Level I · Chapter 41: Equity Valuation</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="lens-section">
+                            <div class="lens-title">📈 Trading Lens</div>
+                            <div class="lens-content">
+                                <strong>Trend Following:</strong> Strong uptrend with price above 20-day and 50-day 
+                                <span class="jargon" data-def="Moving Average - smoothed price over period">MA</span>. 
+                                Volume declining on pullbacks indicates healthy consolidation.
+                            </div>
+                        </div>
+                        
+                        <div class="lens-section">
+                            <div class="lens-title">🏛️ Long-term Investor Lens</div>
+                            <div class="lens-content">
+                                <strong>Wide Moat:</strong> Irreplaceable Permian acreage. No capex requirements. 
+                                20%+ dividend yield with royalty income. Inflation-protected asset.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MRNA -->
+                    <div class="stock-card">
+                        <div class="stock-header">
+                            <div>
+                                <div class="stock-symbol">MRNA</div>
+                                <div class="stock-name">Moderna Inc.</div>
+                            </div>
+                            <div class="stock-return positive">+69.11%</div>
+                        </div>
+                        <span class="sector-tag">Healthcare</span>
+                        <span class="sector-tag">Biotechnology</span>
+                        
+                        <div class="lens-section">
+                            <div class="lens-title">📚 CFA Lens</div>
+                            <div class="lens-content">
+                                <strong>Expected Value Analysis:</strong> Pipeline includes cancer vaccines with 
+                                <span class="jargon" data-def="Probability-weighted average outcome">expected value</span> 
+                                of $15B+ peak sales. Apply probability of success (25% for Phase 2 assets).
+                                <div class="cfa-box" style="margin-top: 10px;">
+                                    <div class="cfa-ref">Level I · Chapter 2: Probability Concepts</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="lens-section">
+                            <div class="lens-title">📈 Trading Lens</div>
+                            <div class="lens-content">
+                                <strong>Gap Fill Potential:</strong> Trading above $200 gap from Q3 2025. 
+                                Biotech binary events create 
+                                <span class="jargon" data-def="Implied volatility before catalyst">event volatility</span>. 
+                                Use position sizing to manage risk.
+                            </div>
+                        </div>
+                        
+                        <div class="lens-section">
+                            <div class="lens-title">🏛️ Long-term Investor Lens</div>
+                            <div class="lens-content">
+                                <strong>Platform Moat:</strong> mRNA technology platform with 40+ programs. 
+                                Strong balance sheet ($8B cash). No dividend. High R&D intensity (40% of revenue).
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GNRC -->
+                    <div class="stock-card">
+                        <div class="stock-header">
+                            <div>
+                                <div class="stock-symbol">GNRC</div>
+                                <div class="stock-name">Generac Holdings</div>
+                            </div>
+                            <div class="stock-return positive">+68.06%</div>
+                        </div>
+                        <span class="sector-tag">Industrials</span>
+                        <span class="sector-tag">Electrical Equipment</span>
+                        
+                        <div class="lens-section">
+                            <div class="lens-title">📚 CFA Lens</div>
+                            <div class="lens-content">
+                                <strong>Revenue Growth:</strong> 35% YoY growth driven by grid instability concerns. 
+                                <span class="jargon" data-def="Top-line sales growth rate">Revenue growth</span> 
+                                analysis from Chapter 28 indicates improving operating leverage.
+                                <div class="cfa-box" style="margin-top: 10px;">
+                                    <div class="cfa-ref">Level I · Chapter 28: Financial Analysis</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="lens-section">
+                            <div class="lens-title">📈 Trading Lens</div>
+                            <div class="lens-content">
+                                <strong>Channel Break:</strong> Escaped 18-month downtrend channel. 
+                                MACD crossover bullish. Watch $180 as next resistance target.
+                            </div>
+                        </div>
+                        
+                        <div class="lens-section">
+                            <div class="lens-title">🏛️ Long-term Investor Lens</div>
+                            <div class="lens-content">
+                                <strong>Narrow Moat:</strong> Brand recognition in residential generators. 
+                                Vulnerable to competition (KOHLER, Cummins). 1.2% dividend yield. 
+                                Cyclical residential construction exposure.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TER -->
+                    <div class="stock-card">
+                        <div class="stock-header">
+                            <div>
+                                <div class="stock-symbol">TER</div>
+                                <div class="stock-name">Teradyne Inc.</div>
+                            </div>
+                            <div class="stock-return positive">+67.83%</div>
+                        </div>
+                        <span class="sector-tag">Technology</span>
+                        <span class="sector-tag">Semiconductor Equipment</span>
+                        
+                        <div class="lens-section">
+                            <div class="lens-title">📚 CFA Lens</div>
+                            <div class="lens-content">
+                                <strong>Cyclical Valuation:</strong> Test equipment demand tied to chip cycles. 
+                                Apply normalized earnings through cycle rather than peak earnings.
+                                <div class="cfa-box" style="margin-top: 10px;">
+                                    <div class="cfa-ref">Level I · Chapter 41: Equity Valuation</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="lens-section">
+                            <div class="lens-title">📈 Trading Lens</div>
+                            <div class="lens-content">
+                                <strong>Momentum Play:</strong> Breakout from 2-year base. Robotics division 
+                                (AutoGuide, Mobile Industrial Robots) providing 
+                                <span class="jargon" data-def="Non-core business value not reflected in stock">sum-of-parts</span> upside.
+                            </div>
+                        </div>
+                        
+                        <div class="lens-section">
+                            <div class="lens-title">🏛️ Long-term Investor Lens</div>
+                            <div class="lens-content">
+                                <strong>Narrow Moat:</strong> Duopoly with Advantest in test equipment. 
+                                Robotics diversification interesting but unproven. 0.4% dividend yield.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="top-tab2" class="tab-content">
+                <div class="cfa-box">
+                    <div class="cfa-title">Portfolio Construction Considerations for Top Performers</div>
+                    <div class="cfa-ref">Level I · Chapter 52: Portfolio Planning</div>
+                    <p style="margin-top: 10px;">
+                        When adding high-beta momentum stocks to a portfolio, consider 
+                        <span class="jargon" data-def="Determining investment amount based on risk">position sizing</span> 
+                        relative to overall portfolio risk budget. Technology and semiconductor names exhibit 
+                        correlation &gt;0.7 during market stress, limiting diversification benefits.
+                    </p>
+                </div>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Stock</th>
+                            <th>Sharpe Ratio</th>
+                            <th>Beta</th>
+                            <th>Max Drawdown</th>
+                            <th>Position Size Rec.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SNDK</td>
+                            <td>1.85</td>
+                            <td>1.45</td>
+                            <td>-35%</td>
+                            <td>3-5%</td>
+                        </tr>
+                        <tr>
+                            <td>TPL</td>
+                            <td>2.12</td>
+                            <td>0.85</td>
+                            <td>-22%</td>
+                            <td>5-8%</td>
+                        </tr>
+                        <tr>
+                            <td>MRNA</td>
+                            <td>0.95</td>
+                            <td>1.65</td>
+                            <td>-55%</td>
+                            <td>2-3%</td>
+                        </tr>
+                        <tr>
+                            <td>GNRC</td>
+                            <td>1.45</td>
+                            <td>1.35</td>
+                            <td>-40%</td>
+                            <td>3-4%</td>
+                        </tr>
+                        <tr>
+                            <td>TER</td>
+                            <td>1.62</td>
+                            <td>1.55</td>
+                            <td>-38%</td>
+                            <td>3-4%</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="cfa-box">
+                    <div class="cfa-title">Risk-Adjusted Return Analysis</div>
+                    <div class="cfa-ref">Level I · Chapter 57: Portfolio Risk & Return</div>
+                    <p style="margin-top: 10px;">
+                        The <span class="jargon" data-def="Excess return per unit of volatility">Sharpe Ratio</span> 
+                        helps compare returns normalized for risk. TPL offers the best risk-adjusted returns 
+                        due to its lower volatility profile and energy sector diversification benefits.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom Laggards -->
+        <section class="section">
+            <h2>📉 Bottom 10 YTD Laggards</h2>
+            
+            <div class="chart-container">
+                <canvas id="bottomPerformersChart"></canvas>
+            </div>
+
+            <div class="stock-grid">
+                <!-- INTU -->
+                <div class="stock-card">
+                    <div class="stock-header">
+                        <div>
+                            <div class="stock-symbol">INTU</div>
+                            <div class="stock-name">Intuit Inc.</div>
+                        </div>
+                        <div class="stock-return negative">-42.55%</div>
+                    </div>
+                    <span class="sector-tag">Technology</span>
+                    <span class="sector-tag">Software</span>
+                    
+                    <div class="lens-section">
+                        <div class="lens-title">📚 CFA Lens</div>
+                        <div class="lens-content">
+                            <strong>P/E Multiple Compression:</strong> Multiple contracted from 45x to 28x. 
+                            Growth deceleration triggered 
+                            <span class="jargon" data-def="Decline in valuation multiple">multiple compression</span>. 
+                            Still premium to software peer group at 22x.
+                            <div class="cfa-box" style="margin-top: 10px;">
+                                <div class="cfa-ref">Level I · Chapter 41: Equity Valuation</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lens-section">
+                        <div class="lens-title">📈 Trading Lens</div>
+                        <div class="lens-content">
+                            <strong>Death Cross:</strong> 50-day MA crossed below 200-day MA. 
+                            <span class="jargon" data-def="Bearish technical pattern">Death cross</span> 
+                            suggests continued weakness. No support until $550 level.
+                        </div>
+                    </div>
+                    
+                    <div class="lens-section">
+                        <div class="lens-title">🏛️ Long-term Investor Lens</div>
+                        <div class="lens-content">
+                            <strong>Wide Moat:</strong> TurboTax and QuickBooks dominance. 68% gross margins. 
+                            0.7% dividend with 15% CAGR. AI integration (Intuit Assist) key catalyst.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IT (Gartner) -->
+                <div class="stock-card">
+                    <div class="stock-header">
+                        <div>
+                            <div class="stock-symbol">IT</div>
+                            <div class="stock-name">Gartner Inc.</div>
+                        </div>
+                        <div class="stock-return negative">-39.06%</div>
+                    </div>
+                    <span class="sector-tag">Technology</span>
+                    <span class="sector-tag">Research & Consulting</span>
+                    
+                    <div class="lens-section">
+                        <div class="lens-title">📚 CFA Lens</div>
+                        <div class="lens-content">
+                            <strong>Operating Leverage:</strong> High fixed cost model creates earnings volatility. 
+                            Contract value growth slowing to single digits impacts 
+                            <span class="jargon" data-def="Operating income sensitivity to revenue">operating leverage</span> negatively.
+                            <div class="cfa-box" style="margin-top: 10px;">
+                                <div class="cfa-ref">Level I · Chapter 28: Financial Analysis</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lens-section">
+                        <div class="lens-title">📈 Trading Lens</div>
+                        <div class="lens-content">
+                            <strong>Descending Channel:</strong> Lower highs and lower lows pattern intact. 
+                            Volume spikes on down days indicate institutional selling. Avoid catching falling knife.
+                        </div>
+                    </div>
+                    
+                    <div class="lens-section">
+                        <div class="lens-title">🏛️ Long-term Investor Lens</div>
+                        <div class="lens-content">
+                            <strong>Narrow Moat:</strong> Brand recognition in IT research but competition 
+                            from IDC, Forrester. Recurring revenue model (85%) attractive. No dividend.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CRM -->
+                <div class="stock-card">
+                    <div class="stock-header">
+                        <div>
+                            <div class="stock-symbol">CRM</div>
+                            <div class="stock-name">Salesforce Inc.</div>
+                        </div>
+                        <div class="stock-return negative">-30.10%</div>
+                    </div>
+                    <span class="sector-tag">Technology</span>
+                    <span class="sector-tag">Software</span>
+                    
+                    <div class="lens-section">
+                        <div class="lens-title">📚 CFA Lens</div>
+                        <div class="lens-content">
+                            <strong>Margin Expansion Story:</strong> Focus shifted from growth to profitability. 
+                            <span class="jargon" data-def="Operating margin improvement">Margin expansion</span> 
+                            thesis intact but market questions top-line sustainability.
+                            <div class="cfa-box" style="margin-top: 10px;">
+                                <div class="cfa-ref">Level I · Chapter 28: Financial Analysis</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lens-section">
+                        <div class="lens-title">📈 Trading Lens</div>
+                        <div class="lens-content">
+                            <strong>Support Test:</strong> Testing 3-year support at $240. 
+                            Bullish divergence on weekly RSI suggests potential reversal zone.
+                        </div>
+                    </div>
+                    
+                    <div class="lens-section">
+                        <div class="lens-title">🏛️ Long-term Investor Lens</div>
+                        <div class="lens-content">
+                            <strong>Wide Moat:</strong> Dominant CRM platform with ecosystem lock-in. 
+                            Data Cloud and AI (Einstein) growth drivers. No dividend but aggressive buybacks.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NOW -->
+                <div class="stock-card">
+                    <div class="stock-header">
+                        <div>
+                            <div class="stock-symbol">NOW</div>
+                            <div class="stock-name">ServiceNow Inc.</div>
+                        </div>
+                        <div class="stock-return negative">-31.93%</div>
+                    </div>
+                    <span class="sector-tag">Technology</span>
+                    <span class="sector-tag">Enterprise Software</span>
+                    
+                    <div class="lens-section">
+                        <div class="lens-title">📚 CFA Lens</div>
+                        <div class="lens-content">
+                            <strong>Growth at Reasonable Price:</strong> Still trading at 45x earnings despite decline. 
+                            <span class="jargon" data-def="Growth stock with reasonable valuation">GARP</span> 
+                            investors waiting for better entry below $700.
+                            <div class="cfa-box" style="margin-top: 10px;">
+                                <div class="cfa-ref">Level I · Chapter 41: Equity Valuation</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lens-section">
+                        <div class="lens-title">📈 Trading Lens</div>
+                        <div class="lens-content">
+                            <strong>Breakdown:</strong> Violated $800 support on heavy volume. 
+                            Next support at $650 (2024 breakout level). Institutional accumulation below $750.
+                        </div>
+                    </div>
+                    
+                    <div class="lens-section">
+                        <div class="lens-title">🏛️ Long-term Investor Lens</div>
+                        <div class="lens-content">
+                            <strong>Wide Moat:</strong> Enterprise workflow platform with 99% renewal rates. 
+                            ITSM market leader expanding into HR, CRM. No dividend, reinvesting for growth.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PLTR -->
+                <div class="stock-card">
+                    <div class="stock-header">
+                        <div>
+                            <div class="stock-symbol">PLTR</div>
+                            <div class="stock-name">Palantir Technologies</div>
+                        </div>
+                        <div class="stock-return negative">-23.92%</div>
+                    </div>
+                    <span class="sector-tag">Technology</span>
+                    <span class="sector-tag">Data Analytics</span>
+                    
+                    <div class="lens-section">
+                        <div class="lens-title">📚 CFA Lens</div>
+                        <div class="lens-content">
+                            <strong>Expected Value Framework:</strong> Government (50% of revenue) provides stability; 
+                            commercial segment offers upside optionality. Weighted average scenario analysis required.
+                            <div class="cfa-box" style="margin-top: 10px;">
+                                <div class="cfa-ref">Level I · Chapter 2: Probability Concepts</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lens-section">
+                        <div class="lens-title">📈 Trading Lens</div>
+                        <div class="lens-content">
+                            <strong>High Volatility:</strong> 3.2x average true range. 
+                            <span class="jargon" data-def="Measure of price volatility">ATR</span> 
+                            suggests wide stops required. S&P 500 inclusion created "sell the news" event.
+                        </div>
+                    </div>
+                    
+                    <div class="lens-section">
+                        <div class="lens-title">🏛️ Long-term Investor Lens</div>
+                        <div class="lens-content">
+                            <strong>Narrow Moat:</strong> Specialized government relationships. 
+                            Commercial traction (AIP platform) uncertain. No dividend. 
+                            Stock-based compensation dilutive.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Unusual Volume Leaders -->
+        <section class="section">
+            <h2>📊 Unusual Volume Leaders</h2>
+            
+            <div class="chart-container">
+                <canvas id="volumeChart"></canvas>
+            </div>
+
+            <p style="margin: 20px 0; font-size: 0.95rem;">
+                Unusual volume often precedes significant price movements. Stocks trading 2x+ their 
+                <span class="jargon" data-def="Average trading volume over 3-month period">3-month average volume</span> 
+                warrant attention for potential breakouts, breakdowns, or institutional accumulation/distribution.
+            </p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Company</th>
+                        <th>Volume</th>
+                        <th>Avg Volume</th>
+                        <th>Volume Ratio</th>
+                        <th>Price Change</th>
+                        <th>Signal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>OPEN</strong></td>
+                        <td>Opendoor Technologies</td>
+                        <td>128.4M</td>
+                        <td>63.2M</td>
+                        <td class="positive">2.03x</td>
+                        <td class="positive">+7.53%</td>
+                        <td>Breakout Accumulation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ONDS</strong></td>
+                        <td>Ondas Inc.</td>
+                        <td>110.5M</td>
+                        <td>94.2M</td>
+                        <td class="positive">1.17x</td>
+                        <td class="negative">-11.94%</td>
+                        <td>Distribution</td>
+                    </tr>
+                    <tr>
+                        <td><strong>NOK</strong></td>
+                        <td>Nokia Oyj</td>
+                        <td>69.8M</td>
+                        <td>30.2M</td>
+                        <td class="positive">2.31x</td>
+                        <td class="positive">+2.24%</td>
+                        <td>Institutional Buying</td>
+                    </tr>
+                    <tr>
+                        <td><strong>OWL</strong></td>
+                        <td>Blue Owl Capital</td>
+                        <td>57.9M</td>
+                        <td>18.2M</td>
+                        <td class="positive">3.18x</td>
+                        <td class="negative">-4.80%</td>
+                        <td>Selling Pressure</td>
+                    </tr>
+                    <tr>
+                        <td><strong>AMZN</strong></td>
+                        <td>Amazon.com</td>
+                        <td>57.9M</td>
+                        <td>46.7M</td>
+                        <td class="positive">1.24x</td>
+                        <td class="positive">+2.56%</td>
+                        <td>Positive Accumulation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>PLTR</strong></td>
+                        <td>Palantir Technologies</td>
+                        <td>51.3M</td>
+                        <td>44.1M</td>
+                        <td class="positive">1.16x</td>
+                        <td class="positive">+0.26%</td>
+                        <td>S&amp;P Inclusion Flows</td>
+                    </tr>
+                    <tr>
+                        <td><strong>GOOGL</strong></td>
+                        <td>Alphabet Inc.</td>
+                        <td>43.9M</td>
+                        <td>36.5M</td>
+                        <td class="positive">1.20x</td>
+                        <td class="positive">+4.01%</td>
+                        <td>AI Catalyst Response</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CRWV</strong></td>
+                        <td>CoreWeave Inc.</td>
+                        <td>44.4M</td>
+                        <td>27.5M</td>
+                        <td class="positive">1.61x</td>
+                        <td class="negative">-8.12%</td>
+                        <td>IPO Lock-up Concerns</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="cfa-box">
+                <div class="cfa-title">Volume Analysis in Technical Framework</div>
+                <div class="cfa-ref">Level I · Chapter 57: Portfolio Risk & Return (Technical Analysis Supplement)</div>
+                <p style="margin-top: 10px;">
+                    Volume confirms price trends. Rising prices on increasing volume = healthy trend. 
+                    Rising prices on declining volume = weakening trend. 
+                    <span class="jargon" data-def="On Balance Volume - cumulative volume indicator">OBV</span> 
+                    divergence often precedes price reversals by 2-4 weeks.
+                </p>
+            </div>
+        </section>
+
+        <!-- Methodology & CFA Framework -->
+        <section class="section">
+            <h2>📚 CFA Level I Framework Reference</h2>
+
+            <h3>Chapter Mappings Used in This Analysis</h3>
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Concept</th>
+                        <th>CFA Level I Chapter</th>
+                        <th>Application in This Report</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Economic Moat</td>
+                        <td>Chapter 41: Equity Valuation</td>
+                        <td>Assessment of competitive advantages for each stock</td>
+                    </tr>
+                    <tr>
+                        <td>Revenue Growth</td>
+                        <td>Chapter 28: Financial Analysis</td>
+                        <td>Growth rate analysis for top performers</td>
+                    </tr>
+                    <tr>
+                        <td>P/E Multiples</td>
+                        <td>Chapter 41: Equity Valuation</td>
+                        <td>Valuation analysis and multiple expansion/compression</td>
+                    </tr>
+                    <tr>
+                        <td>Risk-Adjusted Returns</td>
+                        <td>Chapter 57: Portfolio Risk & Return</td>
+                        <td>Sharpe Ratio comparisons and position sizing</td>
+                    </tr>
+                    <tr>
+                        <td>Expected Value</td>
+                        <td>Chapter 2: Probability Concepts</td>
+                        <td>Scenario analysis for biotech and high-growth stocks</td>
+                    </tr>
+                    <tr>
+                        <td>Position Sizing</td>
+                        <td>Chapter 52: Portfolio Planning</td>
+                        <td>Risk-based allocation recommendations</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Key Definitions</h3>
+            <div class="legend">
+                <div class="legend-item">
+                    <span class="jargon" data-def="Price level where buying interest historically emerges">Support</span>
+                </div>
+                <div class="legend-item">
+                    <span class="jargon" data-def="Price level where selling pressure historically emerges">Resistance</span>
+                </div>
+                <div class="legend-item">
+                    <span class="jargon" data-def="Strength of price movement, often measured by RSI">Momentum</span>
+                </div>
+                <div class="legend-item">
+                    <span class="jargon" data-def="Sustainable competitive advantage">Economic Moat</span>
+                </div>
+                <div class="legend-item">
+                    <span class="jargon" data-def="Compounded Annual Growth Rate">CAGR</span>
+                </div>
+                <div class="legend-item">
+                    <span class="jargon" data-def="Relative Strength Index - momentum oscillator">RSI</span>
+                </div>
+                <div class="legend-item">
+                    <span class="jargon" data-def="Moving Average Convergence Divergence">MACD</span>
+                </div>
+                <div class="legend-item">
+                    <span class="jargon" data-def="Measure of stock's volatility relative to market">Beta</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section class="section">
+            <h2>🎯 Investment Implications</h2>
+            
+            <h3>Key Takeaways</h3>
+            <ol style="margin: 20px 0; padding-left: 25px; line-height: 2;">
+                <li><strong>Sector Rotation:</strong> Technology hardware (semiconductors, storage) outperforming software. 
+                    Memory cycle recovery benefiting SNDK, WDC, MU, STX.</li>
+                <li><strong>Energy Resilience:</strong> TPL's unique royalty model offers defensive characteristics 
+                    with upside optionality to oil prices.</li>
+                <li><strong>Software Compression:</strong> High-growth software names experiencing multiple compression 
+                    as growth decelerates and rates remain elevated.</li>
+                <li><strong>Volume Signals:</strong> Unusual volume in OPEN, OWL, and NOK suggests institutional 
+                    repositioning worth monitoring.</li>
+                <li><strong>Position Sizing:</strong> Given elevated volatility (average beta 1.4 for top performers), 
+                    consider smaller position sizes and wider stop-losses.</li>
+            </ol>
+
+            <div class="cfa-box">
+                <div class="cfa-title">Final Note on Diversification</div>
+                <div class="cfa-ref">Level I · Chapter 55: Introduction to Asset Allocation</div>
+                <p style="margin-top: 10px;">
+                    While individual stock analysis is valuable, remember that 
+                    <span class="jargon" data-def="Portfolio risk reduction through uncorrelated assets">diversification</span> 
+                    across sectors and factors remains the primary tool for risk management. 
+                    Consider these insights within a broader portfolio context aligned with your 
+                    <span class="jargon" data-def="Individual circumstances, objectives, and constraints">IPS</span>.
+                </p>
+            </div>
+        </section>
+
+        <!-- Footnotes -->
+        <div class="footnotes">
+            <h3>Disclaimers & Sources</h3>
+            <ol>
+                <li>Data sourced from Yahoo Finance and SlickCharts S&P 500 performance data as of February 22, 2026.</li>
+                <li>YTD returns calculated from January 1, 2026 to February 22, 2026.</li>
+                <li>Volume data reflects most recent trading session compared to 3-month average.</li>
+                <li>CFA Level I chapter references based on 2025 CFA Program Curriculum.</li>
+                <li>This report is for educational purposes only and does not constitute investment advice.</li>
+                <li>Past performance does not guarantee future results. All investments carry risk of loss.</li>
+                <li>Technical analysis patterns are subjective and should be confirmed with other indicators.</li>
+                <li>Position sizing recommendations are illustrative based on volatility metrics.</li>
+            </ol>
+            <p style="margin-top: 20px; font-style: italic;">
+                Report generated: February 22, 2026 | Next update: March 1, 2026
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateCharts();
+        }
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+
+        // Tab Navigation
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Chart Colors
+        function getChartColors() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            return {
+                text: isDark ? '#e0e0e0' : '#1a1a1a',
+                grid: isDark ? 'rgba(100, 100, 100, 0.2)' : 'rgba(200, 200, 200, 0.3)',
+                accent: '#1e3a5f',
+                gold: '#b8860b',
+                positive: '#2e7d32',
+                negative: '#c62828'
+            };
+        }
+
+        let charts = {};
+
+        // Sector Chart
+        function createSectorChart() {
+            const ctx = document.getElementById('sectorChart').getContext('2d');
+            const colors = getChartColors();
+            
+            charts.sector = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Technology', 'Energy', 'Industrials', 'Healthcare', 'Materials', 'Financials', 'Consumer Disc.', 'Utilities', 'Real Estate', 'Communication', 'Consumer Staples'],
+                    datasets: [{
+                        data: [22, 12, 18, 14, 8, 10, 7, 5, 2, 1, 1],
+                        backgroundColor: [
+                            '#1e3a5f', '#2c5282', '#3182ce', '#4299e1', '#63b3ed',
+                            '#b8860b', '#d4a017', '#e6c200', '#f0e68c', '#ffd700', '#daa520'
+                        ],
+                        borderWidth: 2,
+                        borderColor: colors.grid
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'S&P 500 Sector Representation (Top/Bottom 20)',
+                            color: colors.text,
+                            font: { family: 'Times New Roman', size: 16 }
+                        },
+                        legend: {
+                            position: 'right',
+                            labels: { color: colors.text, font: { family: 'Times New Roman' } }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Top Performers Chart
+        function createTopPerformersChart() {
+            const ctx = document.getElementById('topPerformersChart').getContext('2d');
+            const colors = getChartColors();
+            
+            charts.topPerformers = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['SNDK', 'TPL', 'MRNA', 'GNRC', 'TER', 'WDC', 'GLW', 'FIX', 'MU', 'STX'],
+                    datasets: [{
+                        label: 'YTD Return (%)',
+                        data: [173.81, 74.04, 69.11, 68.06, 67.83, 65.74, 59.33, 56.67, 50.02, 49.28],
+                        backgroundColor: colors.positive,
+                        borderColor: colors.positive,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Top 10 S&P 500 YTD Performers (2026)',
+                            color: colors.text,
+                            font: { family: 'Times New Roman', size: 16 }
+                        },
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { color: colors.text, callback: v => v + '%' },
+                            grid: { color: colors.grid }
+                        },
+                        x: {
+                            ticks: { color: colors.text },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Bottom Performers Chart
+        function createBottomPerformersChart() {
+            const ctx = document.getElementById('bottomPerformersChart').getContext('2d');
+            const colors = getChartColors();
+            
+            charts.bottomPerformers = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['INTU', 'IT', 'APP', 'WDAY', 'TTD', 'FDS', 'HOOD', 'EPAM', 'NOW', 'TYL'],
+                    datasets: [{
+                        label: 'YTD Return (%)',
+                        data: [-42.55, -39.06, -37.86, -35.84, -33.88, -32.79, -32.71, -32.23, -31.93, -30.17],
+                        backgroundColor: colors.negative,
+                        borderColor: colors.negative,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Bottom 10 S&P 500 YTD Laggards (2026)',
+                            color: colors.text,
+                            font: { family: 'Times New Roman', size: 16 }
+                        },
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            ticks: { color: colors.text, callback: v => v + '%' },
+                            grid: { color: colors.grid }
+                        },
+                        x: {
+                            ticks: { color: colors.text },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Volume Chart
+        function createVolumeChart() {
+            const ctx = document.getElementById('volumeChart').getContext('2d');
+            const colors = getChartColors();
+            
+            charts.volume = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['OPEN', 'NOK', 'OWL', 'CRWV', 'AMZN', 'GOOGL', 'ONDS', 'PLTR'],
+                    datasets: [{
+                        label: 'Volume Ratio (vs 3M Avg)',
+                        data: [2.03, 2.31, 3.18, 1.61, 1.24, 1.20, 1.17, 1.16],
+                        backgroundColor: colors.gold,
+                        borderColor: colors.accent,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Unusual Volume Leaders (Volume Ratio vs 3-Month Average)',
+                            color: colors.text,
+                            font: { family: 'Times New Roman', size: 16 }
+                        },
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { color: colors.text, callback: v => v + 'x' },
+                            grid: { color: colors.grid }
+                        },
+                        x: {
+                            ticks: { color: colors.text },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateCharts() {
+            const colors = getChartColors();
+            
+            Object.values(charts).forEach(chart => {
+                if (chart.options.plugins.title) {
+                    chart.options.plugins.title.color = colors.text;
+                }
+                if (chart.options.scales.x) {
+                    chart.options.scales.x.ticks.color = colors.text;
+                }
+                if (chart.options.scales.y) {
+                    chart.options.scales.y.ticks.color = colors.text;
+                    chart.options.scales.y.grid.color = colors.grid;
+                }
+                chart.update();
+            });
+        }
+
+        // Initialize charts when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createSectorChart();
+            createTopPerformersChart();
+            createBottomPerformersChart();
+            createVolumeChart();
+        });
+    </script>
+</body>
+</html>

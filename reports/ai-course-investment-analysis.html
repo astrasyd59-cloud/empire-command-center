@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Course Investment Analysis — Dibs | Feb 2026</title>
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a25;
+            --bg-risk: #1f1515;
+            --bg-opportunity: #151f1a;
+            --text-primary: #e8e8ec;
+            --text-secondary: #9a9aa8;
+            --accent-gold: #d4af37;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --accent-orange: #f59e0b;
+            --accent-cyan: #06b6d4;
+            --border: #2a2a3a;
+            --border-risk: #3a2020;
+            --border-opportunity: #203a25;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        
+        .urgency-badge {
+            display: inline-block;
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--accent-red);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            border: 1px solid var(--border-risk);
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--accent-gold), #f0d78c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle { color: var(--text-secondary); font-size: 1rem; }
+        
+        /* Financial Snapshot */
+        .financial-snapshot {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        
+        .financial-snapshot h2 {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: var(--accent-gold);
+        }
+        
+        .money-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .money-item {
+            text-align: center;
+            padding: 16px;
+            background: var(--bg-card);
+            border-radius: 8px;
+        }
+        
+        .money-item .label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+        
+        .money-item .amount {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+        
+        .money-item .amount.cash { color: var(--accent-cyan); }
+        .money-item .amount.invested { color: var(--accent-green); }
+        .money-item .amount.total { color: var(--accent-gold); }
+        
+        .impact-box {
+            background: var(--bg-risk);
+            border: 1px solid var(--border-risk);
+            border-radius: 8px;
+            padding: 16px;
+        }
+        
+        .impact-box h3 {
+            font-size: 0.9rem;
+            color: var(--accent-red);
+            margin-bottom: 12px;
+        }
+        
+        .impact-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-risk);
+        }
+        
+        .impact-row:last-child { border-bottom: none; }
+        
+        .impact-row .label { color: var(--text-secondary); }
+        
+        .impact-row .value {
+            font-weight: 600;
+            color: var(--accent-red);
+        }
+        
+        /* Comparison Table */
+        .comparison-section {
+            margin-bottom: 24px;
+        }
+        
+        .comparison-section h2 {
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            padding-left: 12px;
+            border-left: 3px solid var(--accent-gold);
+        }
+        
+        .course-grid {
+            display: grid;
+            gap: 16px;
+        }
+        
+        .course-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .course-card.recommended {
+            border-color: var(--accent-green);
+            box-shadow: 0 0 0 1px var(--accent-green);
+        }
+        
+        .course-card.risky {
+            border-color: var(--accent-red);
+        }
+        
+        .course-header {
+            padding: 20px;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .course-header .name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .course-header .provider {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        .course-body {
+            padding: 20px;
+        }
+        
+        .metrics-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .metric {
+            text-align: center;
+        }
+        
+        .metric .value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: block;
+        }
+        
+        .metric .label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        
+        .pros-cons h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        
+        .pros h4 { color: var(--accent-green); }
+        .cons h4 { color: var(--accent-red); }
+        
+        .pros-cons ul {
+            list-style: none;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        .pros-cons li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+        }
+        
+        .pros li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+        }
+        
+        .cons li::before {
+            content: "✗";
+            position: absolute;
+            left: 0;
+            color: var(--accent-red);
+        }
+        
+        .verdict {
+            margin-top: 16px;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .verdict.recommended {
+            background: var(--bg-opportunity);
+            border: 1px solid var(--border-opportunity);
+            color: var(--accent-green);
+        }
+        
+        .verdict.risky {
+            background: var(--bg-risk);
+            border: 1px solid var(--border-risk);
+            color: var(--accent-red);
+        }
+        
+        .verdict.neutral {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+        
+        /* Sydney Market Section */
+        .sydney-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        
+        .sydney-section h2 {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--accent-cyan);
+        }
+        
+        .sydney-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .sydney-item {
+            padding: 16px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+        }
+        
+        .sydney-item h3 {
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            color: var(--accent-gold);
+        }
+        
+        .sydney-item p, .sydney-item li {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        .sydney-item ul {
+            margin-left: 16px;
+        }
+        
+        .sydney-item li {
+            margin-bottom: 6px;
+        }
+        
+        /* Final Recommendation */
+        .final-rec {
+            background: linear-gradient(135deg, var(--bg-opportunity), var(--bg-card));
+            border: 2px solid var(--accent-green);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+        
+        .final-rec h2 {
+            font-size: 1.2rem;
+            color: var(--accent-green);
+            margin-bottom: 16px;
+        }
+        
+        .final-rec .price-tag {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent-green);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .final-rec ul {
+            margin-left: 20px;
+            color: var(--text-secondary);
+        }
+        
+        .final-rec li {
+            margin-bottom: 10px;
+        }
+        
+        /* Action Plan */
+        .action-plan {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        
+        .action-plan h2 {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-bottom: 24px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            border: 2px solid var(--bg-primary);
+        }
+        
+        .timeline-item.completed::before {
+            background: var(--accent-green);
+        }
+        
+        .timeline-item .week {
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+            margin-bottom: 4px;
+        }
+        
+        .timeline-item .task {
+            font-weight: 500;
+        }
+        
+        .timeline-item .cost {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+        
+        /* Footer Warning */
+        .warning-box {
+            background: var(--bg-risk);
+            border: 1px solid var(--border-risk);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+        
+        .warning-box h3 {
+            color: var(--accent-red);
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+        
+        .warning-box p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+        
+        @media (max-width: 600px) {
+            .pros-cons { grid-template-columns: 1fr; }
+            .metrics-row { grid-template-columns: 1fr; }
+            h1 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="urgency-badge">⚠️ FINANCIAL IMPACT ANALYSIS</div>
+            <h1>🎓 AI Course Investment Decision</h1>
+            <p class="subtitle">Sydney, Australia • February 28, 2026</p>
+        </header>
+        
+        <!-- Financial Snapshot -->
+        <div class="financial-snapshot">
+            <h2>💰 Your Current Position</h2>
+            <div class="money-grid">
+                <div class="money-item">
+                    <div class="label">Cash (AUD)</div>
+                    <div class="amount cash">$5,000</div>
+                </div>
+                <div class="money-item">
+                    <div class="label">ETFs/Stocks</div>
+                    <div class="amount invested">$25,000</div>
+                </div>
+                <div class="money-item">
+                    <div class="label">Trading Account</div>
+                    <div class="amount invested">$2,000</div>
+                </div>
+                <div class="money-item">
+                    <div class="label">Total Liquid</div>
+                    <div class="amount total">$32,000</div>
+                </div>
+            </div>
+            
+            <div class="impact-box">
+                <h3>💸 Impact of MIT Certificate ($3,900 USD)</h3>
+                <div class="impact-row">
+                    <span class="label">USD Cost</span>
+                    <span class="value">$3,900</span>
+                </div>
+                <div class="impact-row">
+                    <span class="label">AUD Equivalent (~1.59 rate)</span>
+                    <span class="value">~$6,200</span>
+                </div>
+                <div class="impact-row">
+                    <span class="label">% of Cash Savings</span>
+                    <span class="value">124% ⚠️</span>
+                </div>
+                <div class="impact-row">
+                    <span class="label">% of Total Liquid Assets</span>
+                    <span class="value">19.4%</span>
+                </div>
+                <div class="impact-row">
+                    <span class="label">Opportunity Cost (if invested @ 8%)</span>
+                    <span class="value">$312/year</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Warning -->
+        <div class="warning-box">
+            <h3>🚨 The Real Talk</h3>
+            <p>You don't have $3,900 USD in cash. You have $5,000 AUD. The MIT certificate would require dipping into your ETFs or using credit. <strong>This is a $6,200 AUD decision, not $3,900.</strong> Your company is dying and you're planning an exit. Cash is king right now.</p>
+        </div>
+        
+        <!-- Course Comparison -->
+        <div class="comparison-section">
+            <h2>📊 Option Analysis</h2>
+            <div class="course-grid">
+                
+                <!-- MIT Option -->
+                <div class="course-card risky">
+                    <div class="course-header">
+                        <div class="name">MIT Applied AI & Data Science</div>
+                        <div class="provider">MIT Professional Education + Great Learning</div>
+                    </div>
+                    <div class="course-body">
+                        <div class="metrics-row">
+                            <div class="metric">
+                                <span class="value" style="color: var(--accent-red);">$6,200</span>
+                                <span class="label">AUD Cost</span>
+                            </div>
+                            <div class="metric">
+                                <span class="value">14 weeks</span>
+                                <span class="label">Duration</span>
+                            </div>
+                            <div class="metric">
+                                <span class="value">Certificate</span>
+                                <span class="label">Credential</span>
+                            </div>
+                        </div>
+                        
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h4>What You Gain</h4>
+                                <ul>
+                                    <li>MIT brand recognition</li>
+                                    <li>Live faculty sessions</li>
+                                    <li>Career support included</li>
+                                    <li>Structured accountability</li>
+                                    <li>GenAI/Agentic AI curriculum</li>
+                                    <li>Portfolio building</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h4>What You Lose</h4>
+                                <ul>
+                                    <li>$6,200 AUD (124% of cash)</li>
+                                    <li>Opportunity to invest elsewhere</li>
+                                    <li>Flexibility (rigid schedule)</li>
+                                    <li>4 months of intense time</li>
+                                    <li>Not a degree (just certificate)</li>
+                                    <li>"Low-code" may be too basic</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="verdict risky">
+                            <strong>RISK LEVEL: HIGH</strong><br>
+                            Spending money you don't have in cash. Requires liquidating investments or credit. Brand is strong but ROI uncertain for someone already doing Python/data analysis.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- DeepLearning.AI Option -->
+                <div class="course-card recommended">
+                    <div class="course-header">
+                        <div class="name">DeepLearning.AI Specializations</div>
+                        <div class="provider">Andrew Ng / Stanford</div>
+                    </div>
+                    <div class="course-body">
+                        <div class="metrics-row">
+                            <div class="metric">
+                                <span class="value" style="color: var(--accent-green);">$300</span>
+                                <span class="label">AUD Cost</span>
+                            </div>
+                            <div class="metric">
+                                <span class="value">3-6 months</span>
+                                <span class="label">Self-paced</span>
+                            </div>
+                            <div class="metric">
+                                <span class="value">Certificates</span>
+                                <span class="label">Coursera</span>
+                            </div>
+                        </div>
+                        
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h4>What You Gain</h4>
+                                <ul>
+                                    <li>Andrew Ng = gold standard</li>
+                                    <li>Same core content as MIT</li>
+                                    <li>Self-paced (fit around work)</li>
+                                    <li>Affordable ($50/mo)</li>
+                                    <li>GenAI specialization available</li>
+                                    <li>Keep $5,900 AUD in pocket</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h4>Trade-offs</h4>
+                                <ul>
+                                    <li>No MIT brand</li>
+                                    <li>No career support included</li>
+                                    <li>Requires self-discipline</li>
+                                    <li>Less networking</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="verdict recommended">
+                            <strong>RECOMMENDED</strong><br>
+                            20x cheaper. Same foundational knowledge. Andrew Ng is literally the person who taught the MIT professors. Keep your cash for the job transition.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hybrid Option -->
+                <div class="course-card">
+                    <div class="course-header">
+                        <div class="name">DIY + Projects Strategy</div>
+                        <div class="provider">Self-directed + Open Source</div>
+                    </div>
+                    <div class="course-body">
+                        <div class="metrics-row">
+                            <div class="metric">
+                                <span class="value" style="color: var(--accent-cyan);">$150</span>
+                                <span class="label">AUD Cost</span>
+                            </div>
+                            <div class="metric">
+                                <span class="value">Flexible</span>
+                                <span class="label">Timeline</span>
+                            </div>
+                            <div class="metric">
+                                <span class="value">GitHub</span>
+                                <span class="label">Portfolio</span>
+                            </div>
+                        </div>
+                        
+                        <div class="pros-cons">
+                            <div class="pros">
+                                <h4>What You Gain</h4>
+                                <ul>
+                                    <li>Keep $6,000+ AUD invested</li>
+                                    <li>Build actual trading projects</li>
+                                    <li>Demonstrable GitHub portfolio</li>
+                                    <li>Learn by doing (best way)</li>
+                                    <li>No schedule pressure</li>
+                                </ul>
+                            </div>
+                            <div class="cons">
+                                <h4>Challenges</h4>
+                                <ul>
+                                    <li>No external accountability</li>
+                                    <li>Requires discipline</li>
+                                    <li>No certificate to show HR</li>
+                                    <li>Harder to prove knowledge</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="verdict neutral">
+                            <strong>BEST ROI FOR YOUR SITUATION</strong><br>
+                            For a trading ops role, projects > certificates. Build an ML portfolio optimizer, deploy it, blog about it. That's what gets you the $200k job.
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- Sydney Context -->
+        <div class="sydney-section">
+            <h2>🌏 Sydney Job Market Reality</h2>
+            <div class="sydney-grid">
+                <div class="sydney-item">
+                    <h3>💼 Trading/Quant Roles</h3>
+                    <ul>
+                        <li>Macquarie, Optiver, Citadel, SIG hire quants</li>
+                        <li>They care about: Math + Python + Projects</li>
+                        <li>MIT certificate helps but portfolio wins</li>
+                        <li>$200k+ total comp achievable with 3-5 years exp</li>
+                    </ul>
+                </div>
+                <div class="sydney-item">
+                    <h3>🏢 Crypto/FinTech</h3>
+                    <ul>
+                        <li>Block Earner, Amber, Kraken AU offices</li>
+                        <li>Care about: DeFi knowledge + Python</li>
+                        <li>Your current experience is valuable</li>
+                        <li>Ops → Trading desk is common path</li>
+                    </ul>
+                </div>
+                <div class="sydney-item">
+                    <h3>📜 What Actually Gets Interviews</h3>
+                    <ul>
+                        <li><strong>GitHub with trading projects</strong></li>
+                        <li>Quantitative bachelor's (you have this)</li>
+                        <li>Python + SQL proficiency</li>
+                        <li>Domain knowledge (crypto exp = asset)</li>
+                        <li>Referrals > certificates</li>
+                    </ul>
+                </div>
+                <div class="sydney-item">
+                    <h3>⚠️ Your Risk Profile</h3>
+                    <ul>
+                        <li>Company has <1 year runway</li>
+                        <li>No redundancy protection mentioned</li>
+                        <li>You need cash buffer for job hunt</li>
+                        <li>$6k is 3-4 months living expenses</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Final Recommendation -->
+        <div class="final-rec">
+            <h2>🎯 MY RECOMMENDATION</h2>
+            <div class="price-tag">$300 AUD Total</div>
+            
+            <p style="color: var(--text-secondary); margin-bottom: 16px;">
+                Don't spend $6,200 on a certificate when you're about to job hunt. Here's the move:
+            </p>
+            
+            <ul>
+                <li><strong>Month 1:</strong> DeepLearning.AI Machine Learning Specialization ($50)</li>
+                <li><strong>Month 2:</strong> DeepLearning.AI GenAI with LLMs ($50)</li>
+                <li><strong>Month 3:</strong> Build 2 trading projects with ML (free)</li>
+                <li><strong>Month 4:</strong> Deploy portfolio, write blog posts (free)</li>
+                <li><strong>Month 5:</strong> Network + apply with GitHub links</li>
+            </ul>
+            
+            <p style="color: var(--text-secondary); margin-top: 16px;">
+                <strong>Total:</strong> $100 + your time<br>
+                <strong>Savings preserved:</strong> $6,100 AUD for job transition<br>
+                <strong>Output:</strong> Actual projects recruiters can see
+            </p>
+        </div>
+        
+        <!-- Action Plan -->
+        <div class="action-plan">
+            <h2>📋 90-Day Action Plan</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="week">Week 1-4</div>
+                    <div class="task">Machine Learning Specialization (Course 1 & 2)</div>
+                    <div class="cost">~$50 AUD</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="week">Week 5-8</div>
+                    <div class="task">Build ML Portfolio Optimizer</div>
+                    <div class="cost">Free (yfinance + scikit-learn)</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="week">Week 9-12</div>
+                    <div class="task">Generative AI course + Sentiment Analysis Bot</div>
+                    <div class="cost">~$50 AUD</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="week">End of Month 3</div>
+                    <div class="task">GitHub portfolio live, blog posts written</div>
+                    <div class="cost">Ready to apply with projects</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- The Drill Sergeant -->
+        <div class="warning-box">
+            <h3>🗡️ Drill Sergeant Take</h3>
+            <p>You're looking for permission to spend $6k you don't have on a fancy certificate because it feels safer than doing the work. <strong>Cut the shit.</strong></p>
+            <p style="margin-top: 12px;">The MIT certificate won't save you from a dead company. Projects will. DeepLearning.AI + 3 solid GitHub repos + networking = job. MIT certificate + no projects = still unemployed with $6k less.</p>
+            <p style="margin-top: 12px; color: var(--accent-gold);"><strong>Your job is dying. Your savings are limited. Be smart. Not fancy.</strong></p>
+        </div>
+        
+        <footer>
+            <p>Generated by Astra 🗡️ • Empire Command Center • Feb 28, 2026</p>
+            <p style="margin-top: 8px; opacity: 0.6;">This is not financial advice. This is drill sergeant advice.</p>
+        </footer>
+    </div>
+</body>
+</html>

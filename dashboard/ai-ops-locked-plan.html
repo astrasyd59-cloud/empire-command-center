@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Operations Enablement — LOCKED 16-Week Plan | Dibs</title>
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a25;
+            --bg-tertiary: #252532;
+            --text-primary: #ffffff;
+            --text-secondary: #8892a0;
+            --accent-blue: #00d4ff;
+            --accent-purple: #b829f7;
+            --accent-green: #00ff88;
+            --accent-orange: #ff9f43;
+            --accent-red: #ff4757;
+            --border: #2a2a3a;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, rgba(184,41,247,0.3), rgba(0,212,255,0.3));
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .header h1 {
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header p { color: var(--text-secondary); font-size: 0.9rem; }
+        
+        .locked-badge {
+            display: inline-block;
+            background: var(--accent-green);
+            color: var(--bg-primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+        }
+        
+        .container { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
+        
+        .summary-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            text-align: center;
+        }
+        
+        .summary-item h4 {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        
+        .summary-item p {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+        
+        .phase-header {
+            background: linear-gradient(135deg, rgba(184,41,247,0.2), rgba(0,212,255,0.2));
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0 1rem 0;
+            border: 1px solid var(--border);
+        }
+        
+        .phase-header h2 {
+            font-size: 1.1rem;
+            margin: 0;
+        }
+        
+        .phase-header p {
+            margin: 0.25rem 0 0 0;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        .course-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        
+        .course-header {
+            background: var(--bg-secondary);
+            padding: 1rem 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .course-title { font-weight: 600; font-size: 1rem; }
+        .course-platform { color: var(--accent-blue); font-size: 0.8rem; }
+        
+        .course-content { padding: 1.25rem; }
+        
+        .week-row {
+            display: grid;
+            grid-template-columns: 70px 1fr auto;
+            gap: 1rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+            align-items: center;
+        }
+        
+        .week-row:last-child { border-bottom: none; }
+        
+        .week-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        
+        .week-task {
+            font-size: 0.9rem;
+        }
+        
+        .week-task strong {
+            color: var(--accent-green);
+            font-weight: 500;
+        }
+        
+        .hours-badge {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+            color: var(--text-secondary);
+        }
+        
+        .cert-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            padding: 0.15rem 0.4rem;
+            background: rgba(0,255,136,0.2);
+            color: var(--accent-green);
+            border-radius: 4px;
+            margin-left: 0.5rem;
+            text-transform: uppercase;
+        }
+        
+        .course-meta {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        .course-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .checkpoint {
+            background: linear-gradient(135deg, rgba(0,255,136,0.1), rgba(0,255,136,0.05));
+            border: 1px solid var(--accent-green);
+            padding: 1rem 1.25rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .checkpoint h4 {
+            color: var(--accent-green);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .checkpoint p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .cost-bar {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin: 1.5rem 0;
+        }
+        
+        .cost-bar h3 {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        
+        .cost-breakdown {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .cost-item {
+            text-align: center;
+        }
+        
+        .cost-item .platform {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        
+        .cost-item .amount {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+        }
+        
+        .cost-total {
+            border-top: 2px solid var(--accent-green);
+            padding-top: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .cost-total .amount {
+            color: var(--accent-green);
+        }
+        
+        .warning-box {
+            background: rgba(255,159,67,0.1);
+            border-left: 3px solid var(--accent-orange);
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .warning-box strong { color: var(--accent-orange); }
+        
+        .rules-box {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            padding: 1.25rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+        }
+        
+        .rules-box h3 {
+            color: var(--accent-red);
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+        }
+        
+        .rules-box ul {
+            list-style: none;
+            font-size: 0.9rem;
+        }
+        
+        .rules-box li {
+            padding: 0.4rem 0;
+            padding-left: 1.25rem;
+            position: relative;
+        }
+        
+        .rules-box li::before {
+            content: "✗";
+            position: absolute;
+            left: 0;
+            color: var(--accent-red);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        @media (max-width: 768px) {
+            .summary-grid { grid-template-columns: repeat(2, 1fr); }
+            .week-row { grid-template-columns: 60px 1fr; }
+            .week-row .hours-badge { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🗡️ AI Operations Enablement</h1>
+        <p>Structured Course-Based Plan | 16 Weeks | Job-Ready by June 30</p>
+        <span class="locked-badge">🔒 Locked In</span>
+    </div>
+    
+    <div class="container">
+        
+        <div class="summary-box">
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <h4>Start Date</h4>
+                    <p>Mar 3</p>
+                </div>
+                <div class="summary-item">
+                    <h4>End Date</h4>
+                    <p>Jun 30</p>
+                </div>
+                <div class="summary-item">
+                    <h4>Weekly Hours</h4>
+                    <p>6 hrs</p>
+                </div>
+                <div class="summary-item">
+                    <h4>Total Cost</h4>
+                    <p>~$350</p>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="rules-box">
+            <h3>🚫 Non-Negotiable Rules</h3>
+            <ul>
+                <li>NO trading projects until Week 9</li>
+                <li>NO side hustles until job-ready</li>
+                <li>NO skipping Mon/Wed/Fri sessions</li>
+                <li>NO "I'll catch up next week" — daily consistency only</li>
+                <li>If you miss a day, you lose Sunday recovery time</li>
+            </ul>
+        </div>
+        
+        
+        <div class="phase-header">
+            <h2>📅 Phase 1: SQL Fundamentals (Weeks 1-4)</h2>
+            <p>Single Course Focus — No Context Switching</p>
+        </div>
+        
+        <div class="course-card">
+            <div class="course-header">
+                <span class="course-title">SQL Fundamentals Track</span>
+                <span class="course-platform">DataCamp</span>
+            </div>
+            <div class="course-content">
+                <div class="week-row">
+                    <span class="week-label">Week 1</span>
+                    <span class="week-task"><strong>Intro to SQL:</strong> SELECT, WHERE, ORDER BY, LIMIT</span>
+                    <span class="hours-badge">6 hrs</span>
+                </div>
+                <div class="week-row">
+                    <span class="week-label">Week 2</span>
+                    <span class="week-task"><strong>Intermediate SQL:</strong> JOINs, set theory, subqueries</span>
+                    <span class="hours-badge">6 hrs</span>
+                </div>
+                <div class="week-row">
+                    <span class="week-label">Week 3</span>
+                    <span class="week-task"><strong>Joining Data:</strong> INNER, LEFT, RIGHT, FULL JOINs, set operations</span>
+                    <span class="hours-badge">6 hrs</span>
+                </div>
+                <div class="week-row">
+                    <span class="week-label">Week 4</span>
+                    <span class="week-task"><strong>Data Manipulation:</strong> UPDATE, DELETE, INSERT, DDL</span>
+                    <span class="hours-badge">6 hrs</span>
+                </div>
+                
+                <div class="course-meta">
+                    <span>📊 16 Modules</span>
+                    <span>📝 Quizzes after each module</span>
+                    <span>✅ Progress tracking built-in</span>
+                    <span>🏆 Certificate upon completion</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="checkpoint">
+            <h4>🎯 Checkpoint: End of Week 4</h4>
+            <p>You can write complex JOINs, aggregate data, and pass a SQL technical screen. <strong>SQL Level: 1 → 6/10</strong></p>
+        </div>
+        
+        
+        <div class="phase-header">
+            <h2>📅 Phase 2: Python + Data Analysis (Weeks 5-9)</h2>
+            <p>DataCamp Career Track — Linear Progression</p>
+        </div>
+        
+        <div class="course-card">
+            <div class="course-header">
+                <span class="course-title">Data Analyst with Python Track</span>
+                <span class="course-platform">DataCamp</span>
+            </div>
+            <div class="course-content">
+                <div class="week-row">
+                    <span class="week-label">Week 5</span>
+                    <span class="week-task"><strong>Python Basics:</strong> Variables, lists, loops, functions</span>
+                    <span class="hours-badge">6 hrs</span>
+                </div>
+                <div class="week-row">
+                    <span class="week-label">Week 6</span>
+                    <span class="week-task"><strong>Intermediate Python:</strong> Dictionaries, pandas intro</span>
+                    <span class="hours-badge">6 hrs</span>
+                </div>
+                <div class="week-row">
+                    <span class="week-label">Week 7</span>
+                    <span class="week-task"><strong>Data Manipulation:</strong> Pandas, slicing, filtering, aggregation</span>
+                    <span class="hours-badge">6 hrs</span>
+                </div>
+                <div class="week-row">
+                    <span class="week-label">Week 8</span>
+                    <span class="week-task"><strong>Data Visualization:</strong> Matplotlib, Seaborn, plotting</span>
+                    <span class="hours-badge">6 hrs</span>
+                </div>
+                <div class="week-row">
+                    <span class="week-label">Week 9</span>
+                    <span class="week-task"><strong>Importing Data:</strong> SQL + Python, APIs, flat files <span class="cert-badge">Cert</span></span>
+                    <span class="hours-badge">6 hrs</span>
+                </div>
+                
+                <div class="course-meta">
+                    <span>📊 19 Courses</span>
+                    <span>💻 Coding exercises in browser</span>
+                    <span>📈 Skill assessments</span>
+                    <span>🏆 Data Analyst Associate Certificate</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="checkpoint">
+            <h4>🎯 Checkpoint: End of Week 9</h4>
+            <p>You can clean data, create visualizations, and connect SQL to Python. <strong>Python Level: 3 → 7/10</strong>. First certificate earned.</p>
+        </div>
+        
+        
+        <div class="phase-header">
+            <h2>📅 Phase 3: AI + GenAI (Weeks 10-14)</h2>
+            <p>Google + NVIDIA + DeepLearning.AI — Structured Certs</p>
+        </div>
+        
+        <div class="course-card">
+            <div class="course-header">
+                <span class="course-title">Generative AI Learning Path</span>
+                <span class="course-platform">Google Cloud</span>
+            </div>
+            <div class="course-content">
+                <div class="week-row">
+                    <span class="week-label">Week 10</span>
+                    <span class="week-task"><strong>Intro to GenAI:</strong> LLMs, transformers, applications</span>
+                    <span class="hours-badge">4 hrs</span>
+                </div>
+                <div class="week-row">
+                    <span class="week-label">Week 10</span>
+                    <span class="week-task"><strong>LLMs:</strong> Prompts, tuning, Vertex AI</span>
+                    <span class="hours-badge">4 hrs</span>
+                </div>
+                <div class="week-row">
+                    <span class="week-label">Week 11</span>
+                    <span class="week-task"><strong>Responsible AI:</strong> Ethics, safety, MLOps intro <span class="cert-badge">Cert</span></span>
+                    <span class="hours-badge">4 hrs</span>
+                </div>
+                
+                <div class="course-meta">
+                    <span>📱 Mobile-friendly</span>
+                    <span>🎥 Video + quizzes</span>
+                    <span>🏆 Google Cloud Skills Badge</span>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="course-card">
+            <div class="course-header">
+                <span class="course-title">LangChain for LLM Application Development</span>
+                <span class="course-platform">DeepLearning.AI</span>
+            </div>
+            <div class="course-content">
+                <div class="week-row">
+                    <span class="week-label">Week 12</span>
+                    <span class="week-task"><strong>Models, Prompts, Parsers:</strong> LangChain basics</span>
+                    <span class="hours-badge">3 hrs</span>
+                </div>
+                <div class="week-row">
+                    <span class="week-label">Week 12</span>
+                    <span class="week-task"><strong>Memory:</strong> ConversationBuffer, chains with history</span>
+                    <span class="hours-badge">3 hrs</span>
+                </div>
+                <div class="week-row">
+                    <span class="week-label">Week 13</span>
+                    <span class="week-task"><strong>Chains:</strong> Sequential, router, transformation chains</span>
+                    <span class="hours-badge">3 hrs</span>
+                </div>
+                <div class="week-row">
+                    <span class="week-label">Week 13</span>
+                    <span class="week-task"><strong>RAG:</strong> Document loaders, vectorstores, retrieval <span class="cert-badge">Cert</span></span>
+                    <span class="hours-badge">3 hrs</span>
+                </div>
+                
+                <div class="course-meta">
+                    <span>💻 Jupyter notebooks provided</span>
+                    <span>🎓 Harrison Chase (LangChain creator)</span>
+                    <span>🏆 Course Certificate</span>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="course-card">
+            <div class="course-header">
+                <span class="course-title">Building RAG Agents with LLMs</span>
+                <span class="course-platform">NVIDIA</span>
+            </div>
+            <div class="course-content">
+                <div class="week-row">
+                    <span class="week-label">Week 14</span>
+                    <span class="week-task"><strong>RAG Foundations:</strong> Embedding models, vector DBs</span>
+                    <span class="hours-badge">4 hrs</span>
+                </div>
+                <div class="week-row">
+                    <span class="week-label">Week 14</span>
+                    <span class="week-task"><strong>Agent Frameworks:</strong> ReAct, tool use, multi-step reasoning <span class="cert-badge">Cert</span></span>
+                    <span class="hours-badge">4 hrs</span>
+                </div>
+                
+                <div class="course-meta">
+                    <span>🚀 Industry-leading content</span>
+                    <span>💻 Hands-on labs</span>
+                    <span>🏆 NVIDIA Certificate</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="checkpoint">
+            <h4>🎯 Checkpoint: End of Week 14</h4>
+            <p>You can build RAG systems, create AI agents, and have 3 certificates. <strong>AI Level: 0 → 6/10</strong></p>
+        </div>
+        
+        
+        <div class="phase-header">
+            <h2>📅 Phase 4: Portfolio + Job Prep (Weeks 15-16)</h2>
+            <p>Projects + Applications + Interview Ready</p>
+        </div>
+        
+        
+        <div class="course-card">
+            <div class="course-header">
+                <span class="course-title">Portfolio + GitHub Polish</span>
+                <span class="course-platform">Self-Directed</span>
+            </div>
+            <div class="course-content">
+                <div class="week-row">
+                    <span class="week-label">Week 15</span>
+                    <span class="week-task"><strong>Project 1:</strong> SQL analysis of trading data (Portfolio piece)</span>
+                    <span class="hours-badge">6 hrs</span>
+                </div>
+                <div class="week-row">
+                    <span class="week-label">Week 15</span>
+                    <span class="week-task"><strong>Project 2:</strong> RAG app for market research (Deployed)</span>
+                    <span class="hours-badge">6 hrs</span>
+                </div>
+                <div class="week-row">
+                    <span class="week-label">Week 16</span>
+                    <span class="week-task"><strong>LinkedIn + Resume:</strong> Update with certificates + projects</span>
+                    <span class="hours-badge">4 hrs</span>
+                </div>
+                <div class="week-row">
+                    <span class="week-label">Week 16</span>
+                    <span class="week-task"><strong>Applications:</strong> Apply to 10 AI Operations roles</span>
+                    <span class="hours-badge">8 hrs</span>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="cost-bar">
+            <h3>💰 Cost Breakdown</h3>
+            <div class="cost-breakdown">
+                <div class="cost-item">
+                    <div class="platform">DataCamp</div>
+                    <div class="amount">$75</div>
+                    <div style="font-size: 0.7rem; color: var(--text-secondary);">3 months</div>
+                </div>
+                <div class="cost-item">
+                    <div class="platform">DeepLearning.AI</div>
+                    <div class="amount">$49</div>
+                    <div style="font-size: 0.7rem; color: var(--text-secondary);">1 course</div>
+                </div>
+                <div class="cost-item">
+                    <div class="platform">Google</div>
+                    <div class="amount">FREE</div>
+                    <div style="font-size: 0.7rem; color: var(--text-secondary);">GenAI Path</div>
+                </div>
+                <div class="cost-item">
+                    <div class="platform">NVIDIA</div>
+                    <div class="amount">FREE</div>
+                    <div style="font-size: 0.7rem; color: var(--text-secondary);">RAG Course</div>
+                </div>
+                <div class="cost-item cost-total">
+                    <div class="platform">TOTAL</div>
+                    <div class="amount">$124</div>
+                    <div style="font-size: 0.7rem; color: var(--text-secondary);">16 weeks</div>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="warning-box">
+            <strong>📌 Your Certificate Stack:</strong><br>
+            1. DataCamp Data Analyst Associate (Week 9)<br>
+            2. Google Cloud Generative AI Badge (Week 11)<br>
+            3. DeepLearning.AI LangChain Certificate (Week 13)<br>
+            4. NVIDIA Building RAG Agents Certificate (Week 14)<br>
+            <br>
+            Plus 2 GitHub projects tied to trading data
+        </div>
+        
+    </div>
+    
+    <footer>
+        🗡️ Astra Command Center | LOCKED PLAN | Start: March 3, 2026 | End: June 30, 2026
+    </footer>
+</body>
+</html>

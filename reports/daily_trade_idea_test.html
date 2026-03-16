@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Daily Trade Idea | February 24, 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@300;400;500;600&family=Literata:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* [CSS from template - truncated for brevity] */
+        :root {
+            --bg: #f5f4f0; --bg-card: #ffffff; --bg-subtle: #eeece6; --bg-code: #e8e5dc;
+            --text-primary: #141210; --text-body: #3a3530; --text-muted: #7a746a;
+            --border: #d8d4c8; --border-strong:#a8a098; --accent: #1a1a1a;
+            --long: #1a5c2e; --long-bg: #e6f4ea; --long-border: #4caf6a;
+            --short: #8c1a1a; --short-bg: #fceaea; --short-border: #e05a5a;
+            --no-trade: #5a5040; --no-trade-bg: #f0ede4;
+            --gold: #8c6a10; --gold-bg: #fdf5e0; --gold-border: #c9a830;
+            --teal: #1a5c5a; --teal-bg: #e6f4f3;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.09);
+            --radius: 4px; --radius-lg: 10px;
+            --font-display: 'Bebas Neue', 'Impact', sans-serif;
+            --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+            --font-body: 'Literata', Georgia, serif;
+        }
+        [data-theme="dark"] {
+            --bg: #0e0d0b; --bg-card: #181715; --bg-subtle: #222018;
+            --text-primary: #f0ede4; --text-body: #c8c4b8;
+            --long: #4caf6a; --long-bg: #0a2010;
+            --short: #e05a5a; --short-bg: #280a0a;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-body); background: var(--bg); color: var(--text-primary); line-height: 1.6; font-size: 14px; }
+        .container { max-width: 840px; margin: 0 auto; padding: 0 14px; }
+        .theme-toggle { position: fixed; top: 12px; right: 12px; background: var(--bg-card); border: 1.5px solid var(--border-strong); padding: 6px 13px; border-radius: 20px; cursor: pointer; font-family: var(--font-mono); font-size: 0.67rem; z-index: 1000; }
+        header { padding: 40px 0 28px; border-bottom: 1px solid var(--border-strong); margin-bottom: 24px; }
+        .header-top { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; }
+        .masthead-eyebrow { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); }
+        .masthead-title { font-family: var(--font-display); font-size: clamp(2.4rem, 7vw, 4rem); color: var(--text-primary); letter-spacing: 1px; line-height: 1; }
+        .masthead-week { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.5px; }
+        .header-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+        .meta-tag { font-family: var(--font-mono); font-size: 0.62rem; padding: 3px 10px; background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text-muted); border-radius: 10px; }
+        .meta-tag.warn { background: var(--gold-bg); border-color: var(--gold-border); color: var(--gold); }
+        .macro-strip { background: var(--accent); padding: 14px 18px; margin-bottom: 24px; border-radius: var(--radius); overflow-x: auto; }
+        .macro-row { display: flex; gap: 0; min-width: max-content; }
+        .macro-cell { text-align: center; padding: 0 16px; border-right: 1px solid rgba(255,255,255,0.12); }
+        .macro-cell:last-child { border-right: none; }
+        .macro-cell .mc-val { font-family: var(--font-mono); font-size: 0.88rem; font-weight: 500; color: var(--bg); display: block; }
+        .macro-cell .mc-lbl { font-family: var(--font-mono); font-size: 0.54rem; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 2px; display: block; }
+        .mc-up { color: #6ee882; } .mc-dn { color: #ff8a80; }
+        .context-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 4px solid var(--accent); padding: 16px 18px; margin-bottom: 24px; }
+        .context-label { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+        .context-text { font-size: 0.88rem; color: var(--text-body); line-height: 1.7; }
+        .divider { display: flex; align-items: center; gap: 10px; margin: 28px 0 18px; }
+        .divider-line { flex: 1; height: 1px; background: var(--border); }
+        .divider-text { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 2.5px; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; }
+        .inst-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); margin-bottom: 20px; box-shadow: var(--shadow-sm); }
+        .status-bar { height: 4px; width: 100%; }
+        .status-bar.long { background: linear-gradient(90deg, var(--long), var(--long-border)); }
+        .status-bar.short { background: linear-gradient(90deg, var(--short), var(--short-border)); }
+        .status-bar.no-trade { background: var(--border); }
+        .inst-header { padding: 16px 20px 12px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px; }
+        .inst-ticker { font-family: var(--font-display); font-size: clamp(1.6rem, 5vw, 2.4rem); color: var(--text-primary); letter-spacing: 0.5px; }
+        .direction-badge { font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600; letter-spacing: 1px; padding: 4px 12px; border-radius: var(--radius); text-transform: uppercase; }
+        .direction-badge.long { background: var(--long-bg); color: var(--long); border: 1.5px solid var(--long-border); }
+        .direction-badge.short { background: var(--short-bg); color: var(--short); border: 1.5px solid var(--short-border); }
+        .direction-badge.none { background: var(--no-trade-bg); color: var(--no-trade); border: 1.5px solid var(--border); }
+        .inst-price { font-family: var(--font-mono); font-size: clamp(1.1rem, 3vw, 1.5rem); font-weight: 500; }
+        .positive { color: var(--long); } .negative { color: var(--short); }
+        .inst-body { padding: 0 20px 20px; }
+        .metrics-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 14px 0; }
+        .metric-tile { background: var(--bg-subtle); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 6px; text-align: center; }
+        .metric-tile .mt-val { font-family: var(--font-mono); font-size: 0.82rem; font-weight: 500; }
+        .metric-tile .mt-lbl { font-family: var(--font-mono); font-size: 0.52rem; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text-muted); }
+        .levels-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 10px 0; }
+        .level-block { background: var(--bg-subtle); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px; }
+        .level-block.entry-block { border-color: var(--gold-border); background: var(--gold-bg); }
+        .level-block.stop-block { border-color: var(--short-border); background: var(--short-bg); }
+        .level-block.t1-block { border-color: var(--long-border); background: var(--long-bg); }
+        .level-block.t2-block { border-color: var(--teal); background: var(--teal-bg); }
+        .level-label { font-family: var(--font-mono); font-size: 0.56rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); }
+        .level-value { font-family: var(--font-mono); font-size: 0.95rem; font-weight: 600; }
+        .level-sub { font-family: var(--font-mono); font-size: 0.58rem; color: var(--text-muted); }
+        .stop-logic { background: var(--bg-code); border: 1px solid var(--border); border-left: 3px solid var(--short-border); padding: 10px 14px; margin: 10px 0; font-family: var(--font-mono); font-size: 0.76rem; }
+        .invalidation-box { background: var(--short-bg); border: 1px solid var(--short-border); border-radius: var(--radius); padding: 10px 14px; margin: 10px 0; }
+        .gate-pills { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+        .gate-pill { font-family: var(--font-mono); font-size: 0.58rem; padding: 3px 8px; border-radius: 6px; }
+        .gate-pass { background: var(--long-bg); color: var(--long); border: 1px solid var(--long-border); }
+        .gate-fail { background: var(--short-bg); color: var(--short); border: 1px solid var(--short-border); }
+        footer { text-align: center; padding: 28px 16px; border-top: 1px solid var(--border); margin-top: 16px; color: var(--text-muted); font-size: 0.7rem; font-family: var(--font-mono); }
+        .disclaimer { margin-top: 10px; padding: 10px 16px; background: var(--bg-subtle); border-radius: var(--radius); border: 1px solid var(--border); font-size: 0.62rem; text-align: left; }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">◐ THEME</button>
+    <div class="container">
+        <header>
+            <div class="header-top">
+                <div>
+                    <div class="masthead-eyebrow">OpenClaw Empire · ASTRA</div>
+                    <h1 class="masthead-title">THE DAILY<br>TRADE IDEA</h1>
+                </div>
+                <div class="masthead-week">
+                    Week of February 24, 2026<br>
+                    <span style="font-size:0.62rem;color:var(--text-muted)">4H Swing · CMC Markets · City Index</span>
+                </div>
+            </div>
+            <div class="header-meta">
+                <span class="meta-tag">📊 4H Timeframe</span>
+                <span class="meta-tag">Gold · Silver · ES · NQ · AUDUSD · GBPUSD</span>
+                <span class="meta-tag">Generated February 24, 2026 at 21:28 UTC</span>
+                <span class="meta-tag warn">⚠️ Verify economic calendar independently before trading</span>
+            </div>
+        </header>
+
+        <div class="macro-strip">
+            <div class="macro-row">
+                <div class="macro-cell">
+                    <span class="mc-val">6,838</span>
+                    <span class="mc-lbl">S&P 500</span>
+                    <span class="mc-chg negative">▼ 1.04%</span>
+                </div>
+                <div class="macro-cell">
+                    <span class="mc-val">20.9</span>
+                    <span class="mc-lbl">VIX</span>
+                    <span class="mc-chg negative">▼ 0.43%</span>
+                </div>
+                <div class="macro-cell">
+                    <span class="mc-val">97.84</span>
+                    <span class="mc-lbl">DXY</span>
+                    <span class="mc-chg positive">▲ 0.14%</span>
+                </div>
+                <div class="macro-cell">
+                    <span class="mc-val">4.03%</span>
+                    <span class="mc-lbl">10Y Yield</span>
+                    <span class="mc-chg negative">▼ 1.40%</span>
+                </div>
+                <div class="macro-cell">
+                    <span class="mc-val">0.441</span>
+                    <span class="mc-lbl">2s10s Spread</span>
+                    <span class="mc-chg">INVERTED</span>
+                </div>
+                <div class="macro-cell">
+                    <span class="mc-val">5,192.20</span>
+                    <span class="mc-lbl">Gold/oz</span>
+                    <span class="mc-chg negative">▼ 0.24%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="context-box">
+            <div class="context-label">▸ Market Context — Week of February 24, 2026</div>
+            <p class="context-text">Markets are mixed this week with S&P 500 at 6,838 (-1.04%). 
+VIX at 20.9 suggests elevated volatility. 
+DXY at 97.84 (+0.14%) indicates USD strength. 
+Yield curve spread is 0.441bp — inverted.</p>
+        </div>
+
+        <!-- ── INSTRUMENTS ── -->
+        <div class="divider">
+            <div class="divider-line"></div>
+            <div class="divider-text">Trade Ideas — 4 valid · 2 no trade</div>
+            <div class="divider-line"></div>
+        </div>
+
+        
+<div class="inst-card">
+    <div class="status-bar long"></div>
+    <div class="inst-header">
+        <div class="inst-left">
+            <div class="inst-name-row">
+                <span class="inst-ticker">GOLD</span>
+                <span class="direction-badge long">▲ LONG</span>
+                <span class="confidence-badge conf-high">HIGH CONFIDENCE</span>
+            </div>
+            <div class="inst-full-name">Gold Futures (GC=F) · CMC Markets CFD</div>
+        </div>
+        <div class="inst-right">
+            <div class="inst-price">$5,192.20</div>
+            <div class="inst-change negative">▼ 0.24%</div>
+        </div>
+    </div>
+    <div class="inst-body">
+        <div class="metrics-row">
+            <div class="metric-tile"><span class="mt-val">Bullish</span><span class="mt-lbl">4H Trend</span></div>
+            <div class="metric-tile"><span class="mt-val">67.7</span><span class="mt-lbl">RSI (4H)</span></div>
+            <div class="metric-tile"><span class="mt-val">$51.3142</span><span class="mt-lbl">ATR(14) 4H</span></div>
+            <div class="metric-tile"><span class="mt-val">$5,139.06</span><span class="mt-lbl">EMA20 (4H)</span></div>
+        </div>
+        
+        <div class="levels-section">
+            <div class="levels-title">Trade Levels</div>
+            <div class="levels-grid">
+                <div class="level-block entry-block">
+                    <span class="level-label">Entry Zone</span>
+                    <span class="level-value">$5,192.20–$5,207.59</span>
+                    <span class="level-sub">4H close trigger</span>
+                </div>
+                <div class="level-block stop-block">
+                    <span class="level-label">Stop Loss</span>
+                    <span class="level-value">$5,115.23</span>
+                    <span class="level-sub">1.5 × ATR from entry</span>
+                </div>
+                <div class="level-block t1-block">
+                    <span class="level-label">Target 1 <span class="rr-badge">2.0:1</span></span>
+                    <span class="level-value">$5,361.54</span>
+                    <span class="level-sub">2x risk projection</span>
+                </div>
+                <div class="level-block t2-block">
+                    <span class="level-label">Target 2 <span class="rr-badge">3.2:1</span></span>
+                    <span class="level-value">$5,476.99</span>
+                    <span class="level-sub">3.5x risk projection</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stop-logic">
+ATR(14) on 4H = $51.3142<br>
+Stop distance = 1.5 × $51.3142 = $76.9714<br>
+Entry zone low = $5,192.20<br>
+Stop level = $5,192.20 − $76.9714 = $5,115.23<br>
+Risk per unit = $76.9714<br>
+Target 1 gain = $5,361.54 − $5,192.20 = $169.3370 → R:R = 2.0:1
+        </div>
+        
+        <div class="pattern-section">
+            <div class="levels-title">Chart Pattern</div>
+            <div class="pattern-header">
+                <div class="pattern-info">
+                    <div class="pattern-name-large">Double Bottom</div>
+                    <div class="pattern-chapter">📖 Murphy · Chapter 5 — Major Reversal Patterns</div>
+                    <p class="pattern-desc">Two nearly equal lows forming a W-shape. Classic bullish reversal. Confirmed on break above the neckline (the high between the two lows).</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="invalidation-box">
+            <div class="inv-label">⚠️ Setup Invalidation</div>
+            <p>4H close below 5115.23. Exit immediately if invalidated.</p>
+        </div>
+    </div>
+</div>
+
+<div class="inst-card">
+    <div class="status-bar long"></div>
+    <div class="inst-header">
+        <div class="inst-left">
+            <div class="inst-name-row">
+                <span class="inst-ticker">SILVER</span>
+                <span class="direction-badge long">▲ LONG</span>
+                <span class="confidence-badge conf-high">HIGH CONFIDENCE</span>
+            </div>
+            <div class="inst-full-name">Silver Futures (SI=F) · CMC Markets CFD</div>
+        </div>
+        <div class="inst-right">
+            <div class="inst-price">$88.2350</div>
+            <div class="inst-change positive">▲ 1.98%</div>
+        </div>
+    </div>
+    <div class="inst-body">
+        <div class="metrics-row">
+            <div class="metric-tile"><span class="mt-val">Bullish</span><span class="mt-lbl">4H Trend</span></div>
+            <div class="metric-tile"><span class="mt-val">78.3</span><span class="mt-lbl">RSI (4H)</span></div>
+            <div class="metric-tile"><span class="mt-val">$1.9800</span><span class="mt-lbl">ATR(14) 4H</span></div>
+            <div class="metric-tile"><span class="mt-val">$84.4280</span><span class="mt-lbl">EMA20 (4H)</span></div>
+        </div>
+        
+        <div class="levels-section">
+            <div class="levels-title">Trade Levels</div>
+            <div class="levels-grid">
+                <div class="level-block entry-block">
+                    <span class="level-label">Entry Zone</span>
+                    <span class="level-value">$88.2350–$88.8290</span>
+                    <span class="level-sub">4H close trigger</span>
+                </div>
+                <div class="level-block stop-block">
+                    <span class="level-label">Stop Loss</span>
+                    <span class="level-value">$85.2650</span>
+                    <span class="level-sub">1.5 × ATR from entry</span>
+                </div>
+                <div class="level-block t1-block">
+                    <span class="level-label">Target 1 <span class="rr-badge">2.0:1</span></span>
+                    <span class="level-value">$94.7690</span>
+                    <span class="level-sub">2x risk projection</span>
+                </div>
+                <div class="level-block t2-block">
+                    <span class="level-label">Target 2 <span class="rr-badge">3.2:1</span></span>
+                    <span class="level-value">$99.2240</span>
+                    <span class="level-sub">3.5x risk projection</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stop-logic">
+ATR(14) on 4H = $1.9800<br>
+Stop distance = 1.5 × $1.9800 = $2.9700<br>
+Entry zone low = $88.2350<br>
+Stop level = $88.2350 − $2.9700 = $85.2650<br>
+Risk per unit = $2.9700<br>
+Target 1 gain = $94.7690 − $88.2350 = $6.5340 → R:R = 2.0:1
+        </div>
+        
+        <div class="pattern-section">
+            <div class="levels-title">Chart Pattern</div>
+            <div class="pattern-header">
+                <div class="pattern-info">
+                    <div class="pattern-name-large">Bull Flag</div>
+                    <div class="pattern-chapter">📖 Murphy · Chapter 6 — Continuation Patterns</div>
+                    <p class="pattern-desc">Strong impulse rally followed by tight, low-volume consolidation. Breakout above flag high targets the flagpole length projected upward.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="invalidation-box">
+            <div class="inv-label">⚠️ Setup Invalidation</div>
+            <p>4H close below 85.27. Exit immediately if invalidated.</p>
+        </div>
+    </div>
+</div>
+
+<div class="inst-card">
+    <div class="status-bar short"></div>
+    <div class="inst-header">
+        <div class="inst-left">
+            <div class="inst-name-row">
+                <span class="inst-ticker">ES</span>
+                <span class="direction-badge short">▼ SHORT</span>
+                <span class="confidence-badge conf-high">HIGH CONFIDENCE</span>
+            </div>
+            <div class="inst-full-name">S&P 500 E-mini (ES=F) · CMC Markets CFD</div>
+        </div>
+        <div class="inst-right">
+            <div class="inst-price">$6,865.50</div>
+            <div class="inst-change positive">▲ 0.20%</div>
+        </div>
+    </div>
+    <div class="inst-body">
+        <div class="metrics-row">
+            <div class="metric-tile"><span class="mt-val">Bearish</span><span class="mt-lbl">4H Trend</span></div>
+            <div class="metric-tile"><span class="mt-val">43.9</span><span class="mt-lbl">RSI (4H)</span></div>
+            <div class="metric-tile"><span class="mt-val">$36.0536</span><span class="mt-lbl">ATR(14) 4H</span></div>
+            <div class="metric-tile"><span class="mt-val">$6,876.55</span><span class="mt-lbl">EMA20 (4H)</span></div>
+        </div>
+        
+        <div class="levels-section">
+            <div class="levels-title">Trade Levels</div>
+            <div class="levels-grid">
+                <div class="level-block entry-block">
+                    <span class="level-label">Entry Zone</span>
+                    <span class="level-value">$6,854.68–$6,865.50</span>
+                    <span class="level-sub">4H close trigger</span>
+                </div>
+                <div class="level-block stop-block">
+                    <span class="level-label">Stop Loss</span>
+                    <span class="level-value">$6,919.58</span>
+                    <span class="level-sub">1.5 × ATR from entry</span>
+                </div>
+                <div class="level-block t1-block">
+                    <span class="level-label">Target 1 <span class="rr-badge">2.0:1</span></span>
+                    <span class="level-value">$6,746.52</span>
+                    <span class="level-sub">2x risk projection</span>
+                </div>
+                <div class="level-block t2-block">
+                    <span class="level-label">Target 2 <span class="rr-badge">3.2:1</span></span>
+                    <span class="level-value">$6,665.40</span>
+                    <span class="level-sub">3.5x risk projection</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stop-logic">
+ATR(14) on 4H = $36.0536<br>
+Stop distance = 1.5 × $36.0536 = $54.0804<br>
+Entry zone low = $6,854.68<br>
+Stop level = $6,854.68 − $54.0804 = $6,919.58<br>
+Risk per unit = $54.0804<br>
+Target 1 gain = $6,746.52 − $6,854.68 = $-108.1607 → R:R = 2.0:1
+        </div>
+        
+        <div class="pattern-section">
+            <div class="levels-title">Chart Pattern</div>
+            <div class="pattern-header">
+                <div class="pattern-info">
+                    <div class="pattern-name-large">Downtrend — No Pattern</div>
+                    <div class="pattern-chapter">📖 Murphy · Chapter 4</div>
+                    <p class="pattern-desc">Price in downtrend but no actionable pattern identified. Wait for a cleaner setup.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="invalidation-box">
+            <div class="inv-label">⚠️ Setup Invalidation</div>
+            <p>4H close above 6919.58. Exit immediately if invalidated.</p>
+        </div>
+    </div>
+</div>
+
+<div class="inst-card">
+    <div class="status-bar short"></div>
+    <div class="inst-header">
+        <div class="inst-left">
+            <div class="inst-name-row">
+                <span class="inst-ticker">NQ</span>
+                <span class="direction-badge short">▼ SHORT</span>
+                <span class="confidence-badge conf-high">HIGH CONFIDENCE</span>
+            </div>
+            <div class="inst-full-name">Nasdaq 100 E-mini (NQ=F) · CMC Markets CFD</div>
+        </div>
+        <div class="inst-right">
+            <div class="inst-price">$24,837.25</div>
+            <div class="inst-change positive">▲ 0.30%</div>
+        </div>
+    </div>
+    <div class="inst-body">
+        <div class="metrics-row">
+            <div class="metric-tile"><span class="mt-val">Bearish</span><span class="mt-lbl">4H Trend</span></div>
+            <div class="metric-tile"><span class="mt-val">45.9</span><span class="mt-lbl">RSI (4H)</span></div>
+            <div class="metric-tile"><span class="mt-val">$167.0179</span><span class="mt-lbl">ATR(14) 4H</span></div>
+            <div class="metric-tile"><span class="mt-val">$24,870.63</span><span class="mt-lbl">EMA20 (4H)</span></div>
+        </div>
+        
+        <div class="levels-section">
+            <div class="levels-title">Trade Levels</div>
+            <div class="levels-grid">
+                <div class="level-block entry-block">
+                    <span class="level-label">Entry Zone</span>
+                    <span class="level-value">$24,787.14–$24,837.25</span>
+                    <span class="level-sub">4H close trigger</span>
+                </div>
+                <div class="level-block stop-block">
+                    <span class="level-label">Stop Loss</span>
+                    <span class="level-value">$25,087.78</span>
+                    <span class="level-sub">1.5 × ATR from entry</span>
+                </div>
+                <div class="level-block t1-block">
+                    <span class="level-label">Target 1 <span class="rr-badge">2.0:1</span></span>
+                    <span class="level-value">$24,286.09</span>
+                    <span class="level-sub">2x risk projection</span>
+                </div>
+                <div class="level-block t2-block">
+                    <span class="level-label">Target 2 <span class="rr-badge">3.2:1</span></span>
+                    <span class="level-value">$23,910.30</span>
+                    <span class="level-sub">3.5x risk projection</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stop-logic">
+ATR(14) on 4H = $167.0179<br>
+Stop distance = 1.5 × $167.0179 = $250.5268<br>
+Entry zone low = $24,787.14<br>
+Stop level = $24,787.14 − $250.5268 = $25,087.78<br>
+Risk per unit = $250.5268<br>
+Target 1 gain = $24,286.09 − $24,787.14 = $-501.0535 → R:R = 2.0:1
+        </div>
+        
+        <div class="pattern-section">
+            <div class="levels-title">Chart Pattern</div>
+            <div class="pattern-header">
+                <div class="pattern-info">
+                    <div class="pattern-name-large">Downtrend — No Pattern</div>
+                    <div class="pattern-chapter">📖 Murphy · Chapter 4</div>
+                    <p class="pattern-desc">Price in downtrend but no actionable pattern identified. Wait for a cleaner setup.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="invalidation-box">
+            <div class="inv-label">⚠️ Setup Invalidation</div>
+            <p>4H close above 25087.78. Exit immediately if invalidated.</p>
+        </div>
+    </div>
+</div>
+
+<div class="inst-card">
+    <div class="status-bar no-trade"></div>
+    <div class="inst-header">
+        <div class="inst-left">
+            <div class="inst-name-row">
+                <span class="inst-ticker">AUDUSD</span>
+                <span class="direction-badge none">— NO TRADE</span>
+            </div>
+            <div class="inst-full-name">Australian Dollar/USD (AUDUSD=X) · CMC Markets CFD</div>
+        </div>
+        <div class="inst-right">
+            <div class="inst-price">$0.7065</div>
+            <div class="inst-change negative">▼ 0.65%</div>
+        </div>
+    </div>
+    <div class="no-trade-body">
+        <p class="no-trade-reason">Price ranging between support and resistance. No directional bias. Stand aside.</p>
+        <div class="gate-pills">
+            <span class="gate-pill gate-pass">✓ Macro Events Clear</span><span class="gate-pill gate-fail">✗ Trend Clear</span><span class="gate-pill gate-fail">✗ Pattern Identified</span><span class="gate-pill gate-pass">✓ COT Confirmation</span><span class="gate-pill gate-fail">✗ R:R ≥ 2:1</span>
+        </div>
+        <div class="watch-box" style="margin-top:12px">
+            <div class="watch-label">👁 What Would Make This a Trade</div>
+            <p>Wait for a clearer pattern to emerge with R:R ≥ 2:1. Re-evaluate after next 4H candle close.</p>
+        </div>
+    </div>
+</div>
+
+<div class="inst-card">
+    <div class="status-bar no-trade"></div>
+    <div class="inst-header">
+        <div class="inst-left">
+            <div class="inst-name-row">
+                <span class="inst-ticker">GBPUSD</span>
+                <span class="direction-badge none">— NO TRADE</span>
+            </div>
+            <div class="inst-full-name">British Pound/USD (GBPUSD=X) · CMC Markets CFD</div>
+        </div>
+        <div class="inst-right">
+            <div class="inst-price">$1.3500</div>
+            <div class="inst-change negative">▼ 0.24%</div>
+        </div>
+    </div>
+    <div class="no-trade-body">
+        <p class="no-trade-reason">Price ranging between support and resistance. No directional bias. Stand aside.</p>
+        <div class="gate-pills">
+            <span class="gate-pill gate-pass">✓ Macro Events Clear</span><span class="gate-pill gate-fail">✗ Trend Clear</span><span class="gate-pill gate-fail">✗ Pattern Identified</span><span class="gate-pill gate-pass">✓ COT Confirmation</span><span class="gate-pill gate-fail">✗ R:R ≥ 2:1</span>
+        </div>
+        <div class="watch-box" style="margin-top:12px">
+            <div class="watch-label">👁 What Would Make This a Trade</div>
+            <p>Wait for a clearer pattern to emerge with R:R ≥ 2:1. Re-evaluate after next 4H candle close.</p>
+        </div>
+    </div>
+</div>
+<!-- ── FOOTER ── -->
+        <footer>
+            <strong>THE DAILY TRADE IDEA · OPENCLAW EMPIRE · ASTRA</strong><br>
+            Week of February 24, 2026 · 4H Swing Trade · CMC Markets · City Index
+            <div class="disclaimer">
+                ⚠️ DISCLAIMER: This report is generated by ASTRA, an AI system. All prices are fetched from public data sources (yfinance/Yahoo Finance) and may be delayed. This is NOT financial advice. CFD trading involves significant risk of loss. Trade responsibly.
+            </div>
+        </footer>
+    </div>
+    <script>
+        function toggleTheme() {
+            const h = document.documentElement;
+            h.setAttribute('data-theme', h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        }
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+</body>
+</html>

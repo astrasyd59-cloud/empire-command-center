@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Learning Path Analysis Report | Dibs</title>
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --accent-primary: #58a6ff;
+            --accent-secondary: #3fb950;
+            --accent-warning: #f0883e;
+            --accent-danger: #f85149;
+            --accent-purple: #a371f7;
+            --border-color: #30363d;
+            --gradient-hero: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+            --shadow-card: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* Navigation */
+        nav {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--accent-primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: var(--gradient-hero);
+            padding: 3rem 1rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .hero h1 {
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero .subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        .meta-info span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        /* Badge */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .badge-primary { background: rgba(88,166,255,0.15); color: var(--accent-primary); }
+        .badge-success { background: rgba(63,185,80,0.15); color: var(--accent-secondary); }
+        .badge-warning { background: rgba(240,136,62,0.15); color: var(--accent-warning); }
+        .badge-danger { background: rgba(248,81,73,0.15); color: var(--accent-danger); }
+        .badge-purple { background: rgba(163,113,247,0.15); color: var(--accent-purple); }
+        
+        /* Sections */
+        section {
+            padding: 2.5rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        section:last-of-type {
+            border-bottom: none;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+        
+        h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.75rem;
+            color: var(--text-primary);
+        }
+        
+        h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 1rem 0 0.5rem;
+            color: var(--accent-primary);
+        }
+        
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        /* Cards */
+        .card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow-card);
+        }
+        
+        .card-highlight {
+            border-color: var(--accent-primary);
+            background: linear-gradient(135deg, rgba(88,166,255,0.05) 0%, var(--bg-secondary) 100%);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .card-title {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+            margin: 1rem 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        
+        th {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            font-weight: 600;
+            text-align: left;
+            padding: 0.75rem 1rem;
+            white-space: nowrap;
+        }
+        
+        td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+        
+        tr:hover td {
+            background: rgba(255,255,255,0.02);
+        }
+        
+        tr.recommended {
+            background: rgba(88,166,255,0.08);
+        }
+        
+        tr.recommended td {
+            color: var(--text-primary);
+        }
+        
+        /* Rating Stars */
+        .rating {
+            color: #f1c40f;
+            font-size: 0.875rem;
+        }
+        
+        /* Progress Bar */
+        .progress-bar {
+            height: 8px;
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s;
+        }
+        
+        .progress-theory { background: var(--accent-purple); }
+        .progress-hands { background: var(--accent-secondary); }
+        
+        /* Grid Layouts */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        /* Stats */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .stat-box {
+            background: var(--bg-tertiary);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0.5rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -1.75rem;
+            top: 1.25rem;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            border: 3px solid var(--bg-primary);
+        }
+        
+        .timeline-item.completed::before {
+            background: var(--accent-secondary);
+        }
+        
+        .timeline-week {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .timeline-content {
+            margin-top: 0.25rem;
+        }
+        
+        .timeline-content h4 {
+            margin: 0 0 0.25rem;
+        }
+        
+        /* Tags */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .tag {
+            padding: 0.125rem 0.5rem;
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Cost Analysis */
+        .cost-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+        }
+        
+        .cost-label {
+            min-width: 100px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        .cost-visual {
+            flex: 1;
+            height: 24px;
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .cost-fill {
+            height: 100%;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            padding: 0 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .cost-fill.free { background: var(--accent-secondary); color: #fff; }
+        .cost-fill.low { background: #2ea043; color: #fff; }
+        .cost-fill.medium { background: var(--accent-warning); color: #000; }
+        .cost-fill.high { background: var(--accent-danger); color: #fff; }
+        
+        /* Comparison Cards */
+        .provider-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .provider-card.recommended {
+            border-color: var(--accent-secondary);
+            position: relative;
+        }
+        
+        .provider-card.recommended::after {
+            content: '★ RECOMMENDED';
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            background: var(--accent-secondary);
+            color: #000;
+            font-size: 0.625rem;
+            font-weight: 700;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0 11px 0 4px;
+        }
+        
+        .provider-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        
+        .provider-name {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        .provider-meta {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            margin: 0.75rem 0;
+            font-size: 0.875rem;
+        }
+        
+        .provider-meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .provider-meta-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+        
+        .provider-meta-value {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            padding: 2rem 1rem;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+        
+        /* Mobile Optimizations */
+        @media (max-width: 640px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 2rem 1rem;
+            }
+            
+            section {
+                padding: 1.5rem 1rem;
+            }
+            
+            .card {
+                padding: 1rem;
+            }
+            
+            th, td {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.8125rem;
+            }
+            
+            .timeline {
+                padding-left: 1.5rem;
+            }
+            
+            .timeline::before {
+                left: 0.375rem;
+            }
+            
+            .timeline-item::before {
+                left: -1.375rem;
+                width: 10px;
+                height: 10px;
+            }
+            
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .provider-meta {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background: #fff;
+                color: #000;
+            }
+            
+            nav, footer {
+                display: none;
+            }
+            
+            .card {
+                break-inside: avoid;
+            }
+        }
+        
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Links */
+        a {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Lists */
+        ul, ol {
+            margin: 0.75rem 0;
+            padding-left: 1.5rem;
+        }
+        
+        li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(88,166,255,0.1) 0%, rgba(163,113,247,0.1) 100%);
+            border: 1px solid var(--accent-primary);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .highlight-box h4 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-content container">
+            <div class="logo">🎓 AI Learning Path Analysis</div>
+            <ul class="nav-links">
+                <li><a href="#executive-summary">Summary</a></li>
+                <li><a href="#providers">Providers</a></li>
+                <li><a href="#comparison">Compare</a></li>
+                <li><a href="#schedule">Schedule</a></li>
+                <li><a href="#recommendation">Final Rec</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1>AI Learning Path Analysis Report</h1>
+            <p class="subtitle">Strategic career pivot plan: Operations Management → AI Operations Enablement</p>
+            <div class="meta-info">
+                <span>👤 For: Dibs</span>
+                <span>📅 March 2025</span>
+                <span>⏱️ Timeline: 8-12 Weeks</span>
+                <span>💰 Budget: Optimized</span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Executive Summary -->
+        <section id="executive-summary">
+            <div class="container">
+                <h2>📋 Executive Summary</h2>
+                
+                <div class="card">
+                    <div class="stat-grid">
+                        <div class="stat-box">
+                            <div class="stat-value">7</div>
+                            <div class="stat-label">Platforms Analyzed</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">$150</div>
+                            <div class="stat-label">Min Investment (AUD)</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">10</div>
+                            <div class="stat-label">Weeks Recommended</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">3</div>
+                            <div class="stat-label">Certificates Path</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <h3>🎯 Profile Overview</h3>
+                        <ul>
+                            <li><strong>Current Role:</strong> Operations Manager (28 years old)</li>
+                            <li><strong>Target:</strong> AI Operations Enablement</li>
+                            <li><strong>Existing Skills:</strong> Python basics</li>
+                            <li><strong>Goal:</strong> Industry-recognized certificates</li>
+                            <li><strong>Budget:</strong> Conscious but investment-ready</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>✅ Key Findings</h3>
+                        <ul>
+                            <li><strong>Best Value:</strong> Fast.ai + DeepLearning.AI combo</li>
+                            <li><strong>Most Recognized:</strong> MIT + Coursera credentials</li>
+                            <li><strong>Best for GenAI:</strong> DeepLearning.AI specializations</li>
+                            <li><strong>Budget Option:</strong> Fast.ai (completely free)</li>
+                            <li><strong>Quick Win:</strong> DataCamp for immediate job relevance</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>🚀 Recommended Strategy</h4>
+                    <p>A <strong>hybrid approach</strong> combining Fast.ai for practical skills, DeepLearning.AI for GenAI credentials, and DataCamp for structured fundamentals. Total investment: <strong>$150-300 AUD</strong>, completed over <strong>10 weeks</strong> with 3 weekday sessions + weekend deep dives.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Provider Analysis -->
+        <section id="providers">
+            <div class="container">
+                <h2>🏫 Detailed Provider Breakdown</h2>
+                
+                <!-- DataCamp -->
+                <div class="provider-card">
+                    <div class="provider-header">
+                        <div>
+                            <span class="provider-name">DataCamp</span>
+                            <span class="badge badge-primary">Beginner-Friendly</span>
+                        </div>
+                        <span class="rating">★★★★☆</span>
+                    </div>
+                    <div class="provider-meta">
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Cost (AUD)</span>
+                            <span class="provider-meta-value">$13-25/month</span>
+                        </div>
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Time to Complete</span>
+                            <span class="provider-meta-value">4-12 weeks/track</span>
+                        </div>
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Certificate Value</span>
+                            <span class="provider-meta-value">Moderate</span>
+                        </div>
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Industry Rep</span>
+                            <span class="provider-meta-value">Good for entry-level</span>
+                        </div>
+                    </div>
+                    <div style="margin: 0.75rem 0;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; margin-bottom: 0.25rem;">
+                            <span>Hands-on</span>
+                            <span>Theory</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill progress-hands" style="width: 75%;"></div>
+                        </div>
+                    </div>
+                    <p><strong>Best For:</strong> Structured learning paths, immediate job relevance, data/ML fundamentals</p>
+                    <p><strong>GenAI Courses:</strong> Understanding LLMs, ChatGPT Prompt Engineering, Generative AI Concepts</p>
+                    <p><strong>Prerequisites:</strong> Basic Python (✅ met)</p>
+                    <div class="tags">
+                        <span class="tag">Interactive</span>
+                        <span class="tag">Career Tracks</span>
+                        <span class="tag">Mobile App</span>
+                    </div>
+                </div>
+
+                <!-- DeepLearning.AI -->
+                <div class="provider-card recommended">
+                    <div class="provider-header">
+                        <div>
+                            <span class="provider-name">DeepLearning.AI (Coursera)</span>
+                            <span class="badge badge-success">Top Pick</span>
+                        </div>
+                        <span class="rating">★★★★★</span>
+                    </div>
+                    <div class="provider-meta">
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Cost (AUD)</span>
+                            <span class="provider-meta-value">$80-160/month</span>
+                        </div>
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Time to Complete</span>
+                            <span class="provider-meta-value">3-8 weeks/specialization</span>
+                        </div>
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Certificate Value</span>
+                            <span class="provider-meta-value">High</span>
+                        </div>
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Industry Rep</span>
+                            <span class="provider-meta-value">Excellent</span>
+                        </div>
+                    </div>
+                    <div style="margin: 0.75rem 0;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; margin-bottom: 0.25rem;">
+                            <span>Hands-on</span>
+                            <span>Theory</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill progress-hands" style="width: 60%;"></div>
+                        </div>
+                    </div>
+                    <p><strong>Best For:</strong> GenAI expertise, Andrew Ng credibility, comprehensive specializations</p>
+                    <p><strong>GenAI Courses:</strong> GenAI for Everyone, LangChain, LLM Prompt Engineering, RAG, Agents</p>
+                    <p><strong>Prerequisites:</strong> Basic Python, some ML concepts helpful</p>
+                    <div class="tags">
+                        <span class="tag">Andrew Ng</span>
+                        <span class="tag">Industry Standard</span>
+                        <span class="tag">Coursera Partner</span>
+                    </div>
+                </div>
+
+                <!-- Coursera -->
+                <div class="provider-card">
+                    <div class="provider-header">
+                        <div>
+                            <span class="provider-name">Coursera (University Partners)</span>
+                            <span class="badge badge-purple">University Cred</span>
+                        </div>
+                        <span class="rating">★★★★★</span>
+                    </div>
+                    <div class="provider-meta">
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Cost (AUD)</span>
+                            <span class="provider-meta-value">$60-200/month</span>
+                        </div>
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Time to Complete</span>
+                            <span class="provider-meta-value">4-16 weeks</span>
+                        </div>
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Certificate Value</span>
+                            <span class="provider-meta-value">Very High</span>
+                        </div>
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Industry Rep</span>
+                            <span class="provider-meta-value">Excellent</span>
+                        </div>
+                    </div>
+                    <div style="margin: 0.75rem 0;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; margin-bottom: 0.25rem;">
+                            <span>Hands-on</span>
+                            <span>Theory</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill progress-hands" style="width: 50%;"></div>
+                        </div>
+                    </div>
+                    <p><strong>Best For:</strong> University-branded certificates, academic rigor, recognized credentials</p>
+                    <p><strong>GenAI Courses:</strong> Stanford CS324 (LLMs), Vanderbilt Prompt Engineering, IBM AI Engineering</p>
+                    <p><strong>Prerequisites:</strong> Varies by course (Python + math for most)</p>
+                    <div class="tags">
+                        <span class="tag">Stanford</span>
+                        <span class="tag">University of Michigan</span>
+                        <span class="tag">Google</span>
+                    </div>
+                </div>
+
+                <!-- Fast.ai -->
+                <div class="provider-card recommended">
+                    <div class="provider-header">
+                        <div>
+                            <span class="provider-name">Fast.ai</span>
+                            <span class="badge badge-success">FREE</span>
+                        </div>
+                        <span class="rating">★★★★★</span>
+                    </div>
+                    <div class="provider-meta">
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Cost (AUD)</span>
+                            <span class="provider-meta-value">$0 (completely free)</span>
+                        </div>
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Time to Complete</span>
+                            <span class="provider-meta-value">7 weeks (Practical Deep Learning)</span>
+                        </div>
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Certificate Value</span>
+                            <span class="provider-meta-value">High among practitioners</span>
+                        </div>
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Industry Rep</span>
+                            <span class="provider-meta-value">Excellent in AI community</span>
+                        </div>
+                    </div>
+                    <div style="margin: 0.75rem 0;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; margin-bottom: 0.25rem;">
+                            <span>Hands-on</span>
+                            <span>Theory</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill progress-hands" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    <p><strong>Best For:</strong> Practical skills, "top-down" learning, real-world projects</p>
+                    <p><strong>GenAI Courses:</strong> Practical Deep Learning for Coders, part 2 covers Stable Diffusion & LLMs</p>
+                    <p><strong>Prerequisites:</strong> 1 year coding experience (✅ met)</p>
+                    <div class="tags">
+                        <span class="tag">100% Free</span>
+                        <span class="tag">Top-Down Learning</span>
+                        <span class="tag">Community Driven</span>
+                    </div>
+                </div>
+
+                <!-- MIT OpenCourseWare -->
+                <div class="provider-card">
+                    <div class="provider-header">
+                        <div>
+                            <span class="provider-name">MIT OpenCourseWare</span>
+                            <span class="badge badge-warning">Advanced</span>
+                        </div>
+                        <span class="rating">★★★★☆</span>
+                    </div>
+                    <div class="provider-meta">
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Cost (AUD)</span>
+                            <span class="provider-meta-value">$0 (course materials)</span>
+                        </div>
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Time to Complete</span>
+                            <span class="provider-meta-value">Self-paced (full semester)</span>
+                        </div>
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Certificate Value</span>
+                            <span class="provider-meta-value">N/A (no certificate)</span>
+                        </div>
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Industry Rep</span>
+                            <span class="provider-meta-value">Prestigious (MIT brand)</span>
+                        </div>
+                    </div>
+                    <div style="margin: 0.75rem 0;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; margin-bottom: 0.25rem;">
+                            <span>Hands-on</span>
+                            <span>Theory</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill progress-hands" style="width: 30%;"></div>
+                        </div>
+                    </div>
+                    <p><strong>Best For:</strong> Deep theoretical foundations, MIT-quality education</p>
+                    <p><strong>GenAI Courses:</strong> 6.034 (AI), 6.036 (Intro to ML), 6.S191 (Deep Learning)</p>
+                    <p><strong>Prerequisites:</strong> Strong math background (linear algebra, calculus, probability)</p>
+                    <div class="tags">
+                        <span class="tag">MIT Quality</span>
+                        <span class="tag">Theory-Heavy</span>
+                        <span class="tag">No Certificate</span>
+                    </div>
+                </div>
+
+                <!-- Udemy -->
+                <div class="provider-card">
+                    <div class="provider-header">
+                        <div>
+                            <span class="provider-name">Udemy</span>
+                            <span class="badge badge-primary">Budget</span>
+                        </div>
+                        <span class="rating">★★★☆☆</span>
+                    </div>
+                    <div class="provider-meta">
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Cost (AUD)</span>
+                            <span class="provider-meta-value">$20-150/course (sale)</span>
+                        </div>
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Time to Complete</span>
+                            <span class="provider-meta-value">4-50 hours</span>
+                        </div>
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Certificate Value</span>
+                            <span class="provider-meta-value">Low-Moderate</span>
+                        </div>
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Industry Rep</span>
+                            <span class="provider-meta-value">Mixed (varies by instructor)</span>
+                        </div>
+                    </div>
+                    <div style="margin: 0.75rem 0;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; margin-bottom: 0.25rem;">
+                            <span>Hands-on</span>
+                            <span>Theory</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill progress-hands" style="width: 70%;"></div>
+                        </div>
+                    </div>
+                    <p><strong>Best For:</strong> Quick skill acquisition, affordable one-time purchase</p>
+                    <p><strong>GenAI Courses:</strong> Jose Portilla's LLM Bootcamp, LangChain courses, Prompt Engineering Masterclass</p>
+                    <p><strong>Prerequisites:</strong> Varies widely by course</p>
+                    <div class="tags">
+                        <span class="tag">Frequent Sales</span>
+                        <span class="tag">Lifetime Access</span>
+                        <span class="tag">Mixed Quality</span>
+                    </div>
+                </div>
+
+                <!-- edX -->
+                <div class="provider-card">
+                    <div class="provider-header">
+                        <div>
+                            <span class="provider-name">edX</span>
+                            <span class="badge badge-purple">Academic</span>
+                        </div>
+                        <span class="rating">★★★★☆</span>
+                    </div>
+                    <div class="provider-meta">
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Cost (AUD)</span>
+                            <span class="provider-meta-value">Free audit / $200-500 verified</span>
+                        </div>
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Time to Complete</span>
+                            <span class="provider-meta-value">8-16 weeks</span>
+                        </div>
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Certificate Value</span>
+                            <span class="provider-meta-value">High (university-backed)</span>
+                        </div>
+                        <div class="provider-meta-item">
+                            <span class="provider-meta-label">Industry Rep</span>
+                            <span class="provider-meta-value">Very Good</span>
+                        </div>
+                    </div>
+                    <div style="margin: 0.75rem 0;">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; margin-bottom: 0.25rem;">
+                            <span>Hands-on</span>
+                            <span>Theory</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill progress-hands" style="width: 40%;"></div>
+                        </div>
+                    </div>
+                    <p><strong>Best For:</strong> University certificates, academic rigor, audit for free</p>
+                    <p><strong>GenAI Courses:</strong> Harvard CS50 AI, ColumbiaX ML, IBM AI Professional Certificate</p>
+                    <p><strong>Prerequisites:</strong> Varies by course level</p>
+                    <div class="tags">
+                        <span class="tag">Audit Free</span>
+                        <span class="tag">MicroMasters</span>
+                        <span class="tag">University Credits</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Table -->
+        <section id="comparison">
+            <div class="container">
+                <h2>📊 Platform Comparison Matrix</h2>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Provider</th>
+                                <th>Cost (AUD)</th>
+                                <th>Duration</th>
+                                <th>Quality</th>
+                                <th>GenAI Focus</th>
+                                <th>Certificate</th>
+                                <th>Best For</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="recommended">
+                                <td><strong>Fast.ai</strong></td>
+                                <td><span class="badge badge-success">FREE</span></td>
+                                <td>7 weeks</td>
+                                <td class="rating">★★★★★</td>
+                                <td class="rating">★★★★☆</td>
+                                <td>Community</td>
+                                <td>Practical skills</td>
+                            </tr>
+                            <tr class="recommended">
+                                <td><strong>DeepLearning.AI</strong></td>
+                                <td>$80-160/mo</td>
+                                <td>3-8 weeks</td>
+                                <td class="rating">★★★★★</td>
+                                <td class="rating">★★★★★</td>
+                                <td>High</td>
+                                <td>GenAI expertise</td>
+                            </tr>
+                            <tr>
+                                <td>DataCamp</td>
+                                <td>$13-25/mo</td>
+                                <td>4-12 weeks</td>
+                                <td class="rating">★★★★☆</td>
+                                <td class="rating">★★★☆☆</td>
+                                <td>Moderate</td>
+                                <td>Beginners</td>
+                            </tr>
+                            <tr>
+                                <td>Coursera</td>
+                                <td>$60-200/mo</td>
+                                <td>4-16 weeks</td>
+                                <td class="rating">★★★★★</td>
+                                <td class="rating">★★★★☆</td>
+                                <td>Very High</td>
+                                <td>Credibility</td>
+                            </tr>
+                            <tr>
+                                <td>MIT OCW</td>
+                                <td><span class="badge badge-success">FREE</span></td>
+                                <td>Self-paced</td>
+                                <td class="rating">★★★★★</td>
+                                <td class="rating">★★★☆☆</td>
+                                <td>None</td>
+                                <td>Theory</td>
+                            </tr>
+                            <tr>
+                                <td>Udemy</td>
+                                <td>$20-150</td>
+                                <td>4-50 hrs</td>
+                                <td class="rating">★★★☆☆</td>
+                                <td class="rating">★★★★☆</td>
+                                <td>Low</td>
+                                <td>Budget</td>
+                            </tr>
+                            <tr>
+                                <td>edX</td>
+                                <td>$200-500</td>
+                                <td>8-16 weeks</td>
+                                <td class="rating">★★★★☆</td>
+                                <td class="rating">★★★★☆</td>
+                                <td>High</td>
+                                <td>Academic</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3>💰 Cost-Benefit Analysis</h3>
+                
+                <div class="card">
+                    <h4>Investment Required (AUD)</h4>
+                    <div class="cost-bar">
+                        <span class="cost-label">Fast.ai</span>
+                        <div class="cost-visual">
+                            <div class="cost-fill free" style="width: 5%;">FREE</div>
+                        </div>
+                    </div>
+                    <div class="cost-bar">
+                        <span class="cost-label">MIT OCW</span>
+                        <div class="cost-visual">
+                            <div class="cost-fill free" style="width: 5%;">FREE</div>
+                        </div>
+                    </div>
+                    <div class="cost-bar">
+                        <span class="cost-label">DataCamp</span>
+                        <div class="cost-visual">
+                            <div class="cost-fill low" style="width: 25%;">$75-150 (3-6 mo)</div>
+                        </div>
+                    </div>
+                    <div class="cost-bar">
+                        <span class="cost-label">Udemy</span>
+                        <div class="cost-visual">
+                            <div class="cost-fill low" style="width: 20%;">$60-150 (3 courses)</div>
+                        </div>
+                    </div>
+                    <div class="cost-bar">
+                        <span class="cost-label">DeepLearning.AI</span>
+                        <div class="cost-visual">
+                            <div class="cost-fill medium" style="width: 50%;">$160-320 (2-3 mo)</div>
+                        </div>
+                    </div>
+                    <div class="cost-bar">
+                        <span class="cost-label">Coursera</span>
+                        <div class="cost-visual">
+                            <div class="cost-fill medium" style="width: 60%;">$200-400</div>
+                        </div>
+                    </div>
+                    <div class="cost-bar">
+                        <span class="cost-label">edX</span>
+                        <div class="cost-visual">
+                            <div class="cost-fill high" style="width: 80%;">$400-800</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>🎯 ROI Analysis: Low Budget Path</h4>
+                        <p><strong>Total Investment:</strong> ~$150 AUD</p>
+                        <ol>
+                            <li>Fast.ai Practical Deep Learning (FREE)</li>
+                            <li>DataCamp 3-month subscription ($75)</li>
+                            <li>Udemy GenAI courses during sale ($60)</li>
+                        </ol>
+                        <p><strong>Outcome:</strong> Strong practical skills + 1-2 certificates</p>
+                    </div>
+                    <div class="card">
+                        <h4>🏆 ROI Analysis: Premium Path</h4>
+                        <p><strong>Total Investment:</strong> ~$400-500 AUD</p>
+                        <ol>
+                            <li>DeepLearning.AI GenAI Specialization ($160)</li>
+                            <li>Coursera Google AI/ML Certificate ($200)</li>
+                            <li>Fast.ai alongside for practice (FREE)</li>
+                        </ol>
+                        <p><strong>Outcome:</strong> Premium credentials + hands-on experience</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Study Schedule -->
+        <section id="schedule">
+            <div class="container">
+                <h2>📅 Recommended Study Schedule</h2>
+                <p>Optimized for 3 weekday sessions (Mon/Wed/Fri) + 1 weekend deep dive. ~10 hours/week total.</p>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-week">Week 1-2: Foundation</div>
+                        <div class="timeline-content">
+                            <h4>Python & ML Fundamentals</h4>
+                            <p><strong>Platform:</strong> DataCamp</p>
+                            <p><strong>Focus:</strong> Data Scientist Professional Track - Python modules</p>
+                            <div class="tags">
+                                <span class="tag">Mon/Wed: 2 hrs exercises</span>
+                                <span class="tag">Fri: 2 hrs projects</span>
+                                <span class="tag">Weekend: 3 hrs review</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-week">Week 3-4: Deep Learning Basics</div>
+                        <div class="timeline-content">
+                            <h4>Fast.ai Part 1</h4>
+                            <p><strong>Platform:</strong> Fast.ai (FREE)</p>
+                            <p><strong>Focus:</strong> Practical Deep Learning for Coders - Lessons 1-7</p>
+                            <div class="tags">
+                                <span class="tag">Mon/Wed: Video lessons</span>
+                                <span class="tag">Fri: Notebook practice</span>
+                                <span class="tag">Weekend: Kaggle competition</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-week">Week 5-6: Generative AI Fundamentals</div>
+                        <div class="timeline-content">
+                            <h4>GenAI for Everyone</h4>
+                            <p><strong>Platform:</strong> DeepLearning.AI (Coursera)</p>
+                            <p><strong>Focus:</strong> GenAI concepts, LLMs, prompt engineering basics</p>
+                            <div class="tags">
+                                <span class="tag">Mon/Wed: Course content</span>
+                                <span class="tag">Fri: Hands-on labs</span>
+                                <span class="tag">Weekend: Project work</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-week">Week 7-8: Advanced GenAI</div>
+                        <div class="timeline-content">
+                            <h4>LangChain & LLM Applications</h4>
+                            <p><strong>Platform:</strong> DeepLearning.AI</p>
+                            <p><strong>Focus:</strong> LangChain for LLM Application Development + RAG</p>
+                            <div class="tags">
+                                <span class="tag">Mon/Wed: Short courses</span>
+                                <span class="tag">Fri: Build projects</span>
+                                <span class="tag">Weekend: Portfolio project</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-week">Week 9-10: Integration & Portfolio</div>
+                        <div class="timeline-content">
+                            <h4>Capstone Projects</h4>
+                            <p><strong>Platform:</strong> All platforms + GitHub</p>
+                            <p><strong>Focus:</strong> Build 2-3 portfolio projects demonstrating AI Ops skills</p>
+                            <div class="tags">
+                                <span class="tag">Mon: DataCamp career track finish</span>
+                                <span class="tag">Wed/Fri: Project development</span>
+                                <span class="tag">Weekend: Documentation & deployment</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card card-highlight">
+                    <h4>📈 Weekly Time Allocation</h4>
+                    <div class="stat-grid">
+                        <div class="stat-box">
+                            <div class="stat-value">2-3 hrs</div>
+                            <div class="stat-label">Monday</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">2-3 hrs</div>
+                            <div class="stat-label">Wednesday</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">2-3 hrs</div>
+                            <div class="stat-label">Friday</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value">3-4 hrs</div>
+                            <div class="stat-label">Weekend</div>
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 1rem;"><strong>Total:</strong> ~10 hours/week | <strong>Timeline:</strong> 10 weeks | <strong>Total Hours:</strong> ~100</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificate Roadmap -->
+        <section id="certificates">
+            <div class="container">
+                <h2>🎓 Certificate Roadmap</h2>
+                
+                <div class="grid-3">
+                    <div class="card">
+                        <h4>Month 1</h4>
+                        <span class="badge badge-primary">DataCamp</span>
+                        <h3 style="margin-top: 0.5rem;">Associate Data Scientist</h3>
+                        <p>Foundation credential validating Python, SQL, and basic ML skills.</p>
+                        <p><strong>Value:</strong> Entry-level role validation</p>
+                        <p><strong>Cost:</strong> Included in subscription</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>Month 2</h4>
+                        <span class="badge badge-purple">Coursera</span>
+                        <h3 style="margin-top: 0.5rem;">GenAI for Everyone</h3>
+                        <p>DeepLearning.AI certificate in Generative AI fundamentals.</p>
+                        <p><strong>Value:</strong> High industry recognition</p>
+                        <p><strong>Cost:</strong> ~$80 AUD</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>Month 2-3</h4>
+                        <span class="badge badge-purple">Coursera</span>
+                        <h3 style="margin-top: 0.5rem;">LangChain Developer</h3>
+                        <p>Short course credentials in LLM application development.</p>
+                        <p><strong>Value:</strong> Hot skill for AI Ops roles</p>
+                        <p><strong>Cost:</strong> ~$80 AUD</p>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 1.5rem;">
+                    <h4>📜 Optional Advanced Certificates</h4>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Certificate</th>
+                                    <th>Provider</th>
+                                    <th>Time</th>
+                                    <th>Cost (AUD)</th>
+                                    <th>Priority</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Google AI/ML Certificate</td>
+                                    <td>Coursera</td>
+                                    <td>3 months</td>
+                                    <td>$200</td>
+                                    <td><span class="badge badge-warning">Medium</span></td>
+                                </tr>
+                                <tr>
+                                    <td>IBM AI Engineering</td>
+                                    <td>Coursera/edX</td>
+                                    <td>3 months</td>
+                                    <td>$200-300</td>
+                                    <td><span class="badge badge-warning">Medium</span></td>
+                                </tr>
+                                <tr>
+                                    <td>AI Product Management</td>
+                                    <td>Duke (Coursera)</td>
+                                    <td>4 weeks</td>
+                                    <td>$80</td>
+                                    <td><span class="badge badge-success">High</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Professional ML Engineer</td>
+                                    <td>Google Cloud</td>
+                                    <td>3-6 months</td>
+                                    <td>$200 + exam</td>
+                                    <td><span class="badge badge-primary">Later</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Recommendation -->
+        <section id="recommendation">
+            <div class="container">
+                <h2>✅ Final Recommendation</h2>
+                
+                <div class="card card-highlight">
+                    <h3>🎯 Optimal Learning Path for Dibs</h3>
+                    <p><strong>Goal:</strong> Pivot from Operations Manager to AI Operations Enablement in 10 weeks</p>
+                    
+                    <h4>Phase 1: Foundation (Weeks 1-4)</h4>
+                    <ul>
+                        <li><strong>Primary:</strong> DataCamp Data Scientist Track ($75 AUD / 3 months)</li>
+                        <li><strong>Secondary:</strong> Fast.ai Practical Deep Learning (FREE - run parallel)</li>
+                        <li><strong>Outcome:</strong> Solid Python/ML foundation + practical DL skills</li>
+                    </ul>
+                    
+                    <h4>Phase 2: GenAI Specialization (Weeks 5-8)</h4>
+                    <ul>
+                        <li><strong>Primary:</strong> DeepLearning.AI GenAI for Everyone ($80 AUD)</li>
+                        <li><strong>Secondary:</strong> DeepLearning.AI LangChain short courses ($80 AUD)</li>
+                        <li><strong>Outcome:</strong> Industry-recognized GenAI credentials</li>
+                    </ul>
+                    
+                    <h4>Phase 3: Portfolio & Integration (Weeks 9-10)</h4>
+                    <ul>
+                        <li>Build 2-3 AI Operations projects (automation, LLM pipelines, data workflows)</li>
+                        <li>Document on GitHub with READMEs</li>
+                        <li>Complete DataCamp career track certification</li>
+                    </ul>
+                </div>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>💰 Total Investment</h4>
+                        <div class="stat-grid">
+                            <div class="stat-box">
+                                <div class="stat-value">$235</div>
+                                <div class="stat-label">Total AUD</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-value">3</div>
+                                <div class="stat-label">Certificates</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-value">10</div>
+                                <div class="stat-label">Weeks</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-value">100</div>
+                                <div class="stat-label">Hours Study</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h4>🏆 Expected Outcomes</h4>
+                        <ul>
+                            <li>✅ 3 recognized certificates</li>
+                            <li>✅ Strong practical AI skills</li>
+                            <li>✅ Portfolio of 2-3 projects</li>
+                            <li>✅ GenAI/LangChain expertise</li>
+                            <li>✅ Job-ready for AI Ops roles</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>🚀 Why This Path Works for You</h4>
+                    <ol>
+                        <li><strong>Budget-Conscious:</strong> Under $250 AUD total investment</li>
+                        <li><strong>Operations-Focused:</strong> Emphasizes automation, workflows, and practical application</li>
+                        <li><strong>Certificate-Driven:</strong> Credentials from DeepLearning.AI (Andrew Ng) carry weight</li>
+                        <li><strong>Fast.ai Bonus:</strong> Free world-class education for hands-on skills</li>
+                        <li><strong>Flexible Schedule:</strong> Works with your Mon/Wed/Fri + weekend availability</li>
+                    </ol>
+                </div>
+
+                <div class="card">
+                    <h4>📋 Action Items - Start This Week</h4>
+                    <ol>
+                        <li>Sign up for <strong>DataCamp</strong> (start with Python track)</li>
+                        <li>Bookmark <strong>Fast.ai</strong> course and join Discord community</li>
+                        <li>Create <strong>Coursera</strong> account, audit GenAI courses for free initially</li>
+                        <li>Set up <strong>GitHub</strong> repository for portfolio projects</li>
+                        <li>Block calendar for Mon/Wed/Fri 2-3 hour study sessions</li>
+                        <li>Join <strong>Fast.ai forums</strong> for accountability and support</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="footer-text">
+                AI Learning Path Analysis Report | Prepared for Dibs | March 2025<br>
+                <span style="color: var(--text-secondary);">Data current as of March 2025. Prices subject to change.</span>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

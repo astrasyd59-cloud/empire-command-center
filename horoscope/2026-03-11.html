@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Horoscope - Dibashis | March 11, 2026</title>
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a25;
+            --accent-gold: #d4af37;
+            --accent-purple: #9d4edd;
+            --accent-cyan: #00d4aa;
+            --text-primary: #f0f0f5;
+            --text-secondary: #a0a0b0;
+            --border: #2a2a3a;
+        }
+        
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg-primary: #f5f5f7;
+                --bg-secondary: #ffffff;
+                --bg-card: #f0f0f5;
+                --text-primary: #1a1a2e;
+                --text-secondary: #4a4a5a;
+                --border: #d0d0dd;
+            }
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 768px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-card) 100%);
+            border-bottom: 2px solid var(--accent-gold);
+            margin-bottom: 30px;
+        }
+        
+        .symbol {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--accent-gold);
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        
+        .date {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+        
+        .natal-info {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+        
+        .natal-info h2 {
+            color: var(--accent-purple);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        
+        .natal-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        
+        .natal-item {
+            font-size: 14px;
+        }
+        
+        .natal-item .label {
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+        
+        .section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .section h2 {
+            color: var(--accent-gold);
+            font-size: 18px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section h2::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: var(--accent-gold);
+            border-radius: 2px;
+        }
+        
+        .lunar-data {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .lunar-item {
+            text-align: center;
+            padding: 16px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+        }
+        
+        .lunar-item .value {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--accent-cyan);
+        }
+        
+        .lunar-item .label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+        
+        .moon-phase {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            border-radius: 8px;
+            margin-top: 16px;
+        }
+        
+        .moon-phase .emoji {
+            font-size: 48px;
+        }
+        
+        .transit-grid {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .transit-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-purple);
+        }
+        
+        .transit-item .planet {
+            font-weight: 600;
+        }
+        
+        .transit-item .position {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .transit-item .position .highlight {
+            color: var(--accent-cyan);
+        }
+        
+        .muhurta-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .muhurta-table th,
+        .muhurta-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .muhurta-table th {
+            color: var(--text-secondary);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .muhurta-table .auspicious {
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+        
+        .muhurta-table .inauspicious {
+            color: #ff6b6b;
+        }
+        
+        .muhurta-table .power {
+            background: rgba(0, 212, 170, 0.1);
+            border-left: 3px solid var(--accent-cyan);
+        }
+        
+        .guidance-grid {
+            display: grid;
+            gap: 16px;
+        }
+        
+        .guidance-item {
+            padding: 16px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-gold);
+        }
+        
+        .guidance-item h3 {
+            font-size: 14px;
+            color: var(--accent-gold);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .guidance-item p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        .drill-sergeant {
+            background: linear-gradient(135deg, #2a1a1a 0%, #1a1212 100%);
+            border: 2px solid #ff4444;
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 24px;
+        }
+        
+        .drill-sergeant h2 {
+            color: #ff4444;
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .drill-sergeant h2::before {
+            content: '🗡️';
+        }
+        
+        .drill-sergeant p {
+            font-style: italic;
+            color: #ffaaaa;
+            line-height: 1.8;
+        }
+        
+        .mantras {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 24px;
+            text-align: center;
+        }
+        
+        .mantras h2 {
+            color: var(--accent-purple);
+            font-size: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .mantra {
+            font-family: 'Georgia', serif;
+            font-size: 18px;
+            color: var(--accent-gold);
+            margin: 12px 0;
+            padding: 12px;
+            background: var(--bg-card);
+            border-radius: 8px;
+        }
+        
+        .mantra .label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-family: sans-serif;
+            display: block;
+            margin-bottom: 4px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+        
+        @media (max-width: 600px) {
+            .natal-grid,
+            .lunar-data {
+                grid-template-columns: 1fr;
+            }
+            
+            .transit-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="symbol">🌙</div>
+            <h1>DAILY JYOTISHI</h1>
+            <div class="date">Wednesday, March 11, 2026</div>
+        </header>
+        
+        <div class="natal-info">
+            <h2>Natal Chart Reference</h2>
+            <div class="natal-grid">
+                <div class="natal-item">
+                    <div class="label">Name</div>
+                    <div>Dibashis Chuturdharee</div>
+                </div>
+                <div class="natal-item">
+                    <div class="label">Birth Date</div>
+                    <div>February 1, 1998</div>
+                </div>
+                <div class="natal-item">
+                    <div class="label">Birth Time</div>
+                    <div>12:45 PM</div>
+                </div>
+                <div class="natal-item">
+                    <div class="label">Birth Place</div>
+                    <div>Mauritius (UTC+4)</div>
+                </div>
+                <div class="natal-item">
+                    <div class="label">Natal Sun</div>
+                    <div>Kumbha (Aquarius)</div>
+                </div>
+                <div class="natal-item">
+                    <div class="label">Current Location</div>
+                    <div>Sydney, Australia (AEDT)</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Lunar Data</h2>
+            <div class="lunar-data">
+                <div class="lunar-item">
+                    <div class="value">Shukla Paksha</div>
+                    <div class="label">Lunar Phase</div>
+                </div>
+                <div class="lunar-item">
+                    <div class="value">Tritiya</div>
+                    <div class="label">3rd Tithi</div>
+                </div>
+                <div class="lunar-item">
+                    <div class="value">Ashwini</div>
+                    <div class="label">Nakshatra</div>
+                </div>
+                <div class="lunar-item">
+                    <div class="value">Aries</div>
+                    <div class="label">Moon Sign</div>
+                </div>
+            </div>
+            <div class="moon-phase">
+                <div class="emoji">🌒</div>
+                <div style="margin-top: 8px; color: var(--text-secondary);">Waxing Crescent — 22% Illumination</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Planetary Transits</h2>
+            <div class="transit-grid">
+                <div class="transit-item">
+                    <span class="planet">☉ Sun</span>
+                    <span class="position">Meena (Pisces) — <span class="highlight">12th house transit</span></span>
+                </div>
+                <div class="transit-item">
+                    <span class="planet">☽ Moon</span>
+                    <span class="position">Mesha (Aries) — <span class="highlight">Ashwini Nakshatra</span></span>
+                </div>
+                <div class="transit-item">
+                    <span class="planet">♄ Saturn</span>
+                    <span class="position">Mesha (Aries) — <span class="highlight">10th from natal Sun</span></span>
+                </div>
+                <div class="transit-item">
+                    <span class="planet">♃ Jupiter</span>
+                    <span class="position">Karka (Cancer) — <span class="highlight">5th house from natal</span></span>
+                </div>
+                <div class="transit-item">
+                    <span class="planet">☊ Rahu</span>
+                    <span class="position">Kumbha (Aquarius) — <span class="highlight">Conjunct natal Sun</span></span>
+                </div>
+                <div class="transit-item">
+                    <span class="planet">♀ Venus</span>
+                    <span class="position">Meena (Pisces) — <span class="highlight">Exalted</span></span>
+                </div>
+                <div class="transit-item">
+                    <span class="planet">♂ Mars</span>
+                    <span class="position">Mithuna (Gemini)</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Muhurta Table — Mauritius (UTC+4)</h2>
+            <table class="muhurta-table">
+                <thead>
+                    <tr>
+                        <th>Time Period</th>
+                        <th>Name</th>
+                        <th>Quality</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="inauspicious">
+                        <td>07:30 AM – 09:00 AM</td>
+                        <td>Rahu Kalam</td>
+                        <td>⚠️ Avoid new ventures</td>
+                    </tr>
+                    <tr class="power">
+                        <td>11:42 AM – 12:30 PM</td>
+                        <td>Abhijit</td>
+                        <td>⭐ VERY AUSPICIOUS</td>
+                    </tr>
+                    <tr class="auspicious">
+                        <td>02:15 PM – 03:45 PM</td>
+                        <td>Amrit Kalam</td>
+                        <td>✓ Favorable for starts</td>
+                    </tr>
+                    <tr class="inauspicious">
+                        <td>09:15 PM – 10:45 PM</td>
+                        <td>Varjyam</td>
+                        <td>⚠️ Avoid important work</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2>Life Guidance</h2>
+            <div class="guidance-grid">
+                <div class="guidance-item">
+                    <h3>💼 Career</h3>
+                    <p>Saturn in your 10th from natal Sun signals career pressure — use strategic delay tactics. Don't force outcomes today.</p>
+                </div>
+                <div class="guidance-item">
+                    <h3>💞 Relationships</h3>
+                    <p>Venus exalted in Pisces favors emotional connection, but the 12th house Sun warns against overthinking. Keep it simple.</p>
+                </div>
+                <div class="guidance-item">
+                    <h3>🏥 Health</h3>
+                    <p>Moon in Ketu-ruled Ashwini highlights nervous system and circulation. Ground your energy — no caffeine after 2pm.</p>
+                </div>
+                <div class="guidance-item">
+                    <h3>💰 Finance</h3>
+                    <p>12th house activity suggests reviewing hidden assets or overlooked resources. Check accounts you've forgotten about.</p>
+                </div>
+                <div class="guidance-item">
+                    <h3>🧘 Spiritual</h3>
+                    <p>Sun in the 12th is a retreat/recharge phase. Kundalini grounding practices are favored. Don't fight the introspection.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="drill-sergeant">
+            <h2>Drill Sergeant Protocol</h2>
+            <p>"Stop intellectualizing your exhaustion, Aquarius. The 12th house Sun doesn't grant you permission to dissolve into the couch. Execute one decisive action before 09:00 AM or consider yourself AWOL from your own life."</p>
+        </div>
+        
+        <div class="mantras">
+            <h2>Daily Mantras</h2>
+            <div class="mantra">
+                <span class="label">Saturn Remediation</span>
+                Om Sham Shanicharaya Namaha
+            </div>
+            <div class="mantra">
+                <span class="label">Solar Vitality</span>
+                Aum Hraum Hrim Hraum Suryaya Namaha
+            </div>
+        </div>
+        
+        <footer>
+            <p>Generated: March 11, 2026 at 07:00 AEDT</p>
+            <p>Jyotishi Agent — Empire Command Center</p>
+        </footer>
+    </div>
+</body>
+</html>

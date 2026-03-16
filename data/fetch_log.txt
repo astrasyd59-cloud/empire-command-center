@@ -1,0 +1,64 @@
+[2026-02-24 07:31:54 UTC] ============================================================
+[2026-02-24 07:31:54 UTC] ASTRA Weekly Trade Idea Data Fetch — Starting
+[2026-02-24 07:31:54 UTC] ============================================================
+[2026-02-24 07:31:54 UTC] Fetching GOLD (GC=F)...
+[2026-02-24 07:31:56 UTC]  ✓ GOLD: $5193.1001 | Trend: bullish | RSI: 70.0 | Pattern: Breakout from Resistance
+[2026-02-24 07:31:56 UTC] Fetching SILVER (SI=F)...
+[2026-02-24 07:31:57 UTC]  ✓ SILVER: $88.0400 | Trend: bullish | RSI: 79.4 | Pattern: Breakout from Resistance
+[2026-02-24 07:31:57 UTC] Fetching ES (ES=F)...
+[2026-02-24 07:31:58 UTC]  ✓ ES: $6869.7500 | Trend: bearish | RSI: 45.8 | Pattern: Downtrend — No Pattern
+[2026-02-24 07:31:58 UTC] Fetching NQ (NQ=F)...
+[2026-02-24 07:31:59 UTC]  ✓ NQ: $24850.2500 | Trend: bearish | RSI: 47.8 | Pattern: Downtrend — No Pattern
+[2026-02-24 07:31:59 UTC] Fetching AUDUSD (AUDUSD=X)...
+[2026-02-24 07:32:01 UTC]  ✓ AUDUSD: $0.7069 | Trend: bullish | RSI: 53.8 | Pattern: Double Bottom
+[2026-02-24 07:32:01 UTC] Fetching GBPUSD (GBPUSD=X)...
+[2026-02-24 07:32:02 UTC]  ✓ GBPUSD: $1.3481 | Trend: bearish | RSI: 54.6 | Pattern: Downtrend — No Pattern
+[2026-02-24 07:32:02 UTC] Fetching macro data...
+[2026-02-24 07:32:02 UTC]  ✓ VIX: 21.0100
+[2026-02-24 07:32:03 UTC]  ✓ DXY: 97.9130
+[2026-02-24 07:32:03 UTC]  ✓ YIELD_10Y: 4.0290
+[2026-02-24 07:32:03 UTC]  ✓ YIELD_2Y: 3.5880
+[2026-02-24 07:32:04 UTC]  ✓ SP500: 6837.7500
+[2026-02-24 07:32:04 UTC] Fetching COT data from CFTC...
+[2026-02-24 07:32:05 UTC]  COT fetch failed: HTTP 404
+[2026-02-24 07:32:05 UTC] Building economic calendar...
+[2026-02-24 07:32:05 UTC] 
+Summary:
+[2026-02-24 07:32:05 UTC]  Valid setups: ['GOLD', 'SILVER', 'ES', 'NQ', 'AUDUSD', 'GBPUSD']
+[2026-02-24 07:32:05 UTC]  No trade: []
+[2026-02-24 07:32:05 UTC] 
+✓ Data saved to /home/astra/.openclaw/workspace/data/weekly_trade_data.json
+[2026-02-24 07:32:05 UTC]  Valid setups this week: 6
+[2026-02-24 07:32:05 UTC] ============================================================
+[2026-02-24 10:27:34 UTC] ============================================================
+[2026-02-24 10:27:34 UTC] ASTRA Weekly Trade Idea Data Fetch — Starting
+[2026-02-24 10:27:34 UTC] ============================================================
+[2026-02-24 10:27:34 UTC] Fetching GOLD (GC=F)...
+[2026-02-24 10:27:36 UTC]  ✓ GOLD: $5192.2002 | Trend: bullish | RSI: 67.7 | Pattern: Double Bottom
+[2026-02-24 10:27:36 UTC] Fetching SILVER (SI=F)...
+[2026-02-24 10:27:37 UTC]  ✓ SILVER: $88.2350 | Trend: bullish | RSI: 78.3 | Pattern: Bull Flag
+[2026-02-24 10:27:37 UTC] Fetching ES (ES=F)...
+[2026-02-24 10:27:38 UTC]  ✓ ES: $6865.5000 | Trend: bearish | RSI: 43.9 | Pattern: Downtrend — No Pattern
+[2026-02-24 10:27:38 UTC] Fetching NQ (NQ=F)...
+[2026-02-24 10:27:38 UTC]  ✓ NQ: $24837.2500 | Trend: bearish | RSI: 45.9 | Pattern: Downtrend — No Pattern
+[2026-02-24 10:27:38 UTC] Fetching AUDUSD (AUDUSD=X)...
+[2026-02-24 10:27:39 UTC]  ✓ AUDUSD: $0.7065 | Trend: ranging | RSI: 62.3 | Pattern: Ranging — No Setup
+[2026-02-24 10:27:39 UTC] Fetching GBPUSD (GBPUSD=X)...
+[2026-02-24 10:27:40 UTC]  ✓ GBPUSD: $1.3500 | Trend: ranging | RSI: 63.1 | Pattern: Ranging — No Setup
+[2026-02-24 10:27:40 UTC] Fetching macro data...
+[2026-02-24 10:27:41 UTC]  ✓ VIX: 20.9200
+[2026-02-24 10:27:41 UTC]  ✓ DXY: 97.8370
+[2026-02-24 10:27:41 UTC]  ✓ YIELD_10Y: 4.0290
+[2026-02-24 10:27:42 UTC]  ✓ YIELD_2Y: 3.5880
+[2026-02-24 10:27:42 UTC]  ✓ SP500: 6837.7500
+[2026-02-24 10:27:42 UTC] Fetching COT data from CFTC...
+[2026-02-24 10:27:44 UTC]  COT fetch failed: HTTP 404
+[2026-02-24 10:27:44 UTC] Building economic calendar...
+[2026-02-24 10:27:44 UTC] 
+Summary:
+[2026-02-24 10:27:44 UTC]  Valid setups: ['GOLD', 'SILVER', 'ES', 'NQ']
+[2026-02-24 10:27:44 UTC]  No trade: ['AUDUSD', 'GBPUSD']
+[2026-02-24 10:27:44 UTC] 
+✓ Data saved to /home/astra/.openclaw/workspace/data/weekly_trade_data.json
+[2026-02-24 10:27:44 UTC]  Valid setups this week: 4
+[2026-02-24 10:27:44 UTC] ============================================================

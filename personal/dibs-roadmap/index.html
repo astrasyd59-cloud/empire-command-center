@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Empire Roadmap | Dibs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">👑</span>
+                <span class="logo-text">EMPIRE</span>
+            </div>
+            <div class="nav-links">
+                <a href="#roadmap" class="nav-link">Roadmap</a>
+                <a href="#vision" class="nav-link">Vision</a>
+                <a href="#progress" class="nav-link">Progress</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-particles" id="particles"></div>
+        <div class="hero-content">
+            <div class="hero-badge">🚀 Empire Building in Progress</div>
+            <h1 class="hero-title">
+                The <span class="gradient-text">Empire Roadmap</span>
+            </h1>
+            <p class="hero-subtitle">
+                From zero to global freedom. A strategic blueprint for building wealth, escaping the 9-5, and creating a life of absolute autonomy.
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-value" id="completed-missions">5</span>
+                    <span class="stat-label">Missions Complete</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">6</span>
+                    <span class="stat-label">Total Phases</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value" id="days-active">1</span>
+                    <span class="stat-label">Days Active</span>
+                </div>
+            </div>
+            <a href="#roadmap" class="cta-button">
+                <span>Explore the Journey</span>
+                <svg class="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                </svg>
+            </a>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overall Progress Section -->
+    <section class="progress-section" id="progress">
+        <div class="container">
+            <div class="progress-card">
+                <div class="progress-header">
+                    <h2 class="progress-title">Overall Progress</h2>
+                    <span class="progress-percentage" id="progress-percent">8%</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="progress-fill"></div>
+                    </div>
+                    <div class="progress-milestones">
+                        <div class="milestone active" data-phase="1"></div>
+                        <div class="milestone" data-phase="2"></div>
+                        <div class="milestone" data-phase="3"></div>
+                        <div class="milestone" data-phase="4"></div>
+                        <div class="milestone" data-phase="5"></div>
+                        <div class="milestone" data-phase="6"></div>
+                    </div>
+                </div>
+                <div class="progress-stats">
+                    <div class="progress-stat">
+                        <span class="progress-stat-value complete">1</span>
+                        <span class="progress-stat-label">Complete</span>
+                    </div>
+                    <div class="progress-stat">
+                        <span class="progress-stat-value in-progress">1</span>
+                        <span class="progress-stat-label">In Progress</span>
+                    </div>
+                    <div class="progress-stat">
+                        <span class="progress-stat-value locked">4</span>
+                        <span class="progress-stat-label">Locked</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section class="roadmap-section" id="roadmap">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">The Journey</span>
+                <h2 class="section-title">Empire Building Phases</h2>
+                <p class="section-subtitle">Six strategic phases to complete freedom and wealth</p>
+            </div>
+
+            <div class="roadmap-timeline">
+                <!-- Phase 1: Complete -->
+                <div class="phase-card complete" data-phase="1">
+                    <div class="phase-connector"></div>
+                    <div class="phase-marker">
+                        <div class="phase-number">01</div>
+                        <div class="phase-status-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="phase-content">
+                        <div class="phase-header">
+                            <div class="phase-title-group">
+                                <h3 class="phase-title">Core Infrastructure</h3>
+                                <span class="phase-badge complete">COMPLETE</span>
+                            </div>
+                            <span class="phase-mission-count">5 missions</span>
+                        </div>
+                        <p class="phase-description">
+                            Building the foundational systems and tools that power the entire empire. This phase establishes the digital backbone for all future operations.
+                        </p>
+                        <div class="phase-outcomes">
+                            <div class="outcome">
+                                <span class="outcome-icon">✓</span>
+                                <span>AI Assistant deployed</span>
+                            </div>
+                            <div class="outcome">
+                                <span class="outcome-icon">✓</span>
+                                <span>Knowledge base organized</span>
+                            </div>
+                            <div class="outcome">
+                                <span class="outcome-icon">✓</span>
+                                <span>Task management system</span>
+                            </div>
+                            <div class="outcome">
+                                <span class="outcome-icon">✓</span>
+                                <span>Cloud infrastructure ready</span>
+                            </div>
+                            <div class="outcome">
+                                <span class="outcome-icon">✓</span>
+                                <span>Security protocols active</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 2: In Progress -->
+                <div class="phase-card in-progress" data-phase="2">
+                    <div class="phase-connector"></div>
+                    <div class="phase-marker">
+                        <div class="phase-number">02</div>
+                        <div class="phase-status-icon spinning">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="phase-content">
+                        <div class="phase-header">
+                            <div class="phase-title-group">
+                                <h3 class="phase-title">Personalization</h3>
+                                <span class="phase-badge in-progress">IN PROGRESS</span>
+                            </div>
+                            <span class="phase-mission-count">2 missions</span>
+                        </div>
+                        <p class="phase-description">
+                            Deep customization of AI systems to understand Dibs's unique goals, preferences, and working style. Creating a truly personalized empire assistant.
+                        </p>
+                        <div class="phase-outcomes">
+                            <div class="outcome in-progress">
+                                <span class="outcome-icon">⟳</span>
+                                <span>Deep-dive interview completed</span>
+                            </div>
+                            <div class="outcome pending">
+                                <span class="outcome-icon">○</span>
+                                <span>Profile Agent configuration</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 3: Locked -->
+                <div class="phase-card locked" data-phase="3">
+                    <div class="phase-connector"></div>
+                    <div class="phase-marker">
+                        <div class="phase-number">03</div>
+                        <div class="phase-status-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="5" y="11" width="14" height="10" rx="2"/>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="phase-content">
+                        <div class="phase-header">
+                            <div class="phase-title-group">
+                                <h3 class="phase-title">Trading Mastery</h3>
+                                <span class="phase-badge locked">LOCKED</span>
+                            </div>
+                            <span class="phase-mission-count">3 missions</span>
+                        </div>
+                        <p class="phase-description">
+                            Developing a systematic approach to trading with proper risk management, journaling, and live execution capabilities.
+                        </p>
+                        <div class="phase-outcomes">
+                            <div class="outcome locked">
+                                <span class="outcome-icon">🔒</span>
+                                <span>Trading system architecture</span>
+                            </div>
+                            <div class="outcome locked">
+                                <span class="outcome-icon">🔒</span>
+                                <span>Trading journal & analytics</span>
+                            </div>
+                            <div class="outcome locked">
+                                <span class="outcome-icon">🔒</span>
+                                <span>Live trade execution setup</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 4: Locked -->
+                <div class="phase-card locked" data-phase="4">
+                    <div class="phase-connector"></div>
+                    <div class="phase-marker">
+                        <div class="phase-number">04</div>
+                        <div class="phase-status-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="5" y="11" width="14" height="10" rx="2"/>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="phase-content">
+                        <div class="phase-header">
+                            <div class="phase-title-group">
+                                <h3 class="phase-title">Career Escape</h3>
+                                <span class="phase-badge locked">LOCKED</span>
+                            </div>
+                            <span class="phase-mission-count">3 missions</span>
+                        </div>
+                        <p class="phase-description">
+                            Strategic exit from traditional employment. Landing a remote role that pays more while providing location independence.
+                        </p>
+                        <div class="phase-outcomes">
+                            <div class="outcome locked">
+                                <span class="outcome-icon">🔒</span>
+                                <span>Job hunt strategy & targeting</span>
+                            </div>
+                            <div class="outcome locked">
+                                <span class="outcome-icon">🔒</span>
+                                <span>Application automation</span>
+                            </div>
+                            <div class="outcome locked">
+                                <span class="outcome-icon">🔒</span>
+                                <span>Interview preparation system</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 5: Locked -->
+                <div class="phase-card locked" data-phase="5">
+                    <div class="phase-connector"></div>
+                    <div class="phase-marker">
+                        <div class="phase-number">05</div>
+                        <div class="phase-status-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="5" y="11" width="14" height="10" rx="2"/>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="phase-content">
+                        <div class="phase-header">
+                            <div class="phase-title-group">
+                                <h3 class="phase-title">Side Hustle Launch</h3>
+                                <span class="phase-badge locked">LOCKED</span>
+                            </div>
+                            <span class="phase-mission-count">2 missions</span>
+                        </div>
+                        <p class="phase-description">
+                            Building and monetizing digital products. Creating the first revenue streams outside of traditional employment.
+                        </p>
+                        <div class="phase-outcomes">
+                            <div class="outcome locked">
+                                <span class="outcome-icon">🔒</span>
+                                <span>Notion templates product line</span>
+                            </div>
+                            <div class="outcome locked">
+                                <span class="outcome-icon">🔒</span>
+                                <span>First dollar earned online</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 6: Locked -->
+                <div class="phase-card locked" data-phase="6">
+                    <div class="phase-marker">
+                        <div class="phase-number">06</div>
+                        <div class="phase-status-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="5" y="11" width="14" height="10" rx="2"/>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="phase-content">
+                        <div class="phase-header">
+                            <div class="phase-title-group">
+                                <h3 class="phase-title">Global Freedom</h3>
+                                <span class="phase-badge locked">LOCKED</span>
+                            </div>
+                            <span class="phase-mission-count">2 missions</span>
+                        </div>
+                        <p class="phase-description">
+                            The ultimate goal. Establishing a base in Mauritius with full remote work capabilities and true location independence.
+                        </p>
+                        <div class="phase-outcomes">
+                            <div class="outcome locked">
+                                <span class="outcome-icon">🔒</span>
+                                <span>Mauritius base establishment</span>
+                            </div>
+                            <div class="outcome locked">
+                                <span class="outcome-icon">🔒</span>
+                                <span>Full remote work setup</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision Section -->
+    <section class="vision-section" id="vision">
+        <div class="container">
+            <div class="vision-card">
+                <div class="vision-content">
+                    <div class="section-header light">
+                        <span class="section-badge light">The Vision</span>
+                        <h2 class="section-title light">3-Year Empire Vision</h2>
+                    </div>
+                    <div class="vision-timeline">
+                        <div class="vision-year">
+                            <div class="year-marker">2025</div>
+                            <div class="year-content">
+                                <h4>Foundation Year</h4>
+                                <p>Complete infrastructure setup, master trading fundamentals, secure remote employment, and launch first digital products.</p>
+                            </div>
+                        </div>
+                        <div class="vision-year">
+                            <div class="year-marker">2026</div>
+                            <div class="year-content">
+                                <h4>Growth Year</h4>
+                                <p>Scale trading operations, grow side hustle revenue, optimize systems, and prepare for international relocation.</p>
+                            </div>
+                        </div>
+                        <div class="vision-year">
+                            <div class="year-marker">2027</div>
+                            <div class="year-content">
+                                <h4>Freedom Year</h4>
+                                <p>Establish Mauritius base, achieve full location independence, diversified income streams, and empire fully operational.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vision-quote">
+                        <blockquote>
+                            "Build systems, not just income. Create freedom, not just wealth. Design a life where every day feels like a victory."
+                        </blockquote>
+                        <cite>— Dibs, Empire Builder</cite>
+                    </div>
+                </div>
+                <div class="vision-visual">
+                    <div class="vision-stats-grid">
+                        <div class="vision-stat">
+                            <span class="vision-stat-icon">🌍</span>
+                            <span class="vision-stat-value">1</span>
+                            <span class="vision-stat-label">Paradise Base</span>
+                        </div>
+                        <div class="vision-stat">
+                            <span class="vision-stat-icon">💰</span>
+                            <span class="vision-stat-value">3+</span>
+                            <span class="vision-stat-label">Income Streams</span>
+                        </div>
+                        <div class="vision-stat">
+                            <span class="vision-stat-icon">⏰</span>
+                            <span class="vision-stat-value">100%</span>
+                            <span class="vision-stat-label">Time Freedom</span>
+                        </div>
+                        <div class="vision-stat">
+                            <span class="vision-stat-icon">🚀</span>
+                            <span class="vision-stat-value">∞</span>
+                            <span class="vision-stat-label">Growth Potential</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <span class="logo-icon">👑</span>
+                        <span class="logo-text">EMPIRE</span>
+                    </div>
+                    <p class="footer-tagline">Building freedom, one mission at a time.</p>
+                </div>
+                <div class="footer-meta">
+                    <span class="footer-status">
+                        <span class="status-dot active"></span>
+                        Empire Active
+                    </span>
+                    <span class="footer-updated">Updated: February 2026</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

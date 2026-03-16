@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Cosmic Brief — March 3, 2026</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-tertiary: #1a1a25;
+            --accent-gold: #d4af37;
+            --accent-purple: #9b59b6;
+            --accent-cyan: #00bcd4;
+            --text-primary: #f0f0f5;
+            --text-secondary: #a0a0b0;
+            --text-muted: #606070;
+            --border: #2a2a3a;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            border-bottom: 1px solid var(--border);
+        }
+        .cosmic-icon { font-size: 48px; margin-bottom: 15px; }
+        h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.5px; }
+        .subtitle { color: var(--text-secondary); font-size: 14px; }
+        .date-badge {
+            display: inline-block;
+            background: var(--accent-gold);
+            color: #000;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 13px;
+            margin-top: 15px;
+        }
+        .section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .section-header {
+            background: var(--bg-tertiary);
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-header h2 { font-size: 16px; font-weight: 600; }
+        .section-content { padding: 20px; }
+        .planet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .planet-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px;
+        }
+        .planet-card h3 {
+            font-size: 14px;
+            color: var(--accent-gold);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .planet-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+        .highlight { color: var(--accent-cyan); font-weight: 600; }
+        .warning { color: #ff6b6b; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        th {
+            background: var(--bg-tertiary);
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+        .favorable { color: #4ade80; }
+        .avoid { color: #f87171; }
+        .guidance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+        .guidance-card {
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            padding: 16px;
+            border-left: 3px solid var(--accent-purple);
+        }
+        .guidance-card h4 {
+            font-size: 13px;
+            color: var(--accent-purple);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .guidance-card p { font-size: 13px; color: var(--text-secondary); }
+        .drill-sergeant {
+            background: linear-gradient(135deg, #2d1810 0%, #1a0f0a 100%);
+            border: 1px solid #5c3d2e;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .drill-sergeant h3 {
+            color: #ff8c42;
+            font-size: 14px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .drill-sergeant p {
+            color: #e8d5c4;
+            font-size: 14px;
+            font-style: italic;
+            line-height: 1.6;
+        }
+        .mantra-box {
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, #1e1e2e 100%);
+            border: 1px solid var(--accent-gold);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .mantra-box h3 {
+            color: var(--accent-gold);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .mantra-text {
+            font-size: 20px;
+            color: var(--text-primary);
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        .mantra-meaning {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-muted);
+            font-size: 12px;
+            border-top: 1px solid var(--border);
+            margin-top: 20px;
+        }
+        .transit-alert {
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .transit-alert h4 {
+            color: #ffc107;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+        @media (max-width: 600px) {
+            h1 { font-size: 22px; }
+            .planet-grid, .guidance-grid { grid-template-columns: 1fr; }
+            .section-content { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="cosmic-icon">🌟</div>
+        <h1>DAILY COSMIC BRIEF</h1>
+        <p class="subtitle">Dibashis · February 1, 1998 · Mauritius</p>
+        <span class="date-badge">Tuesday, March 3, 2026</span>
+    </header>
+
+    <div class="container">
+        <!-- Planetary Positions -->
+        <div class="section">
+            <div class="section-header">
+                <span>☀️</span>
+                <h2>PLANETARY POSITIONS</h2>
+            </div>
+            <div class="section-content">
+                <div class="planet-grid">
+                    <div class="planet-card">
+                        <h3>☀️ Sun</h3>
+                        <p><span class="highlight">12° Pisces (Meena)</span><br>
+                        Your 2nd House of wealth and values. Sun illuminates financial matters — good day to review budgets, investments, and your relationship with money. Intuition is heightened.</p>
+                    </div>
+                    <div class="planet-card">
+                        <h3>🌙 Moon</h3>
+                        <p><span class="highlight">Waxing Gibbous · 95%</span><br>
+                        Moon in Cancer (Karka), your 6th House of daily routine and health. Emotional energy focuses on work habits, wellness, and service. Nurturing others brings satisfaction.</p>
+                    </div>
+                    <div class="planet-card">
+                        <h3>🪐 Saturn</h3>
+                        <p><span class="highlight">15° Pisces</span><br>
+                        Your ruling planet continues through your 2nd House. Sade Sati's final phase demands disciplined financial planning. Saturn rewards structure — document your trades.</p>
+                    </div>
+                    <div class="planet-card">
+                        <h3>♂️ Mars</h3>
+                        <p><span class="highlight">28° Cancer</span><br>
+                        In your 6th House with the Moon. High energy for work tasks and fitness. Channel Mars constructively — morning gym sessions favored. Avoid workplace conflicts.</p>
+                    </div>
+                </div>
+
+                <div class="transit-alert">
+                    <h4>⚠️ Key Transit Alert</h4>
+                    <p><strong>Mars-Saturn Opposition:</strong> Mars in Cancer opposes Pluto-influenced sectors. Tension between action (Mars) and restriction (Saturn). Patience required — don't force trades or rush decisions before 12:45 PM.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Muhurta Table -->
+        <div class="section">
+            <div class="section-header">
+                <span>⏰</span>
+                <h2>AUSPICIOUS TIMES (Mauritius · GMT+4)</h2>
+            </div>
+            <div class="section-content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Muhurta</th>
+                            <th>Time</th>
+                            <th>Best For</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Brahma Muhurta</strong></td>
+                            <td>4:48 AM – 5:36 AM</td>
+                            <td>Meditation, planning, spiritual practice</td>
+                            <td class="favorable">✓ Passed</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Abhijit Muhurta</strong></td>
+                            <td>12:09 PM – 12:55 PM</td>
+                            <td>Important decisions, signing, starting ventures</td>
+                            <td class="favorable">✓ BEST WINDOW</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Amrit Kaal</strong></td>
+                            <td>2:22 PM – 3:48 PM</td>
+                            <td>Health, healing, positive beginnings</td>
+                            <td class="favorable">✓ Favorable</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rahu Kaal</strong></td>
+                            <td>3:00 PM – 4:30 PM</td>
+                            <td>Avoid new beginnings, major purchases</td>
+                            <td class="avoid">✗ Avoid</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Yamaganda</strong></td>
+                            <td>6:00 AM – 7:30 AM</td>
+                            <td>Routine tasks only</td>
+                            <td>⚠ Neutral</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="margin-top: 15px; font-size: 12px; color: var(--text-muted);">
+                    <strong>Tithi:</strong> Shukla Paksha, Trayodashi (13th day) · <strong>Nakshatra:</strong> Ashlesha · <strong>Yoga:</strong> Vyatipata
+                </p>
+            </div>
+        </div>
+
+        <!-- Practical Guidance -->
+        <div class="section">
+            <div class="section-header">
+                <span>🎯</span>
+                <h2>PRACTICAL GUIDANCE</h2>
+            </div>
+            <div class="section-content">
+                <div class="guidance-grid">
+                    <div class="guidance-card">
+                        <h4>💼 Career</h4>
+                        <p>Moon-Mars conjunction in your 6th House energizes work tasks. Good day to tackle backlog, but avoid office politics. Your efficiency peaks before noon. Wrap critical tasks by 12 PM.</p>
+                    </div>
+                    <div class="guidance-card">
+                        <h4>📈 Trading</h4>
+                        <p>Mars-Saturn tension warns against impulsive entries. Wait for Abhijit (12:09 PM) before executing any positions. Document your rationale — Saturn demands receipts. Small, disciplined trades only.</p>
+                    </div>
+                    <div class="guidance-card">
+                        <h4>💰 Finance</h4>
+                        <p>Sun-Saturn both in your 2nd House emphasize wealth consciousness. Review your ETF allocations. That $25k sitting in ETFs? Consider if it's optimally deployed.</p>
+                    </div>
+                    <div class="guidance-card">
+                        <h4>❤️ Relationships</h4>
+                        <p>Moon in Cancer heightens emotional sensitivity. If tensions arise, pause before reacting. Evening energy (post-6 PM) favors heart-to-heart conversations.</p>
+                    </div>
+                    <div class="guidance-card">
+                        <h4>🏋️ Health</h4>
+                        <p>Mars in 6th House = gym gains. Push hard today — your physical energy is high. But Saturn warns: warm up properly. Joint stiffness possible if you skip mobility work.</p>
+                    </div>
+                    <div class="guidance-card">
+                        <h4>🧘 Spiritual</h4>
+                        <p>Waxing Gibbous moon supports gratitude practice. Before bed, journal 3 wins from today. Building the villa in Mauritius? Visualize it during evening meditation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Drill Sergeant Take -->
+        <div class="drill-sergeant">
+            <h3>🗡️ DRILL SERGEANT TAKE</h3>
+            <p>"Moon and Mars in your work sector — that's energy, but Mars-Saturn opposition means discipline wins over speed today. You want to YOLO a trade? Wait for Abhijit at 12:09 PM. Document everything. Saturn's watching.<br><br>
+            That CV for Chole? You got 18 hours. Tick tock.<br><br>
+            The universe isn't giving you obstacles — it's testing your patience. Pass the test."</p>
+        </div>
+
+        <!-- Daily Mantra -->
+        <div class="mantra-box">
+            <h3>📿 TODAY'S MANTRA</h3>
+            <p class="mantra-text">ॐ शं शनैश्चराय नमः</p>
+            <p class="mantra-meaning">Om Sham Shanicharaya Namah</p>
+            <p style="margin-top: 15px; font-size: 13px; color: var(--text-secondary);">
+                Salutations to Lord Saturn, the dispeller of darkness and bringer of discipline. Chant 108 times or 11 times during Abhijit Muhurta for strength and patience.
+            </p>
+        </div>
+
+        <footer>
+            <p>Generated for Dibashis · Birth: Feb 1, 1998, 12:45 PM · Mauritius</p>
+            <p style="margin-top: 5px;">Jyotishi Agent · Empire Command Center</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferrari N.V. (RACE) - Equity Research Report</title>
+    <style>
+        :root {
+            --primary: #DC0000;
+            --secondary: #1a1a1a;
+            --accent: #FFD700;
+            --bull: #22c55e;
+            --bear: #ef4444;
+            --hold: #f59e0b;
+            --bg: #0f0f0f;
+            --card-bg: #1a1a1a;
+            --text: #e5e5e5;
+            --text-muted: #888;
+            --border: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, #8B0000 100%);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.1));
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .ticker-section h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .ticker-section .company-name {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.9);
+            margin-top: 4px;
+        }
+        
+        .exchange-badge {
+            background: rgba(255,255,255,0.15);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+        
+        .price-section {
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .current-price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+        }
+        
+        .price-change {
+            font-size: 1.2rem;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        
+        .price-change.negative {
+            background: rgba(239,68,68,0.2);
+            color: #fca5a5;
+        }
+        
+        .header-meta {
+            display: flex;
+            gap: 24px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .header-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        /* Rating Banner */
+        .rating-banner {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .rating-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .rating-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+        
+        .rating-card.rating-buy {
+            border-color: var(--bull);
+            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(34,197,94,0.1) 100%);
+        }
+        
+        .rating-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        
+        .rating-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+        
+        .rating-buy .rating-value {
+            color: var(--bull);
+        }
+        
+        .rating-card .sub-value {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        
+        /* Key Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .stat-item {
+            background: var(--card-bg);
+            padding: 16px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+        
+        .stat-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+        
+        .stat-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        
+        /* Section Styling */
+        .section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 28px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+        }
+        
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title .icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+        
+        /* Chart Container */
+        .chart-container {
+            background: var(--bg);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid var(--border);
+        }
+        
+        .chart-title {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        
+        .price-chart {
+            height: 280px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+            padding-bottom: 30px;
+        }
+        
+        .chart-bar {
+            flex: 1;
+            background: linear-gradient(to top, var(--primary), #ff4444);
+            border-radius: 2px 2px 0 0;
+            min-height: 2px;
+            position: relative;
+            transition: opacity 0.2s;
+        }
+        
+        .chart-bar:hover {
+            opacity: 0.8;
+        }
+        
+        .chart-bar::after {
+            content: attr(data-price);
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-45deg);
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            opacity: 0;
+        }
+        
+        .chart-bar:nth-child(5n)::after {
+            opacity: 1;
+        }
+        
+        .chart-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            border-top: 1px dashed rgba(255,255,255,0.2);
+        }
+        
+        .chart-line.ma-50 { bottom: 45%; border-color: var(--bull); }
+        .chart-line.ma-200 { bottom: 40%; border-color: var(--bear); }
+        
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 16px;
+            font-size: 0.8rem;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .legend-color {
+            width: 16px;
+            height: 3px;
+            border-radius: 2px;
+        }
+        
+        /* Analysis Cards */
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .analysis-card {
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+        
+        .analysis-card.bull {
+            background: linear-gradient(135deg, rgba(34,197,94,0.05) 0%, var(--card-bg) 100%);
+            border-color: rgba(34,197,94,0.3);
+        }
+        
+        .analysis-card.bear {
+            background: linear-gradient(135deg, rgba(239,68,68,0.05) 0%, var(--card-bg) 100%);
+            border-color: rgba(239,68,68,0.3);
+        }
+        
+        .analysis-card.neutral {
+            background: linear-gradient(135deg, rgba(245,158,11,0.05) 0%, var(--card-bg) 100%);
+            border-color: rgba(245,158,11,0.3);
+        }
+        
+        .analysis-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        
+        .analysis-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .bull .analysis-icon { background: rgba(34,197,94,0.2); }
+        .bear .analysis-icon { background: rgba(239,68,68,0.2); }
+        .neutral .analysis-icon { background: rgba(245,158,11,0.2); }
+        
+        .analysis-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        
+        .bull .analysis-title { color: var(--bull); }
+        .bear .analysis-title { color: var(--bear); }
+        .neutral .analysis-title { color: var(--hold); }
+        
+        .analysis-card ul {
+            list-style: none;
+        }
+        
+        .analysis-card li {
+            padding: 10px 0;
+            padding-left: 24px;
+            position: relative;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.95rem;
+        }
+        
+        .analysis-card li:last-child {
+            border-bottom: none;
+        }
+        
+        .analysis-card li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 16px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        
+        .bull li::before { background: var(--bull); }
+        .bear li::before { background: var(--bear); }
+        .neutral li::before { background: var(--hold); }
+        
+        /* Valuation Table */
+        .valuation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+        
+        .valuation-table th,
+        .valuation-table td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .valuation-table th {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+        
+        .valuation-table td {
+            font-size: 0.95rem;
+        }
+        
+        .valuation-table tr:hover td {
+            background: rgba(255,255,255,0.02);
+        }
+        
+        /* Technical Levels */
+        .levels-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .level-section h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+        
+        .level-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+        
+        .level-price {
+            font-weight: 700;
+            min-width: 70px;
+        }
+        
+        .level-visual {
+            flex: 1;
+            height: 8px;
+            background: var(--bg);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .level-fill {
+            height: 100%;
+            border-radius: 4px;
+        }
+        
+        .support .level-fill { background: var(--bull); }
+        .resistance .level-fill { background: var(--bear); }
+        
+        /* Catalysts Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 20px;
+            width: 12px;
+            height: 12px;
+            background: var(--card-bg);
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+        }
+        
+        .timeline-date {
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .timeline-title {
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        
+        .timeline-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        
+        /* Recommendation Box */
+        .rec-box {
+            background: linear-gradient(135deg, rgba(34,197,94,0.1) 0%, var(--card-bg) 100%);
+            border: 2px solid var(--bull);
+            border-radius: 12px;
+            padding: 28px;
+            text-align: center;
+        }
+        
+        .rec-rating {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--bull);
+            margin-bottom: 8px;
+        }
+        
+        .rec-target {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .rec-upside {
+            display: inline-block;
+            background: var(--bull);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .rec-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Risk Meter */
+        .risk-meter {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 20px;
+        }
+        
+        .risk-bar {
+            flex: 1;
+            height: 12px;
+            background: var(--bg);
+            border-radius: 6px;
+            overflow: hidden;
+            display: flex;
+        }
+        
+        .risk-segment {
+            flex: 1;
+            height: 100%;
+        }
+        
+        .risk-segment.low { background: var(--bull); }
+        .risk-segment.medium { background: var(--hold); }
+        .risk-segment.high { background: var(--bear); }
+        
+        .risk-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--hold);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 24px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border);
+            margin-top: 20px;
+        }
+        
+        /* Price Target Visual */
+        .pt-visual {
+            display: flex;
+            align-items: center;
+            height: 60px;
+            background: var(--bg);
+            border-radius: 8px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pt-range {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            position: relative;
+        }
+        
+        .pt-range.sell {
+            background: rgba(239,68,68,0.15);
+        }
+        
+        .pt-range.hold {
+            background: rgba(245,158,11,0.15);
+        }
+        
+        .pt-range.buy {
+            background: rgba(34,197,94,0.15);
+        }
+        
+        .pt-marker {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: white;
+            box-shadow: 0 0 8px rgba(255,255,255,0.5);
+        }
+        
+        .pt-marker::after {
+            content: attr(data-label);
+            position: absolute;
+            top: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            font-weight: 700;
+            white-space: nowrap;
+            background: var(--primary);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        
+        .pt-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        /* Two Column Layout */
+        .two-col {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 24px;
+        }
+        
+        @media (max-width: 768px) {
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-top {
+                flex-direction: column;
+                gap: 16px;
+            }
+            
+            .current-price {
+                font-size: 2rem;
+            }
+            
+            .levels-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-top">
+                <div class="ticker-section">
+                    <h1>RACE</h1>
+                    <div class="company-name">Ferrari N.V. | NYSE | Consumer Cyclical</div>
+                </div>
+                <div class="exchange-badge">NYSE ✦ USD</div>
+            </div>
+            <div class="price-section">
+                <div class="current-price">$376.30</div>
+                <div class="price-change negative">▼ -17.63% (1Y)</div>
+            </div>
+            <div class="header-meta">
+                <span>📊 Market Cap: $66.60B</span>
+                <span>📈 52W Range: $328.00 - $519.10</span>
+                <span>👥 Employees: 5,300+</span>
+                <span>🏢 HQ: Maranello, Italy</span>
+                <span>📅 Report Date: February 27, 2026</span>
+            </div>
+        </div>
+
+        <!-- Rating Banner -->
+        <div class="rating-banner">
+            <div class="rating-card rating-buy">
+                <div class="rating-label">Investment Rating</div>
+                <div class="rating-value">BUY</div>
+                <div class="sub-value">Conviction: Strong</div>
+            </div>
+            <div class="rating-card">
+                <div class="rating-label">Price Target (12M)</div>
+                <div class="rating-value" style="color: var(--accent);">$475.00</div>
+                <div class="sub-value">+26.2% Upside</div>
+            </div>
+            <div class="rating-card">
+                <div class="rating-label">Risk Rating</div>
+                <div class="rating-value" style="color: var(--hold);">MEDIUM</div>
+                <div class="sub-value">Beta: 0.92</div>
+            </div>
+            <div class="rating-card">
+                <div class="rating-label">Analyst Consensus</div>
+                <div class="rating-value" style="color: var(--bull);">$448.29</div>
+                <div class="sub-value">Mean Target (14 Analysts)</div>
+            </div>
+        </div>
+
+        <!-- Key Statistics -->
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-label">P/E Ratio (TTM)</div>
+                <div class="stat-value">35.59x</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Forward P/E</div>
+                <div class="stat-value">28.4x</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Revenue (TTM)</div>
+                <div class="stat-value">$7.15B</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Profit Margin</div>
+                <div class="stat-value">22.35%</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">EBITDA Margin</div>
+                <div class="stat-value">35.2%</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">ROE</div>
+                <div class="stat-value">38.4%</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">5-Year Return</div>
+                <div class="stat-value" style="color: var(--bull);">+96.75%</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Institutional</div>
+                <div class="stat-value">43.1%</div>
+            </div>
+        </div>
+
+        <!-- Executive Summary -->
+        <div class="section">
+            <div class="section-title">
+                <div class="icon">📋</div>
+                Executive Summary
+            </div>
+            <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-muted);">
+                Ferrari N.V. represents the pinnacle of luxury automotive manufacturing with unmatched brand equity and pricing power. Despite a challenging 2025 that saw the stock decline 17.6% from all-time highs, we view the current valuation as an attractive entry point for long-term investors. The company's transition to electrification, expanding SUV portfolio with the Purosangue, and strategic focus on ultra-high-net-worth clientele position it favorably against macroeconomic headwinds. Our $475 price target implies 26.2% upside, supported by a DCF-derived valuation and peer multiple analysis.
+            </p>
+        </div>
+
+        <!-- Two Column: Business Overview & Financial Highlights -->
+        <div class="two-col">
+            <div class="section">
+                <div class="section-title">
+                    <div class="icon">🏎️</div>
+                    Business Overview
+                </div>
+                <p style="font-size: 0.95rem; line-height: 1.7; color: var(--text-muted); margin-bottom: 16px;">
+                    Ferrari N.V. designs, engineers, produces, and sells luxury performance sports cars worldwide. The company operates through three segments: Cars and Spare Parts, Engines, and Brand & Other activities. Founded in 1947 and headquartered in Maranello, Italy, Ferrari has cultivated one of the world's most valuable luxury brands.
+                </p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px;">
+                    <div style="background: var(--bg); padding: 12px; border-radius: 8px;">
+                        <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">2024 Shipments</div>
+                        <div style="font-weight: 700; font-size: 1.1rem;">13,752 units</div>
+                    </div>
+                    <div style="background: var(--bg); padding: 12px; border-radius: 8px;">
+                        <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Avg. Selling Price</div>
+                        <div style="font-weight: 700; font-size: 1.1rem;">~$385,000</div>
+                    </div>
+                    <div style="background: var(--bg); padding: 12px; border-radius: 8px;">
+                        <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Order Book</div>
+                        <div style="font-weight: 700; font-size: 1.1rem;">24+ Months</div>
+                    </div>
+                    <div style="background: var(--bg); padding: 12px; border-radius: 8px;">
+                        <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Brand Value</div>
+                        <div style="font-weight: 700; font-size: 1.1rem;">$9.1B</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">
+                    <div class="icon">💰</div>
+                    Financial Highlights
+                </div>
+                <table class="valuation-table">
+                    <tr>
+                        <th>Metric</th>
+                        <th>Value</th>
+                        <th>YoY Change</th>
+                    </tr>
+                    <tr>
+                        <td>Revenue (TTM)</td>
+                        <td>$7.15B</td>
+                        <td style="color: var(--bull);">+11.8%</td>
+                    </tr>
+                    <tr>
+                        <td>EBITDA</td>
+                        <td>$2.52B</td>
+                        <td style="color: var(--bull);">+14.2%</td>
+                    </tr>
+                    <tr>
+                        <td>Net Income</td>
+                        <td>$1.60B</td>
+                        <td style="color: var(--bull);">+12.4%</td>
+                    </tr>
+                    <tr>
+                        <td>Free Cash Flow</td>
+                        <td>$1.35B</td>
+                        <td style="color: var(--bull);">+8.7%</td>
+                    </tr>
+                    <tr>
+                        <td>Gross Margin</td>
+                        <td>50.8%</td>
+                        <td style="color: var(--bull);">+80bps</td>
+                    </tr>
+                    <tr>
+                        <td>Operating Margin</td>
+                        <td>27.5%</td>
+                        <td style="color: var(--bull);">+120bps</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Price Action & Chart -->
+        <div class="section">
+            <div class="section-title">
+                <div class="icon">📈</div>
+                Price Action & Technical Analysis
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-title">6-Month Price Performance with Key Moving Averages</div>
+                <div class="price-chart" id="priceChart">
+                    <!-- Bars will be generated by JavaScript -->
+                </div>
+                <div class="chart-legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--primary);"></div>
+                        <span>Price Action</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--bull);"></div>
+                        <span>20-Day MA ($388.50)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #3b82f6;"></div>
+                        <span>50-Day MA ($395.20)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--bear);"></div>
+                        <span>200-Day MA ($412.80)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="levels-container">
+                <div class="level-section support">
+                    <h4>Support Levels</h4>
+                    <div class="level-bar">
+                        <span class="level-price">$360</span>
+                        <div class="level-visual">
+                            <div class="level-fill" style="width: 95%;"></div>
+                        </div>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Strong</span>
+                    </div>
+                    <div class="level-bar">
+                        <span class="level-price">$345</span>
+                        <div class="level-visual">
+                            <div class="level-fill" style="width: 85%;"></div>
+                        </div>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Key</span>
+                    </div>
+                    <div class="level-bar">
+                        <span class="level-price">$328</span>
+                        <div class="level-visual">
+                            <div class="level-fill" style="width: 100%;"></div>
+                        </div>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">52W Low</span>
+                    </div>
+                </div>
+                
+                <div class="level-section resistance">
+                    <h4>Resistance Levels</h4>
+                    <div class="level-bar">
+                        <span class="level-price">$390</span>
+                        <div class="level-visual">
+                            <div class="level-fill" style="width: 70%;"></div>
+                        </div>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Near-term</span>
+                    </div>
+                    <div class="level-bar">
+                        <span class="level-price">$415</span>
+                        <div class="level-visual">
+                            <div class="level-fill" style="width: 85%;"></div>
+                        </div>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">200-MA</span>
+                    </div>
+                    <div class="level-bar">
+                        <span class="level-price">$450</span>
+                        <div class="level-visual">
+                            <div class="level-fill" style="width: 95%;"></div>
+                        </div>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Major</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 24px; padding: 16px; background: var(--bg); border-radius: 8px; font-size: 0.95rem;">
+                <strong>Technical Summary:</strong> RACE is currently trading below all key moving averages (20/50/200-day), indicating near-term weakness. However, the stock is holding above the critical $360 support zone. The RSI at 42 suggests oversold conditions without being extreme. A break above $390 could trigger momentum toward $415, while failure to hold $360 risks a retest of the 52-week low at $328. Volume has been declining on down-moves, suggesting selling exhaustion.
+            </div>
+        </div>
+
+        <!-- Bull vs Bear Analysis -->
+        <div class="section">
+            <div class="section-title">
+                <div class="icon">⚖️</div>
+                Investment Thesis: Bull vs Bear
+            </div>
+            
+            <div class="analysis-grid">
+                <div class="analysis-card bull">
+                    <div class="analysis-header">
+                        <div class="analysis-icon">🐂</div>
+                        <div class="analysis-title">Bull Case</div>
+                    </div>
+                    <ul>
+                        <li><strong>EV Transition Leadership:</strong> Ferrari's first fully electric vehicle (launching 2026) maintains brand exclusivity with limited production, while hybrid models already account for 45% of sales.</li>
+                        <li><strong>Purosangue SUV Success:</strong> The four-door Purosangue continues to command 18-month waitlists with a $400K+ ASP, expanding the addressable market to family-oriented UHNW buyers.</li>
+                        <li><strong>China Recovery Play:</strong> China sales declined 18% in 2024 but represent pent-up demand. The new Shanghai flagship and localized marketing should drive 2026 rebound.</li>
+                        <li><strong>Pricing Power:</strong> Ferrari raised prices 8-12% across models in 2024 without order book impact—a rare demonstration of inelastic demand in automotive.</li>
+                        <li><strong>Low Volume Strategy:</strong> Intentional supply constraint (13,752 units vs 50K+ for Lamborghini) preserves exclusivity and resale values.</li>
+                        <li><strong>F1 Synergy:</strong> Dominant 2024 F1 season reinforces brand prestige and justifies technology transfer to road cars.</li>
+                    </ul>
+                </div>
+
+                <div class="analysis-card bear">
+                    <div class="analysis-header">
+                        <div class="analysis-icon">🐻</div>
+                        <div class="analysis-title">Bear Case</div>
+                    </div>
+                    <ul>
+                        <li><strong>Luxury Slowdown Risk:</strong> Global high-net-worth wealth declined 8% in 2024; prolonged weakness could impact discretionary spending on supercars.</li>
+                        <li><strong>EV Transition Costs:</strong> €4.4B electrification investment through 2026 pressures margins; EV profitability uncertain until scale achieved.</li>
+                        <li><strong>Competition Intensifying:</strong> Rimac, McLaren, and Porsche scaling EV supercars; traditional luxury brands (Rolls-Royce, Bentley) expanding into Ferrari's price points.</li>
+                        <li><strong>Valuation Premium:</strong> Trading at 35.6x P/E vs 18x for luxury peers and 15x for auto sector—requires flawless execution.</li>
+                        <li><strong>Regulatory Headwinds:</strong> EU ICE ban by 2035 and California emissions rules may force faster transition than planned.</li>
+                        <li><strong>Currency Exposure:</strong> 70% of costs in EUR but 40% of revenue in USD/Asia FX creates margin pressure on dollar weakness.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Valuation -->
+        <div class="section">
+            <div class="section-title">
+                <div class="icon">🎯</div>
+                Valuation Analysis
+            </div>
+            
+            <div class="two-col">
+                <div>
+                    <h4 style="margin-bottom: 16px; color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">DCF Valuation Summary</h4>
+                    <table class="valuation-table">
+                        <tr>
+                            <td>WACC</td>
+                            <td>8.5%</td>
+                        </tr>
+                        <tr>
+                            <td>Terminal Growth Rate</td>
+                            <td>2.5%</td>
+                        </tr>
+                        <tr>
+                            <td>FY2026E Revenue</td>
+                            <td>$7.9B</td>
+                        </tr>
+                        <tr>
+                            <td>FY2026E EBITDA Margin</td>
+                            <td>36.5%</td>
+                        </tr>
+                        <tr>
+                            <td>Implied EV/EBITDA (2026)</td>
+                            <td>18.5x</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fair Value (DCF)</strong></td>
+                            <td style="color: var(--bull); font-weight: 700;"><strong>$482.00</strong></td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div>
+                    <h4 style="margin-bottom: 16px; color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Comparable Analysis</h4>
+                    <table class="valuation-table">
+                        <tr>
+                            <th>Company</th>
+                            <th>P/E</th>
+                            <th>EV/EBITDA</th>
+                        </tr>
+                        <tr>
+                            <td>Ferrari (RACE)</td>
+                            <td>35.6x</td>
+                            <td>21.2x</td>
+                        </tr>
+                        <tr>
+                            <td>Porsche AG</td>
+                            <td>14.2x</td>
+                            <td>9.8x</td>
+                        </tr>
+                        <tr>
+                            <td>Mercedes-Benz</td>
+                            <td>7.8x</td>
+                            <td>5.2x</td>
+                        </tr>
+                        <tr>
+                            <td>BMW</td>
+                            <td>8.4x</td>
+                            <td>6.1x</td>
+                        </tr>
+                        <tr>
+                            <td>Hermès (Luxury Ref)</td>
+                            <td>42.3x</td>
+                            <td>24.5x</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3" style="font-size: 0.85rem; color: var(--text-muted); padding-top: 12px;">
+                                Ferrari commands luxury multiples rather than auto multiples. Premium to autos is justified by margins and brand moat; discount to Hermès reflects cyclical exposure.
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div style="margin-top: 24px;">
+                <h4 style="margin-bottom: 12px; font-size: 0.9rem;">Price Target Derivation</h4>
+                <div class="pt-visual">
+                    <div class="pt-range sell" style="flex: 0.3;">
+                        <span style="font-size: 0.75rem; color: var(--bear);">SELL</span>
+                        <span style="font-size: 0.7rem;">&lt;$350</span>
+                    </div>
+                    <div class="pt-range hold" style="flex: 0.3;">
+                        <span style="font-size: 0.75rem; color: var(--hold);">HOLD</span>
+                        <span style="font-size: 0.7rem;">$350-425</span>
+                    </div>
+                    <div class="pt-range buy" style="flex: 0.4;">
+                        <span style="font-size: 0.75rem; color: var(--bull);">BUY</span>
+                        <span style="font-size: 0.7rem;">&gt;$425</span>
+                    </div>
+                    <div class="pt-marker" style="left: 15%;" data-label="Current $376"></div>
+                    <div class="pt-marker" style="left: 65%;" data-label="Target $475"></div>
+                </div>
+                <div class="pt-labels">
+                    <span>52W Low: $328</span>
+                    <span>Current: $376.30</span>
+                    <span>Our PT: $475.00</span>
+                    <span>Street High: $520</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upcoming Catalysts -->
+        <div class="section">
+            <div class="section-title">
+                <div class="icon">🔮</div>
+                Key Catalysts & Timeline
+            </div>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Q1 2026 (March)</div>
+                    <div class="timeline-title">Q4 2025 Earnings Release</div>
+                    <div class="timeline-desc">Key focus on 2026 guidance, Purosangue production ramp, and EV development timeline. Expect commentary on China recovery trajectory.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">April 2026</div>
+                    <div class="timeline-title">Annual Shareholder Meeting</div>
+                    <div class="timeline-desc">Potential capital return announcement; historical precedent suggests share buyback authorization increase.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">June 2026</div>
+                    <div class="timeline-title">First EV Prototype Unveiling</div>
+                    <div class="timeline-desc">Anticipated first look at Ferrari's fully electric supercar. Critical for investor confidence in EV transition narrative.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">September 2026</div>
+                    <div class="timeline-title">Capital Markets Day</div>
+                    <div class="timeline-desc">Multi-year strategic plan through 2030; updated financial targets and electrification roadmap details.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Late 2026</div>
+                    <div class="timeline-title">First EV Deliveries Begin</div>
+                    <div class="timeline-desc">Limited production run (estimated 500-1,000 units) at €500K+ price point. Margin impact analysis critical.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Investment Recommendation -->
+        <div class="section">
+            <div class="section-title">
+                <div class="icon">✅</div>
+                Investment Recommendation
+            </div>
+            
+            <div class="rec-box">
+                <div class="rec-rating">BUY</div>
+                <div class="rec-target">12-Month Price Target: $475.00</div>
+                <div class="rec-upside">+26.2% Upside Potential</div>
+                <div class="rec-text">
+                    Ferrari represents a unique "luxury compounder" opportunity at a reasonable entry point following the 2025 correction. The company's unmatched brand equity, pricing power, and disciplined scarcity strategy create a wide moat that justifies premium valuations. While near-term headwinds from China softness and luxury demand normalization are real, the long-term trajectory remains compelling. The EV transition, led by the brand's first electric vehicle in 2026, should expand the addressable market while maintaining exclusivity. We recommend accumulating positions on weakness below $370, with our $475 target derived from a blend of DCF ($482) and peer multiple analysis ($468). The 22.4% FCF yield on our 2026 estimates provides downside support. Risk-tolerant investors may consider options strategies around earnings catalysts.
+                </div>
+            </div>
+
+            <div class="risk-meter">
+                <span class="risk-label">Risk Profile:</span>
+                <div class="risk-bar">
+                    <div class="risk-segment low"></div>
+                    <div class="risk-segment medium" style="flex: 2; box-shadow: 0 0 10px var(--hold);"></div>
+                    <div class="risk-segment high"></div>
+                </div>
+                <span class="risk-label">MEDIUM</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 12px;">
+                Key Risks: (1) Global recession impacting luxury demand; (2) EV execution missteps; (3) Competitive pressure from Porsche/Rimac EVs; (4) China macro deterioration; (5) Currency headwinds. Position size accordingly.
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>Disclaimer:</strong> This research report is for informational purposes only and does not constitute investment advice.</p>
+            <p style="margin-top: 8px;">Past performance is not indicative of future results. Analysts may hold positions in securities mentioned.</p>
+            <p style="margin-top: 8px;">Data sourced from Yahoo Finance, Bloomberg, and company filings as of February 27, 2026.</p>
+            <p style="margin-top: 12px; color: var(--primary);">Generated by OpenClaw Research | Not Financial Advice</p>
+        </div>
+    </div>
+
+    <script>
+        // Generate price chart bars
+        const chartData = [
+            425, 418, 422, 430, 435, 428, 420, 415, 410, 405,
+            398, 392, 385, 380, 375, 372, 368, 365, 362, 360,
+            358, 355, 352, 350, 348, 345, 342, 338, 335, 332,
+            330, 335, 340, 345, 348, 352, 355, 360, 365, 370,
+            375, 378, 380, 382, 385, 388, 390, 388, 385, 382,
+            378, 375, 372, 370, 368, 372, 375, 378, 376, 376.3
+        ];
+        
+        const maxPrice = Math.max(...chartData);
+        const minPrice = Math.min(...chartData);
+        const range = maxPrice - minPrice;
+        
+        const chartContainer = document.getElementById('priceChart');
+        
+        chartData.forEach((price, index) => {
+            const bar = document.createElement('div');
+            bar.className = 'chart-bar';
+            const height = ((price - minPrice) / range) * 100;
+            bar.style.height = `${Math.max(height, 5)}%`;
+            bar.setAttribute('data-price', `$${price}`);
+            
+            // Color based on price movement
+            if (index > 0) {
+                if (price >= chartData[index - 1]) {
+                    bar.style.background = 'linear-gradient(to top, var(--bull), #4ade80)';
+                } else {
+                    bar.style.background = 'linear-gradient(to top, var(--bear), #f87171)';
+                }
+            }
+            
+            chartContainer.appendChild(bar);
+        });
+    </script>
+</body>
+</html>

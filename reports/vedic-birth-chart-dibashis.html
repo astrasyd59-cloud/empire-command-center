@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vedic Birth Chart Analysis — Dibashis C</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #faf8f3;
+  --bg-card: #ffffff;
+  --bg-cream: #f5f0e6;
+  --bg-saffron: #fdf6e3;
+  --text-primary: #1a1612;
+  --text-secondary: #4a4239;
+  --text-muted: #7a7063;
+  --border: #d4c9b8;
+  --border-strong: #a89a85;
+  --saffron: #c9a227;
+  --saffron-dark: #8b6914;
+  --crimson: #8b2635;
+  --indigo: #2d3a5c;
+  --emerald: #2d5a4a;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Crimson Text', Georgia, serif;
+}
+[data-theme="dark"] {
+  --bg: #1a1814;
+  --bg-card: #24201c;
+  --bg-cream: #2a2620;
+  --text-primary: #e8e2d9;
+  --text-secondary: #b8b0a0;
+  --text-muted: #7a7568;
+  --border: #4a4239;
+  --border-strong: #5a5045;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: var(--font-body); background: var(--bg); color: var(--text-primary); line-height: 1.75; font-size: 16px; }
+.container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+/* Header */
+header { text-align: center; padding: 60px 0 40px; border-bottom: 1px solid var(--border); }
+.om-symbol { font-size: 2.5rem; color: var(--saffron-dark); margin-bottom: 16px; }
+.title { font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; color: var(--indigo); letter-spacing: 1px; }
+.subtitle { font-family: var(--font-body); font-style: italic; font-size: 1.1rem; color: var(--text-muted); margin-top: 8px; }
+.birth-details { margin-top: 24px; padding: 20px; background: var(--bg-cream); border-radius: 8px; font-size: 0.95rem; }
+.birth-row { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+.birth-item { text-align: center; }
+.birth-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); }
+.birth-value { font-weight: 600; color: var(--text-primary); margin-top: 2px; }
+
+/* Section styling */
+.section { padding: 40px 0; border-bottom: 1px solid var(--border); }
+.section:last-child { border-bottom: none; }
+.section-title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--saffron-dark); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+.section-title::before { content: '◆'; font-size: 0.8rem; }
+
+/* Chart data table */
+.chart-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+.chart-table th { background: var(--bg-cream); padding: 12px 16px; text-align: left; font-family: var(--font-display); font-weight: 600; border-bottom: 2px solid var(--border-strong); }
+.chart-table td { padding: 10px 16px; border-bottom: 1px solid var(--border); }
+.chart-table tr:hover { background: var(--bg-cream); }
+.planet-icon { display: inline-block; width: 24px; text-align: center; font-weight: bold; }
+
+/* Insight boxes */
+.insight-box { background: var(--bg-saffron); border-left: 4px solid var(--saffron); padding: 20px 24px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+.insight-title { font-family: var(--font-display); font-weight: 700; color: var(--saffron-dark); margin-bottom: 8px; }
+.insight-box p { margin-bottom: 8px; }
+.insight-box p:last-child { margin-bottom: 0; }
+
+/* Dasha section */
+.dasha-current { background: var(--bg-cream); border: 2px solid var(--saffron); border-radius: 8px; padding: 24px; margin: 20px 0; text-align: center; }
+.dasha-title { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--crimson); margin-bottom: 8px; }
+.dasha-period { font-size: 1.1rem; color: var(--text-primary); font-weight: 600; }
+.dasha-meaning { margin-top: 12px; font-style: italic; color: var(--text-secondary); }
+
+/* Life areas */
+.life-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+@media (max-width: 600px) { .life-grid { grid-template-columns: 1fr; } }
+.life-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; }
+.life-area { font-family: var(--font-display); font-weight: 700; color: var(--indigo); margin-bottom: 8px; font-size: 1.1rem; }
+.life-desc { font-size: 0.95rem; color: var(--text-secondary); }
+
+/* Quote styling */
+.quote { font-style: italic; padding: 20px 24px; border-left: 3px solid var(--text-muted); margin: 20px 0; color: var(--text-secondary); }
+.quote-author { display: block; margin-top: 8px; font-size: 0.9rem; color: var(--text-muted); font-style: normal; }
+
+/* Footer */
+footer { text-align: center; padding: 40px 20px; border-top: 1px solid var(--border); margin-top: 40px; color: var(--text-muted); font-size: 0.9rem; }
+.disclaimer { max-width: 600px; margin: 0 auto; font-size: 0.85rem; line-height: 1.6; }
+
+/* Nakshatra highlight */
+.nakshatra-box { background: linear-gradient(135deg, var(--bg-saffron), var(--bg-cream)); border-radius: 8px; padding: 20px 24px; margin: 20px 0; }
+.nakshatra-name { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--crimson); }
+.nakshatra-deity { font-size: 0.9rem; color: var(--text-muted); margin-top: 4px; }
+.nakshatra-traits { margin-top: 12px; font-size: 0.95rem; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<header>
+  <div class="om-symbol">🕉️</div>
+  <h1 class="title">Vedic Birth Chart Analysis</h1>
+  <p class="subtitle">A Comprehensive Consultation for Dibashis C</p>
+  
+  <div class="birth-details">
+    <div class="birth-row">
+      <div class="birth-item">
+        <div class="birth-label">Date of Birth</div>
+        <div class="birth-value">February 1, 1998</div>
+      </div>
+      <div class="birth-item">
+        <div class="birth-label">Time</div>
+        <div class="birth-value">12:45 PM (Mauritius)</div>
+      </div>
+      <div class="birth-item">
+        <div class="birth-label">Location</div>
+        <div class="birth-value">Pamplemousses, Mauritius</div>
+      </div>
+      <div class="birth-item">
+        <div class="birth-label">Lunar Day</div>
+        <div class="birth-value">Magha Panchami</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- CORE IDENTITY -->
+<div class="section">
+  <h2 class="section-title">Your Cosmic Blueprint</h2>
+  
+  <div class="nakshatra-box">
+    <div class="nakshatra-name">Moon in Uttarabhadrapada</div>
+    <div class="nakshatra-deity">Ruled by Ahirbudhnya (the Serpent of the Deep)</div>
+    <div class="nakshatra-traits">
+      You carry the energy of the cosmic waters — depth, mystery, and profound inner wisdom. Uttarabhadrapada natives are known for their <strong>introspective nature</strong>, <strong>spiritual depth</strong>, and ability to navigate life's turbulent waters with calm determination. Like the serpent that dwells in the ocean depths, you possess hidden knowledge and the power to transform through periods of withdrawal and renewal.
+    </div>
+  </div>
+  
+  <div class="insight-box">
+    <div class="insight-title">☉ Sun in Capricorn (Makara) — The Mountain Climber</div>
+    <p>Your soul's purpose (Atmakaraka) is expressed through <strong>ambition, discipline, and mastery over time</strong>. You are here to build lasting structures — whether in career, wealth, or personal achievement. Capricorn Sun natives don't seek quick wins; they play the long game.</p>
+    <p><strong>Key traits:</strong> Strategic thinking, patience, leadership through competence, respect for hierarchy and tradition.</p>
+  </div>
+  
+  <div class="insight-box"
+    <div class="insight-title">☽ Moon in Pisces (Meena) — The Dreamer</div>
+    <p>Your emotional nature (Manas) flows through the boundless waters of Pisces. This creates a <strong>deeply empathetic, intuitive, and imaginative</strong> inner world. You feel what others feel — sometimes before they do.</p>
+    <p><strong>The tension:</strong> Your Capricorn Sun wants structure; your Pisces Moon wants to dissolve boundaries. Your life's work is integrating these — building empires while maintaining soulful connection.</p>
+  </div>
+  
+  <div class="insight-box">
+    <div class="insight-title">Ascendant in Aries (Mesha) — The Warrior's Mask</div>
+    <p>The world sees you as <strong>bold, pioneering, and action-oriented</strong>. You project confidence and initiative. This fiery ascendant gives you the courage to start ventures, lead teams, and charge into new territory — even when your Pisces Moon would rather retreat and reflect.</p>
+    <p><strong>Physical indicators:</strong> Strong bone structure, prominent forehead, athletic build (when active), tendency toward headaches or inflammation when stressed.</p>
+  </div>
+</div>
+
+<!-- PLANETARY POSITIONS -->
+<div class="section">
+  <h2 class="section-title">Planetary Assembly</h2>
+  
+  <table class="chart-table">
+    <thead>
+      <tr>
+        <th>Planet</th>
+        <th>Sign</th>
+        <th>Nakshatra</th>
+        <th>Significance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="planet-icon">☉</span> Sun</td>
+        <td>Capricorn ♑</td>
+        <td>Shravana</td>
+        <td>Career, Authority, Father</td>
+      </tr>
+      <tr>
+        <td><span class="planet-icon">☽</span> Moon</td>
+        <td>Pisces ♓</td>
+        <td>Uttarabhadrapada</td>
+        <td>Mind, Mother, Emotions</td>
+      </tr>
+      <tr>
+        <td><span class="planet-icon">♂</span> Mars</td>
+        <td>Aquarius ♒</td>
+        <td>Shatabhisha</td>
+        <td>Drive, Courage, Siblings</td>
+      </tr>
+      <tr>
+        <td><span class="planet-icon">☿</span> Mercury</td>
+        <td>Capricorn ♑</td>
+        <td>Uttarashada</td>
+        <td>Intellect, Communication, Business</td>
+      </tr>
+      <tr>
+        <td><span class="planet-icon">♃</span> Jupiter</td>
+        <td>Aquarius ♒</td>
+        <td>Dhanishta</td>
+        <td>Wisdom, Wealth, Children</td>
+      </tr>
+      <tr>
+        <td><span class="planet-icon">♀</span> Venus ℞</td>
+        <td>Sagittarius ♐</td>
+        <td>Poorvashada</td>
+        <td>Relationships, Luxury, Creativity</td>
+      </tr>
+      <tr>
+        <td><span class="planet-icon">♄</span> Saturn</td>
+        <td>Pisces ♓</td>
+        <td>Revati</td>
+        <td>Karma, Discipline, Longevity</td>
+      </tr>
+      <tr>
+        <td><span class="planet-icon">☊</span> Rahu</td>
+        <td>Leo ♌</td>
+        <td>Poorvaphalguni</td>
+        <td>Desires, Obsessions, Foreign</td>
+      </tr>
+      <tr>
+        <td><span class="planet-icon">☋</span> Ketu</td>
+        <td>Aquarius ♒</td>
+        <td>Shatabhisha</td>
+        <td>Detachment, Spirituality, Past Karma</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- CURRENT DASHA -->
+<div class="section">
+  <h2 class="section-title">Current Life Chapter: Venus Dasha</h2>
+  
+  <div class="dasha-current">
+    <div class="dasha-title">Vimshottari Dasha: Venus-Venus</div>
+    <div class="dasha-period">June 2025 — June 2028</div>
+    <div class="dasha-meaning">
+      "The period of the teacher of the demons — luxury, relationships, artistic refinement, and the fruits of past good karma"
+    </div>
+  </div>
+  
+  <div class="insight-box">
+    <div class="insight-title">What Venus Dasha Means for You</div>
+    <p>You are currently in a <strong>20-year Venus mahadasha</strong> (started June 2025), with the sub-period (antardasha) also being Venus until June 2028. This is the <strong>"seed period"</strong> — the themes that emerge now will color the entire two decades.</p>
+    
+    <p><strong>Key themes:</strong></p>
+    <ul style="margin-left: 20px; margin-top: 8px;">
+      <li>Relationships take center stage — romantic, business partnerships, creative collaborations</li>
+      <li>Financial growth through Venusian means: luxury goods, art, entertainment, hospitality, finance</li>
+      <li>Aesthetic refinement — you'll care more about beauty, design, presentation</li>
+      <li>Venus is retrograde in your chart — expect <strong>reviews and reconnections</strong> from the past</li>
+    </ul>
+  </div>
+  
+  <div class="quote">
+    "Venus in Sagittarius seeks wisdom through experience. You are drawn to partners and projects that expand your horizons — physically, intellectually, spiritually. Foreign connections, higher education, and philosophical pursuits bring pleasure during this time."
+    <span class="quote-author">— Traditional Jyotish texts</span>
+  </div>
+</div>
+
+<!-- LIFE AREAS -->
+<div class="section">
+  <h2 class="section-title">Life Area Analysis</h2>
+  
+  <div class="life-grid">
+    <div class="life-card">
+      <div class="life-area">💼 Career & Status (10th House)</div>
+      <div class="life-desc">
+        <strong>Capricorn energy dominates.</strong> You excel in structured environments with clear hierarchies. Leadership roles suit you, especially in finance, technology, or established institutions. Your Mars in Aquarius gives innovative drive — you challenge systems from within.
+      </div>
+    </div>
+    
+    <div class="life-card">
+      <div class="life-area">💰 Wealth & Resources (2nd House)</div>
+      <div class="life-desc">
+        <strong>Taurus on 2nd house cusp.</strong> Wealth accumulates steadily. You value stability over speculation. Saturn's influence suggests money comes later in life — patience is required. Real estate and fixed assets favor you.
+      </div>
+    </div>
+    
+    <div class="life-card">
+      <div class="life-area">💞 Relationships (7th House)</div>
+      <div class="life-desc">
+        <strong>Libra energy.</strong> You seek harmony and intellectual connection in partnerships. Venus retrograde suggests karmic relationships — people from past lives or past experiences returning. Avoid indecision; trust your gut.
+      </div>
+    </div>
+    
+    <div class="life-card">
+      <div class="life-area">🏠 Home & Family (4th House)</div>
+      <div class="life-desc">
+        <strong>Cancer influence.</strong> Deep attachment to mother and homeland (Mauritius). You may live far from birth place but carry its essence. Creating a nurturing home environment is essential for emotional wellbeing.
+      </div>
+    </div>
+    
+    <div class="life-card">
+      <div class="life-area">📚 Education & Wisdom (9th House)</div>
+      <div class="life-desc">
+        <strong>Sagittarius stellium.</strong> Higher education, foreign travel, and philosophy call to you. You may study abroad or teach others. Jupiter in Aquarius suggests unconventional wisdom — technology meets spirituality.
+      </div>
+    </div>
+    
+    <div class="life-card">
+      <div class="life-area">⚡ Health & Vitality (1st House)</div>
+      <div class="life-desc">
+        <strong>Aries ascendant.</strong> Strong constitution when active; prone to burnout when pushing too hard. Watch head, eyes, and inflammation. Regular exercise is medicine. Mars in Aquarius suggests sporadic energy — find rhythm.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- KEY INSIGHTS -->
+<div class="section">
+  <h2 class="section-title">Key Insights for This Lifetime</h2>
+  
+  <div class="insight-box">
+    <div class="insight-title">1. The Bridge Builder</div>
+    <p>With Jupiter and Mars in Aquarius (the sign of innovation and groups), and Mercury in Capricorn (structure), you are designed to <strong>bridge traditional systems with futuristic vision</strong>. Your work likely involves bringing order to chaos, implementing new technologies, or structuring innovative ideas.</p>
+  </div>
+  
+  <div class="insight-box">
+    <div class="insight-title">2. The Karmic Accountant</div>
+    <p>Saturn with Moon in Pisces creates a <strong>Vish Yoga</strong> (poison combination) that requires conscious integration. You may have carried fears, responsibilities, or burdens from past lives. This lifetime asks you to dissolve karma through spiritual practice, service, and emotional maturity. Your suffering has purpose — it builds wisdom.</p>
+  </div>
+  
+  <div class="insight-box">
+    <div class="insight-title">3. The Reluctant Leader</div>
+    <p>Your Aries ascendant and Capricorn Sun make you a natural leader, but your Pisces Moon often questions ambition. You're learning to lead <strong>with compassion</strong> — building empires that serve humanity, not ego. Money is a tool for impact, not a scorecard.</p>
+  </div>
+  
+  <div class="insight-box">
+    <div class="insight-title">4. Foreign Connections</div>
+    <p>Rahu in Leo (9th house of fortune) indicates <strong>significant foreign influence</strong>. You were born in Mauritius, live in Australia — this pattern continues. International business, cross-cultural relationships, or spiritual teachers from abroad will shape your destiny.</p>
+  </div>
+</div>
+
+<!-- WHAT TO EXPLORE NEXT -->
+<div class="section">
+  <h2 class="section-title">Areas for Deeper Dive</h2>
+  
+  <p style="margin-bottom: 16px;">This consultation covers your cosmic blueprint. In follow-up sessions, we can explore:</p>
+  
+  <div class="life-grid">
+    <div class="life-card">
+      <div class="life-area">🗓️ Yearly Transits</div>
+      <div class="life-desc">Where are planets now relative to your birth chart? What does 2026 hold?</div>
+    </div>
+    
+    <div class="life-card">
+      <div class="life-area">⏰ Muhurta (Electional Astrology)</div>
+      <div class="life-desc">Best dates for major decisions: job changes, investments, travel, proposals.</div>
+    </div>
+    
+    <div class="life-card">
+      <div class="life-area">⚕️ Medical Astrology</div>
+      <div class="life-desc">Health vulnerabilities and wellness strategies based on planetary weaknesses.</div>
+    </div>
+    
+    <div class="life-card">
+      <div class="life-area">💼 Career Astrology</div>
+      <div class="life-desc">Specific timing for career moves, entrepreneurship, and financial windfalls.</div>
+    </div>
+    
+    <div class="life-card">
+      <div class="life-area">💞 Compatibility Analysis</div>
+      <div class="life-desc">Synastry with potential partners — romantic or business.</div>
+    </div>
+    
+    <div class="life-card">
+      <div class="life-area">🧘 Remedial Measures</div>
+      <div class="life-desc">Gemstones, mantras, and practices to strengthen weak planets.</div>
+    </div>
+  </div>
+</div>
+
+<!-- DAILY PRACTICE -->
+<div class="section">
+  <h2 class="section-title">Immediate Practice</h2>
+  
+  <div class="insight-box">
+    <div class="insight-title">For Your Uttarabhadrapada Moon</div>
+    
+    <p><strong>Mantra:</strong> Om Namah Shivaya (Monday evenings, facing North)</p>
+    
+    <p><strong>Ideal routine:</strong> Early morning reflection (before sunrise) — journaling, meditation, or reading scripture. Your Moon thrives in solitude and spiritual practice.</p>
+    
+    <p><strong>Colors:</strong> Deep blue, purple, saffron</p>
+    
+    <p><strong>Days of power:</strong> Thursday (Jupiter), Saturday (Saturn) — for important decisions</p>
+  </div>
+</div>
+
+<footer>
+  <div class="disclaimer">
+    <strong>🕉️ Jyotish Consultation for Dibashis C</strong><br>
+    This analysis is based on Vedic (Indian) astrology principles. It is meant for self-reflection and guidance, not as deterministic prediction. You remain the author of your life; the stars provide the weather, you choose how to navigate.
+    <br><br>
+    <em>Generated: February 23, 2026 | System: Parashari Jyotish with Vimshottari Dasha</em>
+  </div>
+</footer>
+
+</div>
+
+</body>
+</html>

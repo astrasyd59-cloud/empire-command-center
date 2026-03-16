@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Daily 5 | AAPL Deep Dive</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+    <style>
+        :root {
+            --bg-primary: #fafafa;
+            --bg-secondary: #ffffff;
+            --bg-grid: rgba(0, 0, 0, 0.03);
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6a6a6a;
+            --border-color: #e0e0e0;
+            --accent-green: #10b981;
+            --accent-red: #ef4444;
+            --accent-blue: #3b82f6;
+            --accent-gold: #f59e0b;
+            --accent-purple: #8b5cf6;
+            --card-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            --chart-bg: #ffffff;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #252525;
+            --bg-grid: rgba(255, 255, 255, 0.03);
+            --text-primary: #f5f5f5;
+            --text-secondary: #d0d0d0;
+            --text-muted: #a0a0a0;
+            --border-color: #404040;
+            --card-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            --chart-bg: #2a2a2a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, Georgia, serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            background-image: 
+                linear-gradient(var(--bg-grid) 1px, transparent 1px),
+                linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
+            background-size: 20px 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+        }
+
+        .date-badge {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            box-shadow: var(--card-shadow);
+        }
+
+        .theme-toggle {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+            box-shadow: var(--card-shadow);
+        }
+
+        .theme-toggle:hover {
+            background: var(--accent-blue);
+            color: white;
+            border-color: var(--accent-blue);
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .logo span {
+            color: var(--accent-gold);
+        }
+
+        .tagline {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* Company Hero */
+        .company-hero {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .company-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .ticker-box {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .company-info h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .company-info p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Metrics Bar */
+        .metrics-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .metric-card {
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+            position: relative;
+            cursor: help;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .metric-card:hover .metric-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .metric-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .metric-value {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        .metric-value.positive {
+            color: var(--accent-green);
+        }
+
+        .metric-value.negative {
+            color: var(--accent-red);
+        }
+
+        .metric-tooltip {
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 15px;
+            width: 280px;
+            text-align: left;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 100;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .metric-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 8px solid transparent;
+            border-top-color: var(--border-color);
+        }
+
+        .metric-tooltip h4 {
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .tooltip-section {
+            margin-bottom: 10px;
+        }
+
+        .tooltip-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .tooltip-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            margin-bottom: 3px;
+        }
+
+        .tooltip-value {
+            font-size: 0.85rem;
+            color: var(--text-primary);
+        }
+
+        .tooltip-formula {
+            font-family: 'Courier New', monospace;
+            background: var(--bg-primary);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        /* Charts Section */
+        .section {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-gold);
+            display: inline-block;
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 900px) {
+            .charts-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .chart-container {
+            background: var(--chart-bg);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .chart-title {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 300px;
+        }
+
+        /* Street Research */
+        .research-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .research-card {
+            background: var(--bg-primary);
+            border-left: 4px solid var(--accent-blue);
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            transition: all 0.2s ease;
+        }
+
+        [data-theme="dark"] .research-card {
+            background: #2a2a2a;
+            border-left-color: var(--accent-gold);
+        }
+
+        .research-card:hover {
+            background: var(--bg-secondary);
+        }
+
+        [data-theme="dark"] .research-card:hover {
+            background: #333333;
+        }
+
+        .research-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .research-firm {
+            font-weight: bold;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+        }
+
+        .research-rating {
+            background: var(--accent-green);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        .research-quote {
+            font-style: italic;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        [data-theme="dark"] .research-quote {
+            color: #d0d0d0;
+        }
+
+        .research-analyst {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* CFA Lens */
+        .cfa-grid {
+            display: grid;
+            gap: 25px;
+        }
+
+        .cfa-item {
+            background: var(--bg-primary);
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        [data-theme="dark"] .cfa-item {
+            background: #2a2a2a;
+        }
+
+        .cfa-title {
+            font-size: 1.1rem;
+            color: var(--accent-purple);
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .cfa-formula {
+            background: var(--bg-secondary);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            border-left: 3px solid var(--accent-gold);
+        }
+
+        [data-theme="dark"] .cfa-formula {
+            background: #333333;
+        }
+
+        .cfa-calculation {
+            background: var(--bg-secondary);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        [data-theme="dark"] .cfa-calculation {
+            background: #333333;
+        }
+
+        .cfa-calculation strong {
+            color: var(--accent-blue);
+        }
+
+        /* Trading Lens */
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .strategy-card {
+            background: var(--bg-primary);
+            border-radius: 10px;
+            padding: 25px;
+            border: 2px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+
+        [data-theme="dark"] .strategy-card {
+            background: #2a2a2a;
+        }
+
+        .strategy-card:hover {
+            border-color: var(--accent-blue);
+        }
+
+        .strategy-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .strategy-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .strategy-icon.bull {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--accent-green);
+        }
+
+        .strategy-icon.income {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--accent-gold);
+        }
+
+        .strategy-icon.bear {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--accent-red);
+        }
+
+        .strategy-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .strategy-params {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .param-box {
+            text-align: center;
+            padding: 10px;
+            background: var(--bg-secondary);
+            border-radius: 6px;
+        }
+
+        .param-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .param-value {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        .rr-box {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .rr-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        .rr-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        /* Terminology Box */
+        .terms-grid {
+            display: grid;
+            gap: 15px;
+        }
+
+        .term-item {
+            background: var(--bg-primary);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-gold);
+        }
+
+        [data-theme="dark"] .term-item {
+            background: #2a2a2a;
+        }
+
+        .term-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .term-word {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+
+        .term-origin {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .term-definition {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .disclaimer {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 1.8rem;
+            }
+
+            .company-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .ticker-box {
+                font-size: 1.5rem;
+                padding: 10px 20px;
+            }
+
+            .metric-tooltip {
+                width: 240px;
+                left: 50%;
+                transform: translateX(-50%) translateY(10px);
+            }
+
+            .strategy-params {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 20px;
+            }
+        }
+
+        /* Chart Annotation Styles */
+        .chart-annotation {
+            font-family: 'Times New Roman', serif;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-top">
+                <div class="date-badge">📅 February 23, 2026</div>
+                <button class="theme-toggle" onclick="toggleTheme()">🌓 Toggle Theme</button>
+            </div>
+            <div class="logo">THE DAILY <span>5</span></div>
+            <p class="tagline">"Five metrics. Zero noise. All signal."</p>
+        </header>
+
+        <!-- Company Hero -->
+        <div class="company-hero">
+            <div class="company-header">
+                <div class="ticker-box">AAPL</div>
+                <div class="company-info">
+                    <h1>Apple Inc.</h1>
+                    <p>Consumer Electronics • Cupertino, CA • NASDAQ</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Metrics Bar -->
+        <div class="metrics-bar">
+            <div class="metric-card">
+                <div class="metric-label">Price</div>
+                <div class="metric-value">$247.50</div>
+                <div class="metric-tooltip">
+                    <h4>📊 Stock Price</h4>
+                    <div class="tooltip-section">
+                        <div class="tooltip-label">Formula</div>
+                        <div class="tooltip-formula">Last Trade Executed</div>
+                    </div>
+                    <div class="tooltip-section">
+                        <div class="tooltip-label">Used By</div>
+                        <div class="tooltip-value">Retail investors (entry/exit), Algorithms (price discovery), Market makers (liquidity)</div>
+                    </div>
+                    <div class="tooltip-section">
+                        <div class="tooltip-label">Adoption</div>
+                        <div class="tooltip-value">Universal — the fundamental unit of market value</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-label">YTD Change</div>
+                <div class="metric-value positive">+2.8%</div>
+                <div class="metric-tooltip">
+                    <h4>📈 Year-to-Date Return</h4>
+                    <div class="tooltip-section">
+                        <div class="tooltip-label">Formula</div>
+                        <div class="tooltip-formula">(Current - Jan 1) / Jan 1 × 100</div>
+                    </div>
+                    <div class="tooltip-section">
+                        <div class="tooltip-label">Used By</div>
+                        <div class="tooltip-value">Portfolio managers (performance), Asset allocators (rebalancing), Retail (benchmarking)</div>
+                    </div>
+                    <div class="tooltip-section">
+                        <div class="tooltip-label">Adoption</div>
+                        <div class="tooltip-value">95% — standard performance metric across all investor types</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-label">P/E Ratio</div>
+                <div class="metric-value">32.4x</div>
+                <div class="metric-tooltip">
+                    <h4>💰 Price-to-Earnings Ratio</h4>
+                    <div class="tooltip-section">
+                        <div class="tooltip-label">Formula</div>
+                        <div class="tooltip-formula">P/E = Price / EPS</div>
+                    </div>
+                    <div class="tooltip-section">
+                        <div class="tooltip-label">Used By</div>
+                        <div class="tooltip-value">Value investors (Buffett), Growth investors (comparables), Analysts (target prices), PE firms (valuation)</div>
+                    </div>
+                    <div class="tooltip-section">
+                        <div class="tooltip-label">Adoption</div>
+                        <div class="tooltip-value">95% of professional investors — the gold standard valuation metric</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-label">Dividend Yield</div>
+                <div class="metric-value">0.52%</div>
+                <div class="metric-tooltip">
+                    <h4>💵 Dividend Yield</h4>
+                    <div class="tooltip-section">
+                        <div class="tooltip-label">Formula</div>
+                        <div class="tooltip-formula">Yield = Annual Dividend / Price</div>
+                    </div>
+                    <div class="tooltip-section">
+                        <div class="tooltip-label">Used By</div>
+                        <div class="tooltip-value">Income investors (cash flow), Pension funds (liability matching), Dividend growth strategies, Retirees</div>
+                    </div>
+                    <div class="tooltip-section">
+                        <div class="tooltip-label">Adoption</div>
+                        <div class="tooltip-value">80% — critical for income-focused strategies and total return calculations</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-label">Beta</div>
+                <div class="metric-value">1.21</div>
+                <div class="metric-tooltip">
+                    <h4>⚖️ Beta (Systematic Risk)</h4>
+                    <div class="tooltip-section">
+                        <div class="tooltip-label">Formula</div>
+                        <div class="tooltip-formula">β = Cov(Ri, Rm) / Var(Rm)</div>
+                    </div>
+                    <div class="tooltip-section">
+                        <div class="tooltip-label">Used By</div>
+                        <div class="tooltip-value">Hedge funds (risk management), Pension funds (liability matching), Quants (factor models), CAPM practitioners</div>
+                    </div>
+                    <div class="tooltip-section">
+                        <div class="tooltip-label">Adoption</div>
+                        <div class="tooltip-value">Universal — every institutional investor uses beta for portfolio construction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="section">
+            <h2 class="section-title">📊 Technical Analysis</h2>
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <h3 class="chart-title">YTD Price Action (Jan 1 - Feb 23, 2026)</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="ytdChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <h3 class="chart-title">6-Month Candlestick Chart (Aug 2025 - Feb 2026)</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="candlestickChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Street Research -->
+        <div class="section">
+            <h2 class="section-title">🏛️ Street Research</h2>
+            <div class="research-grid">
+                <div class="research-card">
+                    <div class="research-header">
+                        <span class="research-firm">Morgan Stanley</span>
+                        <span class="research-rating">Overweight</span>
+                    </div>
+                    <p class="research-quote">"Apple's services revenue trajectory remains the most underappreciated component of the equity story. With installed base growth accelerating in emerging markets and AI monetization beginning in FY27, we see multiple expansion potential to 35x. The iPhone 17 cycle should drive ASPs higher."</p>
+                    <p class="research-analyst">— Erik Woodring | February 18, 2026</p>
+                </div>
+
+                <div class="research-card">
+                    <div class="research-header">
+                        <span class="research-firm">JPMorgan</span>
+                        <span class="research-rating">Overweight</span>
+                    </div>
+                    <p class="research-quote">"While near-term headwinds from China regulatory noise persist, the fundamental bull case remains intact. Capital return acceleration via buybacks provides downside support at current levels. We view any weakness below $240 as a buying opportunity for long-term holders."</p>
+                    <p class="research-analyst">— Samik Chatterjee | February 20, 2026</p>
+                </div>
+
+                <div class="research-card">
+                    <div class="research-header">
+                        <span class="research-firm">Goldman Sachs</span>
+                        <span class="research-rating">Buy</span>
+                    </div>
+                    <p class="research-quote">"The transition to on-device AI capabilities positions Apple uniquely among mega-caps. Our supply chain checks indicate Vision Pro momentum building ahead of the cheaper SKU launch. Margin resilience in Q1 surprised positively—we're 8% above consensus on FY26 EPS."</p>
+                    <p class="research-analyst">— Michael Ng | February 19, 2026</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CFA Lens -->
+        <div class="section">
+            <h2 class="section-title">🎓 CFA Lens</h2>
+            <div class="cfa-grid">
+                <div class="cfa-item">
+                    <div class="cfa-title">P/E Compression Analysis</div>
+                    <div class="cfa-formula">
+                        P/E Compression = (Old P/E - New P/E) / Old P/E × 100<br>
+                        = (38.0 - 32.4) / 38.0 × 100 = <strong>14.7% compression</strong>
+                    </div>
+                    <div class="cfa-calculation">
+                        <strong>Interpretation:</strong> AAPL's multiple contracted from 38x to 32.4x over 12 months, implying the market expects:<br><br>
+                        • Slower growth: EPS CAGR revised from 12% to 8%<br>
+                        • Higher risk premium: +150bps for China exposure<br>
+                        • Normalization: Premium to S&P 500 compressed from +60% to +35%<br><br>
+                        <strong>Valuation Impact:</strong> At 38x on $7.64 EPS = $290 target<br>
+                        At 32x on $7.64 EPS = $245 target (-15.5%)
+                    </div>
+                </div>
+
+                <div class="cfa-item">
+                    <div class="cfa-title">Free Cash Flow Yield & Capital Allocation</div>
+                    <div class="cfa-formula">
+                        FCF Yield = FCF / Market Cap = $107B / $3.8T = <strong>2.81%</strong><br>
+                        FCF Payout Ratio = (Dividends + Buybacks) / FCF = $95B / $107B = <strong>88.8%</strong>
+                    </div>
+                    <div class="cfa-calculation">
+                        <strong>Capital Allocation Efficiency:</strong><br><br>
+                        • <strong>Share Buybacks:</strong> $85B annually (~2.2% share count reduction)<br>
+                        • <strong>Dividends:</strong> $15.2B annually (0.52% yield)<br>
+                        • <strong>CapEx:</strong> $12B (AI infrastructure, silicon design)<br>
+                        • <strong>Cash Reserve:</strong> $162B (strategic optionality)<br><br>
+                        <strong>FCF Conversion:</strong> Net Income $102B → FCF $107B (105% conversion rate indicates high earnings quality)
+                    </div>
+                </div>
+
+                <div class="cfa-item">
+                    <div class="cfa-title">ROE with Negative Equity Explanation</div>
+                    <div class="cfa-formula">
+                        Traditional ROE = Net Income / Shareholders' Equity<br>
+                        <strong>AAPL Equity = -$8.7B (negative due to buybacks)</strong><br>
+                        Adjusted ROE = Net Income / (Equity + Treasury Stock) = $102B / $185B = <strong>55.1%</strong>
+                    </div>
+                    <div class="cfa-calculation">
+                        <strong>Why Equity is Negative:</strong><br><br>
+                        • Cumulative buybacks: $693B over 10 years<br>
+                        • Retained earnings: $58B<br>
+                        • Treasury stock: $193B (contra-equity account)<br><br>
+                        <strong>DuPont Analysis:</strong><br>
+                        ROE = Net Margin × Asset Turnover × Equity Multiplier<br>
+                        = 25.3% × 0.82 × 2.65 = <strong>55.0%</strong><br><br>
+                        <strong>Interpretation:</strong> Exceptional profitability masked by capital structure optimization. Use <em>Return on Invested Capital (ROIC)</em> for cleaner comparison: 28.4%.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trading Lens -->
+        <div class="section">
+            <h2 class="section-title">⚔️ Trading Lens</h2>
+            <div class="strategy-grid">
+                <div class="strategy-card">
+                    <div class="strategy-header">
+                        <div class="strategy-icon bull">📈</div>
+                        <div class="strategy-name">Bull Case: Breakout Play</div>
+                    </div>
+                    <div class="strategy-params">
+                        <div class="param-box">
+                            <div class="param-label">Entry</div>
+                            <div class="param-value">$245.00</div>
+                        </div>
+                        <div class="param-box">
+                            <div class="param-label">Stop</div>
+                            <div class="param-value">$238.00</div>
+                        </div>
+                        <div class="param-box">
+                            <div class="param-label">Target</div>
+                            <div class="param-value">$260.00</div>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 10px;">
+                        <strong>Rationale:</strong> Buy support at $245 with target at prior resistance $260. Validated by volume profile showing accumulation zone.
+                    </p>
+                    <div class="rr-box">
+                        <div class="rr-label">Risk/Reward Ratio</div>
+                        <div class="rr-value">1 : 2.1</div>
+                    </div>
+                </div>
+
+                <div class="strategy-card">
+                    <div class="strategy-header">
+                        <div class="strategy-icon income">💰</div>
+                        <div class="strategy-name">Income Play: Cash-Secured Puts</div>
+                    </div>
+                    <div class="strategy-params">
+                        <div class="param-box">
+                            <div class="param-label">Strike</div>
+                            <div class="param-value">$230.00</div>
+                        </div>
+                        <div class="param-box">
+                            <div class="param-label">Premium</div>
+                            <div class="param-value">$3.20</div>
+                        </div>
+                        <div class="param-box">
+                            <div class="param-label">Expiry</div>
+                            <div class="param-value">30 DTE</div>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 10px;">
+                        <strong>Rationale:</strong> Sell $230 puts to collect premium or acquire AAPL at effective $226.80. Delta 0.18 suggests ~82% probability of expiring worthless.
+                    </p>
+                    <div class="rr-box">
+                        <div class="rr-label">Annualized Yield</div>
+                        <div class="rr-value">5.6%</div>
+                    </div>
+                </div>
+
+                <div class="strategy-card">
+                    <div class="strategy-header">
+                        <div class="strategy-icon bear">📉</div>
+                        <div class="strategy-name">Breakdown: Short Setup</div>
+                    </div>
+                    <div class="strategy-params">
+                        <div class="param-box">
+                            <div class="param-label">Trigger</div>
+                            <div class="param-value">$244.50</div>
+                        </div>
+                        <div class="param-box">
+                            <div class="param-label">Stop</div>
+                            <div class="param-value">$248.00</div>
+                        </div>
+                        <div class="param-box">
+                            <div class="param-label">Target</div>
+                            <div class="param-value">$235.00</div>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 10px;">
+                        <strong>Rationale:</strong> Short if $245 support breaks decisively. Target November low at $235. Tight stop above $248 invalidation level.
+                    </p>
+                    <div class="rr-box">
+                        <div class="rr-label">Risk/Reward Ratio</div>
+                        <div class="rr-value">1 : 2.7</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Terminology Box -->
+        <div class="section">
+            <h2 class="section-title">📚 Terminology Box</h2>
+            <div class="terms-grid">
+                <div class="term-item">
+                    <div class="term-header">
+                        <span class="term-word">P/E Compression</span>
+                        <span class="term-origin">Originated: Graham & Dodd, 1934</span>
+                    </div>
+                    <p class="term-definition">
+                        <strong>Definition:</strong> When a stock's price-to-earnings multiple contracts despite earnings growth, indicating reduced market optimism.<br><br>
+                        <strong>Historical Context:</strong> Benjamin Graham and David Dodd formalized P/E analysis in <em>Security Analysis</em> (1934) after the 1929 crash exposed the dangers of paying excessive multiples. The term gained prominence in the 1970s Nifty Fifty era when growth stocks saw brutal multiple compression.<br><br>
+                        <strong>Why it matters:</strong> Even with perfect execution, investors lose money if they buy at peak multiples. AAPL's compression from 38x to 32x reflects shifting growth expectations.
+                    </p>
+                </div>
+
+                <div class="term-item">
+                    <div class="term-header">
+                        <span class="term-word">Support & Resistance</span>
+                        <span class="term-origin">Originated: Charles Dow, 1900</span>
+                    </div>
+                    <p class="term-definition">
+                        <strong>Definition:</strong> Price levels where buying (support) or selling (resistance) pressure historically emerges, creating barriers to price movement.<br><br>
+                        <strong>Historical Context:</strong> Charles Dow, founder of <em>The Wall Street Journal</em>, observed that prices tended to reverse at certain psychological levels. His Dow Theory (1900) laid groundwork for technical analysis. Richard Wyckoff expanded this into the "price/volume" relationship in the 1930s.<br><br>
+                        <strong>Why it matters:</strong> AAPL's $245 support represents institutional accumulation. Breaking it signals a potential trend change.
+                    </p>
+                </div>
+
+                <div class="term-item">
+                    <div class="term-header">
+                        <span class="term-word">Free Cash Flow (FCF)</span>
+                        <span class="term-origin">Popularized: 1980s LBO Era</span>
+                    </div>
+                    <p class="term-definition">
+                        <strong>Definition:</strong> Cash generated by operations minus capital expenditures—money available to return to shareholders.<br><br>
+                        <strong>Historical Context:</strong> FCF gained prominence during the 1980s leveraged buyout boom. KKR and other LBO firms used FCF to service acquisition debt. McKinsey's <em>Valuation</em> (1990) made it central to DCF analysis. Warren Buffett calls FCF "owner earnings."<br><br>
+                        <strong>Why it matters:</strong> AAPL's $107B FCF funds the largest capital return program in history. FCF yield (2.81%) vs. Treasury yields drives allocation decisions.
+                    </p>
+                </div>
+
+                <div class="term-item">
+                    <div class="term-header">
+                        <span class="term-word">Beta (β)</span>
+                        <span class="term-origin">Developed: CAPM, 1964</span>
+                    </div>
+                    <p class="term-definition">
+                        <strong>Definition:</strong> A measure of a stock's volatility relative to the overall market. β = 1.21 means AAPL moves 1.21% for every 1% market move.<br><br>
+                        <strong>Historical Context:</strong> William Sharpe developed the Capital Asset Pricing Model (CAPM) in his 1964 PhD thesis at RAND Corporation. Beta became the cornerstone of Modern Portfolio Theory and the first "factor" in quantitative investing. The 2008 crisis exposed its limitations (correlations spike to 1.0).<br><br>
+                        <strong>Why it matters:</strong> AAPL's 1.21 beta makes it unsuitable for low-risk portfolios. It's a volatility amplifier in both directions.
+                    </p>
+                </div>
+
+                <div class="term-item">
+                    <div class="term-header">
+                        <span class="term-word">Cash-Secured Put</span>
+                        <span class="term-origin">Options Exchange: 1973</span>
+                    </div>
+                    <p class="term-definition">
+                        <strong>Definition:</strong> Selling a put option while holding cash to purchase the stock if assigned—generating income or buying at a discount.<br><br>
+                        <strong>Historical Context:</strong> The Chicago Board Options Exchange (CBOE) opened in 1973 with 16 stocks. The Black-Scholes pricing model debuted the same year, legitimizing options as risk management tools. Cash-secured puts became popular in the 1990s as retail options trading expanded through online brokers.<br><br>
+                        <strong>Why it matters:</strong> Selling $230 AAPL puts generates 1.4% monthly income or acquires shares at a 9.1% discount to current price. The "wheel strategy" uses this for systematic income generation.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p><strong>The Daily 5</strong> — Curated intelligence for the modern investor</p>
+            <p style="margin-top: 10px;">Data as of February 23, 2026 | Market hours 9:30 AM - 4:00 PM ET</p>
+            <div class="disclaimer">
+                <strong>Disclaimer:</strong> This report is for informational purposes only and does not constitute investment advice. 
+                Past performance does not guarantee future results. All strategies involve risk of loss. 
+                Consult a qualified financial advisor before making investment decisions. 
+                Price targets and analyst ratings are opinions, not guarantees.
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Theme Toggle
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateChartTheme(newTheme);
+        }
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+
+        // Chart.js Defaults
+        Chart.defaults.font.family = "'Times New Roman', Times, Georgia, serif";
+        Chart.defaults.color = getComputedStyle(document.body).getPropertyValue('--text-secondary').trim();
+        
+        function getChartColors() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            return {
+                text: isDark ? '#d0d0d0' : '#4a4a4a',
+                grid: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)',
+                bg: isDark ? '#2a2a2a' : '#ffffff'
+            };
+        }
+
+        // YTD Line Chart
+        const ytdCtx = document.getElementById('ytdChart').getContext('2d');
+        const ytdData = [
+            { x: '2026-01-02', y: 240.50 },
+            { x: '2026-01-09', y: 243.20 },
+            { x: '2026-01-16', y: 238.90 },
+            { x: '2026-01-23', y: 242.10 },
+            { x: '2026-01-30', y: 244.50 },
+            { x: '2026-02-06', y: 248.30 },
+            { x: '2026-02-13', y: 246.80 },
+            { x: '2026-02-20', y: 247.50 }
+        ];
+
+        let ytdChart = new Chart(ytdCtx, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'AAPL Price',
+                    data: ytdData,
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    fill: true,
+                    tension: 0.3,
+                    pointBackgroundColor: '#3b82f6',
+                    pointBorderColor: '#ffffff',
+                    pointBorderWidth: 2,
+                    pointRadius: 5,
+                    pointHoverRadius: 7
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                },
+                plugins: {
+                    legend: { display: false },
+                    annotation: {
+                        annotations: {
+                            resistance: {
+                                type: 'line',
+                                yMin: 250,
+                                yMax: 250,
+                                borderColor: 'rgba(239, 68, 68, 0.8)',
+                                borderWidth: 2,
+                                borderDash: [6, 6],
+                                label: {
+                                    content: 'Resistance $250',
+                                    display: true,
+                                    position: 'end',
+                                    backgroundColor: 'rgba(239, 68, 68, 0.9)',
+                                    color: 'white',
+                                    font: { size: 11 }
+                                }
+                            },
+                            support: {
+                                type: 'line',
+                                yMin: 245,
+                                yMax: 245,
+                                borderColor: 'rgba(16, 185, 129, 0.8)',
+                                borderWidth: 2,
+                                borderDash: [6, 6],
+                                label: {
+                                    content: 'Support $245',
+                                    display: true,
+                                    position: 'start',
+                                    backgroundColor: 'rgba(16, 185, 129, 0.9)',
+                                    color: 'white',
+                                    font: { size: 11 }
+                                }
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: { unit: 'week', displayFormats: { week: 'MMM d' } },
+                        grid: { color: getChartColors().grid },
+                        ticks: { color: getChartColors().text }
+                    },
+                    y: {
+                        min: 235,
+                        max: 255,
+                        grid: { color: getChartColors().grid },
+                        ticks: { color: getChartColors().text, callback: v => '$' + v }
+                    }
+                }
+            }
+        });
+
+        // Candlestick Chart (simulated with bar chart)
+        const candleCtx = document.getElementById('candlestickChart').getContext('2d');
+        
+        // Monthly OHLC data
+        const candleData = [
+            { month: 'Aug 2025', open: 225, high: 232, low: 220, close: 230 },
+            { month: 'Sep 2025', open: 230, high: 238, low: 228, close: 236 },
+            { month: 'Oct 2025', open: 236, high: 242, low: 233, close: 240 },
+            { month: 'Nov 2025', open: 240, high: 245, low: 235, close: 238 },
+            { month: 'Dec 2025', open: 238, high: 248, low: 237, close: 246 },
+            { month: 'Jan 2026', open: 246, high: 250, low: 240, close: 244 },
+            { month: 'Feb 2026', open: 244, high: 249, low: 243, close: 247 }
+        ];
+
+        // Create candlestick-like visualization
+        const candleChart = new Chart(candleCtx, {
+            type: 'bar',
+            data: {
+                labels: candleData.map(d => d.month),
+                datasets: [
+                    // Wick lines (high-low range)
+                    {
+                        label: 'Wick',
+                        data: candleData.map(d => ({ x: d.month, y: [d.low, d.high] })),
+                        backgroundColor: candleData.map(d => d.close >= d.open ? '#10b981' : '#ef4444'),
+                        barThickness: 2,
+                        grouped: false
+                    },
+                    // Body (open-close)
+                    {
+                        label: 'Body',
+                        data: candleData.map(d => Math.abs(d.close - d.open)),
+                        backgroundColor: candleData.map(d => d.close >= d.open ? '#10b981' : '#ef4444'),
+                        barThickness: 20,
+                        grouped: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    annotation: {
+                        annotations: {
+                            highLevel: {
+                                type: 'line',
+                                yMin: 265,
+                                yMax: 265,
+                                borderColor: 'rgba(139, 92, 246, 0.8)',
+                                borderWidth: 2,
+                                borderDash: [4, 4],
+                                label: {
+                                    content: 'High $265',
+                                    display: true,
+                                    position: 'end',
+                                    backgroundColor: 'rgba(139, 92, 246, 0.9)',
+                                    color: 'white',
+                                    font: { size: 10 }
+                                }
+                            },
+                            resistance250: {
+                                type: 'line',
+                                yMin: 250,
+                                yMax: 250,
+                                borderColor: 'rgba(239, 68, 68, 0.8)',
+                                borderWidth: 2,
+                                borderDash: [6, 6],
+                                label: {
+                                    content: 'Resistance $250',
+                                    display: true,
+                                    position: 'end',
+                                    backgroundColor: 'rgba(239, 68, 68, 0.9)',
+                                    color: 'white',
+                                    font: { size: 10 }
+                                }
+                            },
+                            support245: {
+                                type: 'line',
+                                yMin: 245,
+                                yMax: 245,
+                                borderColor: 'rgba(16, 185, 129, 0.8)',
+                                borderWidth: 2,
+                                borderDash: [6, 6],
+                                label: {
+                                    content: 'Support $245',
+                                    display: true,
+                                    position: 'end',
+                                    backgroundColor: 'rgba(16, 185, 129, 0.9)',
+                                    color: 'white',
+                                    font: { size: 10 }
+                                }
+                            },
+                            low235: {
+                                type: 'line',
+                                yMin: 235,
+                                yMax: 235,
+                                borderColor: 'rgba(245, 158, 11, 0.8)',
+                                borderWidth: 2,
+                                borderDash: [4, 4],
+                                label: {
+                                    content: 'Nov Low $235',
+                                    display: true,
+                                    position: 'end',
+                                    backgroundColor: 'rgba(245, 158, 11, 0.9)',
+                                    color: 'white',
+                                    font: { size: 10 }
+                                }
+                            },
+                            // Bull case annotation
+                            bullLabel: {
+                                type: 'label',
+                                xValue: 'Dec 2025',
+                                yValue: 255,
+                                content: ['📈 Buy $245 →', 'Target $260'],
+                                color: '#10b981',
+                                font: { size: 11, weight: 'bold' },
+                                backgroundColor: 'rgba(0,0,0,0.7)',
+                                borderRadius: 4,
+                                padding: 6
+                            },
+                            // Short annotation
+                            shortLabel: {
+                                type: 'label',
+                                xValue: 'Feb 2026',
+                                yValue: 238,
+                                content: ['📉 Short if', '$245 breaks'],
+                                color: '#ef4444',
+                                font: { size: 11, weight: 'bold' },
+                                backgroundColor: 'rgba(0,0,0,0.7)',
+                                borderRadius: 4,
+                                padding: 6
+                            },
+                            // Income annotation
+                            incomeLabel: {
+                                type: 'label',
+                                xValue: 'Jan 2026',
+                                yValue: 230,
+                                content: ['💰 Sell $230 Puts'],
+                                color: '#f59e0b',
+                                font: { size: 11, weight: 'bold' },
+                                backgroundColor: 'rgba(0,0,0,0.7)',
+                                borderRadius: 4,
+                                padding: 6
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { color: getChartColors().grid },
+                        ticks: { color: getChartColors().text }
+                    },
+                    y: {
+                        min: 225,
+                        max: 270,
+                        grid: { color: getChartColors().grid },
+                        ticks: { color: getChartColors().text, callback: v => '$' + v }
+                    }
+                }
+            }
+        });
+
+        // Update chart colors on theme change
+        function updateChartTheme(theme) {
+            const colors = getChartColors();
+            
+            [ytdChart, candleChart].forEach(chart => {
+                chart.options.scales.x.grid.color = colors.grid;
+                chart.options.scales.x.ticks.color = colors.text;
+                chart.options.scales.y.grid.color = colors.grid;
+                chart.options.scales.y.ticks.color = colors.text;
+                chart.update();
+            });
+        }
+
+        // Initial theme application for charts
+        updateChartTheme(savedTheme);
+    </script>
+</body>
+</html>

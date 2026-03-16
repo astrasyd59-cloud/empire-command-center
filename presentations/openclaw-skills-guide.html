@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw Skills — The Complete Guide</title㺌>
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-card: #21262d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --accent-pink: #ff6b9d;
+            --accent-cyan: #58a6ff;
+            --accent-green: #3fb950;
+            --accent-purple: #a371f7;
+            --accent-orange: #f0883e;
+            --border: #30363d;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        /* Slide Container */
+        .slide-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Individual Slides */
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px 20px;
+            border-bottom: 2px solid var(--border);
+        }
+        
+        .slide:last-child {
+            border-bottom: none;
+        }
+        
+        /* Typography */
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+            color: var(--accent-cyan);
+        }
+        
+        h3 {
+            font-size: 1.3rem;
+            margin: 24px 0 12px;
+            color: var(--accent-green);
+        }
+        
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+        }
+        
+        /* Code Blocks */
+        code {
+            background: var(--bg-card);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'SF Mono', monospace;
+            font-size: 0.9em;
+            color: var(--accent-pink);
+        }
+        
+        pre {
+            background: var(--bg-card);
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 16px 0;
+            border: 1px solid var(--border);
+        }
+        
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: var(--text-primary);
+        }
+        
+        /* Lists */
+        ul, ol {
+            margin: 16px 0;
+            padding-left: 24px;
+        }
+        
+        li {
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+        }
+        
+        li strong {
+            color: var(--text-primary);
+        }
+        
+        /* Cards */
+        .card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+        
+        .card h3 {
+            margin-top: 0;
+            color: var(--accent-pink);
+        }
+        
+        /* Skill Categories */
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .skill-card .icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+        
+        .skill-card h4 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+        
+        .skill-card p {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        /* Stats */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+        
+        .stat-box {
+            background: var(--bg-card);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .stat-box .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-pink);
+            display: block;
+        }
+        
+        .stat-box .label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Highlights */
+        .highlight {
+            background: linear-gradient(135deg, rgba(255,107,157,0.1), rgba(163,113,247,0.1));
+            border-left: 4px solid var(--accent-pink);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .highlight p {
+            margin: 0;
+        }
+        
+        /* Quote */
+        .quote {
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            border-left: 4px solid var(--accent-cyan);
+            padding-left: 20px;
+            margin: 24px 0;
+        }
+        
+        /* Navigation hint */
+        .nav-hint {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--bg-card);
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+        
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        th {
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+        
+        /* Step numbers */
+        .step {
+            display: flex;
+            gap: 16px;
+            margin: 20px 0;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--accent-pink);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-content h4 {
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+        
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.4rem; }
+            .stats-row { grid-template-columns: 1fr; }
+            .skill-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        
+        <!-- SLIDE 1: Title -->
+        <section class="slide">
+            <h1>🦀 OpenClaw Skills</h1>
+            <p style="font-size: 1.3rem; color: var(--text-primary);">The Complete Guide to Building, Installing, and Using AI Agent Skills</p>
+            <div class="stats-row">
+                <div class="stat-box">
+                    <span class="number">2000+</span>
+                    <span class="label">Community Skills</span>
+                </div>
+                <div class="stat-box">
+                    <span class="number">50+</span>
+                    <span class="label">Categories</span>
+                </div>
+                <div class="stat-box">
+                    <span class="number">Open</span>
+                    <span class="label">Source</span>
+                </div>
+            </div>            
+            
+            <div class="highlight">
+                <p><strong>What you'll learn:</strong> What OpenClaw Skills are, how to install them, how to build your own, and where to find the best community-created skills.</p>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: What is OpenClaw? -->
+        <section class="slide">
+            <h2>🤖 What is OpenClaw?</h2>
+            
+            <p>OpenClaw is an open-source AI agent platform that runs locally on your machine. Think of it as your own personal AI assistant that you control completely.</p>
+            
+            <div class="card">
+                <h3>Key Features</h3>
+                <ul>
+                    <li><strong>Local-first:</strong> Runs on your hardware, not in the cloud</li>
+                    <li><strong>Private:</strong> Your data stays on your machine</li>
+                    <li><strong>Extensible:</strong> Add capabilities via Skills</li>
+                    <li><strong>Multi-provider:</strong> Works with OpenAI, Anthropic, local LLMs</li>
+                    <li><strong>Free:</strong> Open source, no subscriptions</li>
+                </ul>
+            </div>
+            
+            <div class="quote">
+                "Skills extend OpenClaw's capabilities, allowing it to interact with external tools, APIs, and services."
+            </div>
+        </section>
+
+        <!-- SLIDE 3: What are Skills? -->
+        <section class="slide">
+            <h2>🛠️ What Are Skills?</h2>
+            
+            <p>Skills are modular extensions that give OpenClaw new capabilities. Each Skill is a self-contained package that adds specific functionality.</p>
+            
+            <div class="skill-grid">
+                <div class="skill-card">
+                    <div class="icon">🌤️</div>
+                    <h4>Weather</h4>
+                    <p>Get forecasts for any location</p>
+                </div>
+                <div class="skill-card">
+                    <div class="icon">📊</div>
+                    <h4>Notion</h4>
+                    <p>Manage databases and pages</p>
+                </div>
+                <div class="skill-card">
+                    <div class="icon">💬</div>
+                    <h4>Discord</div>
+                    <p>Send messages and manage servers</p>
+                </div>
+                <div class="skill-card">
+                    <div class="icon">🔍</div>
+                    <h4>Web Search</h4>
+                    <p>Search the internet in real-time</p>
+                </div>
+            </div>
+            
+            <div class="highlight">
+                <p><strong>Analogy:</strong> Think of OpenClaw as a smartphone and Skills as apps. The base system handles conversations, but Skills add specific tools like checking weather or managing your calendar.</p>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: Skill Structure -->
+        <section class="slide">
+            <h2>📁 Anatomy of a Skill</h2>
+            
+            <p>Every Skill follows a standard structure. Understanding this helps you use and build skills effectively.</p>
+            
+            <pre><code>my-skill/
+├── SKILL.md          ← How to use the skill
+├── README.md         ← What the skill does  
+├── package.json      ← Metadata and dependencies
+├── src/
+│   ├── index.js      ← Main entry point
+│   └── tools.js      ← Tool implementations
+└── .env.example      ← Required environment variables</code></pre>
+            
+            <div class="card">
+                <h3>Key Files Explained</h3>
+                <ul>
+                    <li><strong>SKILL.md:</strong> Instructions for the AI on when and how to use the skill</li>
+                    <li><strong>tools.js:</strong> The actual functions that do the work</li>
+                    <li><strong>.env.example:</strong> Lists API keys or config needed</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SLIDE 5: Installing Skills -->
+        <section class="slide">
+            <h2>⬇️ Installing Skills</h2>
+            
+            <p>There are multiple ways to install skills depending on where they come from.</p>
+            
+            <h3>Method 1: ClawHub (Official Registry)</h3>
+            <pre><code># Search for skills
+openclaw skills search weather
+
+# Install a skill
+openclaw skills install weather
+
+# Install specific version
+openclaw skills install weather@1.2.0</code></pre>
+            
+            <h3>Method 2: GitHub Direct</h3>
+            <pre><code># Install from any GitHub repo
+openclaw skills install github:user/repo
+
+# Example
+openclaw skills install github:voltaicml/awesome-openclaw-skills</code></pre>
+            
+            <h3>Method 3: Local Directory</h3>
+            <pre><code># Install from local folder
+openclaw skills install ./path/to/my-skill</code></pre>
+            
+            <div class="highlight">
+                <p><strong>Pro Tip:</strong> Skills are installed to <code>~/.openclaw/skills/</code> and can be updated with <code>openclaw skills update skill-name</code></p>
+            </div>
+        </section>
+
+        <!-- SLIDE 6: Popular Skills Categories -->
+        <section class="slide">
+            <h2>🔥 Popular Skill Categories</h2>
+            
+            <p>The community has built thousands of skills. Here are the most useful categories for productivity and automation.</p>
+            
+            <div class="skill-grid">
+                <div class="skill-card">
+                    <div class="icon">📅</div>
+                    <h4>Productivity</h4>
+                    <p>Notion, Todoist, Calendar, Email</p>
+                </div>
+                <div class="skill-card">
+                    <div class="icon">💼</div>
+                    <h4>Business</h4>
+                    <p>Slack, Discord, CRM, Analytics</p>
+                </div>
+                <div class="skill-card">
+                    <div class="icon">🔧</div>
+                    <h4>DevOps</h4>
+                    <p>GitHub, Docker, AWS, Kubernetes</p>
+                </div>
+                <div class="skill-card">
+                    <div class="icon">📊</div>
+                    <h4>Data</h4>
+                    <p>SQL, PostgreSQL, Data viz, APIs</p>
+                </div>
+                <div class="skill-card">
+                    <div class="icon">🌐</div>
+                    <h4>Web</h4>
+                    <p>Scraping, Browser control, Search</p>
+                </div>
+                <div class="skill-card">
+                    <div class="icon">🤖</div>
+                    <h4>AI/ML</h4>
+                    <p>Image gen, LLM APIs, Embeddings</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 7: Building Your First Skill -->
+        <section class="slide">
+            <h2>🏗️ Building Your First Skill</h2>
+            
+            <p>Creating a skill is straightforward. Here's the step-by-step process.</p>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Initialize the Skill</h4>
+                    <p>Use the CLI to create the boilerplate structure.</p>
+                    <code>openclaw skills create my-first-skill</code>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Define the Interface (SKILL.md)</h4>
+                    <p>Tell the AI when and how to use your skill.</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Implement the Tools</h4>
+                    <p>Write the actual JavaScript/TypeScript code that performs actions.</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>Test Locally</h4>
+                    <p>Install and test before sharing.</p>
+                    <code>openclaw skills install ./my-first-skill</code>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h4>Publish (Optional)</h4>
+                    <p>Share with the community via ClawHub or GitHub.</p>
+                    <code>openclaw skills publish my-first-skill</code>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 8: SKILL.md Deep Dive -->
+        <section class="slide">
+            <h2>📝 SKILL.md — The Secret Sauce</h2>
+            
+            <p>This file is critical. It tells the AI <strong>when</strong> to use your skill and <strong>how</strong> to use it.</p>
+            
+            <pre><code># My Weather Skill
+
+## Description
+Get current weather and forecasts for any location.
+
+## When to Use
+- User asks about weather
+- User mentions travel plans
+- User asks what to wear
+
+## Tools
+
+### get_current_weather
+Get current weather conditions.
+
+Parameters:
+- location (string, required): City name or coordinates
+- units (string, optional): "celsius" or "fahrenheit"
+
+Example:
+```
+get_current_weather({"location": "Sydney", "units": "celsius"})
+```
+
+## Output Format
+Always respond with:
+- Current temperature
+- Conditions (sunny, rainy, etc.)
+- High/Low for the day</code></pre>
+            
+            <div class="highlight">
+                <p><strong>Key insight:</strong> The "When to Use" section is crucial. It helps the AI decide which skill to call for each user request. Be specific!</p>
+            </div>
+        </section>
+
+        <!-- SLIDE 9: Tool Implementation -->
+        <section class="slide">
+            <h2>⚙️ Writing Tool Code</h2>
+            
+            <p>Tools are JavaScript functions that do the actual work. They receive parameters from the AI and return results.</p>
+            
+            <pre><code>// src/tools.js
+const axios = require('axios');
+
+async function get_current_weather({ location, units = 'celsius' }) {
+  const apiKey = process.env.WEATHER_API_KEY;
+  
+  const response = await axios.get(
+    `https://api.weather.com/current?location=${location}`,
+    { headers: { 'Authorization': apiKey } }
+  );
+  
+  return {
+    temperature: response.data.temp,
+    condition: response.data.condition,
+    high: response.data.high,
+    low: response.data.low
+  };
+}
+
+module.exports = {
+  get_current_weather
+};</code></pre>
+            
+            <div class="card">
+                <h3>Best Practices</h3>
+                <ul>
+                    <li>Always validate input parameters</li>
+                    <li>Use environment variables for API keys</li>
+                    <li>Return consistent data structures</li>
+                    <li>Handle errors gracefully</li>
+                    <li>Add logging for debugging</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SLIDE 10: Environment Variables -->
+        <section class="slide">
+            <h2>🔐 Handling API Keys & Secrets</h2>
+            
+            <p>Never hardcode API keys. Use environment variables instead.</p>
+            
+            <pre><code># .env.example (committed to git)
+WEATHER_API_KEY=your_api_key_here
+DATABASE_URL=your_db_url_here</code></pre>
+            
+            <pre><code># .env (NOT committed, added to .gitignore)
+WEATHER_API_KEY=sk-abc123xyz789</code></pre>
+            
+            <pre><code># In your tool code
+const apiKey = process.env.WEATHER_API_KEY;
+
+if (!apiKey) {
+  throw new Error('WEATHER_API_KEY not set');
+}</code></pre>
+            
+            <div class="highlight">
+                <p><strong>Security Note:</strong> OpenClaw loads .env files automatically. Users configure their own keys after installing your skill.</p>
+            </div>
+        </section>
+
+        <!-- SLIDE 11: Finding Great Skills -->
+        <section class="slide">
+            <h2>🌟 Where to Find Skills</h2>
+            
+            <div class="card">
+                <h3>1. ClawHub (Official)</h3>
+                <p>The official registry. Curated and verified.</p>
+                <code>openclaw skills search keyword</code>
+                <p style="margin-top: 12px;">🔗 <a href="https://clawhub.com" style="color: var(--accent-cyan);">clawhub.com</a></p>
+            </div>
+            
+            <div class="card">
+                <h3>2. Awesome OpenClaw Skills (GitHub)</h3>
+                <p>Community-maintained list of the best skills.</p>
+                <code>openclaw skills install voltaicml/awesome-openclaw-skills</code>
+                <p style="margin-top: 12px;">🔗 <a href="https://github.com/voltaicml/awesome-openclaw-skills" style="color: var(--accent-cyan);">github.com/voltaicml/awesome-openclaw-skills</a></p>
+            </div>
+            
+            <div class="card">
+                <h3>3. GitHub Search</h3>
+                <p>Search GitHub for "openclaw-skill" or "openclaw skill".</p>
+                <code>openclaw skills install github:user/repo</code>
+            </div>
+        </section>
+
+        <!-- SLIDE 12: Must-Have Skills -->
+        <section class="slide">
+            <h2>⭐ Must-Have Skills for Productivity</h2>
+            
+            <p>Here are skills that will immediately boost your OpenClaw setup.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Skill</th>
+                        <th>What It Does</th>
+                        <th>Install</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>browser</strong></td>
+                        <td>Control Chrome for web automation</td>
+                        <td><code>openclaw skills install browser</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>notion</strong></td>
+                        <td>Manage Notion databases and pages</td>
+                        <td><code>openclaw skills install notion</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>github</strong></td>
+                        <td>Create repos, manage issues, PRs</td>
+                        <td><code>openclaw skills install github</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>web_search</strong></td>
+                        <td>Real-time web search capabilities</td>
+                        <td><code>openclaw skills install web_search</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>cron</strong></td>
+                        <td>Schedule automated tasks</td>
+                        <td><code>openclaw skills install cron</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>canvas</strong></td>
+                        <td>Generate and display images/charts</td>
+                        <td><code>openclaw skills install canvas</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- SLIDE 13: Advanced: Skill Composition -->
+        <section class="slide">
+            <h2>🚀 Advanced: Skill Composition</h2>
+            
+            <p>The real power comes from combining skills. Multiple skills can work together to accomplish complex tasks.</p>
+            
+            <div class="highlight">
+                <p><strong>Example workflow:</strong></p>
+                <ol style="margin-top: 12px;">
+                    <li><strong>web_search:</strong> Find trending stocks</li>
+                    <li><strong>browser:</strong> Open Yahoo Finance</li>
+                    <li><strong>canvas:</strong> Generate price charts</li>
+                    <li><strong>notion:</strong> Save to your trading database</li>
+                    <li><strong>cron:>/strong> Schedule this daily at 6 AM</li>
+                </ol>
+            </div>
+            
+            <div class="card">
+                <h3>Your Setup (Current)</h3>
+                <ul>
+                    <li>✅ browser — Web automation</li>
+                    <li>✅ notion — Database management</li>
+                    <li>✅ cron — Scheduled reports (Daily 5)</li>
+                    <li>✅ web_search — Research</li>
+                    <li>✅ message — Telegram notifications</li>
+                </ul>
+                <p style="margin-top: 12px; color: var(--accent-green);">You've already built a powerful automation stack!</p>
+            </div>
+        </section>
+
+        <!-- SLIDE 14: Troubleshooting -->
+        <section class="slide">
+            <h2>🐛 Troubleshooting Skills</h2>
+            
+            <p>Things go wrong. Here's how to fix common issues.</p>
+            
+            <div class="card">
+                <h3>Skill Not Working?</h3>
+                <ol>
+                    <li>Check <code>~/.openclaw/logs/</code> for error messages</li>
+                    <li>Verify environment variables are set (<code>.env</code>)</li>
+                    <li>Try reinstalling: <code>openclaw skills reinstall skill-name</code></li>
+                    <li>Check skill dependencies: <code>cd ~/.openclaw/skills/skill-name && npm install</code></li>
+                </ol>
+            </div>
+            
+            <div class="card">
+                <h3>AI Not Using the Skill?</h3>
+                <ol>
+                    <li>Check SKILL.md is clear about "When to Use"</li>
+                    <li>Make sure tool names are descriptive</li>
+                    <li>Restart OpenClaw after installing skills</li>
+                    <li>Explicitly tell the AI: "Use the [skill-name] skill"</li>
+                </ol>
+            </div>
+            
+            <div class="card">
+                <h3>Useful Commands</h3>
+                <pre><code># List installed skills
+openclaw skills list
+
+# Check skill info
+openclaw skills info skill-name
+
+# Update a skill
+openclaw skills update skill-name
+
+# Remove a skill
+openclaw skills remove skill-name
+
+# View logs
+openclaw logs --skill skill-name</code></pre>
+            </div>
+        </section>
+
+        <!-- SLIDE 15: Summary & Resources -->
+        <section class="slide">
+            <h2>📚 Summary & Resources</h2>
+            
+            <h3>Key Takeaways</h3>
+            
+            <ul>
+                <li><strong>Skills = Apps for OpenClaw:</strong> Modular extensions that add capabilities</li>
+                <li><strong>SKILL.md is crucial:</strong> Tells the AI when and how to use your skill</li>
+                <li><strong>Never hardcode secrets:</strong> Use environment variables</li>
+                <li><strong>Start simple:</strong> Build one tool, test it, then expand</li>
+                <li><strong>Community is key:</strong> Use existing skills, contribute back</li>
+            </ul>
+            
+            <h3>Essential Resources</h3>
+            
+            <div class="skill-grid">
+                <div class="skill-card"
+                    <div class="icon">📖</div>
+                    <h4>Documentation</h4>
+                    <p><a href="https://docs.openclaw.ai" style="color: var(--accent-cyan);">docs.openclaw.ai</a></p>
+                </div>
+                <div class="skill-card"
+                  <div class="icon">🏪</div>
+                    <h4>ClawHub</h4>
+                    <p><a href="https://clawhub.com" style="color: var(--accent-cyan);">clawhub.com</a></p>
+                </div>
+                <div class="skill-card"
+                    <div class="icon">💬</div>
+                    <h4>Discord</h4>
+                    <p><a href="https://discord.gg/openclaw" style="color: var(--accent-cyan);">Community Chat</a></p>
+                </div>
+                <div class="skill-card"
+                    <div class="icon">⭐</div>
+                    <h4>Awesome List</h4>
+                    <p><a href="https://github.com/voltaicml/awesome-openclaw-skills" style="color: var(--accent-cyan);">GitHub</a></p>
+                </div>
+            </div>
+            
+            <div class="highlight"
+                <p><strong>Your Next Step:</strong> Try building a simple skill this weekend. Even a "Hello World" skill teaches you the structure. Then iterate.</p>
+            </div>
+        </section>
+
+    </div>
+    
+    <div class="nav-hint">Scroll for next slide →</div>
+</body>
+</html>

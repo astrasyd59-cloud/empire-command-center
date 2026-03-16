@@ -1,0 +1,286 @@
+{
+  "news": {
+    "ai_news": [
+      {
+        "title": "Lawsuit: ChatGPT told student he was \"meant for greatness\"\u2014then came psychosis",
+        "link": "https://arstechnica.com/tech-policy/2026/02/before-psychosis-chatgpt-told-man-he-was-an-oracle-new-lawsuit-alleges/",
+        "summary": "\"AI Injury Attorneys\" target the chatbot design itself.",
+        "published": "Thu, 19 Feb 2026 22:44:25 +0000",
+        "source": "Ars Technica - All content"
+      },
+      {
+        "title": "NASA chief classifies Starliner flight as \"Type A\" mishap, says agency made mistakes",
+        "link": "https://arstechnica.com/space/2026/02/nasa-chief-classifies-starliner-flight-as-type-a-mishap-says-agency-made-mistakes/",
+        "summary": "\"The most troubling failure revealed by this investigation is not hardware.\"",
+        "published": "Thu, 19 Feb 2026 21:59:10 +0000",
+        "source": "Ars Technica - All content"
+      },
+      {
+        "title": "Rubik\u2019s WOWCube adds complexity, possibility by reinventing the puzzle cube",
+        "link": "https://arstechnica.com/gadgets/2026/02/rubiks-wowcube-adds-complexity-possibility-by-reinventing-the-puzzle-cube/",
+        "summary": "Technology is a double-edged sword in the $399 Rubik's Cube-inspired toy.",
+        "published": "Thu, 19 Feb 2026 21:30:02 +0000",
+        "source": "Ars Technica - All content"
+      },
+      {
+        "title": "Diablo II\u2019s new Warlock is a great excuse to revisit a classic game",
+        "link": "https://arstechnica.com/gaming/2026/02/diablo-iis-new-warlock-is-a-great-excuse-to-revisit-a-classic-game/",
+        "summary": "New skill tree paths offer a fun twist on some generally familiar mechanics.",
+        "published": "Thu, 19 Feb 2026 20:04:09 +0000",
+        "source": "Ars Technica - All content"
+      },
+      {
+        "title": "From chickens to humans, animals think \"bouba\" sounds round",
+        "link": "https://arstechnica.com/science/2026/02/newly-hatched-chickens-form-the-same-sound-association-we-do/",
+        "summary": "There seems to be a deep-seated association between sounds and shapes.",
+        "published": "Thu, 19 Feb 2026 19:38:08 +0000",
+        "source": "Ars Technica - All content"
+      }
+    ],
+    "crypto_trading": [],
+    "australia": [],
+    "international": [
+      {
+        "title": "Watch: The day Andrew Mountbatten-Windsor was arrested",
+        "link": "https://www.bbc.com/news/videos/cvg192yp9geo?at_medium=RSS&at_campaign=rss",
+        "summary": "The former prince spent the day at a police station in Norfolk, before being released under investigation.",
+        "published": "Thu, 19 Feb 2026 22:20:22 GMT",
+        "source": "BBC News"
+      },
+      {
+        "title": "What does Andrew's arrest mean for the Royal Family?",
+        "link": "https://www.bbc.com/news/articles/cm21xjg2npjo?at_medium=RSS&at_campaign=rss",
+        "summary": "Following Andrew's arrest, the King said the authorities have 'our full and wholehearted support and cooperation'.",
+        "published": "Fri, 20 Feb 2026 02:31:03 GMT",
+        "source": "BBC News"
+      },
+      {
+        "title": "Single vaccine could protect against all coughs, colds and flus, researchers say",
+        "link": "https://www.bbc.com/news/articles/cx2g8rz7yedo?at_medium=RSS&at_campaign=rss",
+        "summary": "A Stanford University team have tested their nasal spray vaccine in animals but still need to do human clinical trials.",
+        "published": "Thu, 19 Feb 2026 22:30:35 GMT",
+        "source": "BBC News"
+      },
+      {
+        "title": "Austrian climber found guilty after girlfriend froze to death on mountain",
+        "link": "https://www.bbc.com/news/articles/c0k1xkllknmo?at_medium=RSS&at_campaign=rss",
+        "summary": "The woman died of hypothermia during a climbing trip on the Grossglockner mountain in January 2025.",
+        "published": "Fri, 20 Feb 2026 01:10:28 GMT",
+        "source": "BBC News"
+      },
+      {
+        "title": "Grey's Anatomy star Eric Dane dies at 53 after ALS diagnosis",
+        "link": "https://www.bbc.com/news/articles/c78j01n775ko?at_medium=RSS&at_campaign=rss",
+        "summary": "The actor, who also starred in HBO's Euphoria, battled the most common form of motor neurone disease.",
+        "published": "Fri, 20 Feb 2026 07:19:44 GMT",
+        "source": "BBC News"
+      }
+    ],
+    "ai_latest": [
+      {
+        "source": {
+          "id": "ign",
+          "name": "IGN"
+        },
+        "author": "Michael Cripe",
+        "title": "Highguard Dev Assures Fans a New Patch Is on the Way After Website Troubles Spark Fears of Game Shut Down - IGN",
+        "description": "Wildlight has confirmed a new patch is in the works for Highguard after issues related to its official website sparked fears that a full shutdown was imminent.",
+        "url": "https://www.ign.com/articles/highguard-dev-assures-fans-a-new-patch-is-on-the-way-after-website-troubles-spark-fears-of-game-shut-down",
+        "urlToImage": "https://assets-prd.ignimgs.com/2026/01/26/highguard-blogroll-1769450644999.jpg?width=1280&format=jpg&auto=webp&quality=80",
+        "publishedAt": "2026-02-18T22:47:39Z",
+        "content": "Highguard\r\n developer Wildlight Entertainment has confirmed a new patch is in the works after issues related to its official website sparked fears that a full shutdown was imminent.\r\nThe already trou\u2026 [+2891 chars]"
+      },
+      {
+        "source": {
+          "id": null,
+          "name": "9to5Mac"
+        },
+        "author": "Ryan Christoffel",
+        "title": "Another AirPods Pro 3 model is coming, with one rumored upgrade - 9to5Mac",
+        "description": "AirPods Pro 3 launched just a few months ago, but rumors indicate there\u2019s a second model coming this year with one key upgrade: IR cameras.",
+        "url": "https://9to5mac.com/2026/02/18/another-airpods-pro-3-model-is-coming-with-one-rumored-upgrade/",
+        "urlToImage": "https://i0.wp.com/9to5mac.com/wp-content/uploads/sites/6/2025/09/iphone-17-event-13.05.12.jpg?resize=1200%2C628&quality=82&strip=all&ssl=1",
+        "publishedAt": "2026-02-18T21:58:00Z",
+        "content": "AirPods Pro 3 launched just a few months ago, but rumors indicate theres a second model coming this year with one key upgrade: IR cameras. Here are the details.\r\nAfter having mixed first impressions \u2026 [+1564 chars]"
+      },
+      {
+        "source": {
+          "id": null,
+          "name": "Nature.com"
+        },
+        "author": null,
+        "title": "Laser writing in glass for dense, fast and efficient archival data storage - Nature",
+        "description": "An optical archival storage technology based on femtosecond laser direct writing in glass addresses the practical demands of archival storage.",
+        "url": "https://www.nature.com/articles/s41586-025-10042-w",
+        "urlToImage": "https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41586-025-10042-w/MediaObjects/41586_2025_10042_Fig1_HTML.png",
+        "publishedAt": "2026-02-18T21:33:45Z",
+        "content": "Key metrics\r\nWe evaluate the Silica storage system against the following metrics:\r\n<ul><li>Voxel quality, Q\u00a0=\u00a0B/nV, is an average (bit per voxel) calculated from the number of user bits, B, stored in\u2026 [+33755 chars]"
+      },
+      {
+        "source": {
+          "id": null,
+          "name": "GamesIndustry.biz"
+        },
+        "author": "Vikki Blake",
+        "title": "Football commentator permits EA to use an AI version of his voice for EA Sports FC - GamesIndustry.biz",
+        "description": "Football (soccer) commentator, Guy Mowbray, has given Electronic Arts permission to \"replicate his voice\" via AI to gen\u2026",
+        "url": "https://www.gamesindustry.biz/football-commentator-permits-ea-to-use-an-ai-version-of-his-voice-for-ea-sports-fc",
+        "urlToImage": "https://assetsio.gnwcdn.com/ss_bcf8cde56e46d969dfaff90c8a9d85a22b6342fc.1920x1080.jpg?width=1200&height=630&fit=crop&enable=upscale&auto=webp",
+        "publishedAt": "2026-02-18T20:57:19Z",
+        "content": "Football (soccer) commentator, Guy Mowbray, has given Electronic Arts permission to \"replicate his voice\" via AI to generate player names.\r\nTalking to the BBC, Mowbray talked about how he records com\u2026 [+1777 chars]"
+      },
+      {
+        "source": {
+          "id": null,
+          "name": "GamesIndustry.biz"
+        },
+        "author": "Vikki Blake",
+        "title": "UK's Advertising Standards Authority bans Call of Duty: Black Ops 7 commercial for \"trivializing sexual violence\" - GamesIndustry.biz",
+        "description": "The UK's Advertising Standards Authority (ASA) has banned a Call of Duty: Black Ops 7 commercial for trivializing sexua\u2026",
+        "url": "https://www.gamesindustry.biz/uks-advertising-standard-authority-bans-call-of-duty-black-ops-7-commercial-for-trivializing-sexual-violence",
+        "urlToImage": "https://assetsio.gnwcdn.com/call-of-duty-black-ops-7-four-people.jpg?width=1200&height=630&fit=crop&enable=upscale&auto=webp",
+        "publishedAt": "2026-02-18T20:27:01Z",
+        "content": "The UK's Advertising Standards Authority (ASA) has banned a Call of Duty: Black Ops 7 commercial for trivializing sexual violence.\r\nThe Video on Demand and YouTube advertisement depicted fake airport\u2026 [+1594 chars]"
+      }
+    ],
+    "crypto_latest": [
+      {
+        "source": {
+          "id": null,
+          "name": "The Daily Hodl"
+        },
+        "author": "Daily Hodl Staff",
+        "title": "Billionaire Bill Ackman Pours $1,764,796,000 Into Mag 7 Stock, Dumps Entire Stake in Chipotle Restaurant Chain",
+        "description": "Billionaire Bill Ackman\u2019s investment firm just picked up more than 2.67 million shares of one magnificent seven stock. The latest 13-F filing with the U.S. Securities and Exchange Commission (SEC) shows Pershing Square Capital Management accumulated $1.76 bil\u2026",
+        "url": "https://dailyhodl.com/2026/02/19/billionaire-bill-ackman-pours-1764796000-into-mag-7-stock-dumps-entire-stake-in-chipotle-restaurant-chain/",
+        "urlToImage": "https://dailyhodl.com/wp-content/uploads/2024/01/jpmorgan-fine-dollar.jpg?resize=1365,800",
+        "publishedAt": "2026-02-19T08:04:13Z",
+        "content": "Billionaire Bill Ackmans investment firm just picked up more than 2.67 million shares of one magnificent seven stock.\r\nThe latest 13-F filing with the U.S. Securities and Exchange Commission (SEC) sh\u2026 [+2448 chars]"
+      },
+      {
+        "source": {
+          "id": null,
+          "name": "ZyCrypto"
+        },
+        "author": "Talha Arshad",
+        "title": "Bitcoin Rallying to $72k-$76k will be a Major Bull Trap as Institutions Will Look to Sell into Strength",
+        "description": "According to the SherlockWhale, the X researcher in question, Bitcoin is likely to reach levels above $75k, but it will be a kill zone.",
+        "url": "https://zycrypto.com/bitcoin-rallying-to-72k-76k-will-be-a-major-bull-trap-as-institutions-will-look-to-sell-into-strength/",
+        "urlToImage": "https://zycrypto.com/wp-content/uploads/2024/09/Michael-Saylor-Makes-Stunningly-Bullish-\u2018Bitcoin-To-The-Moon-Statement-As-BTC-Pushes-Past-65K.jpg",
+        "publishedAt": "2026-02-19T08:02:21Z",
+        "content": "Any Bitcoin move till $76k will be a major bull trap, according to an analyst on X. The largest cryptocurrency by market capitalization is currently trading within a narrow range below $70k, but ther\u2026 [+2223 chars]"
+      },
+      {
+        "source": {
+          "id": null,
+          "name": "Ixbt.com"
+        },
+        "author": "success",
+        "title": "\u0411\u043e\u043b\u0435\u0435 \u043f\u043e\u043b\u043e\u0432\u0438\u043d\u044b \u0432\u0441\u0435\u0439 \u044d\u043c\u0438\u0441\u0441\u0438\u0438 Ethereum \u0432\u043f\u0435\u0440\u0432\u044b\u0435 \u0441\u043e\u0441\u0440\u0435\u0434\u043e\u0442\u043e\u0447\u0435\u043d\u043e \u0432 \u0441\u0442\u0435\u0439\u043a\u0438\u043d\u0433\u0435",
+        "description": "\u0410\u043d\u0430\u043b\u0438\u0442\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u043f\u043b\u0430\u0442\u0444\u043e\u0440\u043c\u0430 Santiment \u0437\u0430\u0444\u0438\u043a\u0441\u0438\u0440\u043e\u0432\u0430\u043b\u0430 \u0438\u0441\u0442\u043e\u0440\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u0440\u0443\u0431\u0435\u0436 \u0434\u043b\u044f \u0441\u0435\u0442\u0438 Ethereum: \u0434\u043e\u043b\u044f \u0442\u043e\u043a\u0435\u043d\u043e\u0432, \u0440\u0430\u0437\u043c\u0435\u0449\u0451\u043d\u043d\u044b\u0445 \u0432 \u0441\u0442\u0435\u0439\u043a\u0438\u043d\u0433-\u043a\u043e\u043d\u0442\u0440\u0430\u043a\u0442\u0435, \u0432\u043f\u0435\u0440\u0432\u044b\u0435 \u043f\u0440\u0435\u0432\u044b\u0441\u0438\u043b\u0430 50% \u043e\u0442 \u0441\u043e\u0432\u043e\u043a\u0443\u043f\u043d\u043e\u0433\u043e \u043e\u0431\u044a\u0451\u043c\u0430 \u043a\u043e\u0433\u0434\u0430-\u043b\u0438\u0431\u043e...\u0427\u0438\u0442\u0430\u0442\u044c \u0434\u0430\u043b\u044c\u0448\u0435",
+        "url": "https://www.ixbt.com/live/crypto/bolee-poloviny-vsey-emissii-ethereum-vpervye-sosredotocheno-v-steykinge.html",
+        "urlToImage": "https://img.ixbt.site/live/topics/preview/00/14/11/49/0257886d21.jpg",
+        "publishedAt": "2026-02-19T08:01:06Z",
+        "content": "Santiment Ethereum: , -, 50% - . 50,18%, 80,95 ETH. , , EIP-1559 2021 . Ethereum 120 .\r\n 36,9 ETH, 30,41% . 966 134 . .\r\n3,8 ETH 67 . \u00a0\u2014 4,1 ETH\u00a0\u2014 12\u00a0 2026 . : 6112 ETH, . .\r\n 27\u00a0 2025 , 460 000 ETH.\u2026 [+62 chars]"
+      },
+      {
+        "source": {
+          "id": null,
+          "name": "Bitcoinist"
+        },
+        "author": "James Halver",
+        "title": "Hyperliquid Rally Stalls Near $30, Will HYPE Slide Further or Recover Toward $35?",
+        "description": "Momentum around Hyperliquid cooled quickly this week after HYPE failed to hold a breakout above $31, sending the token back to a familiar battleground between buyers and sellers. With price hovering near key support, traders are now watching closely for signa\u2026",
+        "url": "https://bitcoinist.com/hyperliquid-rally-stalls-near-30-will-hype-slide/",
+        "urlToImage": "https://bitcoinist.com/wp-content/uploads/2025/07/hyperliquid-hype-hypeusdt.png",
+        "publishedAt": "2026-02-19T08:00:11Z",
+        "content": "Momentum around Hyperliquid cooled quickly this week after HYPE failed to hold a breakout above $31, sending the token back to a familiar battleground between buyers and sellers. With price hovering \u2026 [+3101 chars]"
+      },
+      {
+        "source": {
+          "id": "fortune",
+          "name": "Fortune"
+        },
+        "author": "Eva Roytburg",
+        "title": "Who is OpenClaw creator Peter Steinberger? The millennial developer caught the attention of Sam Altman and Mark Zuckerberg",
+        "description": "Steinberger made $100M off his first company and quit coding. Now he\u2019s back to show the world the \u201cmagic\u201d of agentic AI.",
+        "url": "https://fortune.com/2026/02/19/openclaw-who-is-peter-steinberger-openai-sam-altman-anthropic-moltbook/",
+        "urlToImage": "https://fortune.com/img-assets/wp-content/uploads/2026/02/GettyImages-2261593497-e1771451088962.jpg?resize=1200,600",
+        "publishedAt": "2026-02-19T07:59:00Z",
+        "content": "Peter Steinberger spent 13 years building a company that formatted PDFs. It took him only one hour to build the model that would eventually kill that app.Steinberger, the founder of OpenClaw, the ope\u2026 [+6524 chars]"
+      }
+    ],
+    "trading_latest": [
+      {
+        "source": {
+          "id": null,
+          "name": "Android.com.pl"
+        },
+        "author": "Borys Francuz",
+        "title": "Co drugi narzeka, ale ka\u017cdy ogl\u0105da. U Polak\u00f3w bez zmian",
+        "description": "Kt\u00f3ra platforma streamingowa rz\u0105dzi\u0142a na polskim rynku w styczniu? Rok 2026 zaczyna si\u0119 bez wi\u0119kszych niespodzianek. Najwi\u0119kszym graczem ponownie jest Netflix, kt\u00f3ry go\u015bci w coraz wi\u0119kszej liczbie polskich dom\u00f3w. Polski rynek streamingowy w styczniu Najnowsze\u2026",
+        "url": "https://android.com.pl/rozrywka/1019486-polski-rynek-streamingowy-w-styczniu/",
+        "urlToImage": "https://static.android.com.pl/uploads/2025/12/netflix_adobe_stock_2141242143-1280x853.jpeg",
+        "publishedAt": "2026-02-19T08:18:00Z",
+        "content": "Kt\u00f3ra platforma streamingowa rzdzia na polskim rynku w styczniu? Rok 2026 zaczyna si bez wikszych niespodzianek. Najwikszym graczem ponownie jest Netflix, kt\u00f3ry goci w coraz wikszej liczbie polskich \u2026 [+1772 chars]"
+      },
+      {
+        "source": {
+          "id": null,
+          "name": "Aajtak.in"
+        },
+        "author": "\u0906\u091c\u0924\u0915 \u092c\u093f\u091c\u0928\u0947\u0938 \u0921\u0947\u0938\u094d\u0915",
+        "title": "\u092f\u0947 \u0924\u0940\u0928 \u0915\u093e\u0930\u0923... \u0905\u091a\u093e\u0928\u0915 \u0936\u0947\u092f\u0930 \u092c\u093e\u091c\u093e\u0930 \u0939\u094b \u0917\u092f\u093e \u0915\u094d\u0930\u0948\u0936, \u0938\u0947\u0902\u0938\u0947\u0915\u094d\u0938 800 \u0905\u0902\u0915 \u091f\u0942\u091f\u093e",
+        "description": "Stock Market Crash: \u0936\u0947\u092f\u0930 \u092c\u093e\u091c\u093e\u0930 \u0915\u0940 \u0917\u0941\u0930\u0941\u0935\u093e\u0930 \u0915\u094b \u0924\u0947\u091c \u0936\u0941\u0930\u0941\u0906\u0924 \u0939\u0941\u0908, \u0932\u0947\u0915\u093f\u0928 \u0905\u091a\u093e\u0928\u0915 \u092f\u0947 \u0936\u0941\u0930\u0941\u0906\u0924\u0940 \u0924\u0947\u091c\u0940 \u092c\u0921\u093c\u0940 \u0917\u093f\u0930\u093e\u0935\u091f \u092e\u0947\u0902 \u0924\u092c\u094d\u0926\u0940\u0932 \u0939\u094b \u0917\u0908. BSE Sensex \u0915\u094b \u0915\u094d\u0930\u0948\u0936 \u0939\u094b\u0915\u0930 870 \u0905\u0902\u0915 \u0924\u0915 \u0915\u093e \u0917\u094b\u0924\u093e \u0932\u0917\u093e \u0917\u092f\u093e.",
+        "url": "https://www.aajtak.in/business/news/story/stock-market-crash-today-know-three-big-reason-include-fpi-selloff-tutc-dskc-2473543-2026-02-19",
+        "urlToImage": "https://akm-img-a-in.tosshub.com/aajtak/images/story/202602/6996c530c41e1-stock-market-crash-094208594-16x9.jpg",
+        "publishedAt": "2026-02-19T08:11:35Z",
+        "content": "(Stock Market Crash) . . 30 (BSE Sensex) 870 83,000 , (NSE Nifty) 250 . .\u00a0\r\n- 83,734 83,969 , . Sensex 870 82,864 .\r\n . 50 25,819 25,873 250 25,567 .\u00a0 , ...\r\n : - , , - .\u00a0\r\n : IT FPI . NSDL , 15 10,9\u2026 [+7 chars]"
+      },
+      {
+        "source": {
+          "id": null,
+          "name": "The Daily Hodl"
+        },
+        "author": "Daily Hodl Staff",
+        "title": "Billionaire Bill Ackman Pours $1,764,796,000 Into Mag 7 Stock, Dumps Entire Stake in Chipotle Restaurant Chain",
+        "description": "Billionaire Bill Ackman\u2019s investment firm just picked up more than 2.67 million shares of one magnificent seven stock. The latest 13-F filing with the U.S. Securities and Exchange Commission (SEC) shows Pershing Square Capital Management accumulated $1.76 bil\u2026",
+        "url": "https://dailyhodl.com/2026/02/19/billionaire-bill-ackman-pours-1764796000-into-mag-7-stock-dumps-entire-stake-in-chipotle-restaurant-chain/",
+        "urlToImage": "https://dailyhodl.com/wp-content/uploads/2024/01/jpmorgan-fine-dollar.jpg?resize=1365,800",
+        "publishedAt": "2026-02-19T08:04:13Z",
+        "content": "Billionaire Bill Ackmans investment firm just picked up more than 2.67 million shares of one magnificent seven stock.\r\nThe latest 13-F filing with the U.S. Securities and Exchange Commission (SEC) sh\u2026 [+2448 chars]"
+      },
+      {
+        "source": {
+          "id": "the-times-of-india",
+          "name": "The Times of India"
+        },
+        "author": "Reuters",
+        "title": "Pernod has no plans for now to list India unit, CEO says",
+        "description": "\u200bPernod Ricard \u200bhas nothing new on the \u200chorizon \u2060in \u2060terms \u200bof an initial public offering \u200bof its Indian \u200bunit \u2060and this \u200cis \u200bone \u200bof \u2060a long list \u200bof options the company \u200breviews annually, CEO Alexandre \u200cRicard told Reuters following \u200breports \u200bthe \u2060company w\u2026",
+        "url": "https://economictimes.indiatimes.com/markets/ipos/fpos/pernod-has-no-plans-for-now-to-list-india-unit-ceo-says/articleshow/128546479.cms",
+        "urlToImage": "https://img.etimg.com/thumb/msid-128546479,width-1200,height-630,imgsize-9622,overlay-etmarkets/articleshow.jpg",
+        "publishedAt": "2026-02-19T08:03:42Z",
+        "content": "(What's moving Sensex and Nifty Track latest market news, stock tips, Budget 2025, Share Market on Budget 2025 and expert advice, on ETMarkets. Also, ETMarkets.com is now on Telegram. For fastest new\u2026 [+330 chars]"
+      },
+      {
+        "source": {
+          "id": "rte",
+          "name": "RTE"
+        },
+        "author": "RT\u00c9 News",
+        "title": "Life term for ex-South Korean leader in insurrection case",
+        "description": "A South Korean court has sentenced former president Yoon Suk Yeol to life in prison after finding him guilty of leading an insurrection when he declared martial law in December 2024.",
+        "url": "https://www.rte.ie/news/asia/2026/0219/1559266-south-korea-yoon/",
+        "urlToImage": "https://www.rte.ie/images/0023eafa-1600.jpg",
+        "publishedAt": "2026-02-19T07:58:21Z",
+        "content": "A South Korean court has sentenced former president Yoon Suk Yeol to life in prison after finding him guilty of leading an insurrection when he declared martial law in December 2024.\r\nThe 65-year-old\u2026 [+3856 chars]"
+      }
+    ]
+  },
+  "market_data": {
+    "crypto_snapshot": [],
+    "timestamp": "2026-02-20T19:23:41.718813"
+  },
+  "timestamp": "2026-02-20T19:23:41.719358"
+}

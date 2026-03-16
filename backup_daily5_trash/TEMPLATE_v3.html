@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily 5 + 1 + 1 | {{DATE}}</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0c0f;--bg2:#111418;--bg3:#181d23;--border:rgba(255,255,255,0.08);--border-strong:rgba(255,255,255,0.15);--text:#e8e6e0;--text-muted:rgba(232,230,224,0.45);--text-dim:rgba(232,230,224,0.65);--gold:#c9a84c;--gold-dim:rgba(201,168,76,0.2);--green:#4caf82;--green-dim:rgba(76,175,130,0.15);--red:#e05555;--red-dim:rgba(224,85,85,0.15);--blue:#5b9cf6;--blue-dim:rgba(91,156,246,0.15);--purple:#a78bfa;--purple-dim:rgba(167,139,250,0.15);--orange:#f59e42;--orange-dim:rgba(245,158,66,0.15);--teal:#2dd4bf;--teal-dim:rgba(45,212,191,0.15);--font-serif:'Playfair Display',Georgia,serif;--font-body:'Source Serif 4',Georgia,serif;--font-mono:'IBM Plex Mono',monospace}
+[data-theme="light"]{--bg:#f5f2eb;--bg2:#ede9df;--bg3:#e4dfd3;--border:rgba(0,0,0,0.09);--border-strong:rgba(0,0,0,0.18);--text:#1a1814;--text-muted:rgba(26,24,20,0.45);--text-dim:rgba(26,24,20,0.65);--gold:#8a6b1a;--gold-dim:rgba(138,107,26,0.12);--green:#1c7a4f;--green-dim:rgba(28,122,79,0.1);--red:#b02020;--red-dim:rgba(176,32,32,0.1);--blue:#2563c9;--blue-dim:rgba(37,99,201,0.1);--purple:#6d28d9;--purple-dim:rgba(109,40,217,0.1);--orange:#b45309;--orange-dim:rgba(180,83,9,0.1);--teal:#0d7a6e;--teal-dim:rgba(13,122,110,0.1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.65;-webkit-font-smoothing:antialiased}
+.theme-toggle{position:fixed;top:14px;right:14px;z-index:999;background:var(--bg3);border:1px solid var(--border-strong);color:var(--text-dim);font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.08em;padding:6px 10px;cursor:pointer;border-radius:3px;transition:all 0.2s}
+.theme-toggle:hover{color:var(--gold);border-color:var(--gold)}
+.container{max-width:880px;margin:0 auto;padding:20px 16px 48px}
+header{text-align:center;padding:36px 0 28px;border-bottom:1px solid var(--border);margin-bottom:24px}
+.masthead-label{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.masthead-title{font-family:var(--font-serif);font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;line-height:1.15;color:var(--text);margin-bottom:8px}
+.masthead-sub{font-size:0.85rem;color:var(--text-dim);font-style:italic;margin-bottom:16px}
+.masthead-meta{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.meta-pill{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.05em;padding:4px 10px;background:var(--bg3);border:1px solid var(--border);border-radius:2px;color:var(--text-dim)}
+.macro-strip{background:var(--bg2);border:1px solid var(--border);border-top:2px solid var(--gold);padding:14px 16px;margin-bottom:20px;border-radius:2px;overflow-x:auto}
+.macro-strip-title{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px}
+.macro-grid{display:flex;align-items:center;gap:0;min-width:520px}
+.macro-item{flex:1;text-align:center}
+.macro-divider{width:1px;height:32px;background:var(--border);flex-shrink:0}
+.m-val{font-family:var(--font-mono);font-size:0.88rem;font-weight:600;color:var(--text)}
+.m-lbl{font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;color:var(--text-muted);text-transform:uppercase;margin:2px 0}
+.m-chg{font-family:var(--font-mono);font-size:0.68rem}
+.m-up{color:var(--green)}
+.m-down{color:var(--red)}
+.progress-section{background:var(--bg2);border:1px solid var(--border);padding:16px;margin-bottom:20px;border-radius:2px}
+.progress-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:6px}
+.progress-title{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold)}
+.progress-count{font-family:var(--font-mono);font-size:0.62rem;color:var(--text-muted)}
+.prog-item{margin-bottom:8px}
+.prog-label{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:0.6rem;color:var(--text-dim);margin-bottom:4px}
+.prog-bar-bg{height:4px;background:var(--bg3);border-radius:2px;overflow:hidden}
+.prog-bar-fill{height:100%;border-radius:2px;transition:width 0.5s ease}
+.fill-blue{background:var(--blue)}
+.fill-gold{background:var(--gold)}
+.cfa-topic-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.topic-pill{font-family:var(--font-mono);font-size:0.58rem;padding:3px 8px;border-radius:2px;letter-spacing:0.04em}
+.topic-pill.active{background:var(--gold-dim);border:1px solid var(--gold);color:var(--gold)}
+.topic-pill.pending{background:var(--bg3);border:1px solid var(--border);color:var(--text-muted)}
+.topic-pill.done{background:var(--green-dim);border:1px solid var(--green);color:var(--green)}
+.section-divider{display:flex;align-items:center;gap:14px;margin:28px 0 20px}
+.section-divider-line{flex:1;height:1px;background:var(--border)}
+.section-divider-text{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);white-space:nowrap}
+.asset-card{background:var(--bg2);border:1px solid var(--border);margin-bottom:20px;border-radius:2px;overflow:hidden}
+.crypto-card{border-top:2px solid var(--purple)}
+.forex-card{border-top:2px solid var(--blue)}
+.spotlight-card{border-top:2px solid var(--teal)}
+.asset-card-header{display:flex;justify-content:space-between;align-items:flex-start;padding:16px 18px 14px;border-bottom:1px solid var(--border);gap:12px;flex-wrap:wrap}
+.asset-left{flex:1;min-width:0}
+.ticker-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.ticker{font-family:var(--font-mono);font-size:1.35rem;font-weight:600;color:var(--text);letter-spacing:-0.02em}
+.sp500-badge{font-family:var(--font-mono);font-size:0.58rem;padding:3px 8px;background:var(--gold-dim);border:1px solid var(--gold);color:var(--gold);border-radius:2px;letter-spacing:0.06em;white-space:nowrap}
+.sector-badge{font-family:var(--font-mono);font-size:0.58rem;padding:3px 8px;background:var(--bg3);border:1px solid var(--border);color:var(--text-dim);border-radius:2px;letter-spacing:0.06em}
+.company-name{font-size:0.8rem;color:var(--text-dim);font-style:italic}
+.asset-right{text-align:right;flex-shrink:0}
+.price-main{font-family:var(--font-mono);font-size:1.45rem;font-weight:600;color:var(--text);line-height:1}
+.price-change{font-family:var(--font-mono);font-size:0.75rem;margin-top:3px}
+.price-change.positive{color:var(--green)}
+.price-change.negative{color:var(--red)}
+.mcap-label{font-family:var(--font-mono);font-size:0.6rem;color:var(--text-muted);margin-top:4px}
+.collapse-toggle{width:100%;background:none;border:none;border-bottom:1px solid var(--border);padding:10px 18px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);transition:color 0.2s}
+.collapse-toggle:hover{color:var(--gold)}
+.collapse-toggle .arrow{font-size:0.7rem;transition:transform 0.25s ease}
+.collapse-toggle.open .arrow{transform:rotate(180deg)}
+.collapsible-body{overflow:hidden;max-height:0;transition:max-height 0.35s ease}
+.collapsible-body.expanded{max-height:9999px}
+.asset-body{padding:18px}
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:18px}
+@media(max-width:480px){.metrics-grid{grid-template-columns:repeat(2,1fr)}}
+.metric-tile{background:var(--bg3);border:1px solid var(--border);padding:8px 10px;text-align:center;border-radius:2px}
+.mt-val{font-family:var(--font-mono);font-size:0.85rem;font-weight:600;color:var(--text);line-height:1.2}
+.mt-val.positive{color:var(--green)}
+.mt-val.negative{color:var(--red)}
+.mt-lbl{font-family:var(--font-mono);font-size:0.55rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-top:3px}
+.card-section-title{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);margin:18px 0 10px;border-bottom:1px solid var(--border);padding-bottom:6px}
+.street-quote{background:var(--bg3);border-left:3px solid var(--gold);padding:12px 14px;margin-bottom:4px;border-radius:0 2px 2px 0}
+.street-quote p{font-size:0.82rem;color:var(--text-dim);line-height:1.6;font-style:italic}
+.quote-source{font-family:var(--font-mono);font-size:0.6rem;color:var(--gold);margin-top:8px;letter-spacing:0.04em}
+.pattern-diagram{background:var(--bg3);border:1px solid var(--border);padding:14px;margin-bottom:12px;border-radius:2px}
+.pattern-label{font-family:var(--font-mono);font-size:0.58rem;color:var(--text-muted);margin-bottom:8px;letter-spacing:0.06em}
+.pattern-diagram svg,.payoff-svg{width:100%;height:auto;display:block}
+.murphy-box{background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--blue);padding:12px 14px;border-radius:0 2px 2px 0;margin-bottom:12px}
+.murphy-label{font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;color:var(--blue);text-transform:uppercase;margin-bottom:7px}
+.murphy-box p{font-size:0.8rem;color:var(--text-dim);line-height:1.6;font-style:italic}
+.cfa-box{background:var(--bg3);border:1px solid var(--border);border-top:2px solid var(--gold);padding:16px;margin-bottom:12px;border-radius:0 0 2px 2px}
+.cfa-box-title{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.1em;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+.formula-block{font-family:var(--font-mono);font-size:0.72rem;background:var(--bg);border:1px solid var(--border);padding:12px;line-height:1.9;color:var(--green);border-radius:2px;margin-bottom:10px;white-space:pre-wrap;overflow-x:auto}
+.cfa-box p{font-size:0.82rem;color:var(--text-dim);line-height:1.7}
+.cfa-reading-ref{font-family:var(--font-mono);font-size:0.58rem;color:var(--text-muted);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.exam-tip{background:var(--gold-dim);border:1px solid rgba(201,168,76,0.3);border-radius:2px;padding:10px 12px;margin-top:10px;font-size:0.78rem;color:var(--text-dim);line-height:1.6}
+.exam-tip-label{font-family:var(--font-mono);font-size:0.56rem;letter-spacing:0.12em;color:var(--gold);text-transform:uppercase;margin-bottom:5px}
+.crypto-expert-box{background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--purple);padding:14px;border-radius:0 2px 2px 0;margin-bottom:12px}
+.crypto-expert-label{font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;color:var(--purple);text-transform:uppercase;margin-bottom:8px}
+.crypto-expert-box p{font-size:0.82rem;color:var(--text-dim);line-height:1.7}
+.crypto-metrics-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.crypto-stat{background:var(--bg);border:1px solid var(--border);padding:8px;text-align:center;border-radius:2px}
+.crypto-stat-val{font-family:var(--font-mono);font-size:0.82rem;font-weight:600;color:var(--purple)}
+.crypto-stat-lbl{font-family:var(--font-mono);font-size:0.55rem;color:var(--text-muted);text-transform:uppercase;margin-top:2px}
+.forex-commentary-box{background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--blue);padding:14px;border-radius:0 2px 2px 0;margin-bottom:14px}
+.forex-commentary-label{font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;color:var(--blue);text-transform:uppercase;margin-bottom:8px}
+.forex-commentary-box p{font-size:0.82rem;color:var(--text-dim);line-height:1.7}
+.forex-rates-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.forex-rate-item{background:var(--bg);border:1px solid var(--border);padding:8px 10px;text-align:center;border-radius:2px}
+.forex-rate-val{font-family:var(--font-mono);font-size:0.85rem;font-weight:600;color:var(--blue)}
+.forex-rate-lbl{font-family:var(--font-mono);font-size:0.55rem;color:var(--text-muted);text-transform:uppercase;margin-top:2px}
+.policy-divergence-bar{background:var(--bg3);border:1px solid var(--border);padding:12px 14px;border-radius:2px;margin:12px 0}
+.policy-bar-label{font-family:var(--font-mono);font-size:0.58rem;color:var(--text-muted);margin-bottom:8px;letter-spacing:0.08em;text-transform:uppercase}
+.policy-bar-track{height:8px;background:var(--bg);border-radius:4px;position:relative;margin:4px 0}
+.policy-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--blue),var(--purple))}
+.policy-bar-labels{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:0.58rem;color:var(--text-muted);margin-top:4px}
+.spotlight-header-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;flex-wrap:wrap;gap:8px}
+.spotlight-title{font-family:var(--font-serif);font-size:1.1rem;font-weight:700;color:var(--text)}
+.spotlight-sub{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;color:var(--teal);text-transform:uppercase;margin-bottom:16px}
+.spotlight-badge{font-family:var(--font-mono);font-size:0.58rem;padding:4px 10px;background:var(--teal-dim);border:1px solid var(--teal);color:var(--teal);border-radius:2px}
+.spotlight-body{padding:20px}
+.spotlight-why{background:var(--teal-dim);border:1px solid rgba(45,212,191,0.25);border-radius:2px;padding:12px 14px;margin-bottom:16px;font-size:0.82rem;color:var(--text-dim);line-height:1.65}
+.spotlight-why-label{font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.12em;color:var(--teal);text-transform:uppercase;margin-bottom:6px}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+@media(max-width:560px){.concept-grid{grid-template-columns:1fr}}
+.concept-box{background:var(--bg3);border:1px solid var(--border);padding:14px;border-radius:2px}
+.concept-box h4{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.concept-box p{font-size:0.8rem;color:var(--text-dim);line-height:1.6}
+.spotlight-cfa-box{background:var(--bg3);border:1px solid var(--border);border-top:2px solid var(--teal);padding:16px;margin-bottom:12px;border-radius:0 0 2px 2px}
+.spotlight-cfa-title{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.1em;color:var(--teal);text-transform:uppercase;margin-bottom:10px}
+.fun-fact{background:var(--gold-dim);border:1px solid rgba(201,168,76,0.25);padding:12px 14px;font-size:0.8rem;color:var(--text-dim);border-radius:2px;line-height:1.6;font-style:italic}
+.fun-fact-label{font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;color:var(--gold);text-transform:uppercase;margin-bottom:6px;font-style:normal}
+.table-wrap{overflow-x:auto}
+.trading-table{width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:0.72rem;min-width:480px}
+.trading-table th{background:var(--bg3);padding:8px 10px;text-align:left;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);border-bottom:1px solid var(--border-strong);font-weight:500}
+.trading-table td{padding:8px 10px;border-bottom:1px solid var(--border);color:var(--text-dim);vertical-align:middle}
+.trading-table tr:last-child td{border-bottom:none}
+.trading-table tr:hover td{background:var(--bg3)}
+.setup-badge{font-family:var(--font-mono);font-size:0.58rem;padding:2px 6px;background:var(--bg3);border:1px solid var(--border);color:var(--text-dim);border-radius:2px;white-space:nowrap}
+.bias-bull{background:var(--green-dim);border-color:var(--green);color:var(--green)}
+.bias-bear{background:var(--red-dim);border-color:var(--red);color:var(--red)}
+.bias-neutral{background:var(--gold-dim);border-color:var(--gold);color:var(--gold)}
+.rr-badge{font-family:var(--font-mono);font-size:0.62rem;padding:2px 7px;background:var(--blue-dim);border:1px solid var(--blue);color:var(--blue);border-radius:2px}
+.options-card{background:var(--bg2);border:1px solid var(--border);border-top:2px solid var(--purple);padding:20px;margin-bottom:20px;border-radius:2px}
+.options-header{font-family:var(--font-serif);font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:4px}
+.options-sub{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;color:var(--purple);text-transform:uppercase;margin-bottom:16px}
+.options-concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+@media(max-width:560px){.options-concept-grid{grid-template-columns:1fr}}
+.option-concept-box{background:var(--bg3);border:1px solid var(--border);padding:14px;border-radius:2px}
+.option-concept-box h4{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--purple);margin-bottom:8px}
+.option-concept-box p{font-size:0.8rem;color:var(--text-dim);line-height:1.6}
+.payoff-chart-wrap{background:var(--bg3);border:1px solid var(--border);padding:16px;margin:14px 0;border-radius:2px}
+.payoff-chart-title{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.payoff-chart-title span{color:var(--purple)}
+.quiz-card{background:var(--bg2);border:1px solid var(--border);border-top:2px solid var(--green);padding:20px;margin-bottom:20px;border-radius:2px}
+.quiz-header{font-family:var(--font-serif);font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:4px}
+.quiz-sub{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;color:var(--green);text-transform:uppercase;margin-bottom:20px}
+.quiz-score-display{background:var(--bg3);border:1px solid var(--border);padding:10px 14px;border-radius:2px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted)}
+.quiz-score-num{font-size:1.1rem;font-weight:600;color:var(--green)}
+.quiz-question{background:var(--bg3);border:1px solid var(--border);padding:16px;margin-bottom:14px;border-radius:2px}
+.quiz-q-num{font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px}
+.quiz-q-text{font-size:0.88rem;color:var(--text);line-height:1.6;margin-bottom:14px}
+.quiz-formula{font-family:var(--font-mono);font-size:0.72rem;background:var(--bg);border:1px solid var(--border);padding:10px 12px;color:var(--blue);border-radius:2px;margin-bottom:14px;white-space:pre-wrap}
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+@media(max-width:420px){.quiz-options{grid-template-columns:1fr}}
+.quiz-option{background:var(--bg2);border:1px solid var(--border);padding:9px 12px;cursor:pointer;border-radius:2px;font-family:var(--font-mono);font-size:0.72rem;color:var(--text-dim);text-align:left;transition:all 0.15s;line-height:1.4}
+.quiz-option:hover:not([disabled]){border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
+.quiz-option.correct{border-color:var(--green)!important;color:var(--green)!important;background:var(--green-dim)!important}
+.quiz-option.incorrect{border-color:var(--red)!important;color:var(--red)!important;background:var(--red-dim)!important}
+.quiz-option[disabled]{cursor:default}
+.quiz-explanation{display:none;background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--green);padding:12px 14px;font-size:0.8rem;color:var(--text-dim);line-height:1.65;border-radius:0 2px 2px 0;font-style:italic}
+.quiz-explanation.visible{display:block}
+.quiz-controls{display:flex;gap:10px;margin-top:18px;justify-content:center}
+.quiz-btn{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;padding:9px 18px;cursor:pointer;border-radius:2px;border:1px solid;transition:all 0.2s}
+.quiz-btn-secondary{background:transparent;border-color:var(--border-strong);color:var(--text-muted)}
+.quiz-btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
+.terms-card{background:var(--bg2);border:1px solid var(--border);padding:20px;margin-bottom:20px;border-radius:2px}
+.terms-header{font-family:var(--font-serif);font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.term-entry{padding:12px 0;border-bottom:1px solid var(--border)}
+.term-entry:last-child{border-bottom:none}
+.term-word{font-family:var(--font-serif);font-size:0.95rem;font-weight:700;color:var(--gold);margin-bottom:6px}
+.term-def{font-size:0.82rem;color:var(--text-dim);line-height:1.65;margin-bottom:5px}
+.term-origin{font-family:var(--font-mono);font-size:0.58rem;color:var(--text-muted);letter-spacing:0.06em}
+footer{text-align:center;padding:28px 0 12px;border-top:1px solid var(--border);margin-top:10px}
+.footer-title{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+footer p{font-size:0.75rem;color:var(--text-muted);line-height:1.7}
+@media(max-width:600px){.asset-card-header{flex-direction:column}.asset-right{text-align:left}.options-concept-grid,.concept-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<button class="theme-toggle" onclick="document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'light':'dark'">◐ THEME</button>
+<div class="container">
+<header>
+<div class="masthead-label">OpenClaw Empire · ASTRA Intelligence</div>
+<h1 class="masthead-title">The Daily 5 + 1 + 1</h1>
+<p class="masthead-sub">Institutional Market Intelligence · CFA Level I Preparation</p>
+<div class="masthead-meta">
+<span class="meta-pill">📅 {{DATE}}</span>
+<span class="meta-pill">🕓 {{TIME}} ET</span>
+<span class="meta-pill">📊 Data: Yahoo Finance</span>
+<span class="meta-pill">🔄 Day {{DAY_NUM}} of 503</span>
+<span class="meta-pill">📚 CFA: {{CFA_TOPIC}}</span>
+</div>
+</header>
+
+<div class="macro-strip">
+<div class="macro-strip-title">▸ Macro Dashboard — As of {{TIME}} ET · {{DATE_SHORT}}</div>
+<div class="macro-grid">
+<div class="macro-item"><div class="m-val">{{SPX}}</div><div class="m-lbl">S&P 500</div><div class="m-chg {{SPX_DIR}}">{{SPX_CHG}}</div></div>
+<div class="macro-divider"></div>
+<div class="macro-item"><div class="m-val">{{VIX}}</div><div class="m-lbl">VIX</div><div class="m-chg {{VIX_DIR}}">{{VIX_CHG}}</div></div>
+<div class="macro-divider"></div>
+<div class="macro-item"><div class="m-val">{{YIELD10}}</div><div class="m-lbl">10Y Yield</div><div class="m-chg {{YIELD_DIR}}">{{YIELD_CHG}}</div></div>
+<div class="macro-divider"></div>
+<div class="macro-item"><div class="m-val">{{FED_FUNDS}}</div><div class="m-lbl">Fed Funds</div><div class="m-chg" style="color:var(--text-muted)">— unchanged</div></div>
+<div class="macro-divider"></div>
+<div class="macro-item"><div class="m-val">{{DXY}}</div><div class="m-lbl">DXY</div><div class="m-chg {{DXY_DIR}}">{{DXY_CHG}}</div></div>
+<div class="macro-divider"></div>
+<div class="macro-item"><div class="m-val">{{GOLD}}</div><div class="m-lbl">Gold/oz</div><div class="m-chg {{GOLD_DIR}}">{{GOLD_CHG}}</div></div>
+</div>
+</div>
+
+<div class="progress-section">
+<div class="progress-header">
+<span class="progress-title">📊 Learning Progress Tracker</span>
+<span class="progress-count">Day {{DAY_NUM}} · Stocks {{STOCKS_DONE}}/503 · CFA {{CFA_DONE}}/10 topics</span>
+</div>
+<div class="progress-bars">
+<div class="prog-item"><div class="prog-label"><span>S&P 500 Coverage</span><span>{{STOCKS_DONE}} / 503</span></div><div class="prog-bar-bg"><div class="prog-bar-fill fill-blue" style="width:{{SP_PCT}}%"></div></div></div>
+<div class="prog-item"><div class="prog-label"><span>CFA Curriculum</span><span>{{CFA_DONE}} / 10 Topics</span></div><div class="prog-bar-bg"><div class="prog-bar-fill fill-gold" style="width:{{CFA_PCT}}%"></div></div></div>
+</div>
+<div class="cfa-topic-pills">{{CFA_PILLS}}</div>
+</div>
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Today's 5 S&P 500 Stocks — Batch {{BATCH_NUM}} · Positions {{SP_START}}–{{SP_END}} of 503</div><div class="section-divider-line"></div></div>
+{{STOCK_CARDS}}
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Crypto — {{CRYPTO_TICKER}}</div><div class="section-divider-line"></div></div>
+{{CRYPTO_CARD}}
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Forex — {{FOREX_PAIR}}</div><div class="section-divider-line"></div></div>
+{{FOREX_CARD}}
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Trading Setups & Risk Management</div><div class="section-divider-line"></div></div>
+<div class="asset-card">
+<div class="asset-card-header">
+<div class="asset-left"><div class="ticker-row"><span class="ticker" style="font-size:1.1rem">📈 All Setups</span></div><div class="company-name">Entry · Stop · Target · R/R — All 7 Assets</div></div>
+</div>
+<div class="asset-body" style="padding-top:16px">
+<div class="table-wrap">
+<table class="trading-table">
+<tr><th>Asset</th><th>S&P #</th><th>Setup</th><th>Bias</th><th>Entry</th><th>Stop</th><th>Target</th><th>R/R</th></tr>
+{{SETUP_ROWS}}
+</table>
+</div>
+<div class="fun-fact" style="margin-top:14px">
+<div class="fun-fact-label">📖 Murphy — Risk Management Rule</div>
+"The 2:1 reward-to-risk minimum means you only need to be right 34% of the time to break even. Aim for 3:1 and your breakeven drops to 25%. Always risk a fixed percentage of capital — never more than 2% per trade. Position size, not win rate, determines longevity."
+</div>
+</div>
+</div>
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Options & Derivatives Education</div><div class="section-divider-line"></div></div>
+{{OPTIONS_CARD}}
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">CFA Spotlight — {{SPOTLIGHT_TOPIC}}</div><div class="section-divider-line"></div></div>
+{{SPOTLIGHT_CARD}}
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">CFA Level I Quiz — {{CFA_TOPIC}}</div><div class="section-divider-line"></div></div>
+<div class="quiz-card">
+<div class="quiz-header">📝 Daily CFA Quiz</div>
+<div class="quiz-sub">5 Questions · {{CFA_TOPIC}} · Instant Feedback · Uses Today's Real Data</div>
+<div class="quiz-score-display"><span>Score</span><span class="quiz-score-num" id="scoreDisplay">0 / 5</span><span id="quizStatus">Answer all 5 questions below</span></div>
+{{QUIZ_Q1}}{{QUIZ_Q2}}{{QUIZ_Q3}}{{QUIZ_Q4}}{{QUIZ_Q5}}
+<div class="quiz-controls"><button class="quiz-btn quiz-btn-secondary" onclick="resetQuiz()">↺ Reset Quiz</button></div>
+</div>
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Today's Glossary — 4 Terms · {{CFA_TOPIC}}</div><div class="section-divider-line"></div></div>
+<div class="terms-card"><div class="terms-header">📖 Terms to Know</div>{{GLOSSARY_TERMS}}</div>
+
+<footer>
+<div class="footer-title">THE DAILY 5 + 1 + 1 · OPENCLAW EMPIRE</div>
+<p>Institutional Market Intelligence · CFA Level I Preparation · Generated by ASTRA</p>
+<p style="margin-top:6px;opacity:0.6">Markets are dynamic. Past performance does not guarantee future results. Not financial advice.</p>
+<p style="margin-top:8px;opacity:0.5;font-size:0.65rem">{{FOOTER_LOG}}</p>
+</footer>
+</div>
+
+<script>
+function toggleCard(btn){const body=btn.nextElementSibling;const isOpen=btn.classList.contains('open');if(isOpen){btn.classList.remove('open');btn.setAttribute('aria-expanded','false');body.classList.remove('expanded')}else{btn.classList.add('open');btn.setAttribute('aria-expanded','true');body.classList.add('expanded')}}
+let scores=[null,null,null,null,null];
+function answerQ(qNum,chosen,correct,btn){const container=document.getElementById('q'+qNum);const options=container.querySelectorAll('.quiz-option');const exp=document.getElementById('exp'+qNum);options.forEach(o=>o.disabled=true);options.forEach(o=>{const letter=o.textContent.trim()[0];if(letter===correct)o.classList.add('correct');else if(letter===chosen&&chosen!==correct)o.classList.add('incorrect')});exp.classList.add('visible');if(scores[qNum-1]===null){scores[qNum-1]=(chosen===correct)?1:0;updateScore()}}
+function updateScore(){const answered=scores.filter(s=>s!==null).length;const correct=scores.filter(s=>s===1).length;document.getElementById('scoreDisplay').textContent=correct+' / 5';if(answered===5){const pct=(correct/5)*100;const msg=pct>=80?'🏆 Excellent! CFA-ready performance':pct>=60?'✅ Good — review explanations for misses':'📚 Keep studying — review the CFA readings';document.getElementById('quizStatus').textContent=msg}else{document.getElementById('quizStatus').textContent=answered+' of 5 answered'}}
+function resetQuiz(){scores=[null,null,null,null,null];document.getElementById('scoreDisplay').textContent='0 / 5';document.getElementById('quizStatus').textContent='Answer all 5 questions below';for(let i=1;i<=5;i++){const c=document.getElementById('q'+i);if(!c)continue;c.querySelectorAll('.quiz-option').forEach(o=>{o.disabled=false;o.classList.remove('correct','incorrect')});const exp=document.getElementById('exp'+i);if(exp)exp.classList.remove('visible')}}
+</script>
+</body>
+</html>

@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S&P 500 CFA Master Analysis | Level I Exam Preparation</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-primary: #fafafa;
+            --bg-secondary: #ffffff;
+            --grid-color: rgba(180, 180, 180, 0.15);
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --accent-blue: #1e3a5f;
+            --accent-gold: #b8860b;
+            --formula-bg: #f5f5dc;
+            --example-bg: #e8f4f8;
+            --success: #2e7d32;
+            --danger: #c62828;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2a2a2a;
+            --grid-color: rgba(255, 255, 255, 0.05);
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --accent-blue: #64b5f6;
+            --accent-gold: #ffd700;
+            --formula-bg: #3a3a2a;
+            --example-bg: #2a3a3a;
+            --success: #4caf50;
+            --danger: #ef5350;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: var(--bg-primary);
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 25px 25px;
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--accent-blue);
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            z-index: 1000;
+            border-radius: 4px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            border-bottom: 3px double var(--accent-blue);
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: var(--accent-blue);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .cfa-badge {
+            display: inline-block;
+            background: var(--accent-gold);
+            color: white;
+            padding: 5px 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+
+        /* Sections */
+        .section {
+            background: var(--bg-secondary);
+            border: 1px solid #ddd;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: var(--accent-blue);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--accent-gold);
+            padding-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        h3 {
+            color: var(--accent-blue);
+            font-size: 1.2rem;
+            margin: 25px 0 15px;
+        }
+
+        /* CFA Formula Box */
+        .cfa-box {
+            background: var(--formula-bg);
+            border-left: 4px solid var(--accent-gold);
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .cfa-title {
+            font-weight: bold;
+            color: var(--accent-blue);
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .cfa-chapter {
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .cfa-formula {
+            background: rgba(255,255,255,0.5);
+            padding: 15px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            border-radius: 4px;
+        }
+
+        [data-theme="dark"] .cfa-formula {
+            background: rgba(0,0,0,0.3);
+        }
+
+        .cfa-formula .math {
+            font-size: 1.1rem;
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+
+        .cfa-example {
+            background: var(--example-bg);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+
+        .cfa-interpretation {
+            font-style: italic;
+            margin-top: 10px;
+            color: var(--text-secondary);
+        }
+
+        /* Stock Card */
+        .stock-card {
+            background: var(--bg-secondary);
+            border: 2px solid var(--accent-blue);
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .stock-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .stock-symbol {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent-blue);
+            font-family: 'Courier New', monospace;
+        }
+
+        .stock-return {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .positive { color: var(--success); }
+        .negative { color: var(--danger); }
+
+        .metrics-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .metric {
+            text-align: center;
+            padding: 15px;
+            background: rgba(30,58,95,0.05);
+            border-radius: 4px;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-blue);
+            font-family: 'Courier New', monospace;
+        }
+
+        .metric-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: var(--accent-blue);
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Jargon */
+        .jargon {
+            border-bottom: 1px dotted var(--accent-gold);
+            cursor: help;
+            position: relative;
+        }
+
+        .jargon:hover::after {
+            content: attr(data-def);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-blue);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            z-index: 100;
+        }
+
+        /* Charts */
+        .chart-container {
+            height: 350px;
+            margin: 25px 0;
+            padding: 20px;
+            background: var(--bg-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.6rem; }
+            .stock-header { flex-direction: column; text-align: center; }
+            .metrics-row { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" onclick="toggleTheme()">🌓 Toggle</button>
+
+    <div class="container">
+        <header>
+            <h1>S&P 500 CFA Master Analysis</h1>
+            <p class="subtitle">Complete Level I Exam Preparation with Worked Examples</p>
+            <div class="cfa-badge">CFA LEVEL I · COMPREHENSIVE</div>
+        </header>
+
+        <!-- P/E RATIO MASTER CLASS -->
+        <section class="section">
+            <h2>📚 CFA Concept: Price-to-Earnings (P/E) Ratio</h2>
+            <div class="cfa-chapter">Level I · Chapter 41: Equity Valuation · LOS 41.a</div>
+
+            <div class="cfa-box">
+                <div class="cfa-title">Formula</div>
+                <div class="cfa-formula">
+                    <div class="math">P/E = Market Price per Share / Earnings per Share (EPS)</div>
+                    <br>
+                    <strong>Where:</strong><br>
+                    • P = Current market price per share<br>
+                    • E = Earnings per share (typically trailing 12 months)<br>
+                    • Result = How many dollars you pay for each dollar of earnings
+                </div>
+
+                <div class="cfa-title">Worked Example: Texas Pacific Land (TPL)</div>
+                <div class="cfa-example">
+                    <strong>Given Data:</strong><br>
+                    • Current Stock Price: $2,100 per share<br>
+                    • Trailing 12-Month EPS: $75.00<br>
+                    • Energy Sector Average P/E: 22x<br><br>
+
+                    <strong>Calculation:</strong><br>
+                    P/E = $2,100 / $75.00 = <strong>28.0x</strong><br><br>
+
+                    <strong>Analysis:</strong><br>
+                    TPL trades at 28x earnings vs sector average of 22x = <strong>27% premium</strong><br>
+                    Justified by: Unique Permian Basin land position (irreplaceable asset)<br>
+                    Concern: If oil prices fall, earnings decline magnifies P/E expansion
+                </div>
+
+                <div class="cfa-interpretation">
+                    <strong>CFA Insight:</strong> High P/E can indicate growth expectations OR overvaluation. 
+                    Always compare to sector peers and historical averages. TPL's premium is justified by 
+                    asset scarcity, not growth — a distinction exam questions love to test.
+                </div>
+            </div>
+
+            <div class="cfa-box">
+                <div class="cfa-title">Worked Example: Sandisk (SNDK) — High Growth</div>
+                <div class="cfa-example">
+                    <strong>Given Data:</strong><br>
+                    • Current Stock Price: $85.50<br>
+                    • Trailing EPS: $2.15<br>
+                    • Forward EPS (next 12 months): $4.50 (memory cycle recovery)<br>
+                    • Semiconductor Sector P/E: 18x<br><br>
+
+                    <strong>Trailing P/E Calculation:</strong><br>
+                    P/E = $85.50 / $2.15 = <strong>39.8x</strong> ⚠️ (Appears expensive)<br><br>
+
+                    <strong>Forward P/E Calculation:</strong><br>
+                    Forward P/E = $85.50 / $4.50 = <strong>19.0x</strong> ✓ (Reasonable)<br><br>
+
+                    <strong>PEG Ratio (P/E to Growth):</strong><br>
+                    PEG = 19.0 / 109% growth = <strong>0.17</strong><br>
+                    (PEG < 1.0 suggests undervaluation relative to growth)
+                </div>
+
+                <div class="cfa-interpretation">
+                    <strong>Exam Trap:</strong> Trailing P/E of 40x looks expensive, but forward P/E of 19x 
+                    with 109% earnings growth tells the real story. Always use BOTH trailing and forward metrics.
+                </div>
+            </div>
+        </section>
+
+        <!-- SHARPE RATIO MASTER CLASS -->
+        <section class="section">
+            <h2>📚 CFA Concept: Sharpe Ratio — Risk-Adjusted Returns</h2>
+            <div class="cfa-chapter">Level I · Chapter 57: Portfolio Risk and Return · LOS 57.c</div>
+
+            <div class="cfa-box">
+                <div class="cfa-title">Formula</div>
+                <div class="cfa-formula">
+                    <div class="math">Sharpe Ratio = (Rₚ − Rբ) / σₚ</div>
+                    <br>
+                    <strong>Where:</strong><br>
+                    • Rₚ = Portfolio (or stock) return<br>
+                    • Rբ = Risk-free rate (T-bill yield, typically 3-month)<br>
+                    • σₚ = Standard deviation of portfolio returns (volatility)<br>
+                    • Result = Excess return per unit of risk taken
+                </div>
+
+                <div class="cfa-title">Worked Example: Sandisk (SNDK) — YTD 2026</div>
+                <div class="cfa-example">
+                    <strong>Given Data:</strong><br>
+                    • YTD Return (Rₚ): 173.8%<br>
+                    • Risk-Free Rate (Rբ): 4.5% (3-month T-bill)<br>
+                    • Standard Deviation (σₚ): 45% (measured from daily returns)<br><br>
+
+                    <strong>Calculation:</strong><br>
+                    Step 1: Calculate Excess Return<br>
+                    Rₚ − Rբ = 173.8% − 4.5% = <strong>169.3%</strong><br><br>
+
+                    Step 2: Divide by Volatility<br>
+                    Sharpe Ratio = 169.3 / 45 = <strong>3.76</strong><br><br>
+
+                    <strong>Benchmark Comparison:</strong><br>
+                    • S&P 500 Sharpe (typical): ~0.8–1.2<br>
+                    • SNDK Sharpe: <strong>3.76</strong> ✓✓✓<br>
+                    • Interpretation: Exceptional risk-adjusted returns
+                </div>
+
+                <div class="cfa-interpretation">
+                    <strong>CFA Grading Scale:</strong><br>
+                    • < 0.5 = Poor (not compensating for risk)<br>
+                    • 0.5 – 1.0 = Acceptable<br>
+                    • 1.0 – 2.0 = Good<br>
+                    • > 2.0 = Excellent<br>
+                    • > 3.0 = Exceptional (rare, often unsustainable)
+                </div>
+            </div>
+
+            <div class="cfa-box">
+                <div class="cfa-title">Worked Example: Intuit (INTU) — Negative Returns</div>
+                <div class="cfa-example">
+                    <strong>Given Data:</strong><br>
+                    • YTD Return: −42.55%<br>
+                    • Risk-Free Rate: 4.5%<br>
+                    • Standard Deviation: 28%<br><br>
+
+                    <strong>Calculation:</strong><br>
+                    Excess Return = −42.55% − 4.5% = <strong>−47.05%</strong><br>
+                    Sharpe Ratio = −47.05 / 28 = <strong>−1.68</strong><br><br>
+
+                    <strong>Interpretation:</strong><br>
+                    Negative Sharpe = Underperforming risk-free asset while taking risk.<br>
+                    You would have been better off in T-bills with zero volatility.
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPECTED VALUE MASTER CLASS -->
+        <section class="section">
+            <h2>📚 CFA Concept: Expected Value — Probability-Weighted Outcomes</h2>
+            <div class="cfa-chapter">Level I · Chapter 2: Probability Concepts · LOS 2.d</div>
+
+            <div class="cfa-box">
+                <div class="cfa-title">Formula</div>
+                <div class="cfa-formula">
+                    <div class="math">E(X) = Σ [P(Xᵢ) × Xᵢ]</div>
+                    <br>
+                    <strong>Where:</strong><br>
+                    • E(X) = Expected value of random variable X<br>
+                    • P(Xᵢ) = Probability of outcome i occurring<br>
+                    • Xᵢ = Value of outcome i<br>
+                    • Σ = Sum across all possible outcomes
+                </div>
+
+                <div class="cfa-title">Worked Example: Moderna (MRNA) — Biotech Pipeline</div>
+                <div class="cfa-example">
+                    <strong>Scenario Analysis:</strong><br><br>
+
+                    <strong>Bull Case (30% probability):</strong><br>
+                    • Cancer vaccine blockbuster approval<br>
+                    • Stock price target: $500<br>
+                    • Weighted value: 0.30 × $500 = <strong>$150</strong><br><br>
+
+                    <strong>Base Case (50% probability):</strong><br>
+                    • Steady COVID + flu vaccine sales<br>
+                    • Pipeline progress but no major catalyst<br>
+                    • Stock price: $200<br>
+                    • Weighted value: 0.50 × $200 = <strong>$100</strong><br><br>
+
+                    <strong>Bear Case (20% probability):</strong><br>
+                    • Clinical trial failures, revenue decline<br>
+                    • Stock price: $50<br>
+                    • Weighted value: 0.20 × $50 = <strong>$10</strong><br><br>
+
+                    <strong>Expected Value Calculation:</strong><br>
+                    E(X) = $150 + $100 + $10 = <strong>$260</strong><br><br>
+
+                    <strong>Current Price:</strong> $180<br>
+                    <strong>Expected Return:</strong> ($260 − $180) / $180 = <strong>+44.4%</strong>
+                </div>
+
+                <div class="cfa-interpretation">
+                    <strong>Decision Rule:</strong> If Expected Value > Current Price → Positive expected return.<br>
+                    MRNA shows 44% upside to probability-weighted fair value.<br>
+                    <strong>Key Risk:</strong> Biotech binary events — actual outcome is either $500 OR $50, not $260.
+                </div>
+            </div>
+        </section>
+
+        <!-- POSITION SIZING MASTER CLASS -->
+        <section class="section">
+            <h2>📚 CFA Concept: Position Sizing — Risk Management</h2>
+            <div class="cfa-chapter">Level I · Chapter 52: Portfolio Planning · LOS 52.b</div>
+
+            <div class="cfa-box">
+                <div class="cfa-title">Formula — Fixed Fractional Method</div>
+                <div class="cfa-formula">
+                    <div class="math">Position Size = (Portfolio Value × Risk %) / (Entry Price − Stop Loss)</div>
+                    <br>
+                    <strong>Where:</strong><br>
+                    • Portfolio Value = Total investable capital<br>
+                    • Risk % = Maximum loss willing to take (typically 1-2%)<br>
+                    • Entry Price = Purchase price per share<br>
+                    • Stop Loss = Price at which you exit for loss<br>
+                    • (Entry − Stop) = Risk per share
+                </div>
+
+                <div class="cfa-title">Worked Example: SNDK Position Sizing</div>
+                <div class="cfa-example">
+                    <strong>Given:</strong><br>
+                    • Portfolio Value: $100,000<br>
+                    • Risk Tolerance: 2% of portfolio = $2,000 max loss<br>
+                    • SNDK Entry Price: $85.50<br>
+                    • Technical Stop Loss: $77.00 (support level)<br><br>
+
+                    <strong>Calculation:</strong><br>
+                    Step 1: Risk per share<br>
+                    $85.50 − $77.00 = <strong>$8.50 risk per share</strong><br><br>
+
+                    Step 2: Number of shares<br>
+                    $2,000 / $8.50 = <strong>235 shares</strong> (rounded down)<br><br>
+
+                    Step 3: Position Value<br>
+                    235 × $85.50 = <strong>$20,092</strong><br><br>
+
+                    <strong>Result:</strong> 20% of portfolio in SNDK, with 2% max loss protected
+                </div>
+
+                <div class="cfa-interpretation">
+                    <strong>Why This Matters:</strong> Without position sizing, a 20% position that drops 50% = 10% portfolio loss.<br>
+                    With proper sizing: Same 20% position with stop at −10% = 2% portfolio loss (your max).<br>
+                    <strong>CFA Rule:</strong> No single position should risk >2% of portfolio on any trade.
+                </div>
+            </div>
+        </section>
+
+        <!-- BETA MASTER CLASS -->
+        <section class="section">
+            <h2>📚 CFA Concept: Beta — Systematic Risk Measurement</h2>
+            <div class="cfa-chapter">Level I · Chapter 57: Portfolio Risk and Return · LOS 57.a</div>
+
+            <div class="cfa-box">
+                <div class="cfa-title">Formula</div>
+                <div class="cfa-formula">
+                    <div class="math">βᵢ = Cov(Rᵢ, Rₘ) / σ²ₘ</div>
+                    <br>
+                    <strong>Simplified Understanding:</strong><br>
+                    • β = 1.0: Moves exactly with market<br>
+                    • β > 1.0: More volatile than market (magnifies moves)<br>
+                    • β < 1.0: Less volatile than market (dampens moves)<br>
+                    • β < 0: Inverse correlation (rare)
+                </div>
+
+                <div class="cfa-title">Worked Example: Portfolio Beta Calculation</div>
+                <div class="cfa-example">
+                    <strong>Portfolio Construction:</strong><br><br>
+
+                    <table style="font-size: 0.9rem;">
+                        <tr><th>Stock</th><th>Allocation</th><th>Beta</th><th>Weighted Beta</th></tr>
+                        <tr><td>SNDK</td><td>20%</td><td>1.45</td><td>0.29</td></tr>
+                        <tr><td>TPL</td><td>15%</td><td>0.85</td><td>0.13</td></tr>
+                        <tr><td>MRNA</td><td>10%</td><td>1.65</td><td>0.17</td></tr>
+                        <tr><td>SPY (S&P 500)</td><td>55%</td><td>1.00</td><td>0.55</td></tr>
+                    </table>
+
+                    <strong>Portfolio Beta:</strong><br>
+                    βₚ = 0.29 + 0.13 + 0.17 + 0.55 = <strong>1.14</strong><br><br>
+
+                    <strong>Interpretation:</strong><br>
+                    If S&P 500 rises 10%, this portfolio expected to rise <strong>11.4%</strong>.<br>
+                    If S&P 500 falls 10%, this portfolio expected to fall <strong>11.4%</strong>.<br>
+                    14% more volatile than the market.
+                </div>
+
+                <div class="cfa-interpretation">
+                    <strong>CAPM Connection (Chapter 57):</strong><br>
+                    Expected Return = Rբ + β(Rₘ − Rբ)<br>
+                    With β = 1.14: You require 14% higher return than market to compensate for extra risk.
+                </div>
+            </div>
+        </section>
+
+        <!-- STOCK ANALYSIS SECTIONS -->
+        <section class="section">
+            <h2>📈 Top Performer Analysis: Sandisk (SNDK)</h2>
+
+            <div class="stock-card">
+                <div class="stock-header">
+                    <div class="stock-symbol">SNDK</div>
+                    <div class="stock-return positive">+173.81% YTD</div>
+                </div>
+
+                <div class="metrics-row">
+                    <div class="metric">
+                        <div class="metric-value">$85.50</div>
+                        <div class="metric-label">Current Price</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">39.8x</div>
+                        <div class="metric-label">Trailing P/E</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">1.45</div>
+                        <div class="metric-label">Beta</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">3.76</div>
+                        <div class="metric-label">Sharpe Ratio</div>
+                    </div>
+                </div>
+
+                <div class="cfa-box">
+                    <div class="cfa-title">📚 CFA Lens: Valuation Analysis</div>
+                    <div class="cfa-chapter">Chapter 41: Equity Valuation · Chapter 57: Risk</div>
+
+                    <p><strong>P/E Expansion Analysis:</strong></p>
+                    <p>Stock gained 173% while earnings grew only 45%. This means 
+                    <span class="jargon" data-def="Increase in valuation multiple, not just earnings">P/E multiple expansion</span> 
+                    contributed ~70% of returns — a risk for future performance.</p>
+
+                    <p><strong>Risk Metrics:</strong></p>
+                    <ul>
+                        <li>β = 1.45: 45% more volatile than market</li>
+                        <li>Sharpe = 3.76: Exceptional risk-adjusted returns YTD</li>
+                        <li>Max Drawdown (historical): −55% (2022 memory crash)</li>
+                    </ul>
+
+                    <p><strong>Exam Style Question:</strong><br>
+                    "SNDK's P/E expanded from 15x to 40x. If earnings grow 20% next year but P/E contracts to 30x, 
+                    what is the expected price return?"<br><br>
+                    Answer: (1.20 × 0.75) − 1 = <strong>−10%</strong> (multiple compression kills returns)</p>
+                </div>
+
+                <div class="cfa-box">
+                    <div class="cfa-title">📈 Trading Lens: Technical Setup</div>
+
+                    <p><strong>Current Technicals:</strong></p>
+                    <ul>
+                        <li><strong>Support:</strong> $75.00 (previous resistance, now support)</li>
+                        <li><strong>Resistance:</strong> $95.00 (psychological + 52-week high)</li>
+                        <li><strong>RSI:</strong> 72 (overbought, but momentum strong)</li>
+                        <li><strong>Volume:</strong> 2.3x average (institutional accumulation)</li>
+                    </ul>
+
+                    <p><strong>Trade Setup:</strong></p>
+                    <p>Entry: Current levels OR pullback to $80<br>
+                    Stop: $75.00 (break of support)<br>
+                    Target: $95.00 (+11%)<br>
+                    Risk/Reward: 1:1.5 (acceptable)</p>
+                </div>
+
+                <div class="cfa-box">
+                    <div class="cfa-title">🏛️ Long-term Investor Lens: Business Quality</div>
+
+                    <p><strong>Economic Moat: NARROW</strong></p>
+                    <ul>
+                        <li>Technology advantage in NAND flash (competing with Samsung, SK Hynix)</li>
+                        <li>No switching costs — commodity product</li>
+                        <li>Cyclical industry — earnings volatile</li>
+                    </ul>
+
+                    <p><strong>Financial Health:</strong></p>
+                    <ul>
+                        <li>Debt/Equity: 0.45 (manageable)</li>
+                        <li>FCF Margin: 18% (cyclical high)</li>
+                        <li>Dividend: None (growth reinvestment)</li>
+                    </ul>
+
+                    <p><strong>Verdict:</strong> Trading position, not long-term hold. Sell when memory cycle turns.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BOTTOM LAGGARD SECTION -->
+        <section class="section">
+            <h2>📉 Bottom Laggard Analysis: Intuit (INTU)</h2>
+
+            <div class="stock-card">
+                <div class="stock-header">
+                    <div class="stock-symbol">INTU</div>
+                    <div class="stock-return negative">−42.55% YTD</div>
+                </div>
+
+                <div class="metrics-row">
+                    <div class="metric">
+                        <div class="metric-value">$585.00</div>
+                        <div class="metric-label">Current Price</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">28.5x</div>
+                        <div class="metric-label">Trailing P/E</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">1.15</div>
+                        <div class="metric-label">Beta</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">−1.68</div>
+                        <div class="metric-label">Sharpe Ratio</div>
+                    </div>
+                </div>
+
+                <div class="cfa-box">
+                    <div class="cfa-title">📚 CFA Lens: Multiple Compression</div>
+                    <div class="cfa-chapter">Chapter 41: Equity Valuation</div>
+
+                    <p><strong>Valuation Contraction Analysis:</strong></p>
+
+                    <table>
+                        <tr><th>Metric</th><th>Jan 2026</th><th>Feb 2026</th><th>Change</th></tr>
+                        <tr><td>Stock Price</td><td>$1,018</td><td>$585</td><td class="negative">−42.6%</td></tr>
+                        <tr><td>EPS (ttm)</td><td>$18.50</td><td>$20.53</td><td class="positive">+11%</td></tr>
+                        <tr><td>P/E Ratio</td><td>55x</td><td>28x</td><td class="positive">−49%</td></tr>
+                    </table>
+
+                    <p><strong>Key Insight:</strong> Earnings GREW 11%, but stock fell 43%. Pure multiple compression.</p>
+
+                    <p><strong>CFA Concept:</strong> 
+                    <span class="jargon" data-def="Decline in P/E ratio due to changed growth expectations">Multiple compression</span> 
+                    is the inverse of multiple expansion. When growth decelerates from 25% to 12%, market reprices stock from growth multiple (55x) to mature multiple (28x).</p>
+                </div>
+
+                <div class="cfa-box">
+                    <div class="cfa-title">📈 Trading Lens: Contrarian Opportunity?</div>
+
+                    <p><strong>Technical Picture:</strong></p>
+                    <ul>
+                        <li><strong>Death Cross:</strong> 50-day MA crossed below 200-day MA (bearish)</li>
+                        <li><strong>Support:</strong> $550 (2023 breakout level)</li>
+                        <li><strong>RSI:</strong> 32 (oversold, but can stay oversold)</li>
+                        <li><strong>Volume:</strong> Elevated on down days (distribution)</li>
+                    </ul>
+
+                    <p><strong>Contrarian Setup:</strong></p>
+                    <p>For patient investors: Wait for RSI <30 + volume capitulation spike<br>
+                    Entry: $550–570 range<br>
+                    Stop: $520 (break of multi-year support)<br>
+                    Target: $750 (return to 35x P/E on $21 EPS)</p>
+                </div>
+
+                <div class="cfa-box">
+                    <div class="cfa-title">🏛️ Long-term Investor Lens: Quality at Discount</div>
+
+                    <p><strong>Economic Moat: WIDE</strong></p>
+                    <ul>
+                        <li>TurboTax = 70% market share (IRS integration = switching costs)</li>
+                        <li>QuickBooks = 80% small business market</li>
+                        <li>Credit Karma = 130M users (data network effects)</li>
+                    </ul>
+
+                    <p><strong>Why It's Down:</strong></p>
+                    <ul>
+                        <li>AI threat (ChatGPT doing taxes?)</li>
+                        <li>Growth deceleration (25% → 12%)</li>
+                        <li>Valuation reset from tech bubble levels</li>
+                    </ul>
+
+                    <p><strong>Long-term Case:</strong> At 28x P/E with 68% gross margins and 30%+ ROIC, 
+                    INTU is higher quality than 90% of S&P 500. If you believe AI won't kill tax software, 
+                    this is a generational entry point.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHARTS SECTION -->
+        <section class="section">
+            <h2>📊 Visual Analysis</h2>
+
+            <div class="chart-container">
+                <canvas id="performanceChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="valuationChart"></canvas>
+            </div>
+        </section>
+
+        <!-- SUMMARY -->
+        <section class="section">
+            <h2>🎯 Key Takeaways for CFA Exam</h2>
+
+            <ol style="line-height: 2; padding-left: 25px;">
+                <li><strong>P/E Ratio:</strong> Compare to sector and historical average. Forward P/E matters more than trailing for growth stocks.</li>
+                <li><strong>Sharpe Ratio:</strong> >1.0 is good, >2.0 is excellent. Negative Sharpe = you'd prefer risk-free T-bills.</li>
+                <li><strong>Expected Value:</strong> Probability-weighted outcomes. Biotech = extreme example of binary outcomes.</li>
+                <li><strong>Position Sizing:</strong> Never risk >2% of portfolio on any single trade. Formula: (Portfolio × Risk%) / (Entry − Stop).</li>
+                <li><strong>Beta:</strong> Portfolio beta = weighted average. β > 1 = more volatile, requires higher expected return.</li>
+                <li><strong>Multiple Compression:</strong> Stock can fall even if earnings grow. P/E contraction hurts returns.</li>
+            </ol>
+
+            <div class="cfa-box" style="margin-top: 30px;">
+                <div class="cfa-title">📚 Complete CFA Chapter Reference</div>
+                <table>
+                    <tr><th>Concept</th><th>Chapter</th><th>LOS</th></tr>
+                    <tr><td>Expected Value</td><td>2: Probability</td><td>LOS 2.d</td></tr>
+                    <tr><td>P/E Ratio</td><td>41: Equity Valuation</td><td>LOS 41.a</td></tr>
+                    <tr><td>Sharpe Ratio</td><td>57: Risk &amp; Return</td><td>LOS 57.c</td></tr>
+                    <tr><td>Beta</td><td>57: Risk &amp; Return</td><td>LOS 57.a</td></tr>
+                    <tr><td>Position Sizing</td><td>52: Portfolio Planning</td><td>LOS 52.b</td></tr>
+                    <tr><td>Moat Analysis</td><td>40: Industry Analysis</td><td>LOS 40.c</td></tr>
+                </table>
+            </div>
+        </section>
+
+        <footer style="text-align: center; padding: 40px; border-top: 1px solid #ddd; margin-top: 40px; color: var(--text-secondary);">
+            <p>S&amp;P 500 CFA Master Analysis · Level I Exam Preparation</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">
+                Generated: February 22, 2026 · For educational purposes only
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+        }
+
+        // Performance Chart
+        new Chart(document.getElementById('performanceChart'), {
+            type: 'bar',
+            data: {
+                labels: ['SNDK', 'TPL', 'MRNA', 'TER', 'GNRC', 'WDC', 'INTU', 'IT', 'WDAY', 'TTD'],
+                datasets: [{
+                    label: 'YTD Return (%)',
+                    data: [173.8, 74.0, 69.1, 67.8, 68.1, 65.7, -42.6, -39.1, -35.8, -33.9],
+                    backgroundColor: [
+                        '#2e7d32', '#2e7d32', '#2e7d32', '#2e7d32', '#2e7d32',
+                        '#c62828', '#c62828', '#c62828', '#c62828', '#c62828'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: { display: true, text: 'S&amp;P 500 YTD 2026: Top 5 vs Bottom 5' }
+                },
+                scales: {
+                    y: { ticks: { callback: v =&gt; v + '%' } }
+                }
+            }
+        });
+
+        // Valuation Chart
+        new Chart(document.getElementById('valuationChart'), {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Stocks',
+                    data: [
+                        {x: 173.8, y: 39.8}, {x: 74.0, y: 28.0}, {x: 69.1, y: 45.0},
+                        {x: 67.8, y: 32.0}, {x: -42.6, y: 28.5}, {x: -39.1, y: 24.0}
+                    ],
+                    backgroundColor: ['#2e7d32', '#2e7d32', '#2e7d32', '#2e7d32', '#c62828', '#c62828']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: { display: true, text: 'Returns vs P/E Multiple (Multiple Expansion/Compression)' }
+                },
+                scales: {
+                    x: { title: { display: true, text: 'YTD Return (%)' } },
+                    y: { title: { display: true, text: 'P/E Ratio' } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-Stock Portfolio — Visual CFA Analysis</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        
+        .header {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 42px;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .cfa-box {
+            background: #e3f2fd;
+            border-left: 5px solid #2196f3;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        .cfa-box h4 {
+            color: #1565c0;
+            margin-bottom: 10px;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+        .cfa-box p {
+            color: #0d47a1;
+            font-size: 15px;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #1a1a2e;
+            border-bottom: 3px solid #11998e;
+            padding-bottom: 10px;
+        }
+        
+        .chart-container {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            position: relative;
+            height: 400px;
+        }
+        .chart-title {
+            text-align: center;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 15px;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+        .metric-card {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        .metric-value { font-size: 28px; font-weight: 700; }
+        .metric-label { font-size: 11px; opacity: 0.9; text-transform: uppercase; }
+        
+        .stock-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 5px solid;
+        }
+        .stock-acmr { border-color: #667eea; }
+        .stock-7735 { border-color: #f093fb; }
+        .stock-deme { border-color: #4facfe; }
+        .stock-dofg { border-color: #43e97b; }
+        
+        .stock-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .stock-ticker {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a2e;
+        }
+        .stock-signal {
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 12px;
+        }
+        .signal-buy { background: #00c853; color: white; }
+        .signal-neutral { background: #ffc400; color: #333; }
+        .signal-mixed { background: #2979ff; color: white; }
+        
+        .step-box {
+            display: flex;
+            align-items: flex-start;
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            border-left: 4px solid #11998e;
+        }
+        .step-number {
+            background: #11998e;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 13px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #1a1a2e;
+            color: white;
+        }
+        tr:hover { background: #f5f5f5; }
+        .highlight { background: #e8f5e9; font-weight: 600; }
+        
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="header">
+            <h1>📊 4-STOCK PORTFOLIO</h1>
+            <p style="font-size: 18px; color: #666;">Visual CFA-Style Analysis with Step-by-Step Guidance</p>
+            <p style="margin-top: 15px;"><strong>ACMR | 7735.T | DEME | DOFG</strong></p>
+        </div>
+
+        <!-- PORTFOLIO OVERVIEW -->
+        <div class="section">
+            <h2>🎯 Portfolio Overview — At a Glance</h2>
+            
+            <div class="cfa-box">
+                <h4>📚 CFA Concept: Portfolio Diversification</h4>
+                <p>These 4 stocks give you exposure to TWO major themes: (1) <strong>Semiconductor Infrastructure</strong> (ACMR + 7735) benefiting from AI chip demand, and (2) <strong>Energy Transition/Services</strong> (DEME + DOFG) benefiting from offshore wind and oil recovery. Correlation between pairs is LOW (~0.3) = good diversification.</p>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">4</div>
+                    <div class="metric-label">Positions</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">3</div>
+                    <div class="metric-label">BUY Signals</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">28%</div>
+                    <div class="metric-label">Avg Revenue Growth</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">2.5%</div>
+                    <div class="metric-label">Avg Dividend</div>
+                </div>
+            </div>
+
+            <!-- Chart: Revenue Growth Comparison -->
+            <div class="chart-container">
+                <div class="chart-title">Chart 1: Revenue Growth Comparison (% YoY) — Higher is Better</div>
+                <canvas id="growthChart"></canvas>
+            </div>
+
+            <div class="cfa-box">
+                <h4>📚 How to Read This Chart (CFA: Growth Analysis)</h4>
+                <p><strong>ACMR leads at 40%</strong> — this is <em>exceptional</em> growth for a semi equipment company (industry avg: 15-20%). In CFA terms, we'd calculate the <strong>Sustainable Growth Rate (SGR)</strong> = ROE × Retention Ratio. High growth + high margins = premium valuation justified.</p>            
+            </div>
+        </div>
+
+        <!-- INDIVIDUAL STOCK ANALYSIS -->
+        <div class="section">
+            <h2>📈 Individual Stock Analysis — The Visual Deep Dive</h2>
+
+            <!-- ACMR -->
+            <div class="stock-card stock-acmr">
+                <div class="stock-header">
+                    <span class="stock-ticker">ACMR — ACM Research</span>
+                    <span class="stock-signal signal-neutral">NEUTRAL / WATCH</span>
+                </div>
+                
+                <div class="cfa-box">
+                    <h4>📚 CFA Framework: Margin Analysis</h4>
+                    <p><strong>Gross Margin: 47.8% | Operating Margin: 13.2% | Net Margin: 13.2%</strong>. These are HEALTHY for semi equipment. Rule of thumb: <em>Gross margin > 40%</em> = pricing power. <em>Operating margin > 10%</em> = operational efficiency. ACMR passes both tests.</p>                
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
+                    <div>
+                        <p><strong>💰 Revenue:</strong> $782M (+40% YoY)</p>
+                        <p><strong>📈 EPS Beat:</strong> 66.8% above estimates</p>
+                        <p><strong>💵 Cash:> $366.8M</p>
+                        <p><strong>⚠️ Debt/Equity:</strong> 15.2% (very low)</p>
+                    </div>
+                    <div>
+                        <p><strong>🎯 Price:</strong> $66.59</p>
+                        <p><strong>📊 RSI:</strong> 50.57 (neutral)</p>
+                        <p><strong>📉 Support:</strong> $60-63</p>
+                        <p><strong>📈 Resistance:</strong> $70.68 (ATH)</p>
+                    </div>
+                </div>
+
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <div style="flex: 1;">
+                        <h4>The Setup</h4>
+                        <p>ACMR is trading near all-time highs ($70.68) after a 40% revenue growth quarter. Stock is consolidating. <strong>CFA View:</strong> This is a <em>breakout or pullback</em> decision point. Wait for direction.</p>                    
+                    </div>
+                </div>
+
+                <div class="step-box">
+                    <div class="step-number">2</div>
+                    <div style="flex: 1;">
+                        <h4>Your Action</h4>
+                        <p><strong>Aggressive:</strong> Buy breakout above $70.68 with stop at $64. <strong>Conservative:</strong> Wait for pullback to $60-63 support zone.</p>                    
+                    </div>
+                </div>
+
+                <div class="step-box">
+                    <div class="step-number">⚠️</div>
+                    <div style="flex: 1;">
+                        <h4>The Risk</h4>
+                        <p><strong>China exposure (~30-40% revenue).</strong> If China semi market downturn or BIS Entity List sanctions intensify, stock could drop 30-40%. This is <em>concentration risk</em> — not diversified geographically.</p>                    
+                    </div>
+                </div>
+            </div>
+
+            <!-- DEME -->
+            <div class="stock-card stock-deme">
+                <div class="stock-header">
+                    <span class="stock-ticker">DEME — DEME Group NV</span>
+                    <span class="stock-signal signal-buy">BUY — CLEANEST SETUP</span>
+                </div>
+                
+                <div class="cfa-box">
+                    <h4>📚 CFA Framework: Margin Expansion & Balance Sheet</h4>
+                    <p><strong>EBITDA margin expanded from 15.4% to 21.0%</strong> — this is <em>operating leverage</em> in action. Fixed costs spread over more revenue = higher margins. Plus: <strong>Net Cash Position</strong> (reversed from net debt). This is the strongest balance sheet in the portfolio.</p>                
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
+                    <div>
+                        <p><strong>💰 Revenue:</strong> €4.1B (+25% YoY)</p>
+                        <p><strong>📈 Net Profit:</strong> €288M (+77% YoY)</p>
+                        <p><strong>💵 EBITDA Margin:</strong> 21.0% (up from 15.4%)</p>
+                        <p><strong>✅ Net Position:</strong> CASH POSITIVE</p>
+                    </div>
+                    <div>
+                        <p><strong>🎯 Price:</strong> €196.20</p>
+                        <p><strong>📊 Technical:</strong> Breakout above €168</p>
+                        <p><strong>📉 Support:</strong> €180-185</p>
+                        <p><strong>📈 Target:</strong> €200 (psychological)</p>
+                    </div>
+                </div>
+
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <div style="flex: 1;">
+                        <h4>The Setup</h4>
+                        <p>DEME broke out of €157-168 rectangle pattern. Stock now trading at €196. This is a <strong>confirmed breakout</strong> with volume. <strong>CFA View:</strong> Breakouts above resistance with fundamentals = high probability continuation.</p>                    
+                    </div>
+                </div>
+
+                <div class="step-box">
+                    <div class="step-number">2</div>
+                    <div style="flex: 1;">
+                        <h4>Your Action</h4>
+                        <p><strong>BUY NOW.</strong> This is the cleanest setup in the portfolio. Entry: Current levels OR any dip to €180-185 (breakback test). Stop: €175 (invalidates breakout). Target: €200.</p>                    
+                    </div>
+                </div>
+
+                <div class="step-box">
+                    <div class="step-number">✅</div>
+                    <div style="flex: 1;">
+                        <h4>Why This is #1 Pick</h4>
+                        <p><strong>77% profit growth</strong> + <strong>margin expansion</strong> + <strong>net cash position</strong> + <strong>technical breakout</strong> = all stars aligned. Lowest risk, highest conviction.</p>                    
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7735.T -->
+            <div class="stock-card stock-7735">
+                <div class="stock-header">
+                    <span class="stock-ticker">7735.T — SCREEN Holdings</span>
+                    <span class="stock-signal signal-neutral">ACCUMULATE ON WEAKNESS</span>
+                </div>
+                
+                <div class="cfa-box">
+                    <h4>📚 CFA Framework: Long-Term Trend Analysis</h4>
+                    <p><strong>3-year return: 243%</strong>. This is <em>compound growth</em> in action. But short-term MACD is negative = consolidation. <strong>CFA View:</strong> This is a <em>pullback in an uptrend</em> = buying opportunity for long-term holders. Don't chase, accumulate on dips.</p>                
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
+                    <div>
+                        <p><strong>💰 Revenue:</strong> ¥625B (+24% YoY)</p>
+                        <p><strong>📈 3Y Return:</strong> 243%</p>
+                        <p><strong>📊 Credit:</strong> A-rated (JCR)</p>
+                        <p><strong>🏢 Market Cap:</strong> ~$9.6B</p>
+                    </div>
+                    <div>
+                        <p><strong>🎯 Price:</strong> ¥21,980</p>
+                        <p><strong>📊 RSI:</strong> 50.10 (neutral)</p>
+                        <p><strong>📉 Support:</strong> ¥18K-19K</p>
+                        <p><strong>📈 Resistance:</strong> ¥22K+</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DOFG -->
+            <div class="stock-card stock-dofg">
+                <div class="stock-header">
+                    <span class="stock-ticker">DOFG — DOF Group ASA</span>
+                    <span class="stock-signal signal-mixed">HOLD / ACCUMULATE</span>
+                </div>
+                
+                <div class="cfa-box">
+                    <h4>📚 CFA Framework: Leverage & Coverage Ratios</h4>
+                    <p><strong>Net Debt/EBITDA: 2.3x</strong> (down from 3.0x). This is <em>de-leveraging</em> — company using strong cash flows to reduce debt. <strong>Coverage ratio improving</strong> = credit quality improving. Low beta (0.14) = portfolio stabilizer.</p>                
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0;">
+                    <div>
+                        <p><strong>💰 Revenue:</strong> $1.39B (+23% YoY)</p>
+                        <p><strong>⚓ Fleet Utilization:</strong> 92%</p>
+                        <p><strong>📊 Backlog:</strong> $3B+</p>
+                        <p><strong>💵 Subsea EBITDA:</strong> $134M</p>
+                    </div>
+                    <div>
+                        <p><strong>🎯 Price:</strong> NOK 126.50</p>
+                        <p><strong>📊 Leverage:</strong> 2.3x (improving)</p>
+                        <p><strong>📉 Support:</strong> NOK 115-120</p>
+                        <p><strong>📈 Target:</strong> NOK 140+</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMPARISON TABLE -->
+        <div class="section">
+            <h2>📊 Side-by-Side Comparison</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>ACMR</th>
+                        <th>DEME</th>
+                        <th>7735.T</th>
+                        <th>DOFG</th>
+                        <th>CFA Interpretation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="highlight">
+                        <td>Revenue Growth</td>
+                        <td>40% 🥇</td>
+                        <td>25%</td>
+                        <td>24%</td>
+                        <td>23%</td>
+                        <td>ACMR = growth leader</td>
+                    </tr>
+                    <tr>
+                        <td>Profit Growth</td>
+                        <td>34%</td>
+                        <td>77% 🥇</td>
+                        <td>N/A</td>
+                        <td>N/A</td>
+                        <td>DEME = operating leverage</td>
+                    </tr>
+                    <tr>
+                        <td>Balance Sheet</td>
+                        <td>Strong (15% D/E)</td>
+                        <td>Excellent (Net Cash) 🥇</td>
+                        <td>A-rated</td>
+                        <td>Improving (2.3x)</td>
+                        <td>DEME safest financially</td>
+                    </tr>
+                    <tr>
+                        <td>Valuation (P/E)</td>
+                        <td>37.8x (high)</td>
+                        <td>26x (fair)</td>
+                        <td>N/A</td>
+                        <td>N/A</td>
+                        <td>DEME better value</td>
+                    </tr>
+                    <tr>
+                        <td>Technical Setup</td>
+                        <td>Neutral (consolidation)</td>
+                        <td>BUY (breakout) 🥇</td>
+                        <td>Neutral (pullback)</td>
+                        <td>Mixed (short-term weak)</td>
+                        <td>DEME cleanest entry</td>
+                    </tr>
+                    <tr>
+                        <td>Risk Level</td>
+                        <td>HIGH (China)</td>
+                        <td>MEDIUM</td>
+                        <td>MEDIUM</td>
+                        <td>MEDIUM</td>
+                        <td>DEME best risk/reward</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="cfa-box">
+                <h4>📚 How to Use This Table (CFA: Comparative Analysis)</h4>
+                <p>Look for <strong>GREEN cells</strong> = competitive advantage. DEME wins on: profit growth, balance sheet, valuation, technical setup, and risk. This is why it's the #1 pick. ACMR has highest revenue growth but also highest risk (China). Match stocks to your risk tolerance.</p>            
+            </div>
+        </div>
+
+        <!-- POSITION SIZING -->
+        <div class="section">
+            <h2>🎯 Position Sizing Guide</h2>
+            
+            <div class="cfa-box">
+                <h4>📚 CFA Concept: Risk Budgeting</h4>
+                <p>Don't put all eggs in one basket. Rule: <strong>No single position > 5-10%</strong> of portfolio. These 4 stocks are ALL cyclical/high-growth = correlated in downturns. Total allocation to this basket: 15-25% max.</p>            
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Stock</th>
+                        <th>Conviction</th>
+                        <th>Risk</th>
+                        <th>Suggested Allocation</th>
+                        <th>Entry</th>
+                        <th>Stop</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="highlight">
+                        <td>DEME</td>
+                        <td>HIGHEST 🥇</td>
+                        <td>Medium</td>
+                        <td>7-15%</td>
+                        <td>Now or €180 dip</td>
+                        <td>€175</td>
+                    </tr>
+                    <tr>
+                        <td>7735.T</td>
+                        <td>High</td>
+                        <td>Medium</td>
+                        <td>5-12%</td>
+                        <td><¥20K</td>
+                        <td>¥17K</td>
+                    </tr>
+                    <tr>
+                        <td>DOFG</td>
+                        <td>Medium</td>
+                        <td>Medium</td>
+                        <td>5-10%</td>
+                        <td><NOK 120</td>
+                        <td>NOK 110</td>
+                    </tr>
+                    <tr>
+                        <td>ACMR</td>
+                        <td>Medium (high reward)</td>
+                        <td>HIGH</td>
+                        <td>5-10%</td>
+                        <td><$63 OR >$70.68</td>
+                        <td>$57</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            <p>Built with CFA Level 1 curriculum | February 22, 2026</p>
+        </div>
+
+    </div>
+
+    <script>
+        new Chart(document.getElementById('growthChart'), {
+            type: 'bar',
+            data: {
+                labels: ['ACMR', 'DEME', '7735.T', 'DOFG', 'Industry Avg'],
+                datasets: [{
+                    label: 'Revenue Growth %',
+                    data: [40, 25, 24, 23, 15],
+                    backgroundColor: [
+                        'rgba(102, 126, 234, 0.8)',
+                        'rgba(79, 172, 254, 0.8)',
+                        'rgba(240, 147, 251, 0.8)',
+                        'rgba(67, 233, 123, 0.8)',
+                        'rgba(200, 200, 200, 0.5)'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, ticks: { callback: v => v + '%' } }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,129 @@
+Ticker,Company Name,Sector,Current Price,Price Change (%),Recommendation,Market Cap,Revenue (FY2024),Revenue Growth (%),Net Income,Net Income Growth (%),Profit Margin (%),Debt/Equity (%),Free Cash Flow,FCF Growth (%),Cash Position,EV/EBITDA,P/E Ratio,RSI (14),MACD,Technical Signal,Trend Status,Key Support,Key Resistance,52W High,52W Low,Analyst Rating,Price Target,Upside (%),Risk Level,China Exposure,Primary Risk,Investment Thesis Summary
+ACMR,ACM Research Inc,Semiconductor Equipment,$66.59,1.90%,BUY,$4.24B,$782.1M,40%,$103.6M,34%,13%,15.20%,$70M,151%,$366.8M,13.6x,37.77,50.57,0.64,NEUTRAL,Consolidation at ATH,$60-63,$70.68,$70.68,$49.85,BUY,$43,-33.68%,HIGH,HIGH,China market downturn; BIS Entity List,40% revenue growth beating WFE market. Strong execution with 66.8% EPS beat. Low debt. AI chip demand tailwinds.
+7735.T,SCREEN Holdings Co Ltd,Semiconductor Equipment (Japan),¥21980,1.62%,BUY,$9.6B,¥625.2B ($4.1B),23.80%,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,50.1,-152.87,NEUTRAL,Pullback from highs,¥18000-19000,¥22000+,N/A,N/A,A (JCR),N/A,N/A,MEDIUM,HIGH,Cyclical capex; Yen weakness,Japanese semi equipment leader. Record H1 FY2025. AI-driven demand. 3-year return 243%. A-rated credit.
+DEME,DEME Group NV,Offshore Energy & Marine Infrastructure,€196.20,0.10%,BUY,€7.5B,€4.1B,25%,€288M,77%,7%,0% (net cash),€764M EBITDA,28%,Positive Net Cash,4.8x,26x,N/A,N/A,BUY,Breakout confirmed,€180-185,€200,N/A,N/A,BUY,€182,12.60%,MEDIUM,LOW,Project execution risk; Weather delays,World-class offshore wind contractor. 77% profit growth. Margin expansion 15.4% to 21.0%. Now net cash positive.
+DOFG,DOF Group ASA,Offshore & Subsea Services,NOK 126.50,4.55%,BUY,NOK 13.5B,$1.39B,22.70%,$178M,N/A,12.80%,N/A (2.3x leverage),$519M EBITDA,N/A,N/A,N/A,N/A,N/A,N/A,MIXED,Short-term weakness,NOK 115-120,NOK 130+,NOK 126.5,NOK 71.85,STRONG BUY,NOK 143.82,13.70%,MEDIUM,MEDIUM (via oil prices),Oil price sensitivity; Brazil FX risk,Offshore vessel operator. 92% fleet utilization. $3B+ backlog. Subsea business $134M EBITDA. Deleveraging from 3.0x to 2.3x.
+HYPE,Hyperliquid (HYPE Token),DeFi Infrastructure,$22.00,N/A,ACCUMULATE,$7.5B,$550M+ annualized,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,13.6x,N/A,N/A,N/A,N/A,Uptrend,$18-20,$38-59 fair value,$49.75 (ATH),$2.00 (launch),BUY,$38-77,73-250%,HIGH,MEDIUM (crypto reg),Token unlocks; Regulatory crackdown,Dominant perp DEX (67% market share). 97% fees to buybacks. Fixed 1B supply. HyperEVM growth. Account linking feature.
+
+Sheet: Staking_Tiers
+Tier,HYPE Required,Fee Discount,Est USD Value (@$22),Monthly Savings (on $500 fees),Annual ROI,Best For
+Wood,10 HYPE,5%,$220,$25,136%,Most traders - optimal risk/reward
+Bronze,1000 HYPE,10%,$22000,$50,2.70%,High volume traders ($5M+/mo)
+Silver,10000 HYPE,15%,$220000,$75,0.41%,Institutional/Very high volume
+Gold,50000 HYPE,25%,$1100000,$125,0.14%,Whales/Professional trading firms
+Platinum,100000 HYPE,30%,$2200000,$150,0.08%,Market makers
+Diamond,500000 HYPE,40%,$11000000,$200,0.02%,Exchange-level operations
+
+Sheet: Portfolio_Allocation
+Stock,Conservative (2-3%),Moderate (5-7%),Aggressive (10-15%),Entry Strategy,Stop Loss,Time Horizon
+ACMR,2%,5%,10%,Breakout above $70.68 OR pullback to $60-63,$57,6-12 months
+7735.T,2%,5%,12%,DCA on dips to ¥19000-20000,¥17000,12-24 months
+DEME,3%,7%,15%,Current levels OR dip to €180,€175,6-12 months
+DOFG,2%,5%,10%,Current levels OR NOK 115-120,NOK 110,6-12 months
+HYPE,2%,5%,15%,DCA at $20-25 OR $18-20 dip,$15,12-18 months
+
+Sheet: Risk_Matrix
+Stock,Risk Level,Primary Risk,Secondary Risk,China Exposure,Max Drawdown Potential (estimated)
+ACMR,HIGH,China market downturn,BIS Entity List regulatory,HIGH,-40%
+7735.T,MEDIUM,Semiconductor capex cycle,Yen weakness,HIGH,-30%
+DEME,MEDIUM,Project execution risk,Weather delays,LOW,-25%
+DOFG,MEDIUM,Oil price sensitivity,Brazil FX/political,MEDIUM (via commodities),-30%
+HYPE,HIGH,Token unlock pressure ($219M),Regulatory crackdown (CFTC/SEC),MEDIUM (crypto),-50%
+
+Sheet: Technical_Levels
+Stock,Current Price,Support 1,Support 2,Resistance 1,Resistance 2,RSI,MACD,Signal
+ACMR,$66.59,$63.00,$60.00,$70.68 (ATH),$75.00,50.57,0.64,NEUTRAL
+7735.T,¥21980,¥19000,¥18000,¥22000,¥25000,50.1,-152.87,NEUTRAL
+DEME,€196.20,€185.00,€180.00,€200.00,€220.00,N/A,N/A,BUY (breakout)
+DOFG,NOK 126.50,NOK 120.00,NOK 115.00,NOK 130.00,NOK 140.00,N/A,N/A,MIXED
+HYPE,$22.00,$20.00,$18.00,$25.00,$30.00,N/A,N/A,ACCUMULATE
+
+Sheet: Fundamental_Comparison
+Metric,ACMR,7735.T,DEME,DOFG,HYPE,Industry Best,Notes
+Revenue Growth,40%,23.80%,25%,22.70%,N/A (new token),ACMR,HYPE has 67% market share
+Profit Margin,13%,N/A,7%,12.80%,N/A,N/A,DEME has margin expansion story
+Debt/Equity,15.20%,N/A,0% (net cash),2.3x (leverage),N/A,DEME,DEME reversed to net cash
+FCF Growth,151%,N/A,28%,N/A,N/A,ACMR,Exceptional cash generation
+Market Position,#2 in China semi equip,Japan semi equip leader,#1-2 offshore wind,Top 5 subsea vessel,Perp DEX market leader,HYPE,Multiple #1 positions
+Valuation (P/E),37.77x,N/A,26x,N/A,13.6x revenue,HYPE,Different metrics for each
+Analyst Rating,BUY,A-rated credit,BUY,STRONG BUY,BUY,DOFG (5/5 buy),All bullish
+
+Sheet: Trading_Strategy
+Stock,Strategy,Entry Condition,Target,Stop Loss,Risk:Reward,Position Size (portfolio %),Notes
+ACMR,Breakout/Pullback,>$70.68 OR <$63,$75.00,$57,2.5:1,5-10%,Wait for direction
+7735.T,Accumulate,<¥20000,¥25000,¥17000,2:1,5-12%,Long-term compounder
+DEME,Buy Breakout,Any dip to €180-185,€200,€175,3:1,7-15%,Cleanest setup
+DOFG,Hold/Accumulate,<NOK 120,NOK 140+,NOK 110,2:1,5-10%,Low beta stabilizer
+HYPE,DCA/Accumulate,$20-25 range,$38-77,$15,3-5:1,5-15%,High conviction DeFi play
+
+Sheet: Account_Linking_FAQ
+Question,Answer,Important Notes
+Does staking on Account A give fee discount when trading on Account A?,YES,Automatic - discount applies to staked account
+Can I link Account B to get discounts from Account A?,YES,Use Account Linking feature introduced May 2025,Is the link permanent?,YES,CANNOT BE UNDONE - backup keys first
+Can I link multiple accounts?,NO,Only ONE trading account per staking account
+Can I unlink accounts later?,NO,Permanent action - plan carefully
+Best practice for traders?,Stake 10 HYPE (Wood tier) on Staking Account → Link to Trading Account → Keep majority HYPE in cold storage,Wood tier = optimal for most
+ROI on 10 HYPE stake?,136% annualized (on $1M/mo volume trader),Based on $25/month savings vs $220 stake cost
+
+Sheet: Earnings_Calendar
+Company,Next Earnings,Expected Date,Key Metrics to Watch,Surprise Potential
+ACMR,Q1 2025,May 2025,Revenue guidance $850-950M,HIGH (40% growth)
+7735.T,FY2025 Full Year,May 2025,Operating income vs record H1,HIGH (raised guidance)
+DEME,Q1 2026,March 2025,Offshore Energy margin sustain,MEDIUM (21% margins)
+DOFG,Q1 2026,March 2025,Fleet utilization >90%,LOW (92% stable)
+HYPE,N/A (crypto),N/A,Monthly revenue/DEX volume,HIGH (volatility)
+
+Sheet: Key_Catalysts
+Stock,Catalyst,Timeline,Impact Probability,Bullish/Bearish
+ACMR,China stimulus announcement,Q2 2025,30%,BULLISH
+ACMR,BIS Entity List removal,2025,15%,BULLISH
+7735.T,Japan semi reshoring acceleration,Ongoing,70%,BULLISH
+7735.T,AI chip capex cycle peak,H2 2025,40%,BEARISH
+DEME,Offshore wind project wins,Q2 2025,60%,BULLISH
+DEME,Oil price crash to $50,Anytime,20%,BEARISH
+DOFG,Brazil contract renewal,Q3 2025,50%,BULLISH
+DOFG,Offshore oil capex cuts,H2 2025,25%,BEARISH
+HYPE,Binance US listing,Q2 2025,40%,BULLISH
+HYPE,Major token unlock,Monthly,Ongoing,BEARISH
+HYPE,CFTC enforcement action,Anytime,10%,BEARISH
+
+Sheet: Hyperliquid_Staking_ROI_Calculator
+Monthly Volume,Base Fee (0.05%),Wood Tier Savings (5%),Bronze Savings (10%),Silver+ (15%+),Wood ROI,Bronze ROI
+"$100,000","$50","$2.50","$5.00","$7.50+",13.60%,0.27%
+"$500,000","$250","$12.50","$25.00","$37.50+",68.20%,1.36%
+"$1,000,000","$500","$25.00","$50.00","$75.00+",136.40%,2.73%
+"$5,000,000","$2500","$125.00","$250.00","$375.00+",681.80%,13.64%
+"$10,000,000","$5000","$250.00","$500.00","$750.00+",1363.60%,27.27%
+Notes: ROI calculated on $220 (10 HYPE) for Wood tier and $22000 (1000 HYPE) for Bronze tier at $22/HYPE. Staking yield of 2.26% additional for all tiers.
+
+Sheet: Valuation_Models
+Stock,Current Price,Fair Value Low,Fair Value High,Upside Low,Upside High,Methodology,Source
+ACMR,$66.59,$60.00,$75.00,-9.90%,12.60%,DCF + Growth,Internal
+7735.T,¥21980,¥20000,¥28000,-9.00%,27.40%,P/E + Growth,Internal
+DEME,€196.20,€180.00,€220.00,-8.30%,12.10%,EV/EBITDA,Internal
+DOFG,NOK 126.50,NOK 115.00,NOK 143.82,-9.10%,13.70%,P/E + Backlog,WalletInvestor
+HYPE,$22.00,$38.00,$77.00,72.70%,250.00%,Revenue Multiple,Artemis/CoinDesk
+
+Sheet: Daily_Monitoring_Checklist
+Time,Action,Tools,Notes
+Pre-market (9:00 AM),Check overnight price action,Yahoo Finance / TradingView,Focus on support/resistance tests
+,Review news catalysts,Google News / Twitter,Any material announcements?
+,Check futures/indices,Bloomberg / CNBC,Market sentiment context
+Mid-day (12:00 PM),Monitor volume patterns,TradingView,Unusual volume = attention
+,Check sector performance,TradingView,Relative strength vs sector
+,Review margin requirements,Broker platform,Any changes?
+Close (4:00 PM),End of day positions,TradingView / Broker,Mark key levels for tomorrow
+,Update trading journal,Notion/Spreadsheet,Record P&L and lessons
+,Check after-hours,Yahoo Finance,Earnings or news?
+Evening (8:00 PM),Review Asian markets open,Bloomberg,Overnight sentiment
+,Prep watchlist for tomorrow,Spreadsheet,Key levels and triggers
+,Check economic calendar,Forex Factory,Macro events tomorrow?
+
+Sheet: Correlation_Matrix
+,ACMR,7735.T,DEME,DOFG,HYPE,Market Factor
+ACMR,1.00,0.75,0.25,0.30,0.40,China/AI semi
+7735.T,0.75,1.00,0.20,0.25,0.35,Japan/AI semi
+DEME,0.25,0.20,1.00,0.60,0.20,Offshore energy
+DOFG,0.30,0.25,0.60,1.00,0.25,Oil prices
+HYPE,0.40,0.35,0.20,0.25,1.00,Crypto risk-on
+Note: Estimated correlations based on sector overlaps. DEME/DOFG positively correlated through offshore energy exposure.

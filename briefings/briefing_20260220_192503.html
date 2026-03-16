@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dibs Morning Briefing — Friday, February 20, 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header .date {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .quote-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 8px;
+            font-style: italic;
+            font-size: 1.1em;
+            color: #555;
+        }
+        
+        .content {
+            padding: 40px 20px;
+        }
+        
+        section {
+            margin-bottom: 40px;
+        }
+        
+        section h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #667eea;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .articles {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
+        article {
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        article:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+        
+        article h3 {
+            margin-bottom: 10px;
+        }
+        
+        article a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        article a:hover {
+            text-decoration: underline;
+        }
+        
+        .summary {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+        
+        .meta {
+            font-size: 0.9em;
+            color: #999;
+        }
+        
+        .crypto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .crypto-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .crypto-card h3 {
+            margin-bottom: 10px;
+        }
+        
+        .price {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .change {
+            font-weight: bold;
+        }
+        
+        .change.green {
+            color: #10b981;
+        }
+        
+        .change.red {
+            color: #ef4444;
+        }
+        
+        footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #999;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        footer p {
+            margin: 5px 0;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            section h2 {
+                font-size: 1.4em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🗡️ Dibs Morning Briefing</h1>
+            <div class="date">Friday, February 20, 2026</div>
+        </header>
+        
+        <div class="quote-box">
+            "Sober-you would execute this. Do it."
+        </div>
+        
+        <div class="content">
+            
+        <section class="crypto-snapshot">
+            <h2>💹 Crypto Snapshot</h2>
+            <div class="crypto-grid">
+        
+                <div class="crypto-card">
+                    <h3>Bitcoin</h3>
+                    <p class="price">$67,856.00</p>
+                    <p class="change green">+1.18%</p>
+                </div>
+            
+                <div class="crypto-card">
+                    <h3>Ethereum</h3>
+                    <p class="price">$1,962.06</p>
+                    <p class="change red">-0.83%</p>
+                </div>
+            
+                <div class="crypto-card">
+                    <h3>Tether</h3>
+                    <p class="price">$1.00</p>
+                    <p class="change red">-0.00%</p>
+                </div>
+            
+                <div class="crypto-card">
+                    <h3>XRP</h3>
+                    <p class="price">$1.42</p>
+                    <p class="change red">-0.52%</p>
+                </div>
+            
+                <div class="crypto-card">
+                    <h3>BNB</h3>
+                    <p class="price">$612.56</p>
+                    <p class="change green">+0.63%</p>
+                </div>
+            
+            </div>
+        </section>
+        
+            
+        </div>
+        
+        <footer>
+            <p>Briefing generated at 19:25 </p>
+            <p>📊 Your personalized intelligence summary</p>
+        </footer>
+    </div>
+</body>
+</html>

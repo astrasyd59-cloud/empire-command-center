@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Course Comparison | Dibs Decision Matrix</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0f;
+            color: #fff;
+            line-height: 1.4;
+        }
+        .slide {
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-bottom: 1px solid #1a1a2e;
+        }
+        h1 {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #22d3ee 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+        .matrix {
+            display: grid;
+            gap: 16px;
+            max-width: 500px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .course-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f172a 100%);
+            border: 1px solid #334155;
+            border-radius: 16px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+        .mit-agentic::before { background: #ef4444; }
+        .mit-ds::before { background: #f97316; }
+        .google::before { background: #3b82f6; }
+        .datacamp::before { background: #22c55e; }
+        .dlai::before { background: #a855f7; }
+        .build::before { background: #22d3ee; }
+
+        .course-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 12px;
+        }
+        .course-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        .badge {
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+        .badge-exec { background: #dc2626; color: white; }
+        .badge-tech { background: #16a34a; color: white; }
+        .badge-mix { background: #2563eb; color: white; }
+        .badge-free { background: #0891b2; color: white; }
+
+        .price-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+        }
+        .price-tag {
+            display: flex;
+            flex-direction: column;
+        }
+        .price-tag .label {
+            color: #64748b;
+            font-size: 0.7rem;
+        }
+        .price-tag .value {
+            color: #fff;
+            font-weight: 600;
+        }
+        .price-tag .high { color: #ef4444; }
+        .price-tag .med { color: #f59e0b; }
+        .price-tag .low { color: #22c55e; }
+
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .stat {
+            text-align: center;
+            padding: 8px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+        }
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #22d3ee;
+        }
+        .stat-label {
+            font-size: 0.65rem;
+            color: #64748b;
+            text-transform: uppercase;
+        }
+
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            font-size: 0.8rem;
+        }
+        .pros, .cons {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .pros .title { color: #22c55e; font-weight: 600; font-size: 0.7rem; }
+        .cons .title { color: #ef4444; font-weight: 600; font-size: 0.7rem; }
+        .pros li, .cons li {
+            color: #94a3b8;
+            list-style: none;
+            font-size: 0.75rem;
+        }
+        .pros li::before { content: '✓ '; color: #22c55e; }
+        .cons li::before { content: '✗ '; color: #ef4444; }
+
+        .verdict {
+            margin-top: 12px;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .verdict-skip { background: rgba(239,68,68,0.2); color: #fca5a5; border: 1px solid #ef4444; }
+        .verdict-maybe { background: rgba(245,158,11,0.2); color: #fcd34d; border: 1px solid #f59e0b; }
+        .verdict-yes { background: rgba(34,197,94,0.2); color: #86efac; border: 1px solid #22c55e; }
+        .verdict-best { background: rgba(168,85,247,0.2); color: #d8b4fe; border: 1px solid #a855f7; }
+
+        .score-bar {
+            margin-top: 12px;
+        }
+        .score-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            color: #64748b;
+            margin-bottom: 4px;
+        }
+        .score-track {
+            height: 6px;
+            background: #1e293b;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .score-fill {
+            height: 100%;
+            border-radius: 3px;
+        }
+        .score-dibs { background: linear-gradient(90deg, #22d3ee, #3b82f6); }
+
+        .summary-slide {
+            text-align: center;
+        }
+        .recommendation {
+            background: linear-gradient(135deg, #1a1a2e, #0f172a);
+            border: 2px solid #a855f7;
+            border-radius: 20px;
+            padding: 30px 20px;
+            margin: 20px 0;
+        }
+        .winner {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #a855f7;
+            margin-bottom: 10px;
+        }
+        .why {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        .cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #22d3ee, #3b82f6);
+            color: #0a0a0f;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #475569;
+            font-size: 0.8rem;
+        }
+        .emoji { font-size: 1.5rem; }
+    </style>
+</head>
+<body>
+
+<!-- Slide 1: Title -->
+<div class="slide">
+    <h1>🎯 AI Course Battle</h1>
+    <p class="subtitle">McKinsey-Style Analysis for Dibs | Feb 2026</p>
+    <div style="text-align: center; color: #64748b; font-size: 0.9rem;">
+        <p>Swipe/scroll for visual comparison</p>
+        <p style="margin-top: 20px;">📱 Mobile optimized | Gym-friendly format</p>
+    </div>
+</div>
+
+<!-- Slide 2: MIT Agentic AI -->
+<div class="slide">
+    <div class="matrix">
+        <div class="course-card mit-agentic">
+            <div class="course-header">
+                <div class="course-name">🎓 MIT Agentic AI</div>
+                <span class="badge badge-exec">EXECUTIVE</span>
+            </div>
+            
+            <div class="price-row">
+                <div class="price-tag">
+                    <span class="label">COST</span>
+                    <span class="value high">~$4,000</span>
+                </div>
+                <div class="price-tag">
+                    <span class="label">TIME</span>
+                    <span class="value">8-10 weeks</span>
+                </div>
+                <div class="price-tag">
+                    <span class="label">FORMAT</span>
+                    <span class="value">Live + Async</span>
+                </div>
+            </div>
+
+            <div class="quick-stats">
+                <div class="stat"><div class="stat-value">2/10</div><div class="stat-label">Hands-on</div></div>
+                <div class="stat"><div class="stat-value">9/10</div><div class="stat-label">Prestige</div></div>
+                <div class="stat"><div class="stat-value">3/10</div><div class="stat-label">Value/$</div></div>
+            </div>
+
+            <div class="pros-cons">
+                <div class="pros">
+                    <div class="title">PROS</div>
+                    <ul>
+                        <li>MIT credential</li>
+                        <li>Executive network</li>
+                        <li>Agentic AI focus</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <div class="title">CONS</div>
+                    <ul>
+                        <li>No coding required</li>
+                        <li>Theory-heavy</li>
+                        <li>Expensive</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="verdict verdict-skip">
+                ❌ SKIP: You're 28, want to BUILD, not just strategize
+            </div>
+
+            <div class="score-bar">
+                <div class="score-label"><span>Fit for Dibs</span><span>35%</span></div>
+                <div class="score-track"><div class="score-fill score-dibs" style="width: 35%"></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 3: MIT Applied Data Science -->
+<div class="slide">
+    <div class="matrix">
+        <div class="course-card mit-ds">
+            <div class="course-header">
+                <div class="course-name">📊 MIT Applied DS+AI</div>
+                <span class="badge badge-mix">MIXED</span>
+            </div>
+            
+            <div class="price-row">
+                <div class="price-tag">
+                    <span class="label">COST</span>
+                    <span class="value high">~$3,500</span>
+                </div>
+                <div class="price-tag">
+                    <span class="label">TIME</span>
+                    <span class="value">12 weeks</span>
+                </div>
+                <div class="price-tag">
+                    <span class="label">FORMAT</span>
+                    <span class="value">Online</span>
+                </div>
+            </div>
+
+            <div class="quick-stats">
+                <div class="stat"><div class="stat-value">5/10</div><div class="stat-label">Hands-on</div></div>
+                <div class="stat"><div class="stat-value">9/10</div><div class="stat-label">Prestige</div></div>
+                <div class="stat"><div class="stat-value">5/10</div><div class="stat-label">Value/$</div></div>
+            </div>
+
+            <div class="pros-cons">
+                <div class="pros">
+                    <div class="title">PROS</div>
+                    <ul>
+                        <li>MIT credential</li>
+                        <li>Real datasets</li>
+                        <li>Some coding</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <div class="title">CONS</div>
+                    <ul>
+                        <li>Still expensive</li>
+                        <li>Academic pace</li>
+                        <li>Less practical</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="verdict verdict-maybe">
+                ⚠️ MAYBE: If company pays 100%, otherwise overpriced
+            </div>
+
+            <div class="score-bar">
+                <div class="score-label"><span>Fit for Dibs</span><span>50%</span></div>
+                <div class="score-track"><div class="score-fill score-dibs" style="width: 50%"></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 4: Google AI -->
+<div class="slide">
+    <div class="matrix">
+        <div class="course-card google">
+            <div class="course-header">
+                <div class="course-name">🔍 Google AI Leader</div>
+                <span class="badge badge-mix">MIXED</span>
+            </div>
+            
+            <div class="price-row">
+                <div class="price-tag">
+                    <span class="label">COST</span>
+                    <span class="value med">$50-200/mo</span>
+                </div>
+                <div class="price-tag">
+                    <span class="label">TIME</span>
+                    <span class="value">Self-paced</span>
+                </div>
+                <div class="price-tag">
+                    <span class="label">FORMAT</span>
+                    <span class="value">Cloud-based</span>
+                </div>
+            </div>
+
+            <div class="quick-stats">
+                <div class="stat"><div class="stat-value">6/10</div><div class="stat-label">Hands-on</div></div>
+                <div class="stat"><div class="stat-value">7/10</div><div class="stat-label">Prestige</div></div>
+                <div class="stat"><div class="stat-value">7/10</div><div class="stat-label">Value/$</span></div></div>
+            </div>
+
+            <div class="pros-cons">
+                <div class="pros">
+                    <div class="title">PROS</div>
+                    <ul>
+                        <li>Cloud cert value</li>
+                        <li>Hands-on labs</li>
+                        <li>Industry relevant</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <div class="title">CONS</div>
+                    <ul>
+                        <li>Google-centric</li>
+                        <li>Less theory</li>
+                        <li>Expiring skills</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="verdict verdict-maybe">
+                ⚠️ MAYBE: Good if targeting Google Cloud roles specifically
+            </div>
+
+            <div class="score-bar">
+                <div class="score-label"><span>Fit for Dibs</span><span>60%</span></div>
+                <div class="score-track"><div class="score-fill score-dibs" style="width: 60%"></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 5: DataCamp -->
+<div class="slide">
+    <div class="matrix">
+        <div class="course-card datacamp">
+            <div class="course-header">
+                <div class="course-name">📈 DataCamp Academy</div>
+                <span class="badge badge-tech">TECHNICAL</span>
+            </div>
+            
+            <div class="price-row">
+                <div class="price-tag">
+                    <span class="label">COST</span>
+                    <span class="value low">$25-33/mo</span>
+                </div>
+                <div class="price-tag">
+                    <span class="label">TIME</span>
+                    <span class="value">6-12 months</span>
+                </div>
+                <div class="price-tag">
+                    <span class="label">FORMAT</span>
+                    <span class="value">Interactive</span>
+                </div>
+            </div>
+
+            <div class="quick-stats">
+                <div class="stat"><div class="stat-value">8/10</div><div class="stat-label">Hands-on</div></div>
+                <div class="stat"><div class="stat-value">5/10</div><div class="stat-label">Prestige</div></div>
+                <div class="stat"><div class="stat-value">8/10</division><div class="stat-label">Value/$</div></div>
+            </div>
+
+            <div class="pros-cons">
+                <div class="pros">
+                    <div class="title">PROS</div>
+                    <ul>
+                        <li>Code in browser</li>
+                        <li>Low cost</li>
+                        <li>Beginner-friendly</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <div class="title">CONS</div>
+                    <ul>
+                        <li>Too beginner</li>
+                        <li>Shallow depth</li>
+                        <li>Low credential value</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="verdict verdict-maybe">
+                ⚠️ MAYBE: If you need Python basics, otherwise too junior
+            </div>
+
+            <div class="score-bar">
+                <div class="score-label"><span>Fit for Dibs</span><span>55%</span></div>
+                <div class="score-track"><div class="score-fill score-dibs" style="width: 55%"></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 6: DeepLearning.AI -->
+<div class="slide">
+    <div class="matrix">
+        <div class="course-card dlai">
+            <div class="course-header">
+                <div class="course-name">🧠 DeepLearning.AI</div>
+                <span class="badge badge-tech">TECHNICAL</span>
+            </div>
+            
+            <div class="price-row">
+                <div class="price-tag">
+                    <span class="label">COST</span>
+                    <span class="value low">$50/mo</span>
+                </div>
+                <div class="price-tag">
+                    <span class="label">TIME</span>
+                    <span class="value">3-6 months</span>
+                </div>
+                <div class="price-tag">
+                    <span class="label">FORMAT</span>
+                    <span class="value">Coursera</span>
+                </div>
+            </div>
+
+            <div class="quick-stats">
+                <div class="stat"><div class="stat-value">9/10</div><div class="stat-label">Hands-on</div></div>
+                <div class="stat"><div class="stat-value">8/10</div><div class="stat-label">Prestige</div></div>
+                <div class="stat"><div class="stat-value">9/10</div><div class="stat-label">Value/$</div></div>
+            </div>
+
+            <div class="pros-cons">
+                <div class="pros">
+                    <div class="title">PROS</div>
+                    <ul>
+                        <li>Andrew Ng teaching</li>
+                        <li>Build real models</li>
+                        <li>Industry standard</li>
+                        <li>Perfect for trading AI</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <div class="title">CONS</div>
+                    <ul>
+                        <li>Requires discipline</li>
+                        <li>Self-paced (lonely)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="verdict verdict-best">
+                ✅ BEST CHOICE: Build skills you actually need for trading AI
+            </div>
+
+            <div class="score-bar">
+                <div class="score-label"><span>Fit for Dibs</span><span>90%</span></div>
+                <div class="score-track"><div class="score-fill score-dibs" style="width: 90%"></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 7: Build Your Own -->
+<div class="slide">
+    <div class="matrix">
+        <div class="course-card build">
+            <div class="course-header">
+                <div class="course-name">🛠️ Build Your Own</div>
+                <span class="badge badge-free">FREE</span>
+            </div>
+            
+            <div class="price-row">
+                <div class="price-tag">
+                    <span class="label">COST</span>
+                    <span class="value low">$0</span>
+                </div>
+                <div class="price-tag">
+                    <span class="label">TIME</span>
+                    <span class="value">Self-paced</span>
+                </div>
+                <div class="price-tag">
+                    <span class="label">FORMAT</span>
+                    <span class="value">Portfolio</span>
+                </div>
+            </div>
+
+            <div class="quick-stats">
+                <div class="stat"><div class="stat-value">10/10</div><div class="stat-label">Hands-on</div></div>
+                <div class="stat"><div class="stat-value">10/10</div><div class="stat-label">Portfolio</div></div>
+                <div class="stat"><div class="stat-value">10/10</div><div class="stat-label">Value/$</div></div>
+            </div>
+
+            <div class="pros-cons">
+                <div class="pros">
+                    <div class="title">PROS</div>
+                    <ul>
+                        <li>Free</li>
+                        <li>Portfolio pieces</li>
+                        <li>Learn by doing</li>
+                        <li>Interview gold</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <div class="title">CONS</div>
+                    <ul>
+                        <li>No structure</li>
+                        <li>Easy to quit</li>
+                        <li>No credential</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="verdict verdict-yes">
+                ✅ DO THIS: Combine with DeepLearning.AI for best results
+            </div>
+
+            <div class="score-bar">
+                <div class="score-label"><span>Fit for Dibs</span><span>85%</span></div>
+                <div class="score-track"><div class="score-fill score-dibs" style="width: 85%"></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 8: Final Recommendation -->
+<div class="slide summary-slide">
+    <h1>🏆 THE VERDICT</h1>
+    
+    <div class="recommendation">
+        <div class="winner">DeepLearning.AI + Build</div>
+        <p class="why">
+            Spend $50/month on Coursera Plus. Complete the Machine Learning Specialization (Andrew Ng). 
+            <br><br>
+            Then build 3 projects: a trading screener, a data pipeline, and an AI agent.
+            <br><br>
+            Total cost: ~$150 | Timeline: 3-4 months | Result: Job-ready portfolio
+        </p>
+    </div>
+
+    <div style="margin-top: 30px;">
+        <h3 style="color: #64748b; font-size: 0.9rem; margin-bottom: 16px;">RANKING FOR DIBS</h3>
+        <div style="display: flex; flex-direction: column; gap: 12px; max-width: 400px; margin: 0 auto;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-size: 1.5rem;">🥇</span>
+                <div style="flex: 1; background: #1a1a2e; padding: 12px; border-radius: 8px; border-left: 4px solid #a855f7;">
+                    <strong>DeepLearning.AI</strong> <span style="color: #64748b;">— Best ROI</span>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-size: 1.5rem;">🥈</span>
+                <div style="flex: 1; background: #1a1a2e; padding: 12px; border-radius: 8px; border-left: 4px solid #22d3ee;">
+                    <strong>Build Your Own</strong> <span style="color: #64748b;">— Portfolio gold</span>
+                </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <span style="font-size: 1.5rem;">🥉</span>
+                <div style="flex: 1; background: #1a1a2e; padding: 12px; border-radius: 8px; border-left: 4px solid #3b82f6;">
+                    <strong>Google AI</strong> <span style="color: #64748b;">— If targeting GCP</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://www.coursera.org/specializations/machine-learning-introduction" class="cta-btn">
+        Start DeepLearning.AI →
+    </a>
+</div>
+
+<div class="footer">
+    🗡️ Astra Research | Feb 2026 | Mobile-optimized for gym viewing
+</div>
+
+</body>
+</html>

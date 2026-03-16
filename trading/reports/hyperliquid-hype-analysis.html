@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyperliquid (HYPE) - Institutional Investment Analysis</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Times New Roman', Georgia, serif;
+            background: #fff;
+            color: #1a1a1a;
+            line-height: 1.8;
+            font-size: 11pt;
+        }
+        .container { max-width: 850px; margin: 0 auto; padding: 60px 50px; }
+        
+        /* Cover Page */
+        .cover {
+            text-align: center;
+            padding: 100px 0;
+            border-bottom: 3px solid #1a1a1a;
+            margin-bottom: 60px;
+        }
+        .cover h1 {
+            font-size: 32pt;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+        .cover .subtitle {
+            font-size: 16pt;
+            color: #555;
+            margin-bottom: 40px;
+        }
+        .cover .meta {
+            font-size: 11pt;
+            color: #777;
+            margin-top: 60px;
+        }
+        .cover .classification {
+            display: inline-block;
+            border: 2px solid #1a1a1a;
+            padding: 8px 20px;
+            font-weight: 700;
+            font-size: 10pt;
+            margin-top: 30px;
+            text-transform: uppercase;
+        }
+        
+        /* Executive Summary Box */
+        .exec-summary {
+            background: #f8f8f8;
+            border-left: 4px solid #1a1a1a;
+            padding: 30px;
+            margin: 40px 0;
+        }
+        .exec-summary h2 {
+            font-size: 14pt;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .exec-summary p {
+            font-size: 10.5pt;
+            line-height: 1.7;
+        }
+        
+        /* Headings */
+        h2 {
+            font-size: 16pt;
+            font-weight: 700;
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #1a1a1a;
+        }
+        h3 {
+            font-size: 13pt;
+            font-weight: 700;
+            margin: 30px 0 15px;
+            color: #333;
+        }
+        h4 {
+            font-size: 11pt;
+            font-weight: 700;
+            margin: 25px 0 10px;
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 10pt;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #f5f5f5;
+            font-weight: 700;
+            border-top: 2px solid #1a1a1a;
+            border-bottom: 2px solid #1a1a1a;
+        }
+        tr:last-child td {
+            border-bottom: 2px solid #1a1a1a;
+        }
+        
+        /* Key Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .metric-box {
+            background: #f8f8f8;
+            padding: 20px;
+            text-align: center;
+            border-top: 3px solid #1a1a1a;
+        }
+        .metric-value {
+            font-size: 22pt;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+        .metric-label {
+            font-size: 9pt;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 8px;
+        }
+        
+        /* FAQ Box */
+        .faq-box {
+            background: #fff;
+            border: 2px solid #1a1a1a;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        .faq-box h4 {
+            color: #1a1a1a;
+            margin-top: 0;
+        }
+        .faq-question {
+            font-weight: 700;
+            color: #333;
+            margin: 20px 0 10px;
+        }
+        .faq-answer {
+            margin-left: 20px;
+            padding-left: 15px;
+            border-left: 2px solid #ddd;
+        }
+        
+        /* Tier Table */
+        .tier-highlight {
+            background: #ffffcc !important;
+        }
+        
+        /* Page Break */
+        .page-break {
+            page-break-after: always;
+            height: 50px;
+        }
+        
+        /* Footer */
+        .footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #ddd;
+            font-size: 9pt;
+            color: #666;
+        }
+        
+        /* Lists */
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        
+        /* Risk Warning */
+        .risk-box {
+            background: #fff8f8;
+            border: 2px solid #cc0000;
+            padding: 20px;
+            margin: 30px 0;
+        }
+        .risk-box h4 {
+            color: #cc0000;
+            margin-top: 0;
+        }
+        
+        /* Bull/Bear Cases */
+        .case-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin: 30px 0;
+        }
+        .bull-case {
+            background: #f0fff0;
+            border-left: 4px solid #00aa00;
+            padding: 20px;
+        }
+        .bear-case {
+            background: #fff5f5;
+            border-left: 4px solid #cc0000;
+            padding: 20px;
+        }
+        .case-container h4 {
+            margin-top: 0;
+        }
+        .bull-case h4 { color: #00aa00; }
+        .bear-case h4 { color: #cc0000; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- COVER PAGE -->
+        <div class="cover">
+            <h1>HYPERLIQUID (HYPE)</h1>
+            <p class="subtitle">Institutional Investment Research Report<br>Staking Mechanics, Fee Structure & Token Valuation Analysis</p>
+            
+            <div class="meta">
+                <p><strong>Prepared by:</strong> Astra Research</p>
+                <p><strong>Date:</strong> February 22, 2026</p>
+                <p><strong>Classification:</strong> Institutional Grade Analysis</p>
+            </div>
+            
+            <div class="classification">Confidential — Client Distribution Only</div>
+        </div>
+
+        <!-- EXECUTIVE SUMMARY -->
+        <div class="exec-summary">
+            <h2>Executive Summary</h2>
+            <p><strong>Hyperliquid</strong> represents one of the most compelling risk/reward opportunities in the decentralized finance (DeFi) infrastructure space. The platform has achieved dominant market position in on-chain perpetual futures with <strong>67% market share</strong>, generating <strong>$550M+ in annualized revenue</strong> with a lean, VC-free capital structure.</p>
+            
+            <p style="margin-top: 15px;"><strong>Key Investment Highlights:</strong> (1) 97% of trading fees flow to token buybacks, creating aggressive deflationary pressure; (2) Fixed 1B supply with only 33.7% currently circulating; (3) Account linking feature allows sophisticated traders to separate staking and trading accounts while retaining fee benefits; (4) Valuation gap exists between current market cap ($7.5B) and estimated fair value ($11-33B per revenue multiples).</p>
+            
+            <p style="margin-top: 15px;"><strong>Recommendation:</strong> ACCUMULATE. Current levels offer favorable entry with $38-59 fair value range suggesting 20-85% upside. Risk factors include token unlock schedules and regulatory uncertainty around decentralized derivatives.</p>
+        </div>
+
+        <!-- SECTION 1: STAKING MECHANICS -->
+        <h2>I. HYPE Staking Mechanics & Fee Discounts</h2>
+        
+        <h3>A. Direct Answers to Client Questions</h3>
+        
+        <div class="faq-box">
+            <h4>Client Q&A — Account Structure & Fee Benefits</h4>
+            
+            <p class="faq-question">Q1: If I stake 10 HYPE on my staking account, will the fee discount apply when I trade on that same account?</p>
+            <div class="faq-answer">
+                <p><strong>YES.</strong> The fee discount applies to the account where HYPE is staked. If you stake 10+ HYPE (minimum "Wood" tier), you receive a 5% discount on trading fees for all trades executed on that account. The discount is automatically applied at the fee calculation level.</p>            
+            </div>
+            
+            <p class="faq-question">Q2: Can I link a separate trading account to my staking account so the linked account also gets the reduced fees?</p>
+            <div class="faq-answer">
+                <p><strong>YES — via Account Linking Feature.</strong> Hyperliquid introduced account linking (May 5, 2025) specifically for this use case. You can designate one account as your "staking account" and link it to a separate "trading account." The trading account will inherit the fee tier/discounts from the staking account.</p>                
+                <p style="margin-top: 10px;"><strong>Important Constraints:</strong> (1) Account linking is PERMANENT and cannot be undone; (2) Only one trading account can be linked per staking account; (3) The feature must be enabled via the testnet interface first; (4) Both accounts must be under your control (you cannot link someone else's account).</p>
+            </div>
+        </div>
+
+        <h3>B. Staking Tier Structure (Revised May 2025)</h3>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Tier</th>
+                    <th>HYPE Staked</th>
+                    <th>Fee Discount</th>
+                    <th>Est. USD Value (@$22/HYPE)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="tier-highlight">
+                    <td><strong>Wood</strong></td>
+                    <td>10+ HYPE</td>
+                    <td>5%</td>
+                    <td>~$220</td>
+                </tr>
+                <tr>
+                    <td><strong>Bronze</strong></td>
+                    <td>1,000+ HYPE</td>
+                    <td>10%</td>
+                    <td>~$22,000</td>
+                </tr>
+                <tr>
+                    <td><strong>Silver</strong></td>
+                    <td>10,000+ HYPE</td>
+                    <td>15%</td>
+                    <td>~$220,000</td>
+                </tr>
+                <tr>
+                    <td><strong>Gold</strong></td>
+                    <td>50,000+ HYPE</td>
+                    <td>25%</td>
+                    <td>~$1.1M</td>
+                </tr>
+                <tr>
+                    <td><strong>Platinum</strong></td>
+                    <td>100,000+ HYPE</td>
+                    <td>30%</td>
+                    <td>~$2.2M</td>
+                </tr>
+                <tr>
+                    <td><strong>Diamond</strong></td>
+                    <td>500,000+ HYPE</td>
+                    <td>40%</td>
+                    <td>~$11M</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>C. Additional Staking Benefits</h3>
+        
+        <ul>
+            <li><strong>Staking Yield:</strong> Approximately 2.26-2.37% APY paid in HYPE tokens</li>
+            <li><strong>Gas Token Utility:</strong> HYPE can be used for transaction fees on Hyperliquid L1 and HyperEVM</li>
+            <li><strong>Governance Rights:</strong> Staked HYPE provides voting power for protocol upgrades (HIP proposals)</li>
+            <li><strong>Airdrop Eligibility:</strong> Stakers receive priority for ecosystem airdrops and vault bonuses</li>
+            <li><strong>No Lock-up:</strong> HYPE staking is liquid — you can unstake at any time (subject to unbonding period, typically 14 days)</li>
+        </ul>
+
+        <div class="page-break"></div>
+
+        <!-- SECTION 2: PLATFORM FUNDAMENTALS -->
+        <h2>II. Platform Fundamentals & Market Position</h2>
+
+        <h3>A. Key Metrics Dashboard</h3>
+        
+        <div class="metrics-grid">
+            <div class="metric-box">
+                <div class="metric-value">67%</div>
+                <div class="metric-label">Perp DEX Market Share</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-value">$550M+</div>
+                <div class="metric-label">Annualized Revenue</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-value">$2.7B</div>
+                <div class="metric-label">Total Value Locked (TVL)</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-value">$300B</div>
+                <div class="metric-label">Monthly Volume</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-value">$4.5M</div>
+                <div class="metric-label">Peak Daily Revenue</div>
+            </div>
+            <div class="metric-box">
+                <div class="metric-value">1B</div>
+                <div class="metric-label">Fixed Token Supply</div>
+            </div>
+        </div>
+
+        <h3>B. Revenue Model & Tokenomics</h3>
+        
+        <p>Hyperliquid operates on a highly aggressive value accrual model that distinguishes it from competitors:</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Value</th>
+                    <th>Industry Context</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Fee-to-Token Buyback</td>
+                    <td><strong>97%</strong> of trading fees</td>
+                    <td>Industry standard: 0-50%</td>
+                </tr>
+                <tr>
+                    <td>Burn Mechanism</td>
+                    <td>HYPE burned from Assistance Fund</td>
+                    <td>Permanent supply reduction</td>
+                </tr>
+                <tr>
+                    <td>Circulating Supply</td>
+                    <td>~337M HYPE (33.7%)</td>
+                    <td>Low float vs competitors</td>
+                </tr>
+                <tr>
+                    <td>Team/VC Allocation</td>
+                    <td>Minimal (community-first)</td>
+                    <td>No VC overhang risk</td>
+                </tr>
+                <tr>
+                    <td>Daily Revenue Range</td>
+                    <td>$1.5M — $4.5M</td>
+                    <td>Top 3 in DeFi revenue</td>
+                </tr>
+            </tbody>        </table>
+
+        <h3>C. Technical Infrastructure</h3>
+        
+        <ul>
+            <li><strong>HyperCore L1:</strong> Custom Layer 1 blockchain with sub-second finality and high throughput optimized for trading</li>
+            <li><strong>HyperEVM:</strong> Ethereum-compatible virtual machine enabling smart contract deployment with nearly $2B in TVL</li>
+            <li><strong>No Gas Fees:</strong> All transactions settle on Hyperliquid L1 without gas fees — significant cost advantage over Ethereum L1 competitors</li>
+            <li><strong>HLP Vault:</strong> Hyperliquid Provider vault that provides protocol-owned liquidity and generates additional yield</li>
+        </ul>
+
+        <div class="page-break"></div>
+
+        <!-- SECTION 3: VALUATION ANALYSIS -->
+        <h2>III. Valuation Analysis</h2>
+
+        <h3>A. Current Market Position</h3>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Valuation Metric</th>
+                    <th>Current Value</th>
+                    <th>Comparable (dYdX)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Market Capitalization</td>
+                    <td>~$7.5 Billion</td>
+                    <td>$1.2 Billion</td>
+                </tr>
+                <tr>
+                    <td>Fully Diluted Valuation (FDV)</td>
+                    <td>~$22 Billion</td>
+                    <td>$2.1 Billion</td>
+                </tr>
+                <tr>
+                    <td>Price-to-Revenue (P/F)</td>
+                    <td>~13.6x (at $550M revenue)</td>
+                    <td>N/A (lower revenue)</td>
+                </tr>
+                <tr>
+                    <td>Price/Fees (DefiLlama)</td>
+                    <td>599.2x</td>
+                    <td>Higher multiples</td>
+                </tr>
+                <tr>
+                    <td>TVL Ratio (MCap/TVL)</td>
+                    <td>~2.8x</td>
+                    <td>Variable</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>B. Fair Value Estimates (Institutional Research)</h3>
+        
+        <p>Multiple institutional research firms have published valuation models for HYPE:</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Research Firm</th>
+                    <th>Methodology</th>
+                    <th>Fair Value Range</th>
+                    <th>Upside from Current ($22)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Artemis Analytics</td>
+                    <td>Revenue Multiple (20x)</td>
+                    <td>$38 — $59</td>
+                    <td>+73% to +168%</td>
+                </tr>
+                <tr>
+                    <td>A1 Research</td>
+                    <td>Segment Valuation</td>
+                    <td>$11B — $33B (network value)</td>
+                    <td>+47% to +340%</td>
+                </tr>
+                <tr>
+                    <td>CoinDesk Analyst Consensus</td>
+                    <td>DCF + Market Comps</td>
+                    <td>$77 (bull case)</td>
+                    <td>+250%</td>
+                </tr>
+                <tr>
+                    <td>NFT Evening Model</td>
+                    <td>Token Flow Analysis</td>
+                    <td>$38 — $59</td>
+                    <td>+73% to +168%</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>C. Valuation Drivers</h3>
+        
+        <p><strong>Bull Case Catalysts:</strong> (1) Binance.com listing (currently only on Binance International); (2) Continued market share growth from 67% to 75%+; (3) HyperEVM ecosystem expansion driving TVL from $2.7B to $10B+; (4) Perpetual futures market growth from $300B to $500B+ monthly volume; (5) Institutional custody and ETP products.</p>
+        
+        <p style="margin-top: 15px;"><strong>Bear Case Risks:</strong> (1) Token unlock schedule: ~$219M in unlocks vs ~$49M protocol revenue capacity (Jan 2026 snapshot); (2) Regulatory crackdown on decentralized derivatives (CFTC/SEC); (3) Competition from centralized exchanges (Binance, dYdX v4); (4) Smart contract risk despite audits; (5) Revenue concentration in perpetual futures.</p>
+
+        <div class="case-container">
+            <div class="bull-case">
+                <h4>BULL CASE — $75-100 Target</h4>
+                <ul>
+                    <li>Binance US listing drives retail FOMO</li>
+                    <li>Market share grows to 80%</li>
+                    <li>Revenue reaches $1B annualized</li>
+                    <li>HyperEVM becomes DeFi hub</li>
+                    <li>Token burns accelerate from buybacks</li>
+                </ul>
+                <p style="margin-top: 15px; font-size: 10pt;"><strong>Probability:</strong> 25% | <strong>Timeline:</strong> 12-18 months</p>
+            </div>
+            
+            <div class="bear-case">
+                <h4>BEAR CASE — $10-15 Target</h4>
+                <ul>
+                    <li>Major token unlocks crash price</li>
+                    <li>CFTC enforcement on US users</li>
+                    <li>Competitor launches better product</li>
+                    <li>Smart contract exploit</li>
+                    <li>Crypto bear market resumes</li>
+                </ul>
+                <p style="margin-top: 15px; font-size: 10pt;"><strong>Probability:</strong> 15% | <strong>Timeline:</strong> 6-12 months</p>
+            </div>
+        </div>
+
+        <div class="page-break"></div>
+
+        <!-- SECTION 4: COMPETITIVE ANALYSIS -->
+        <h2>IV. Competitive Landscape</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Platform</th>
+                    <th>Market Share</th>
+                    <th>Revenue Model</th>
+                    <th>Token Utility</th>
+                    <th>Key Advantage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Hyperliquid</strong></td>
+                    <td>67%</td>
+                    <td>97% fees to buybacks</td>
+                    <td>Fee discount, staking, gas</td>
+                    <td>Speed, UX, tokenomics</td>
+                </tr>
+                <tr>
+                    <td>dYdX v4</td>
+                    <td>~15%</td>
+                    <td>Trading fees to stakers</td>
+                    <td>Staking rewards, governance</td>
+                    <td>Brand recognition, Cosmos</td>
+                </tr>
+                <tr>
+                    <td>GMX</td>
+                    <td>~8%</td>
+                    <td>30% to GLP, 30% to GMX</td>
+                    <td>Staking, governance</td>
+                    <td>Arbitrum ecosystem</td>
+                </tr>
+                <tr>
+                    <td>Synthetix</td>
+                    <td>~5%</td>
+                    <td>Complex fee routing</td>
+                    <td>SNX staking required</td>
+                    <td>Synthetic assets, mature</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Competitive Moat Analysis</h3>
+        
+        <p><strong>1. Technical Superiority:</strong> Hyperliquid's custom L1 achieves sub-second finality vs. dYdX's ~2 second block times. This matters for high-frequency traders and liquidation efficiency.</p>
+        
+        <p><strong>2. Tokenomic Alignment:</strong> The 97% fee buyback mechanism creates unprecedented alignment between token holders and protocol success. Competitors typically share 0-50% of fees with token stakers.</p>
+        
+        <p><strong>3. Capital Efficiency:</strong> No VC overhang means no unlock pressure from early investors. Team allocation is minimal and community-focused.</p>
+        
+        <p><strong>4. Ecosystem Expansion:</strong> HyperEVM deployment adds smart contract functionality, enabling broader DeFi ecosystem that pure DEX competitors lack.</p>
+
+        <div class="page-break"></div>
+
+        <!-- SECTION 5: INVESTMENT RECOMMENDATION -->
+        <h2>V. Investment Recommendation</h2>
+
+        <h3>A. Position Sizing Framework</h3>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Risk Profile</th>
+                    <th>Allocation Suggestion</th>
+                    <th>Entry Strategy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Conservative (DeFi infra play)</td>
+                    <td>2-3% of portfolio</td>
+                    <td>DCA over 4-6 weeks at $20-25</td>
+                </tr>
+                <tr>
+                    <td>Moderate (Growth allocation)</td>
+                    <td>5-7% of portfolio</td>
+                    <td>50% now, 50% on dips to $18-20</td>
+                </tr>
+                <tr>
+                    <td>Aggressive (Crypto-native)</td>
+                    <td>10-15% of portfolio</td>
+                    <td>Full position at current levels with $15 stop</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>B. Staking Strategy for Fee Optimization</h3>
+        
+        <p>For active traders on Hyperliquid, the staking tier system creates a clear ROI calculation:</p>
+        
+        <div class="faq-box">
+            <h4>Break-Even Analysis: Staking for Fee Discounts</h4>            
+            
+            <p><strong>Scenario:</strong> Trader executing $1M/month volume with 0.05% taker fees = $500/month base fees.</p>
+            
+            <ul style="margin-top: 15px;">
+                <li><strong>Wood Tier (10 HYPE):</strong> 5% discount = $25/month savings. At $220 staking value = <strong>136% annualized ROI</strong> on staking cost</li>
+                <li><strong>Bronze Tier (1,000 HYPE):</strong> 10% discount = $50/month savings. At $22,000 staking value = <strong>2.7% annualized ROI</strong> (plus 2.26% staking yield = <strong>~5% total</strong>)</li>
+                <li><strong>Silver Tier+:</strong> Only justified for $10M+/month volume traders or long-term HYPE holders</li>
+            </ul>
+            
+            <p style="margin-top: 15px;"><strong>Recommendation:</strong> For most traders, the Wood tier (10 HYPE) offers optimal risk/reward. Higher tiers make sense only for: (1) Very high volume traders ($10M+/month); (2) Long-term HYPE believers seeking governance rights; (3) Institutional accounts managing multiple sub-accounts.</p>        </div>
+
+        <h3>C. Account Structure Best Practices</h3>
+        
+        <p>Based on Hyperliquid's account linking feature, sophisticated traders should consider this structure:</p>
+        
+        <ol>
+            <li><strong>Staking Account:</strong> Hold HYPE for fee tier (minimum 10 HYPE for Wood). Keep minimal trading activity here to avoid exposure of staked funds.</li>
+            <li><strong>Trading Account:</strong> Link to staking account to inherit fee discounts. This is your active trading wallet with operational funds only.</li>
+            <li><strong>Cold Storage:</strong> Majority of HYPE holdings in hardware wallet, unstaked. Only stake what's needed for fee tier.</li>
+        </ol>
+        
+        <p style="margin-top: 15px;"><strong>Risk Note:</strong> Account linking is permanent. Ensure you control both accounts and have backed up private keys before linking.</p>
+
+        <div class="risk-box">
+            <h4>Risk Disclosure</h4>            
+            
+            <p>This analysis is for informational purposes only. Cryptoassets are highly volatile and speculative. HYPE risks include: (1) Token unlock schedule creating sell pressure; (2) Regulatory action against decentralized derivatives; (3) Smart contract vulnerabilities; (4) Competition from CEXs and other DEXs; (5) Market and liquidity risks. Past performance does not guarantee future results. Never invest more than you can afford to lose.</p>        </div>
+
+        <div class="footer">
+            <p><strong>Sources:</strong> Hyperliquid GitBook, DefiLlama, Artemis Analytics, A1 Research, CoinDesk, Token Terminal, Gate.io Research, LeveX, MEXC Research, NFT Evening</p>
+            
+            <p style="margin-top: 15px;">This report was prepared by Astra Research on February 22, 2026. Data is believed to be accurate but not guaranteed. Please conduct your own due diligence before making investment decisions.</p>
+            
+            <p style="margin-top: 20px; text-align: center; font-size: 8pt; color: #999;">© 2026 Astra Research | Confidential — Not for Public Distribution</p>
+        </div>
+
+    </div>
+</body>
+</html>

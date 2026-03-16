@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyperliquid (HYPE) - Visual CFA Analysis</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        
+        /* Header */
+        .header {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 42px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .header .subtitle {
+            color: #666;
+            font-size: 18px;
+        }
+        
+        /* CFA Box */
+        .cfa-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        .cfa-box h4 {
+            color: #856404;
+            margin-bottom: 10px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .cfa-box p {
+            color: #533f03;
+            font-size: 15px;
+        }
+        
+        /* Section Cards */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .section h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #1a1a2e;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        .section h3 {
+            font-size: 20px;
+            color: #764ba2;
+            margin: 25px 0 15px;
+        }
+        
+        /* Chart Containers */
+        .chart-container {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            position: relative;
+            height: 400px;
+        }
+        .chart-title {
+            text-align: center;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        /* Metric Cards */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        .metric-value {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        .metric-label {
+            font-size: 12px;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .metric-context {
+            font-size: 11px;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+        
+        /* Numbered Steps */
+        .step-box {
+            display: flex;
+            align-items: flex-start;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .step-content h4 {
+            color: #1a1a2e;
+            margin-bottom: 8px;
+        }
+        .step-content p {
+            color: #555;
+            font-size: 14px;
+        }
+        
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .comparison-table th {
+            background: #1a1a2e;
+            color: white;
+            font-weight: 600;
+        }
+        .comparison-table tr:hover {
+            background: #f5f5f5;
+        }
+        .highlight-row {
+            background: #e8f5e9 !important;
+            font-weight: 600;
+        }
+        
+        /* Visual Indicators */
+        .indicator-bar {
+            background: #e0e0e0;
+            border-radius: 10px;
+            height: 30px;
+            margin: 10px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .indicator-fill {
+            height: 100%;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            color: white;
+            font-weight: 700;
+            font-size: 12px;
+        }
+        .fill-green { background: linear-gradient(90deg, #00c853, #00e676); }
+        .fill-blue { background: linear-gradient(90deg, #2979ff, #448aff); }
+        .fill-purple { background: linear-gradient(90deg, #7c4dff, #b388ff); }
+        .fill-orange { background: linear-gradient(90deg, #ff9100, #ffc400); }
+        
+        /* Legend */
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+        }
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            margin-right: 8px;
+        }
+        
+        /* Risk Thermometer */
+        .thermometer {
+            background: linear-gradient(90deg, #00c853 0%, #ffc400 50%, #ff1744 100%);
+            height: 40px;
+            border-radius: 20px;
+            position: relative;
+            margin: 30px 0;
+        }
+        .thermometer-marker {
+            position: absolute;
+            top: -10px;
+            width: 4px;
+            height: 60px;
+            background: #1a1a2e;
+            border-radius: 2px;
+        }
+        .thermometer-label {
+            position: absolute;
+            bottom: -25px;
+            font-size: 12px;
+            font-weight: 600;
+            transform: translateX(-50%);
+        }
+        
+        /* Download Button */
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            margin: 10px 5px;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            transition: transform 0.2s;
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px;
+            color: white;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- HEADER -->
+        <div class="header">
+            <h1>📊 HYPERLIQUID (HYPE)</h1>
+            <p class="subtitle">Visual CFA-Style Investment Analysis | February 2026</p>
+            <div style="margin-top: 30px;">
+                <a href="#" class="download-btn">📥 Download Full Report</a>
+                <a href="#" class="download-btn">📈 View Spreadsheet</a>
+            </div>
+        </div>
+
+        <!-- EXECUTIVE SUMMARY -->
+        <div class="section">
+            <h2>🎯 Executive Summary at a Glance</h2>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">67%</div>
+                    <div class="metric-label">Market Share</div>
+                    <div class="metric-context">Perp DEX dominance</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">$550M</div>
+                    <div class="metric-label">Annual Revenue</div>
+                    <div class="metric-context">Top 3 in DeFi</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">97%</div>
+                    <div class="metric-label">Fee Buyback</div>
+                    <div class="metric-context">Industry-leading</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">$38-77</div>
+                    <div class="metric-label">Fair Value</div>
+                    <div class="metric-context">73-250% upside</div>
+                </div>
+            </div>
+
+            <div class="cfa-box">
+                <h4>📚 CFA Concept: Economic Moat</h4>
+                <p><strong>Why this matters:</strong> Hyperliquid's 67% market share in perp DEX + 97% fee buyback creates a <em>wide economic moat</em>. In CFA terms, this is sustainable competitive advantage — the holy grail of equity analysis. Look for: (1) High barriers to entry (custom L1), (2) Switching costs (staking benefits), (3) Network effects (liquidity begets volume).</p>
+            </div>
+        </div>
+
+        <!-- VISUAL ANALYSIS -->
+        <div class="section">
+            <h2>📈 Visual Analysis — The Story in Charts</h2>
+            
+            <div class="cfa-box">
+                <h4>📚 CFA Concept: Revenue Recognition & Growth</h4>
+                <p><strong>What you're seeing:</strong> Daily revenue of $1.5M-$4.5M = $550M+ annualized. In CFA Level 1, we'd calculate Compound Annual Growth Rate (CAGR) and compare to industry. Hyperliquid's growth rate is <em>exceptional</em> vs traditional exchanges (CME: 8%, Nasdaq: 12%).</p>
+            </div>
+
+            <!-- Chart 1: Revenue vs Competitors -->
+            <div class="chart-container">
+                <div class="chart-title">Chart 1: Hyperliquid Revenue vs DeFi Competitors (Annualized, $M)</div>
+                <canvas id="revenueChart"></canvas>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Read the Chart</h4>
+                    <p>Hyperliquid (purple bar) generates more revenue than dYdX + GMX + Synthetix <strong>combined</strong>. This is market dominance. In CFA terms: <em>Porter's Five Forces — Hyperliquid has supplier power (liquidity) and buyer power (traders).</em></p>
+                </div>
+            </div>
+
+            <!-- Chart 2: Market Share Pie -->
+            <div class="chart-container">
+                <div class="chart-title">Chart 2: Perpetual DEX Market Share (%)</div>
+                <canvas id="marketShareChart"></canvas>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Interpret the Pie</h4>
+                    <p>67% market share = <strong>2 out of every 3 dollars</strong> traded in DeFi perps flows through Hyperliquid. CFA concept: <em>Market concentration ratio</em>. This is oligopoly-level dominance (CR4 > 60% = concentrated market).</p>
+                </div>
+            </div>
+
+            <!-- Chart 3: Token Supply Deflation -->
+            <div class="chart-container">
+                <div class="chart-title">Chart 3: Token Supply Dynamics — Inflation vs Deflation</div>
+                <canvas id="supplyChart"></canvas>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Understand Tokenomics</h4>
+                    <p><strong>Only 33.7% circulating</strong> of 1B fixed supply. With 97% of fees buying back HYPE, supply shrinks over time. CFA concept: <em>Supply & Demand</em> — decreasing supply + increasing demand = price appreciation (all else equal).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- STAKING TIERS -->
+        <div class="section">
+            <h2>💰 Staking Tiers — ROI Visualized</h2>
+            
+            <div class="cfa-box">
+                <h4>📚 CFA Concept: Return on Investment (ROI) & Payback Period</h4>
+                <p><strong>Formula:</strong> ROI = (Gain from Investment - Cost of Investment) / Cost of Investment. For Wood tier: ($300 annual savings - $220 cost) / $220 = <em>36% ROI</em> plus staking yield. This is exceptional for a "risk-free" benefit (assuming you trade on Hyperliquid anyway).</p>
+            </div>
+
+            <!-- Chart 4: Staking ROI -->
+            <div class="chart-container">
+                <div class="chart-title">Chart 4: Annual ROI by Staking Tier (for $1M/month volume trader)</div>
+                <canvas id="stakingRoiChart"></canvas>
+            </div>
+            
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #00c853;"></div>
+                    <span>🟢 OPTIMAL: Wood tier (best risk/reward)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #2979ff;"></div>
+                    <span>🔵 HIGH VOLUME: Bronze+ tiers (institutional)</span>
+                </div>
+            </div>
+
+            <h3>The Math Simplified</h3>
+            
+            <div class="step-box">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Calculate Your Monthly Fees</h4>
+                    <p>Volume × Fee Rate = Base Cost. Example: $1M × 0.05% = <strong>$500/month</strong> base fees.</p>
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Apply Discount</h4>
+                    <p>Wood tier (5% discount): $500 × 5% = <strong>$25/month savings</strong>. Annual savings = $300.</p>
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Calculate ROI</h4>
+                    <p>$300 savings / $220 cost (10 HYPE) = <strong>136% ROI</strong>. <em>This ignores the 2.26% staking yield and any HYPE price appreciation.</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VALUATION -->
+        <div class="section">
+            <h2>🎯 Valuation — Why $38-77 Makes Sense</h2>
+            
+            <div class="cfa-box">
+                <h4>📚 CFA Concept: Price-to-Revenue (P/R) Multiples</4>
+                <p><strong>Formula:</strong> P/R = Market Cap / Revenue. Hyperliquid trades at ~13.6x revenue. For comparison: Coinbase (8x), traditional exchanges (3-5x). But Hyperliquid is growing 10x faster. <em>Growth companies command premium multiples.</em></p>
+            </div>
+
+            <!-- Chart 5: Valuation Comparison -->
+            <div class="chart-container">
+                <div class="chart-title">Chart 5: HYPE Valuation Scenarios vs Current Price ($22)</div>
+                <canvas id="valuationChart"></canvas>
+            </div>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Scenario</th>
+                        <th>Price Target</th>
+                        <th>Upside</th>
+                        <th>Assumptions</th>
+                        <th>Probability</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Bear Case</td>
+                        <td>$15</td>
+                        <td style="color: #cc0000;">-32%</td>
+                        <td>Token unlocks crush price, regulatory crackdown</td>
+                        <td>15%</td>
+                    </tr>
+                    <tr>
+                        <td>Base Case</td>
+                        <td>$38</td>
+                        <td style="color: #00c853;">+73%</td>
+                        <td>Revenue grows 50%, maintains 60% market share</td>
+                        <td>60%</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td>Bull Case</td>
+                        <td>$77</td>
+                        <td style="color: #00c853;">+250%</td>
+                        <td>Binance US listing, revenue $1B+, 80% market share</td>
+                        <td>25%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="step-box">
+                <div class="step-number">💡</div>
+                <div class="step-content">
+                    <h4>Expected Value Calculation (CFA Concept)</h4>
+                    <p><strong>EV = (15% × $15) + (60% × $38) + (25% × $77) = $2.25 + $22.80 + $19.25 = <em>$44.30</em></strong><br>
+                    Current price $22 → Expected value $44 = <strong>101% expected return</strong>. This is positive expected value — a bet worth taking (with appropriate position sizing).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- RISK ANALYSIS -->
+        <div class="section">
+            <h2>⚠️ Risk Analysis — What Could Go Wrong</h2>
+            
+            <div class="cfa-box">
+                <h4>📚 CFA Concept: Risk-Adjusted Returns & Scenario Analysis</h4>
+                <p>CFA curriculum emphasizes <em>not just</em> expected returns, but <em>risk-adjusted</em> returns (Sharpe ratio, Sortino ratio). A 100% return with 50% drawdown risk is different from 50% return with 10% drawdown. Always weigh upside vs downside.</p>
+            </div>
+
+            <h3>Risk Thermometer</h3>
+            
+            <div class="thermometer">
+                <div class="thermometer-marker" style="left: 65%;"></div>
+                <div class="thermometer-label" style="left: 0%;">LOW</div>
+                <div class="thermometer-label" style="left: 50%;">MEDIUM</div>
+                <div class="thermometer-label" style="left: 100%;">HIGH</div>
+                <div class="thermometer-label" style="left: 65%; bottom: -45px; font-weight: 700; color: #1a1a2e;">HYPE CURRENT RISK</div>
+            </div>
+
+            <h3>Visual Risk Breakdown</h3>
+            
+            <!-- Chart 6: Risk Breakdown -->
+            <div class="chart-container">
+                <div class="chart-title">Chart 6: Risk Contribution Analysis (% of Total Risk)</div>
+                <canvas id="riskChart"></canvas>
+            </div>
+
+            <h4>Understanding Each Risk (Ranked by Impact)</h4>
+            
+            <div class="step-box">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Token Unlock Pressure (40% of risk)</h4>
+                    <p><strong>The Problem:</strong> ~$219M in unlocks vs ~$49M monthly revenue capacity. New supply hitting market faster than buybacks can absorb.</p>
+                    <p><strong>CFA View:</strong> This is <em>supply overhang</em> — similar to IPO lockup expirations. Creates temporary price pressure regardless of fundamentals.</p>
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Regulatory Crackdown (35% of risk)</h4>
+                    <p><strong>The Problem:</strong> CFTC/SEC could classify decentralized perps as illegal derivatives for US persons.</p>
+                    <p><strong>CFA View:</strong> This is <em>regulatory risk</em> — non-diversifiable, affects entire sector. Mitigation: geographic diversification of user base.</p>
+                </div>
+            </div>
+            
+            <div class="step-box">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Competition (25% of risk)</h4>
+                    <p><strong>The Problem:</strong> dYdX v4, Binance, or new entrant steals market share with better product or lower fees.</p>
+                    <p><strong>CFA View:</strong> This is <em>business risk</em> — mitigated by Hyperliquid's 67% market share and switching costs (staking benefits).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACTION PLAN -->
+        <div class="section">
+            <h2>🎲 Your Action Plan — Step by Step</h2>
+            
+            <div class="cfa-box">
+                <h4>📚 CFA Concept: Position Sizing & Portfolio Management</h4
+                <p>Rule of thumb: No single position > 5-10% of portfolio (depending on risk tolerance). This protects against catastrophic loss while allowing upside participation. HYPE is HIGH risk — size accordingly.</p>
+            </div>
+
+            <h3>Visual Decision Tree</h3>
+            
+            <div style="background: #f8f9fa; padding: 30px; border-radius: 15px; margin: 20px 0;">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <div style="background: #667eea; color: white; padding: 15px 30px; border-radius: 30px; display: inline-block; font-weight: 700;">START: Interested in HYPE?</div>
+                </div>
+                
+                <div style="display: flex; justify-content: center; gap: 50px; margin: 20px 0;">
+                    <div style="text-align: center;">
+                        <div style="background: #00c853; color: white; padding: 12px 25px; border-radius: 20px; font-weight: 600;">YES — I trade on Hyperliquid</div>
+                        <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 10px; font-size: 13px;">
+                            <strong>Action:</strong><br>
+                            1. Buy 10 HYPE ($220)<br>
+                            2. Stake for Wood tier<br>
+                            3. Link trading account<br>
+                            4. Enjoy 5% fee discount<br>
+                            <span style="color: #00c853; font-weight: 700;">ROI: 136%+</span>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center;">
+                        <div style="background: #2979ff; color: white; padding: 12px 25px; border-radius: 20px; font-weight: 600;">YES — As investment</div>
+                        <div style="margin-top: 15px; padding: 15px; background: white; border-radius: 10px; font-size: 13px;">
+                            <strong>Action:</strong><br>
+                            1. Allocate 2-5% of portfolio<br>
+                            2. DCA at $20-25 levels<br>
+                            3. Set stop at $15<br>
+                            4. Target $38-77<br>
+                            <span style="color: #2979ff; font-weight: 700;">Upside: 73-250%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Position Size Calculator</h3>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Your Portfolio Size</th>
+                        <th>Conservative (2%)</th>
+                        <th>Moderate (5%)</th>
+                        <th>Aggressive (10%)</th>
+                        <th>HYPE Tokens (@$22)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>$10,000</td>
+                        <td>$200</td>
+                        <td>$500</td>
+                        <td>$1,000</td>
+                        <td>9 / 23 / 45</td>
+                    </tr>
+                    <tr>
+                        <td>$50,000</td>
+                        <td>$1,000</td>
+                        <td>$2,500</td>
+                        <td>$5,000</td>
+                        <td>45 / 114 / 227</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td>$100,000</td>
+                        <td>$2,000</td>
+                        <td>$5,000</td>
+                        <td>$10,000</td>
+                        <td>91 / 227 / 455</td>
+                    </tr>
+                    <tr>
+                        <td>$500,000</td>
+                        <td>$10,000</td>
+                        <td>$25,000</td>
+                        <td>$50,000</td>
+                        <td>455 / 1,136 / 2,273</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="step-box">
+                <div class="step-number">⚠️</div>
+                <div class="step-content">
+                    <h4>Risk Management Rule (CFA Standard)</h4>
+                    <p><strong>Never risk more than you can afford to lose entirely.</strong> Crypto is highly volatile. HYPE could go to $0 (remote) or $100 (possible). Position size should reflect: (1) your risk tolerance, (2) portfolio diversification, (3) investment horizon.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUMMARY -->
+        <div class="section">
+            <h2>📋 One-Page Summary</h2>
+            
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 15px;">
+                <h3 style="color: white; margin-bottom: 20px;">🗡️ THE BOTTOM LINE</h3>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 14px;">
+                    <div>
+                        <p><strong>✅ WHY BUY:</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>67% market share (dominance)</li>
+                            <li>$550M+ revenue (cash machine)</li>
+                            <li>97% fee buyback (deflationary)</li>
+                            <li>$38-77 fair value (73-250% upside)</li>
+                            <li>Wood tier staking = 136% ROI</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <p><strong>⚠️ WHY CAREFUL:</strong></p>
+                        <ul style="margin-left: 20px;">
+                            <li>Token unlocks ($219M)</li>
+                            <li>Regulatory risk (CFTC/SEC)</li>
+                            <li>High volatility (-50% possible)</li>
+                            <li>Competition growing</li>
+                            <li>Crypto correlation risk</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 25px; padding-top: 20px; border-top: 2px solid rgba(255,255,255,0.3); text-align: center;">
+                    <p style="font-size: 18px; font-weight: 700;">RECOMMENDATION: ACCUMULATE | POSITION SIZE: 2-5% | TARGET: $38-77 | STOP: $15</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Built with CFA Level 1 curriculum concepts | Data as of February 22, 2026</p>
+            <p style="margin-top: 10px;">Not financial advice. DYOR. 🗡️</p>
+        </div>
+
+    </div>
+
+    <script>
+        // Chart 1: Revenue Comparison
+        new Chart(document.getElementById('revenueChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Hyperliquid', 'dYdX', 'GMX', 'Synthetix'],
+                datasets: [{
+                    label: 'Annualized Revenue ($M)',
+                    data: [550, 180, 120, 80],
+                    backgroundColor: [
+                        'rgba(102, 126, 234, 0.8)',
+                        'rgba(118, 75, 162, 0.6)',
+                        'rgba(118, 75, 162, 0.6)',
+                        'rgba(118, 75, 162, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(102, 126, 234, 1)',
+                        'rgba(118, 75, 162, 1)',
+                        'rgba(118, 75, 162, 1)',
+                        'rgba(118, 75, 162, 1)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return '$' + context.parsed.y + 'M';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value + 'M';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Chart 2: Market Share Pie
+        new Chart(document.getElementById('marketShareChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Hyperliquid (67%)', 'dYdX (15%)', 'GMX (8%)', 'Synthetix (5%)', 'Others (5%)'],
+                datasets: [{
+                    data: [67, 15, 8, 5, 5],
+                    backgroundColor: [
+                        'rgba(102, 126, 234, 0.9)',
+                        'rgba(118, 75, 162, 0.7)',
+                        'rgba(118, 75, 162, 0.5)',
+                        'rgba(118, 75, 162, 0.3)',
+                        'rgba(200, 200, 200, 0.3)'
+                    ],
+                    borderWidth: 2,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: { font: { size: 12 } }
+                    }
+                }
+            }
+        });
+
+        // Chart 3: Supply Dynamics
+        new Chart(document.getElementById('supplyChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Circulating (33.7%)', 'Staked (~15%)', 'Treasury/Vesting (~25%)', 'Future Emissions (~26.3%)'],
+                datasets: [{
+                    label: 'Token Supply Distribution (%)',
+                    data: [33.7, 15, 25, 26.3],
+                    backgroundColor: [
+                        'rgba(0, 200, 83, 0.7)',
+                        'rgba(41, 121, 255, 0.7)',
+                        'rgba(255, 193, 7, 0.7)',
+                        'rgba(158, 158, 158, 0.5)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    x: {
+                        max: 100,
+                        ticks: { callback: function(value) { return value + '%'; } }
+                    }
+                }
+            }
+        });
+
+        // Chart 4: Staking ROI
+        new Chart(document.getElementById('stakingRoiChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Wood\n(10 HYPE)', 'Bronze\n(1K HYPE)', 'Silver\n(10K HYPE)', 'Gold\n(50K HYPE)', 'Platinum\n(100K HYPE)', 'Diamond\n(500K HYPE)'],
+                datasets: [{
+                    label: 'Annual ROI (%)',
+                    data: [136, 2.7, 0.41, 0.14, 0.08, 0.02],
+                    backgroundColor: [
+                        'rgba(0, 200, 83, 0.8)',
+                        'rgba(41, 121, 255, 0.6)',
+                        'rgba(41, 121, 255, 0.6)',
+                        'rgba(41, 121, 255, 0.6)',
+                        'rgba(41, 121, 255, 0.6)',
+                        'rgba(41, 121, 255, 0.6)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    annotation: {
+                        annotations: {
+                            line1: {
+                                type: 'line',
+                                yMin: 136,
+                                yMax: 136,
+                                borderColor: 'rgba(0, 200, 83, 1)',
+                                borderWidth: 2,
+                                label: { content: 'OPTIMAL', enabled: true }
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        type: 'logarithmic',
+                        title: { display: true, text: 'Annual ROI (%) — Log Scale' }
+                    }
+                }
+            }
+        });
+
+        // Chart 5: Valuation Scenarios
+        new Chart(document.getElementById('valuationChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Current Price', 'Bear Case', 'Base Case', 'Bull Case'],
+                datasets: [{
+                    label: 'HYPE Price ($)',
+                    data: [22, 15, 38, 77],
+                    backgroundColor: [
+                        'rgba(255, 193, 7, 0.7)',
+                        'rgba(244, 67, 54, 0.6)',
+                        'rgba(0, 200, 83, 0.6)',
+                        'rgba(0, 200, 83, 0.9)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { callback: function(value) { return '$' + value; } }
+                    }
+                }
+            }
+        });
+
+        // Chart 6: Risk Breakdown
+        new Chart(document.getElementById('riskChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Token Unlocks (40%)', 'Regulatory (35%)', 'Competition (25%)'],
+                datasets: [{
+                    data: [40, 35, 25],
+                    backgroundColor: [
+                        'rgba(244, 67, 54, 0.7)',
+                        'rgba(255, 152, 0, 0.7)',
+                        'rgba(255, 193, 7, 0.7)'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { font: { size: 12 } }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
