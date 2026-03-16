@@ -1,0 +1,26 @@
+# GitHub Pages Configuration
+title: Empire Command Center
+description: Personal dashboard and reporting hub
+
+# Disable Jekyll processing for pure HTML/CSS/JS
+disable_disk_cache: true
+
+# Include all files (don't exclude anything important)
+include:
+  - "*.html"
+  - "*.css"
+  - "*.js"
+  - "horoscope/*.html"
+  - "daily5/*.html"
+  - "vedic/*.html"
+
+# Exclude development files
+exclude:
+  - "venv/"
+  - "__pycache__/"
+  - "*.pyc"
+  - "*.pyo"
+  - ".env"
+  - "*.key"
+  - "*.pem"
+  - "credentials/"
