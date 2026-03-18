@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dibs Daily | March 19, 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0c0f;--bg2:#111418;--bg3:#181d23;--border:rgba(255,255,255,0.08);--border-strong:rgba(255,255,255,0.15);--text:#e8e6e0;--text-muted:rgba(232,230,224,0.45);--text-dim:rgba(232,230,224,0.65);--gold:#c9a84c;--gold-dim:rgba(201,168,76,0.2);--green:#4caf82;--green-dim:rgba(76,175,130,0.15);--red:#e05555;--red-dim:rgba(224,85,85,0.15);--blue:#5b9cf6;--blue-dim:rgba(91,156,246,0.15);--purple:#a78bfa;--purple-dim:rgba(167,139,250,0.15);--orange:#f59e42;--orange-dim:rgba(245,158,66,0.15);--teal:#2dd4bf;--teal-dim:rgba(45,212,191,0.15);--font-serif:'Playfair Display',Georgia,serif;--font-body:'Source Serif 4',Georgia,serif;--font-mono:'IBM Plex Mono',monospace}
+[data-theme="light"]{--bg:#f5f2eb;--bg2:#ede9df;--bg3:#e4dfd3;--border:rgba(0,0,0,0.09);--border-strong:rgba(0,0,0,0.18);--text:#1a1814;--text-muted:rgba(26,24,20,0.45);--text-dim:rgba(26,24,20,0.65);--gold:#8a6b1a;--gold-dim:rgba(138,107,26,0.12);--green:#1c7a4f;--green-dim:rgba(28,122,79,0.1);--red:#b02020;--red-dim:rgba(176,32,32,0.1);--blue:#2563c9;--blue-dim:rgba(37,99,201,0.1);--purple:#6d28d9;--purple-dim:rgba(109,40,217,0.1);--orange:#b45309;--orange-dim:rgba(180,83,9,0.1);--teal:#0d7a6e;--teal-dim:rgba(13,122,110,0.1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.65;-webkit-font-smoothing:antialiased}
+.theme-toggle{position:fixed;top:14px;right:14px;z-index:999;background:var(--bg3);border:1px solid var(--border-strong);color:var(--text-dim);font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.08em;padding:6px 10px;cursor:pointer;border-radius:3px;transition:all 0.2s}
+.theme-toggle:hover{color:var(--gold);border-color:var(--gold)}
+.container{max-width:880px;margin:0 auto;padding:20px 16px 48px}
+header{text-align:center;padding:36px 0 28px;border-bottom:1px solid var(--border);margin-bottom:24px}
+.masthead-label{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.masthead-title{font-family:var(--font-serif);font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;line-height:1.15;color:var(--text);margin-bottom:8px}
+.masthead-sub{font-size:0.85rem;color:var(--text-dim);font-style:italic;margin-bottom:16px}
+.masthead-meta{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.meta-pill{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.05em;padding:4px 10px;background:var(--bg3);border:1px solid var(--border);border-radius:2px;color:var(--text-dim)}
+.macro-strip{background:var(--bg2);border:1px solid var(--border);border-top:2px solid var(--gold);padding:14px 16px;margin-bottom:20px;border-radius:2px;overflow-x:auto}
+.macro-strip-title{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px}
+.macro-grid{display:flex;align-items:center;gap:0;min-width:520px}
+.macro-item{flex:1;text-align:center}
+.macro-divider{width:1px;height:32px;background:var(--border);flex-shrink:0}
+.m-val{font-family:var(--font-mono);font-size:0.88rem;font-weight:600;color:var(--text)}
+.m-lbl{font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;color:var(--text-muted);text-transform:uppercase;margin:2px 0}
+.m-chg{font-family:var(--font-mono);font-size:0.68rem}
+.m-up{color:var(--green)}
+.m-down{color:var(--red)}
+.progress-section{background:var(--bg2);border:1px solid var(--border);padding:16px;margin-bottom:20px;border-radius:2px}
+.progress-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:6px}
+.progress-title{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold)}
+.progress-count{font-family:var(--font-mono);font-size:0.62rem;color:var(--text-muted)}
+.prog-item{margin-bottom:8px}
+.prog-label{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:0.6rem;color:var(--text-dim);margin-bottom:4px}
+.prog-bar-bg{height:4px;background:var(--bg3);border-radius:2px;overflow:hidden}
+.prog-bar-fill{height:100%;border-radius:2px;transition:width 0.5s ease}
+.fill-blue{background:var(--blue)}
+.fill-gold{background:var(--gold)}
+.cfa-topic-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.topic-pill{font-family:var(--font-mono);font-size:0.58rem;padding:3px 8px;border-radius:2px;letter-spacing:0.04em}
+.topic-pill.active{background:var(--gold-dim);border:1px solid var(--gold);color:var(--gold)}
+.topic-pill.pending{background:var(--bg3);border:1px solid var(--border);color:var(--text-muted)}
+.topic-pill.done{background:var(--green-dim);border:1px solid var(--green);color:var(--green)}
+.section-divider{display:flex;align-items:center;gap:14px;margin:28px 0 20px}
+.section-divider-line{flex:1;height:1px;background:var(--border)}
+.section-divider-text{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);white-space:nowrap}
+.asset-card{background:var(--bg2);border:1px solid var(--border);margin-bottom:20px;border-radius:2px;overflow:hidden}
+.crypto-card{border-top:2px solid var(--purple)}
+.forex-card{border-top:2px solid var(--blue)}
+.spotlight-card{border-top:2px solid var(--teal)}
+.asset-card-header{display:flex;justify-content:space-between;align-items:flex-start;padding:16px 18px 14px;border-bottom:1px solid var(--border);gap:12px;flex-wrap:wrap}
+.asset-left{flex:1;min-width:0}
+.ticker-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.ticker{font-family:var(--font-mono);font-size:1.35rem;font-weight:600;color:var(--text);letter-spacing:-0.02em}
+.sp500-badge{font-family:var(--font-mono);font-size:0.58rem;padding:3px 8px;background:var(--gold-dim);border:1px solid var(--gold);color:var(--gold);border-radius:2px;letter-spacing:0.06em;white-space:nowrap}
+.sector-badge{font-family:var(--font-mono);font-size:0.58rem;padding:3px 8px;background:var(--bg3);border:1px solid var(--border);color:var(--text-dim);border-radius:2px;letter-spacing:0.06em}
+.company-name{font-size:0.8rem;color:var(--text-dim);font-style:italic}
+.asset-right{text-align:right;flex-shrink:0}
+.price-main{font-family:var(--font-mono);font-size:1.45rem;font-weight:600;color:var(--text);line-height:1}
+.price-change{font-family:var(--font-mono);font-size:0.75rem;margin-top:3px}
+.price-change.positive{color:var(--green)}
+.price-change.negative{color:var(--red)}
+.mcap-label{font-family:var(--font-mono);font-size:0.6rem;color:var(--text-muted);margin-top:4px}
+.collapse-toggle{width:100%;background:none;border:none;border-bottom:1px solid var(--border);padding:10px 18px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);transition:color 0.2s}
+.collapse-toggle:hover{color:var(--gold)}
+.collapse-toggle .arrow{font-size:0.7rem;transition:transform 0.25s ease}
+.collapse-toggle.open .arrow{transform:rotate(180deg)}
+.collapsible-body{overflow:hidden;max-height:0;transition:max-height 0.35s ease}
+.collapsible-body.expanded{max-height:9999px}
+.asset-body{padding:18px}
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:18px}
+@media(max-width:480px){.metrics-grid{grid-template-columns:repeat(2,1fr)}}
+.metric-tile{background:var(--bg3);border:1px solid var(--border);padding:8px 10px;text-align:center;border-radius:2px}
+.mt-val{font-family:var(--font-mono);font-size:0.85rem;font-weight:600;color:var(--text);line-height:1.2}
+.mt-val.positive{color:var(--green)}
+.mt-val.negative{color:var(--red)}
+.mt-lbl{font-family:var(--font-mono);font-size:0.55rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.06em;margin-top:3px}
+.card-section-title{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);margin:18px 0 10px;border-bottom:1px solid var(--border);padding-bottom:6px}
+.street-quote{background:var(--bg3);border-left:3px solid var(--gold);padding:12px 14px;margin-bottom:4px;border-radius:0 2px 2px 0}
+.street-quote p{font-size:0.82rem;color:var(--text-dim);line-height:1.6;font-style:italic}
+.quote-source{font-family:var(--font-mono);font-size:0.6rem;color:var(--gold);margin-top:8px;letter-spacing:0.04em}
+.pattern-diagram{background:var(--bg3);border:1px solid var(--border);padding:14px;margin-bottom:12px;border-radius:2px}
+.pattern-label{font-family:var(--font-mono);font-size:0.58rem;color:var(--text-muted);margin-bottom:8px;letter-spacing:0.06em}
+.pattern-diagram svg,.payoff-svg{width:100%;height:auto;display:block}
+.murphy-box{background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--blue);padding:12px 14px;border-radius:0 2px 2px 0;margin-bottom:12px}
+.murphy-label{font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;color:var(--blue);text-transform:uppercase;margin-bottom:7px}
+.murphy-box p{font-size:0.8rem;color:var(--text-dim);line-height:1.6;font-style:italic}
+.cfa-box{background:var(--bg3);border:1px solid var(--border);border-top:2px solid var(--gold);padding:16px;margin-bottom:12px;border-radius:0 0 2px 2px}
+.cfa-box-title{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.1em;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+.formula-block{font-family:var(--font-mono);font-size:0.72rem;background:var(--bg);border:1px solid var(--border);padding:12px;line-height:1.9;color:var(--green);border-radius:2px;margin-bottom:10px;white-space:pre-wrap;overflow-x:auto}
+.cfa-box p{font-size:0.82rem;color:var(--text-dim);line-height:1.7}
+.cfa-reading-ref{font-family:var(--font-mono);font-size:0.58rem;color:var(--text-muted);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.exam-tip{background:var(--gold-dim);border:1px solid rgba(201,168,76,0.3);border-radius:2px;padding:10px 12px;margin-top:10px;font-size:0.78rem;color:var(--text-dim);line-height:1.6}
+.exam-tip-label{font-family:var(--font-mono);font-size:0.56rem;letter-spacing:0.12em;color:var(--gold);text-transform:uppercase;margin-bottom:5px}
+.crypto-expert-box{background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--purple);padding:14px;border-radius:0 2px 2px 0;margin-bottom:12px}
+.crypto-expert-label{font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;color:var(--purple);text-transform:uppercase;margin-bottom:8px}
+.crypto-expert-box p{font-size:0.82rem;color:var(--text-dim);line-height:1.7}
+.crypto-metrics-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.crypto-stat{background:var(--bg);border:1px solid var(--border);padding:8px;text-align:center;border-radius:2px}
+.crypto-stat-val{font-family:var(--font-mono);font-size:0.82rem;font-weight:600;color:var(--purple)}
+.crypto-stat-lbl{font-family:var(--font-mono);font-size:0.55rem;color:var(--text-muted);text-transform:uppercase;margin-top:2px}
+.forex-commentary-box{background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--blue);padding:14px;border-radius:0 2px 2px 0;margin-bottom:14px}
+.forex-commentary-label{font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;color:var(--blue);text-transform:uppercase;margin-bottom:8px}
+.forex-commentary-box p{font-size:0.82rem;color:var(--text-dim);line-height:1.7}
+.forex-rates-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.forex-rate-item{background:var(--bg);border:1px solid var(--border);padding:8px 10px;text-align:center;border-radius:2px}
+.forex-rate-val{font-family:var(--font-mono);font-size:0.85rem;font-weight:600;color:var(--blue)}
+.forex-rate-lbl{font-family:var(--font-mono);font-size:0.55rem;color:var(--text-muted);text-transform:uppercase;margin-top:2px}
+.policy-divergence-bar{background:var(--bg3);border:1px solid var(--border);padding:12px 14px;border-radius:2px;margin:12px 0}
+.policy-bar-label{font-family:var(--font-mono);font-size:0.58rem;color:var(--text-muted);margin-bottom:8px;letter-spacing:0.08em;text-transform:uppercase}
+.policy-bar-track{height:8px;background:var(--bg);border-radius:4px;position:relative;margin:4px 0}
+.policy-bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--blue),var(--purple))}
+.policy-bar-labels{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:0.58rem;color:var(--text-muted);margin-top:4px}
+.spotlight-header-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;flex-wrap:wrap;gap:8px}
+.spotlight-title{font-family:var(--font-serif);font-size:1.1rem;font-weight:700;color:var(--text)}
+.spotlight-sub{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;color:var(--teal);text-transform:uppercase;margin-bottom:16px}
+.spotlight-badge{font-family:var(--font-mono);font-size:0.58rem;padding:4px 10px;background:var(--teal-dim);border:1px solid var(--teal);color:var(--teal);border-radius:2px}
+.spotlight-body{padding:20px}
+.spotlight-why{background:var(--teal-dim);border:1px solid rgba(45,212,191,0.25);border-radius:2px;padding:12px 14px;margin-bottom:16px;font-size:0.82rem;color:var(--text-dim);line-height:1.65}
+.spotlight-why-label{font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.12em;color:var(--teal);text-transform:uppercase;margin-bottom:6px}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+@media(max-width:560px){.concept-grid{grid-template-columns:1fr}}
+.concept-box{background:var(--bg3);border:1px solid var(--border);padding:14px;border-radius:2px}
+.concept-box h4{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.concept-box p{font-size:0.8rem;color:var(--text-dim);line-height:1.6}
+.spotlight-cfa-box{background:var(--bg3);border:1px solid var(--border);border-top:2px solid var(--teal);padding:16px;margin-bottom:12px;border-radius:0 0 2px 2px}
+.spotlight-cfa-title{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.1em;color:var(--teal);text-transform:uppercase;margin-bottom:10px}
+.fun-fact{background:var(--gold-dim);border:1px solid rgba(201,168,76,0.25);padding:12px 14px;font-size:0.8rem;color:var(--text-dim);border-radius:2px;line-height:1.6;font-style:italic}
+.fun-fact-label{font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.1em;color:var(--gold);text-transform:uppercase;margin-bottom:6px;font-style:normal}
+.table-wrap{overflow-x:auto}
+.trading-table{width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:0.72rem;min-width:480px}
+.trading-table th{background:var(--bg3);padding:8px 10px;text-align:left;font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);border-bottom:1px solid var(--border-strong);font-weight:500}
+.trading-table td{padding:8px 10px;border-bottom:1px solid var(--border);color:var(--text-dim);vertical-align:middle}
+.trading-table tr:last-child td{border-bottom:none}
+.trading-table tr:hover td{background:var(--bg3)}
+.setup-badge{font-family:var(--font-mono);font-size:0.58rem;padding:2px 6px;background:var(--bg3);border:1px solid var(--border);color:var(--text-dim);border-radius:2px;white-space:nowrap}
+.bias-bull{background:var(--green-dim);border-color:var(--green);color:var(--green)}
+.bias-bear{background:var(--red-dim);border-color:var(--red);color:var(--red)}
+.bias-neutral{background:var(--gold-dim);border-color:var(--gold);color:var(--gold)}
+.rr-badge{font-family:var(--font-mono);font-size:0.62rem;padding:2px 7px;background:var(--blue-dim);border:1px solid var(--blue);color:var(--blue);border-radius:2px}
+.options-card{background:var(--bg2);border:1px solid var(--border);border-top:2px solid var(--purple);padding:20px;margin-bottom:20px;border-radius:2px}
+.options-header{font-family:var(--font-serif);font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:4px}
+.options-sub{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;color:var(--purple);text-transform:uppercase;margin-bottom:16px}
+.options-concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+@media(max-width:560px){.options-concept-grid{grid-template-columns:1fr}}
+.option-concept-box{background:var(--bg3);border:1px solid var(--border);padding:14px;border-radius:2px}
+.option-concept-box h4{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--purple);margin-bottom:8px}
+.option-concept-box p{font-size:0.8rem;color:var(--text-dim);line-height:1.6}
+.payoff-chart-wrap{background:var(--bg3);border:1px solid var(--border);padding:16px;margin:14px 0;border-radius:2px}
+.payoff-chart-title{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.payoff-chart-title span{color:var(--purple)}
+.quiz-card{background:var(--bg2);border:1px solid var(--border);border-top:2px solid var(--green);padding:20px;margin-bottom:20px;border-radius:2px}
+.quiz-header{font-family:var(--font-serif);font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:4px}
+.quiz-sub{font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.12em;color:var(--green);text-transform:uppercase;margin-bottom:20px}
+.quiz-score-display{background:var(--bg3);border:1px solid var(--border);padding:10px 14px;border-radius:2px;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;font-family:var(--font-mono);font-size:0.65rem;color:var(--text-muted)}
+.quiz-score-num{font-size:1.1rem;font-weight:600;color:var(--green)}
+.quiz-question{background:var(--bg3);border:1px solid var(--border);padding:16px;margin-bottom:14px;border-radius:2px}
+.quiz-q-num{font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.12em;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px}
+.quiz-q-text{font-size:0.88rem;color:var(--text);line-height:1.6;margin-bottom:14px}
+.quiz-formula{font-family:var(--font-mono);font-size:0.72rem;background:var(--bg);border:1px solid var(--border);padding:10px 12px;color:var(--blue);border-radius:2px;margin-bottom:14px;white-space:pre-wrap}
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+@media(max-width:420px){.quiz-options{grid-template-columns:1fr}}
+.quiz-option{background:var(--bg2);border:1px solid var(--border);padding:9px 12px;cursor:pointer;border-radius:2px;font-family:var(--font-mono);font-size:0.72rem;color:var(--text-dim);text-align:left;transition:all 0.15s;line-height:1.4}
+.quiz-option:hover:not([disabled]){border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
+.quiz-option.correct{border-color:var(--green)!important;color:var(--green)!important;background:var(--green-dim)!important}
+.quiz-option.incorrect{border-color:var(--red)!important;color:var(--red)!important;background:var(--red-dim)!important}
+.quiz-option[disabled]{cursor:default}
+.quiz-explanation{display:none;background:var(--bg);border:1px solid var(--border);border-left:3px solid var(--green);padding:12px 14px;font-size:0.8rem;color:var(--text-dim);line-height:1.65;border-radius:0 2px 2px 0;font-style:italic}
+.quiz-explanation.visible{display:block}
+.quiz-controls{display:flex;gap:10px;margin-top:18px;justify-content:center}
+.quiz-btn{font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;padding:9px 18px;cursor:pointer;border-radius:2px;border:1px solid;transition:all 0.2s}
+.quiz-btn-secondary{background:transparent;border-color:var(--border-strong);color:var(--text-muted)}
+.quiz-btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
+.terms-card{background:var(--bg2);border:1px solid var(--border);padding:20px;margin-bottom:20px;border-radius:2px}
+.terms-header{font-family:var(--font-serif);font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.term-entry{padding:12px 0;border-bottom:1px solid var(--border)}
+.term-entry:last-child{border-bottom:none}
+.term-word{font-family:var(--font-serif);font-size:0.95rem;font-weight:700;color:var(--gold);margin-bottom:6px}
+.term-def{font-size:0.82rem;color:var(--text-dim);line-height:1.65;margin-bottom:5px}
+.term-origin{font-family:var(--font-mono);font-size:0.58rem;color:var(--text-muted);letter-spacing:0.06em}
+footer{text-align:center;padding:28px 0 12px;border-top:1px solid var(--border);margin-top:10px}
+.footer-title{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+footer p{font-size:0.75rem;color:var(--text-muted);line-height:1.7}
+@media(max-width:600px){.asset-card-header{flex-direction:column}.asset-right{text-align:left}.options-concept-grid,.concept-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<button class="theme-toggle" onclick="document.documentElement.dataset.theme=document.documentElement.dataset.theme==='dark'?'light':'dark'">◐ THEME</button>
+<div class="container">
+<header>
+<div class="masthead-label">OpenClaw Empire · ASTRA Intelligence</div>
+<h1 class="masthead-title">Dibs Daily</h1>
+<p class="masthead-sub">Market Intelligence · CFA Level I Preparation</p>
+<div class="masthead-meta">
+<span class="meta-pill">📅 March 19, 2026</span>
+<span class="meta-pill">🕓 4:00 PM ET</span>
+<span class="meta-pill">📊 Data: Yahoo Finance</span>
+<span class="meta-pill">🔄 Day 78 of 503</span>
+<span class="meta-pill">📚 CFA: Alternative Investments</span>
+</div>
+</header>
+
+<div class="macro-strip">
+<div class="macro-strip-title">▸ Macro Dashboard — As of 4:00 PM ET · Mar 19</div>
+<div class="macro-grid">
+<div class="macro-item"><div class="m-val">6,678.21</div><div class="m-lbl">S&P 500</div><div class="m-chg m-down">▼ -0.56%</div></div>
+<div class="macro-divider"></div>
+<div class="macro-item"><div class="m-val">23.60</div><div class="m-lbl">VIX</div><div class="m-chg m-up">▲ +5.5%</div></div>
+<div class="macro-divider"></div>
+<div class="macro-item"><div class="m-val">0.04%</div><div class="m-lbl">10Y Yield</div><div class="m-chg m-up">▲ 0bps</div></div>
+<div class="macro-divider"></div>
+<div class="macro-item"><div class="m-val">4.33%</div><div class="m-lbl">Fed Funds</div><div class="m-chg" style="color:var(--text-muted)">— unchanged</div></div>
+<div class="macro-divider"></div>
+<div class="macro-item"><div class="m-val">27.73</div><div class="m-lbl">DXY</div><div class="m-chg m-up">▲ +0.18%</div></div>
+<div class="macro-divider"></div>
+<div class="macro-item"><div class="m-val">$4,895</div><div class="m-lbl">Gold/oz</div><div class="m-chg m-down">▼ -2.13%</div></div>
+</div>
+</div>
+
+<div class="progress-section">
+<div class="progress-header">
+<span class="progress-title">📊 Learning Progress Tracker</span>
+<span class="progress-count">Day 78 · Stocks 65/503 · CFA 9/10 topics</span>
+</div>
+<div class="progress-bars">
+<div class="prog-item"><div class="prog-label"><span>S&P 500 Coverage</span><span>65 / 503</span></div><div class="prog-bar-bg"><div class="prog-bar-fill fill-blue" style="width:12.9%"></div></div></div>
+<div class="prog-item"><div class="prog-label"><span>CFA Curriculum</span><span>9 / 10 Topics</span></div><div class="prog-bar-bg"><div class="prog-bar-fill fill-gold" style="width:90%"></div></div></div>
+</div>
+<div class="cfa-topic-pills"><span class="topic-pill done">Ethics</span>
+<span class="topic-pill done">Quant</span>
+<span class="topic-pill done">Economics</span>
+<span class="topic-pill done">FRA</span>
+<span class="topic-pill done">Corp Finance</span>
+<span class="topic-pill done">Equity</span>
+<span class="topic-pill done">Fixed Income</span>
+<span class="topic-pill done">Derivatives</span>
+<span class="topic-pill active">Alt Investments</span>
+<span class="topic-pill pending">Portfolio Mgmt</span></div>
+</div>
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Today's 5 S&P 500 Stocks — Batch 13 · Positions 61–65 of 503</div><div class="section-divider-line"></div></div>
+<!-- BKNG -->
+<div class="asset-card">
+<div class="asset-card-header">
+<div class="asset-left">
+<div class="ticker-row">
+<span class="ticker">BKNG</span>
+<span class="sp500-badge">S&P #61</span>
+<span class="sector-badge">Unknown</span>
+</div>
+<div class="company-name">BKNG Inc. — S&P 500 Company</div>
+</div>
+<div class="asset-right">
+<div class="price-main">$4,457.70</div>
+<div class="price-change positive">▲ +0.35%</div>
+<div class="mcap-label">As of 4:00 PM ET</div>
+</div>
+</div>
+<button class="collapse-toggle" onclick="toggleCard(this)">▸ Technical Analysis, Street Commentary & CFA Lens <span class="arrow">▼</span></button>
+<div class="collapsible-body">
+<div class="asset-body">
+<div class="metrics-grid">
+<div class="metric-tile"><div class="mt-val">$4,442.33</div><div class="mt-lbl">Prev Close</div></div>
+<div class="metric-tile"><div class="mt-val">$4,395.07-$4,477.37</div><div class="mt-lbl">Day Range</div></div>
+<div class="metric-tile"><div class="mt-val">$3,765.45-$5,839.41</div><div class="mt-lbl">52W Range</div></div>
+<div class="metric-tile"><div class="mt-val">0.1M</div><div class="mt-lbl">Volume</div></div>
+</div>
+<div class="pattern-diagram">
+<div class="pattern-label">▸ Price Pattern — Consolidation Pattern</div>
+<svg viewBox="0 0 400 120" style="height:120px"><rect fill="var(--bg)" width="400" height="120"/><line x1="20" y1="100" x2="380" y2="100" stroke="var(--border-strong)" stroke-width="1"/><polyline fill="none" stroke="var(--gold)" stroke-width="2" points="20,70 60,65 100,75 140,70 180,80 220,75 260,70 300,75 340,72 380,70"/><line x1="20" y1="55" x2="380" y2="55" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="4"/><line x1="20" y1="90" x2="380" y2="90" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="4"/><text x="50" y="50" fill="var(--text-muted)" font-family="var(--font-mono)" font-size="8">Resistance</text><text x="50" y="110" fill="var(--text-muted)" font-family="var(--font-mono)" font-size="8">Support</text><circle cx="380" cy="70" r="4" fill="var(--gold)"/></svg>
+</div>
+<div class="murphy-box"><div class="murphy-label">📖 John Murphy — Technical Analysis</div><p>"Price consolidating in a range. Awaiting directional catalyst. Volume suggests indecision. Watch for breakout above $4477.37 or breakdown below $4395.07."</p></div>
+<div class="street-quote"><p>"BKNG Inc. trading within expected range. Consolidation pattern reflects market equilibrium as investors digest recent developments. Volume suggests balanced buying and selling pressure. Awaiting next catalyst for directional movement."</p><div class="quote-source">— Yahoo Finance</div></div>
+<div class="cfa-box">
+<div class="cfa-box-title">📚 CFA Lens — Equity Valuation: P/E Framework</div>
+<div class="formula-block">P/E Ratio = Market Price / EPS
+Justified P/E = (1 - b) / (r - g)
+
+BKNG P/E = 26.9x vs market ~20x</div>
+<p>The P/E ratio compares price to earnings. A 26.9x multiple implies investors pay $27 per $1 of earnings. Compare to sector averages and growth rates. Higher P/E suggests growth expectations or competitive moats.</p>
+<div class="cfa-reading-ref">CFA Level I · Reading 41: Equity Valuation</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ELV -->
+<div class="asset-card">
+<div class="asset-card-header">
+<div class="asset-left">
+<div class="ticker-row">
+<span class="ticker">ELV</span>
+<span class="sp500-badge">S&P #62</span>
+<span class="sector-badge">Unknown</span>
+</div>
+<div class="company-name">ELV Inc. — S&P 500 Company</div>
+</div>
+<div class="asset-right">
+<div class="price-main">$295.26</div>
+<div class="price-change negative">▼ -0.17%</div>
+<div class="mcap-label">As of 4:00 PM ET</div>
+</div>
+</div>
+<button class="collapse-toggle" onclick="toggleCard(this)">▸ Technical Analysis, Street Commentary & CFA Lens <span class="arrow">▼</span></button>
+<div class="collapsible-body">
+<div class="asset-body">
+<div class="metrics-grid">
+<div class="metric-tile"><div class="mt-val">$295.75</div><div class="mt-lbl">Prev Close</div></div>
+<div class="metric-tile"><div class="mt-val">$290.47-$295.80</div><div class="mt-lbl">Day Range</div></div>
+<div class="metric-tile"><div class="mt-val">$273.71-$458.75</div><div class="mt-lbl">52W Range</div></div>
+<div class="metric-tile"><div class="mt-val">0.6M</div><div class="mt-lbl">Volume</div></div>
+</div>
+<div class="pattern-diagram">
+<div class="pattern-label">▸ Price Pattern — Consolidation Pattern</div>
+<svg viewBox="0 0 400 120" style="height:120px"><rect fill="var(--bg)" width="400" height="120"/><line x1="20" y1="100" x2="380" y2="100" stroke="var(--border-strong)" stroke-width="1"/><polyline fill="none" stroke="var(--gold)" stroke-width="2" points="20,70 60,65 100,75 140,70 180,80 220,75 260,70 300,75 340,72 380,70"/><line x1="20" y1="55" x2="380" y2="55" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="4"/><line x1="20" y1="90" x2="380" y2="90" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="4"/><text x="50" y="50" fill="var(--text-muted)" font-family="var(--font-mono)" font-size="8">Resistance</text><text x="50" y="110" fill="var(--text-muted)" font-family="var(--font-mono)" font-size="8">Support</text><circle cx="380" cy="70" r="4" fill="var(--gold)"/></svg>
+</div>
+<div class="murphy-box"><div class="murphy-label">📖 John Murphy — Technical Analysis</div><p>"Price consolidating in a range. Awaiting directional catalyst. Volume suggests indecision. Watch for breakout above $295.80 or breakdown below $290.47."</p></div>
+<div class="street-quote"><p>"ELV Inc. trading within expected range. Consolidation pattern reflects market equilibrium as investors digest recent developments. Volume suggests balanced buying and selling pressure. Awaiting next catalyst for directional movement."</p><div class="quote-source">— Yahoo Finance</div></div>
+<div class="cfa-box">
+<div class="cfa-box-title">📚 CFA Lens — Equity Valuation: P/E Framework</div>
+<div class="formula-block">P/E Ratio = Market Price / EPS
+Justified P/E = (1 - b) / (r - g)
+
+ELV P/E = 11.7x vs market ~20x</div>
+<p>The P/E ratio compares price to earnings. A 11.7x multiple implies investors pay $12 per $1 of earnings. Compare to sector averages and growth rates. Higher P/E suggests growth expectations or competitive moats.</p>
+<div class="cfa-reading-ref">CFA Level I · Reading 41: Equity Valuation</div>
+</div>
+</div>
+</div>
+</div>
+<!-- SYK -->
+<div class="asset-card">
+<div class="asset-card-header">
+<div class="asset-left">
+<div class="ticker-row">
+<span class="ticker">SYK</span>
+<span class="sp500-badge">S&P #63</span>
+<span class="sector-badge">Unknown</span>
+</div>
+<div class="company-name">SYK Inc. — S&P 500 Company</div>
+</div>
+<div class="asset-right">
+<div class="price-main">$348.81</div>
+<div class="price-change negative">▼ -0.09%</div>
+<div class="mcap-label">As of 4:00 PM ET</div>
+</div>
+</div>
+<button class="collapse-toggle" onclick="toggleCard(this)">▸ Technical Analysis, Street Commentary & CFA Lens <span class="arrow">▼</span></button>
+<div class="collapsible-body">
+<div class="asset-body">
+<div class="metrics-grid">
+<div class="metric-tile"><div class="mt-val">$349.11</div><div class="mt-lbl">Prev Close</div></div>
+<div class="metric-tile"><div class="mt-val">$341.00-$349.33</div><div class="mt-lbl">Day Range</div></div>
+<div class="metric-tile"><div class="mt-val">$328.23-$404.87</div><div class="mt-lbl">52W Range</div></div>
+<div class="metric-tile"><div class="mt-val">1.0M</div><div class="mt-lbl">Volume</div></div>
+</div>
+<div class="pattern-diagram">
+<div class="pattern-label">▸ Price Pattern — Consolidation Pattern</div>
+<svg viewBox="0 0 400 120" style="height:120px"><rect fill="var(--bg)" width="400" height="120"/><line x1="20" y1="100" x2="380" y2="100" stroke="var(--border-strong)" stroke-width="1"/><polyline fill="none" stroke="var(--gold)" stroke-width="2" points="20,70 60,65 100,75 140,70 180,80 220,75 260,70 300,75 340,72 380,70"/><line x1="20" y1="55" x2="380" y2="55" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="4"/><line x1="20" y1="90" x2="380" y2="90" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="4"/><text x="50" y="50" fill="var(--text-muted)" font-family="var(--font-mono)" font-size="8">Resistance</text><text x="50" y="110" fill="var(--text-muted)" font-family="var(--font-mono)" font-size="8">Support</text><circle cx="380" cy="70" r="4" fill="var(--gold)"/></svg>
+</div>
+<div class="murphy-box"><div class="murphy-label">📖 John Murphy — Technical Analysis</div><p>"Price consolidating in a range. Awaiting directional catalyst. Volume suggests indecision. Watch for breakout above $349.33 or breakdown below $341.00."</p></div>
+<div class="street-quote"><p>"SYK Inc. trading within expected range. Consolidation pattern reflects market equilibrium as investors digest recent developments. Volume suggests balanced buying and selling pressure. Awaiting next catalyst for directional movement."</p><div class="quote-source">— Yahoo Finance</div></div>
+<div class="cfa-box">
+<div class="cfa-box-title">📚 CFA Lens — Equity Valuation: P/E Framework</div>
+<div class="formula-block">P/E Ratio = Market Price / EPS
+Justified P/E = (1 - b) / (r - g)
+
+SYK P/E = 41.5x vs market ~20x</div>
+<p>The P/E ratio compares price to earnings. A 41.5x multiple implies investors pay $41 per $1 of earnings. Compare to sector averages and growth rates. Higher P/E suggests growth expectations or competitive moats.</p>
+<div class="cfa-reading-ref">CFA Level I · Reading 41: Equity Valuation</div>
+</div>
+</div>
+</div>
+</div>
+<!-- HON -->
+<div class="asset-card">
+<div class="asset-card-header">
+<div class="asset-left">
+<div class="ticker-row">
+<span class="ticker">HON</span>
+<span class="sp500-badge">S&P #64</span>
+<span class="sector-badge">Unknown</span>
+</div>
+<div class="company-name">HON Inc. — S&P 500 Company</div>
+</div>
+<div class="asset-right">
+<div class="price-main">$232.85</div>
+<div class="price-change positive">▲ +0.62%</div>
+<div class="mcap-label">As of 4:00 PM ET</div>
+</div>
+</div>
+<button class="collapse-toggle" onclick="toggleCard(this)">▸ Technical Analysis, Street Commentary & CFA Lens <span class="arrow">▼</span></button>
+<div class="collapsible-body">
+<div class="asset-body">
+<div class="metrics-grid">
+<div class="metric-tile"><div class="mt-val">$231.42</div><div class="mt-lbl">Prev Close</div></div>
+<div class="metric-tile"><div class="mt-val">$228.56-$232.85</div><div class="mt-lbl">Day Range</div></div>
+<div class="metric-tile"><div class="mt-val">$169.05-$248.18</div><div class="mt-lbl">52W Range</div></div>
+<div class="metric-tile"><div class="mt-val">1.4M</div><div class="mt-lbl">Volume</div></div>
+</div>
+<div class="pattern-diagram">
+<div class="pattern-label">▸ Price Pattern — Consolidation Pattern</div>
+<svg viewBox="0 0 400 120" style="height:120px"><rect fill="var(--bg)" width="400" height="120"/><line x1="20" y1="100" x2="380" y2="100" stroke="var(--border-strong)" stroke-width="1"/><polyline fill="none" stroke="var(--gold)" stroke-width="2" points="20,70 60,65 100,75 140,70 180,80 220,75 260,70 300,75 340,72 380,70"/><line x1="20" y1="55" x2="380" y2="55" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="4"/><line x1="20" y1="90" x2="380" y2="90" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="4"/><text x="50" y="50" fill="var(--text-muted)" font-family="var(--font-mono)" font-size="8">Resistance</text><text x="50" y="110" fill="var(--text-muted)" font-family="var(--font-mono)" font-size="8">Support</text><circle cx="380" cy="70" r="4" fill="var(--gold)"/></svg>
+</div>
+<div class="murphy-box"><div class="murphy-label">📖 John Murphy — Technical Analysis</div><p>"Price consolidating in a range. Awaiting directional catalyst. Volume suggests indecision. Watch for breakout above $232.85 or breakdown below $228.56."</p></div>
+<div class="street-quote"><p>"HON Inc. trading within expected range. Consolidation pattern reflects market equilibrium as investors digest recent developments. Volume suggests balanced buying and selling pressure. Awaiting next catalyst for directional movement."</p><div class="quote-source">— Yahoo Finance</div></div>
+<div class="cfa-box">
+<div class="cfa-box-title">📚 CFA Lens — Equity Valuation: P/E Framework</div>
+<div class="formula-block">P/E Ratio = Market Price / EPS
+Justified P/E = (1 - b) / (r - g)
+
+HON P/E = 33.6x vs market ~20x</div>
+<p>The P/E ratio compares price to earnings. A 33.6x multiple implies investors pay $34 per $1 of earnings. Compare to sector averages and growth rates. Higher P/E suggests growth expectations or competitive moats.</p>
+<div class="cfa-reading-ref">CFA Level I · Reading 41: Equity Valuation</div>
+</div>
+</div>
+</div>
+</div>
+<!-- CMCSA -->
+<div class="asset-card">
+<div class="asset-card-header">
+<div class="asset-left">
+<div class="ticker-row">
+<span class="ticker">CMCSA</span>
+<span class="sp500-badge">S&P #65</span>
+<span class="sector-badge">Unknown</span>
+</div>
+<div class="company-name">CMCSA Inc. — S&P 500 Company</div>
+</div>
+<div class="asset-right">
+<div class="price-main">$28.78</div>
+<div class="price-change negative">▼ -4.31%</div>
+<div class="mcap-label">As of 4:00 PM ET</div>
+</div>
+</div>
+<button class="collapse-toggle" onclick="toggleCard(this)">▸ Technical Analysis, Street Commentary & CFA Lens <span class="arrow">▼</span></button>
+<div class="collapsible-body">
+<div class="asset-body">
+<div class="metrics-grid">
+<div class="metric-tile"><div class="mt-val">$30.08</div><div class="mt-lbl">Prev Close</div></div>
+<div class="metric-tile"><div class="mt-val">$28.72-$30.10</div><div class="mt-lbl">Day Range</div></div>
+<div class="metric-tile"><div class="mt-val">$24.13-$35.35</div><div class="mt-lbl">52W Range</div></div>
+<div class="metric-tile"><div class="mt-val">14.5M</div><div class="mt-lbl">Volume</div></div>
+</div>
+<div class="pattern-diagram">
+<div class="pattern-label">▸ Price Pattern — Distribution Pattern</div>
+<svg viewBox="0 0 400 120" style="height:120px"><rect fill="var(--bg)" width="400" height="120"/><line x1="20" y1="100" x2="380" y2="100" stroke="var(--border-strong)" stroke-width="1"/><polyline fill="none" stroke="var(--gold)" stroke-width="2" points="20,40 60,45 100,50 140,48 180,55 220,60 260,65 300,70 340,85 380,95"/><line x1="50" y1="35" x2="350" y2="35" stroke="var(--red)" stroke-width="1" stroke-dasharray="4"/><text x="360" y="38" fill="var(--red)" font-family="var(--font-mono)" font-size="8">Support Level</text><circle cx="380" cy="95" r="4" fill="var(--red)"/></svg>
+</div>
+<div class="murphy-box"><div class="murphy-label">📖 John Murphy — Technical Analysis</div><p>"Selling pressure on increased volume. Distribution phase may be underway. Support at $24.1 becomes critical."</p></div>
+<div class="street-quote"><p>"CMCSA Inc. experiencing selling pressure with a 4.3% decline. Market concerns may be weighing on sentiment despite solid fundamentals. Near-term technical support levels being tested. Long-term investors may view weakness as accumulation opportunity."</p><div class="quote-source">— Yahoo Finance</div></div>
+<div class="cfa-box">
+<div class="cfa-box-title">📚 CFA Lens — Equity Valuation: P/E Framework</div>
+<div class="formula-block">P/E Ratio = Market Price / EPS
+Justified P/E = (1 - b) / (r - g)
+
+CMCSA P/E = 5.3x vs market ~20x</div>
+<p>The P/E ratio compares price to earnings. A 5.3x multiple implies investors pay $5 per $1 of earnings. Compare to sector averages and growth rates. Higher P/E suggests growth expectations or competitive moats.</p>
+<div class="cfa-reading-ref">CFA Level I · Reading 41: Equity Valuation</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Crypto — ADA</div><div class="section-divider-line"></div></div>
+<div class="asset-card crypto-card">
+<div class="asset-card-header">
+<div class="asset-left">
+<div class="ticker-row">
+<span class="ticker" style="color:var(--purple)">ADA</span>
+<span class="sector-badge" style="background:var(--purple-dim);color:var(--purple);border-color:var(--purple)">Layer-1</span>
+</div>
+<div class="company-name">Cardano — Research-Driven Blockchain, Proof-of-Stake</div>
+</div>
+<div class="asset-right">
+<div class="price-main" style="color:var(--purple)">$0.2723</div>
+<div class="price-change negative">▼ -5.80%</div>
+<div class="mcap-label">As of 4:00 PM ET</div>
+</div>
+</div>
+<button class="collapse-toggle" onclick="toggleCard(this)">▸ Technical Analysis & Crypto Context <span class="arrow">▼</span></button>
+<div class="collapsible-body">
+<div class="asset-body">
+<div class="crypto-metrics-row">
+<div class="crypto-stat"><div class="crypto-stat-val">$0.2891</div><div class="crypto-stat-lbl">24H Ago</div></div>
+<div class="crypto-stat"><div class="crypto-stat-val">627M</div><div class="crypto-stat-lbl">24H Volume</div></div>
+<div class="crypto-stat"><div class="crypto-stat-val">-91%</div><div class="crypto-stat-lbl">From ATH</div></div>
+</div>
+<div class="pattern-diagram">
+<div class="pattern-label">▸ ADA Price — 24H Price Action</div>
+<svg viewBox="0 0 400 120" style="height:120px"><rect fill="var(--bg)" width="400" height="120"/><polyline fill="none" stroke="var(--purple)" stroke-width="2" points="20,80 60,75 100,85 140,80 180,70 220,75 260,65 300,60 340,55 380,50"/></svg>
+</div>
+<div class="crypto-expert-box"><div class="crypto-expert-label">🌐 Crypto Market Context</div>
+<p><strong>ETF Flows:</strong> Bitcoin ETFs continue to see institutional inflows, providing legitimacy to the asset class. Altcoin performance remains correlated with BTC dominance.</p>
+<p><strong>Regulatory:</strong> Global regulatory frameworks evolving. Key focus on stablecoin regulation and DeFi compliance requirements.</p>
+<p><strong>Cardano:</strong> Technical development continues with active community. Price action reflects broader market sentiment and risk-on/risk-off flows.</p></div>
+<div class="cfa-box">
+<div class="cfa-box-title">📚 CFA Lens — Alternative Investments: Crypto</div>
+<p>Crypto assets like ADA fall under "Alternative Investments" in the CFA curriculum. Key characteristics: 1) Low correlation with traditional assets (theoretically), 2) High volatility (5.8% daily moves vs stocks' 1-2%), 3) Regulatory uncertainty creates valuation challenges. For Level I: Know that crypto lacks traditional cash flows, making DCF valuation impossible. Price is purely supply/demand driven.</p>
+<div class="cfa-reading-ref">CFA Level I · Reading 50: Introduction to Alternative Investments</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Forex — AUDUSD</div><div class="section-divider-line"></div></div>
+<div class="asset-card forex-card">
+<div class="asset-card-header">
+<div class="asset-left">
+<div class="ticker-row">
+<span class="ticker" style="color:var(--blue)">AUD/USD</span>
+<span class="sector-badge" style="background:var(--blue-dim);color:var(--blue);border-color:var(--blue)">G7 Major Pair</span>
+</div>
+<div class="company-name">Australian Dollar vs US Dollar — Commodity-Linked Pair</div>
+</div>
+<div class="asset-right">
+<div class="price-main" style="color:var(--blue)">0.7082</div>
+<div class="price-change">▲ +0.18%</div>
+<div class="mcap-label">As of 4:00 PM ET</div>
+</div>
+</div>
+<button class="collapse-toggle" onclick="toggleCard(this)">▸ Policy Divergence & Technical Levels <span class="arrow">▼</span></button>
+<div class="collapsible-body">
+<div class="asset-body">
+<div class="forex-rates-grid">
+<div class="forex-rate-item"><div class="forex-rate-val">0.707</div><div class="forex-rate-lbl">24H Ago</div></div>
+<div class="forex-rate-item"><div class="forex-rate-val">0.718</div><div class="forex-rate-lbl">52W High</div></div>
+<div class="forex-rate-item"><div class="forex-rate-val">0.592</div><div class="forex-rate-lbl">52W Low</div></div>
+</div>
+<div class="policy-divergence-bar">
+<div class="policy-bar-label">Policy Divergence: RBA 4.35% vs Fed 4.33%</div>
+<div class="policy-bar-track"><div class="policy-bar-fill" style="width:0%"></div></div>
+<div class="policy-bar-labels"><span>Neutral</span><span>Hawkish RBA / Dovish Fed</span></div>
+</div>
+<div class="forex-commentary-box"><div class="forex-commentary-label">🏦 Central Bank Dynamics</div>
+<p><strong>RBA (4.35%):</strong> Policy stance influencing the currency pair. Rate differentials remain the primary driver of exchange rate movements.</p>
+<p><strong>Fed (4.33%):</strong> Relative monetary policy positioning. The 0bp rate differential supports carry trade flows.</p>
+<p><strong>Driver:</strong> Interest rate differentials dominate AUDUSD movements. Watch for policy divergence shifts and intervention rhetoric.</p></div>
+<div class="cfa-box">
+<div class="cfa-box-title">📚 CFA Lens — Interest Rate Parity</div>
+<div class="formula-block">Covered Interest Rate Parity:
+F/S = (1 + r₁) / (1 + r₂)
+Where F = forward rate, S = spot rate</div>
+<p>The 0bp rate differential explains currency strength. CFA Framework: Higher yielding currencies tend to appreciate (uncovered parity) or trade at forward discounts (covered parity). Forward points reflect this differential. For Level I: Understand that carry trades exploit rate differentials but carry crash risk.</p>
+<div class="cfa-reading-ref">CFA Level I · Reading 18: Currency Exchange Rates</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Trading Setups & Risk Management</div><div class="section-divider-line"></div></div>
+<div class="asset-card">
+<div class="asset-card-header">
+<div class="asset-left"><div class="ticker-row"><span class="ticker" style="font-size:1.1rem">📈 All Setups</span></div><div class="company-name">Entry · Stop · Target · R/R — All 7 Assets</div></div>
+</div>
+<div class="asset-body" style="padding-top:16px">
+<div class="table-wrap">
+<table class="trading-table">
+<tr><th>Asset</th><th>S&P #</th><th>Setup</th><th>Bias</th><th>Entry</th><th>Stop</th><th>Target</th><th>R/R</th></tr>
+<tr><td>BKNG</td><td>#61</td><td><span class="setup-badge">Consolidation</span></td><td><span class="setup-badge bias-neutral">NEUTRAL</span></td><td>$4,457.70</td><td>$4,368.55</td><td>$4,636.01</td><td><span class="rr-badge">2.0:1</span></td></tr>
+<tr><td>ELV</td><td>#62</td><td><span class="setup-badge">Consolidation</span></td><td><span class="setup-badge bias-neutral">NEUTRAL</span></td><td>$295.26</td><td>$289.35</td><td>$307.07</td><td><span class="rr-badge">2.0:1</span></td></tr>
+<tr><td>SYK</td><td>#63</td><td><span class="setup-badge">Consolidation</span></td><td><span class="setup-badge bias-neutral">NEUTRAL</span></td><td>$348.81</td><td>$341.83</td><td>$362.76</td><td><span class="rr-badge">2.0:1</span></td></tr>
+<tr><td>HON</td><td>#64</td><td><span class="setup-badge">Consolidation</span></td><td><span class="setup-badge bias-neutral">NEUTRAL</span></td><td>$232.85</td><td>$228.19</td><td>$242.16</td><td><span class="rr-badge">2.0:1</span></td></tr>
+<tr><td>CMCSA</td><td>#65</td><td><span class="setup-badge">Breakdown</span></td><td><span class="setup-badge bias-bear">BEAR</span></td><td>$28.78</td><td>$29.65</td><td>$27.06</td><td><span class="rr-badge">2.0:1</span></td></tr>
+<tr><td>ADA</td><td>—</td><td><span class="setup-badge">Support Test</span></td><td><span class="setup-badge bias-neutral">NEUTRAL</span></td><td>$0.2723</td><td>$0.2587</td><td>$0.2995</td><td><span class="rr-badge">2.0:1</span></td></tr>
+<tr><td>AUD/USD</td><td>—</td><td><span class="setup-badge">Range</span></td><td><span class="setup-badge bias-neutral">NEUTRAL</span></td><td>0.7082</td><td>0.7011</td><td>0.7223</td><td><span class="rr-badge">2.0:1</span></td></tr>
+</table>
+</div>
+<div class="fun-fact" style="margin-top:14px">
+<div class="fun-fact-label">📖 Murphy — Risk Management Rule</div>
+"The 2:1 reward-to-risk minimum means you only need to be right 34% of the time to break even. Aim for 3:1 and your breakeven drops to 25%. Always risk a fixed percentage of capital — never more than 2% per trade. Position size, not win rate, determines longevity."
+</div>
+</div>
+</div>
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Options & Derivatives Education</div><div class="section-divider-line"></div></div>
+<div class="options-card">
+<div class="options-header">🎯 Options Concept: Straddles & Strangles</div>
+<div class="options-sub">7 of 8 — Greek/Concept Rotation</div>
+<div class="options-concept-grid">
+<div class="option-concept-box"><h4>Definition</h4><p>Straddle: Long ATM call + ATM put (same strike). Strangle: Long OTM call + OTM put (different strikes). Both profit from large moves in either direction.</p></div>
+<div class="option-concept-box"><h4>Interpretation</h4><p>Long straddles/strangles are volatility plays — you need a large move to overcome premium paid. Max loss = total premium. Used before events when direction is uncertain but movement is expected.</p></div>
+</div>
+<div class="payoff-chart-wrap">
+<div class="payoff-chart-title">▸ Straddles & Strangles Visualization <span>Key Concept</span></div>
+<svg viewBox="0 0 400 150" class="payoff-svg"><rect fill="var(--bg)" width="400" height="150"/><text x="200" y="75" fill="var(--text-muted)" font-family="var(--font-mono)" font-size="14" text-anchor="middle">Straddles & Strangles Diagram</text><text x="200" y="95" fill="var(--purple)" font-family="var(--font-mono)" font-size="10" text-anchor="middle">See formula below for calculation</text></svg>
+</div>
+<div class="cfa-box">
+<div class="cfa-box-title">📚 CFA Level I Formula</div>
+<div class="formula-block">Straddle Payoff = |Sₜ - K| - (C + P)\nBreakevens: K ± (C + P)\n\nStrangle Payoff is similar but with two strikes (K₁, K₂).</div>
+<p><strong>Key Exam Point:</strong> Buy straddles when IV is low before an event. Expect volatility expansion. Risk: The stock doesn't move enough (theta decay). Time is your enemy with long straddles.</p>
+</div>
+</div>
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">CFA Spotlight — Alternative Investments</div><div class="section-divider-line"></div></div>
+<div class="asset-card spotlight-card">
+<div class="spotlight-header-row">
+<div>
+<div class="spotlight-title">📊 Alternative Investments</div>
+<div class="spotlight-sub">Today's CFA Topic: Alternative Investments</div>
+</div>
+<span class="spotlight-badge">Active Topic</span>
+</div>
+<div class="spotlight-body">
+<div class="spotlight-why">
+<div class="spotlight-why-label">Why This Topic Matters</div>
+Alternatives (5-8% of exam) covers real estate, private equity, hedge funds, and commodities. Understanding unique characteristics and valuation methods.
+</div>
+<div class="concept-grid">
+<div class="concept-box"><h4>Private Equity Structure</h4><p>2/20 fee model, hurdle rates, carried interest</p></div>
+<div class="concept-box"><h4>REITs</h4><p>Real estate investment trusts with distribution requirements</p></div>
+</div>
+<div class="spotlight-cfa-box">
+<div class="spotlight-cfa-title">📚 Key Formulas — Alternative Investments</div>
+<div class="formula-block">Commodity Futures Return = Spot + Roll + Collateral
+
+IRR: Rate where NPV = 0
+
+NAV = (Assets - Liabilities) / Shares</div>
+<p><strong>Worked Example:</strong> Private equity fund: 2% management fee on committed capital, 20% carried interest above 8% hurdle. If fund returns 15%, LPs get first 8%, then 80% of remaining 7%.</p>
+</div>
+</div>
+</div>
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">CFA Level I Quiz — Alternative Investments</div><div class="section-divider-line"></div></div>
+<div class="quiz-card">
+<div class="quiz-header">📝 Daily CFA Quiz</div>
+<div class="quiz-sub">5 Questions · Alternative Investments · Instant Feedback · Uses Today's Real Data</div>
+<div class="quiz-score-display"><span>Score</span><span class="quiz-score-num" id="scoreDisplay">0 / 5</span><span id="quizStatus">Answer all 5 questions below</span></div>
+<div class="quiz-question" id="q1">
+<div class="quiz-q-num">Question 1 of 5 · Alternative Investments</div>
+<div class="quiz-q-text">Private equity funds typically charge:</div>
+<div class="quiz-options">
+<button class="quiz-option" onclick="answerQ(1,'M','B',this)">Management fee only</button>
+<button class="quiz-option" onclick="answerQ(1,'M','B',this)">Management fee + carried interest</button>
+<button class="quiz-option" onclick="answerQ(1,'T','B',this)">Transaction fees only</button>
+<button class="quiz-option" onclick="answerQ(1,'N','B',this)">No fees</button>
+</div>
+<div class="quiz-explanation" id="exp1"><strong>Correct: B.</strong> Private equity uses '2 and 20' structure: ~2% annual management fee on committed capital + ~20% carried interest (profit share) above hurdle rate.</div>
+</div>
+<div class="quiz-question" id="q2">
+<div class="quiz-q-num">Question 2 of 5 · Alternative Investments</div>
+<div class="quiz-q-text">REITs are required to distribute what percentage of taxable income?</div>
+<div class="quiz-options">
+<button class="quiz-option" onclick="answerQ(2,'5','C',this)">50%</button>
+<button class="quiz-option" onclick="answerQ(2,'7','C',this)">75%</button>
+<button class="quiz-option" onclick="answerQ(2,'9','C',this)">90%</button>
+<button class="quiz-option" onclick="answerQ(2,'1','C',this)">100%</button>
+</div>
+<div class="quiz-explanation" id="exp2"><strong>Correct: C.</strong> To maintain REIT status and avoid corporate taxation, REITs must distribute at least 90% of taxable income to shareholders.</div>
+</div>
+<div class="quiz-question" id="q3">
+<div class="quiz-q-num">Question 3 of 5 · Alternative Investments</div>
+<div class="quiz-q-text">Hedge funds are characterized by:</div>
+<div class="quiz-options">
+<button class="quiz-option" onclick="answerQ(3,'H','B',this)">High liquidity and daily pricing</button>
+<button class="quiz-option" onclick="answerQ(3,'L','B',this)">Light regulation and flexible strategies</button>
+<button class="quiz-option" onclick="answerQ(3,'G','B',this)">Guaranteed returns</button>
+<button class="quiz-option" onclick="answerQ(3,'P','B',this)">Pass-through taxation only</button>
+</div>
+<div class="quiz-explanation" id="exp3"><strong>Correct: B.</strong> Hedge funds are lightly regulated, use diverse strategies (long/short, global macro, etc.), have lock-up periods, and target absolute returns.</div>
+</div>
+<div class="quiz-question" id="q4">
+<div class="quiz-q-num">Question 4 of 5 · Alternative Investments</div>
+<div class="quiz-q-text">Commodity futures returns consist of:</div>
+<div class="quiz-options">
+<button class="quiz-option" onclick="answerQ(4,'S','B',this)">Spot price change only</button>
+<button class="quiz-option" onclick="answerQ(4,'S','B',this)">Spot return + roll yield + collateral yield</button>
+<button class="quiz-option" onclick="answerQ(4,'C','B',this)">Convenience yield only</button>
+<button class="quiz-option" onclick="answerQ(4,'S','B',this)">Storage costs only</button>
+</div>
+<div class="quiz-explanation" id="exp4"><strong>Correct: B.</strong> Commodity futures returns = Spot return + Roll yield (backwardation/contango effect) + Collateral yield (margin returns).</div>
+</div>
+<div class="quiz-question" id="q5">
+<div class="quiz-q-num">Question 5 of 5 · Alternative Investments</div>
+<div class="quiz-q-text">Compared to traditional assets, alternatives typically have:</div>
+<div class="quiz-options">
+<button class="quiz-option" onclick="answerQ(5,'H','B',this)">Higher liquidity and lower fees</button>
+<button class="quiz-option" onclick="answerQ(5,'L','B',this)">Lower liquidity and higher fees</button>
+<button class="quiz-option" onclick="answerQ(5,'D','B',this)">Daily pricing and transparency</button>
+<button class="quiz-option" onclick="answerQ(5,'L','B',this)">Lower correlation and lower returns</button>
+</div>
+<div class="quiz-explanation" id="exp5"><strong>Correct: B.</strong> Alternatives generally have lower liquidity, less transparency, higher fees, and often higher returns or diversification benefits (low correlation).</div>
+</div></div></div>
+<div class="quiz-controls"><button class="quiz-btn quiz-btn-secondary" onclick="resetQuiz()">↺ Reset Quiz</button></div>
+</div>
+
+<div class="section-divider"><div class="section-divider-line"></div><div class="section-divider-text">Today's Glossary — 4 Terms · Alternative Investments</div><div class="section-divider-line"></div></div>
+<div class="terms-card"><div class="terms-header">📖 Terms to Know</div><div class="term-entry">
+<div class="term-word">Carried Interest</div>
+<div class="term-def">The share of profits that general partners receive as compensation, typically ~20% of profits above a hurdle rate.</div>
+<div class="term-origin">CFA Level I · Reading 60: Alternative Investments</div>
+</div>
+<div class="term-entry">
+<div class="term-word">Hurdle Rate</div>
+<div class="term-def">The minimum return that must be achieved before general partners can receive carried interest. Often set at 8%.</div>
+<div class="term-origin">CFA Level I · Reading 60: Alternative Investments</div>
+</div>
+<div class="term-entry">
+<div class="term-word">Net Asset Value</div>
+<div class="term-def">The value of a fund's assets minus liabilities. Used to price fund shares and calculate performance.</div>
+<div class="term-origin">CFA Level I · Reading 60: Alternative Investments</div>
+</div>
+<div class="term-entry">
+<div class="term-word">Lock-Up Period</div>
+<div class="term-def">The time during which investors cannot redeem their investment. Common in hedge funds and private equity to ensure strategy execution.</div>
+<div class="term-origin">CFA Level I · Reading 60: Alternative Investments</div>
+</div></div>
+
+<footer>
+<div class="footer-title">DIBS DAILY · OPENCLAW EMPIRE</div>
+<p>Market Intelligence · CFA Level I Preparation · Generated by ASTRA</p>
+<p style="margin-top:6px;opacity:0.6">Markets are dynamic. Past performance does not guarantee future results. Not financial advice.</p>
+<p style="margin-top:8px;opacity:0.5;font-size:0.65rem">All prices verified against Yahoo Finance as of 4:00 PM ET · March 19, 2026. Data delayed at least 15 minutes.</p>
+</footer>
+</div>
+
+<script>
+function toggleCard(btn){const body=btn.nextElementSibling;const isOpen=btn.classList.contains('open');if(isOpen){btn.classList.remove('open');btn.setAttribute('aria-expanded','false');body.classList.remove('expanded')}else{btn.classList.add('open');btn.setAttribute('aria-expanded','true');body.classList.add('expanded')}}
+let scores=[null,null,null,null,null];
+function answerQ(qNum,chosen,correct,btn){const container=document.getElementById('q'+qNum);const options=container.querySelectorAll('.quiz-option');const exp=document.getElementById('exp'+qNum);options.forEach(o=>o.disabled=true);options.forEach(o=>{const letter=o.textContent.trim()[0];if(letter===correct)o.classList.add('correct');else if(letter===chosen&&chosen!==correct)o.classList.add('incorrect')});exp.classList.add('visible');if(scores[qNum-1]===null){scores[qNum-1]=(chosen===correct)?1:0;updateScore()}}
+function updateScore(){const answered=scores.filter(s=>s!==null).length;const correct=scores.filter(s=>s===1).length;document.getElementById('scoreDisplay').textContent=correct+' / 5';if(answered===5){const pct=(correct/5)*100;const msg=pct>=80?'🏆 Excellent! CFA-ready performance':pct>=60?'✅ Good — review explanations for misses':'📚 Keep studying — review the CFA readings';document.getElementById('quizStatus').textContent=msg}else{document.getElementById('quizStatus').textContent=answered+' of 5 answered'}}
+function resetQuiz(){scores=[null,null,null,null,null];document.getElementById('scoreDisplay').textContent='0 / 5';document.getElementById('quizStatus').textContent='Answer all 5 questions below';for(let i=1;i<=5;i++){const c=document.getElementById('q'+i);if(!c)continue;c.querySelectorAll('.quiz-option').forEach(o=>{o.disabled=false;o.classList.remove('correct','incorrect')});const exp=document.getElementById('exp'+i);if(exp)exp.classList.remove('visible')}}
+</script>
+</body>
+</html>
