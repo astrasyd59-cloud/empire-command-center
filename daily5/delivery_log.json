@@ -1,0 +1,32 @@
+[
+  {
+    "date": "2026-03-16",
+    "delivered_at": "2026-03-16T05:56:04.870639",
+    "success": false,
+    "error": "Telegram token missing"
+  },
+  {
+    "date": "2026-03-17",
+    "delivered_at": "2026-03-17T05:56:47.144577",
+    "success": false,
+    "error": "Telegram token missing"
+  },
+  {
+    "date": "2026-03-18",
+    "delivered_at": "2026-03-18T05:55:12.244556",
+    "success": false,
+    "error": "Telegram token missing"
+  },
+  {
+    "date": "2026-03-19",
+    "delivered_at": "2026-03-19T05:55:17.262388",
+    "success": false,
+    "error": "Telegram token missing"
+  },
+  {
+    "date": "2026-03-20",
+    "delivered_at": "2026-03-20T05:56:26.487122",
+    "success": false,
+    "error": "Telegram token missing"
+  }
+]
