@@ -22,5 +22,11 @@
     "delivered_at": "2026-03-19T05:55:17.262388",
     "success": false,
     "error": "Telegram token missing"
+  },
+  {
+    "date": "2026-03-20",
+    "delivered_at": "2026-03-20T05:56:26.487122",
+    "success": false,
+    "error": "Telegram token missing"
   }
 ]
